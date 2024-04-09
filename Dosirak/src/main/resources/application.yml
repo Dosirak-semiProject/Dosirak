@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/menudb
+    username: ohgiraffers
+    password: ohgiraffers
+
+mybatis:
+  mapper-locations: mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  file:
+    name: myapp.log
+    path: C:\dev\lecture_code\09_Spring-boot\chap08-crud
