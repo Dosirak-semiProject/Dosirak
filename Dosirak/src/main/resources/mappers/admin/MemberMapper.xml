@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.dosirak.admin.member.model.dao.MemberMapper">
+    <resultMap id="member" type="com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO">
+        <id property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="birth" column="BIRTH"/>
+        <result property="gender" column="GENDER"/>
+        <result property="phone" column="PHONE"/>
+        <result property="email" column="EMAIL"/>
+        <result property="address" column="ADDRESS"/>
+        <result property="agree" column="AGREE"/>
+        <result property="joindate" column="JOINDATE"/>
+    </resultMap>
+    <select id="findAllMember" resultMap="member">
+        SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, ADDRESS, AGREE, JOINDATE
+        FROM USER WHERE WITHDRAWAL = FALSE;
+    </select>
+
+    <resultMap id="manager" type="com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO">
+        <id property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="birth" column="BIRTH"/>
+        <result property="gender" column="GENDER"/>
+        <result property="contact" column="CONTACT"/>
+        <result property="email" column="EMAIL"/>
+        <result property="position" column="POSITION"/>
+        <result property="department" column="DEPARTMENT"/>
+        <result property="authority" column="AUTHORITY"/>
+        <result property="joindate" column="JOINDATE"/>
+        <result property="withdrawal" column="WITHDRAWAL"/>
+    </resultMap>
+    <select id="findAllManager" resultMap="manager">
+        SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, AUTHORITY, JOINDATE, WITHDRAWAL
+        FROM ADMIN WHERE WITHDRAWAL = FALSE;
+    </select>
+</mapper>

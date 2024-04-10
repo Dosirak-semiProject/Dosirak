@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <th:block th:replace="/admin/common/head.html"></th:block>
+</head>
+<body>
+<body class="sb-nav-fixed">
+    <th:block th:replace="/admin/common/header.html"></th:block>
+    <div id="layoutSidenav">
+        <th:block th:replace="/admin/common/sideNav.html"></th:block>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">회원 목록</h1>
+                    <div class="card mb-4 mt-4">
+                        <div class="card-header justify-content-between d-flex align-items-center">
+                            <i class="fas fa-table me-1"></i>
+                            <form class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>아이디</th>
+                                        <th>이름</th>
+                                        <th>생년월일</th>
+                                        <th>성별</th>
+                                        <th>휴대폰번호</th>
+                                        <th>이메일</th>
+                                        <th>마케팅동의</th>
+                                        <th>가입일자</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>아이디</th>
+                                        <th>이름</th>
+                                        <th>생년월일</th>
+                                        <th>성별</th>
+                                        <th>휴대폰번호</th>
+                                        <th>이메일</th>
+                                        <th>마케팅동의</th>
+                                        <th>가입일자</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr th:each="member : ${memberList}">
+                                        <td th:text="${member.id}"></td>
+                                        <td th:text="${member.name}"></td>
+                                        <td th:text="${member.birth}"></td>
+                                        <td th:text="${member.gender}"></td>
+                                        <td th:text="${member.phone}"></td>
+                                        <td th:text="${member.email}"></td>
+                                        <td th:text="${member.agree}"></td>
+                                        <td th:text="${member.joindate}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <th:block th:replace="/admin/common/foot.html"></th:block>
+</body>
+</html>

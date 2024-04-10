@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.dosirak.user.join.model.dao.JoinMapper">
+<!--    <insert id="regist" parameterType="com.ohgiraffers.dosirak.user.join.model.dto.JoinDTO">-->
+<!--        INSERT INTO USER -->
+<!--        VALUES (#{userId}, #{userName}, #{userBirth}, #{userGender}, #{userPhone}, #{userEmail}, #{userAddress}, #{userAgree}, #{userPwd}, CURDATE(), 'F', 'USER')-->
+<!--    </insert>-->
+</mapper>

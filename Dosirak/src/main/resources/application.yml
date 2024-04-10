@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost/menudb
-    username: ohgiraffers
-    password: ohgiraffers
+    url: jdbc:mysql://localhost/dosirak
+    username: root
+    password: root
 
 mybatis:
   mapper-locations: mappers/**/*.xml
