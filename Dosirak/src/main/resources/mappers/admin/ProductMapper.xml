@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.dosirak.admin.product.dao.ProductMapper">
+<resultMap id="product" type="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
+    <id property="productName" column="PRODUCT_NAME"/>
+    <result property="productCode" column="PRODUCT_CODE"/>
+    <result property="productPrice" column="PRODUCT_PRICE"/>
+    <result property="productStatus" column="PRODUCT_STATUS"/>
+    <result property="productCategoryCode" column="PRODUCT_CATEGORY_CODE"/>
+</resultMap>
+    <select id="findAllProduct" resultMap="product">
+        SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE
+        FROM PRODUCT;
+    </select>
+</mapper>
