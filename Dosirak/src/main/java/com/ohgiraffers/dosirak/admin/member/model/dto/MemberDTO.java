@@ -1,9 +1,5 @@
 package com.ohgiraffers.dosirak.admin.member.model.dto;
 
-import lombok.*;
-
-import java.util.Date;
-
 public class MemberDTO {
     private String id;
     private String name;

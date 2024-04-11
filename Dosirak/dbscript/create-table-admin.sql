@@ -6,18 +6,18 @@ CREATE TABLE IF NOT EXISTS ADMIN (
     NAME VARCHAR(5) NOT NULL COMMENT '이름',
     BIRTH DATE COMMENT '생년월일',
     GENDER CHAR COMMENT '성별',
-    CONTACT INT COMMENT '내선번호',
+    CONTACT VARCHAR(5) COMMENT '내선번호',
     EMAIL VARCHAR(50) NOT NULL COMMENT '이메일',
-    DEPARTMENT VARCHAR(3) COMMENT '부서',
-    POSITION VARCHAR(5) COMMENT '직급',
-    AUTHORITY CHAR NOT NULL COMMENT '권한등급' DEFAULT 'C',
+    DEPARTMENT VARCHAR(10) COMMENT '부서',
+    POSITION VARCHAR(10) COMMENT '직급',
+    AUTHORITY CHAR NOT NULL COMMENT '권한등급' DEFAULT 3,
     PWD VARCHAR(50) UNIQUE NOT NULL COMMENT '비밀번호',
     JOINDATE DATE NOT NULL COMMENT '입사날짜',
     WITHDRAWAL BOOLEAN NOT NULL COMMENT '퇴직여부' DEFAULT FALSE,
     ROLE VARCHAR(50) NOT NULL COMMENT '사용자구분' DEFAULT 'ADMIN'
     ) ENGINE=INNODB COMMENT '관리자';
 
-INSERT INTO ADMIN VALUES ('jh6805', '임지훈', '1968-05-12', '남', '100', 'jh6805@naver.com', '마케팅', '임원', 'A', 'jh6805', '2012-12-20', FALSE, 'ADMIN');
-INSERT INTO ADMIN VALUES ('choijihyun72', '최지현', '1975-02-10', '여', '101', 'choijihyun72@naver.com', '마케팅', '팀장', 'B', 'choijihyun72', '2014-07-21', FALSE, 'ADMIN');
+INSERT INTO ADMIN VALUES ('jh6805', '임지훈', '1968-05-12', '남', '100', 'jh6805@naver.com', '마케팅', '임원', 1, 'jh6805', '2012-12-20', FALSE, 'ADMIN');
+INSERT INTO ADMIN VALUES ('choijihyun72', '최지현', '1975-02-10', '여', '101', 'choijihyun72@naver.com', '마케팅', '팀장', 2, 'choijihyun72', '2014-07-21', FALSE, 'ADMIN');
 
 select * from ADMIN;

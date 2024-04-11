@@ -15,6 +15,8 @@
         <result property="address3" column="ADDRESS3"/>
         <result property="agree" column="AGREE"/>
         <result property="joindate" column="JOINDATE"/>
+        <result property="withdrawal" column="WITHDRAWAL"/>
+        <result property="role" column="ROLE"/>
     </resultMap>
     <select id="findAllMember" resultMap="member">
         SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, AGREE, JOINDATE
@@ -29,6 +31,22 @@
         SET PHONE = #{phone}, EMAIL = #{email}, AGREE = #{agree}, ADDRESS1 = #{address1}, ADDRESS2 = #{address2}, ADDRESS3 = #{address3}
         WHERE ID = #{id}
     </update>
+    <select id="memberListSearch" resultMap="member">
+        SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, AGREE, JOINDATE
+        FROM USER WHERE WITHDRAWAL = FALSE
+        <if test="memberSearchCondition == 'id'">
+            AND ID LIKE CONCAT('%', #{memberSearchValue}, '%')
+        </if>
+        <if test="memberSearchCondition == 'name'">
+            AND NAME LIKE CONCAT('%', #{memberSearchValue}, '%')
+        </if>
+        <if test="memberSearchCondition == 'phone'">
+            AND PHONE LIKE CONCAT('%', #{memberSearchValue}, '%')
+        </if>
+        <if test="memberSearchCondition == 'email'">
+            AND EMAIL LIKE CONCAT('%', #{memberSearchValue}, '%')
+        </if>
+    </select>
 
     <resultMap id="manager" type="com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO">
         <id property="id" column="ID"/>
@@ -42,6 +60,7 @@
         <result property="authority" column="AUTHORITY"/>
         <result property="joindate" column="JOINDATE"/>
         <result property="withdrawal" column="WITHDRAWAL"/>
+        <result property="role" column="ROLE"/>
     </resultMap>
     <select id="findAllManager" resultMap="manager">
         SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, JOINDATE
@@ -51,5 +70,10 @@
         SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, AUTHORITY, JOINDATE, WITHDRAWAL
         FROM ADMIN WHERE WITHDRAWAL = FALSE AND ID = #{id};
     </select>
+    <update id="modifyManager">
+        UPDATE ADMIN
+        SET DEPARTMENT = #{department}, POSITION = #{position}, CONTACT = #{contact}, AUTHORITY = #{authority}, EMAIL = #{email}
+        WHERE ID = #{id}
+    </update>
 
 </mapper>

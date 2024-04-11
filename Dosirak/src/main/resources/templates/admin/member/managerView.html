@@ -14,7 +14,7 @@
             $(".authority").val(authority).prop("selected", true);
             // 수정
             $(".editBtn").hide();
-            $("input").on("propertychange change keyup paste input", function() {
+            $("input, select").on("propertychange change keyup paste input", function() {
                 $(".editBtn").show();
             })
         })
@@ -29,7 +29,7 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">관리자 상세</h1>
-                <form action="/admin/member/modifyMember" method="post">
+                <form action="/admin/member/modifyManager" method="post">
                     <table class="datatable-table mt-4">
                         <colgroup>
                             <col style="width:15%"/>
@@ -53,7 +53,8 @@
                         <tr>
                             <th scope="row">부서</th>
                             <td>
-                                <select class="department datatable-selector" th:data-department="${manager.department}">
+                                <select class="department datatable-selector" th:data-department="${manager.department}" name="department">
+                                    <option value="null">부서 선택</option>
                                     <option value="마케팅">마케팅</option>
                                     <option value="운영">운영</option>
                                     <option value="고객서비스">고객서비스</option>
@@ -63,7 +64,8 @@
                             </td>
                             <th scope="row">직급</th>
                             <td>
-                                <select class="position datatable-selector" th:data-position="${manager.position}">
+                                <select class="position datatable-selector" th:data-position="${manager.position}" name="position">
+                                    <option value="null">직급 선택</option>
                                     <option value="팀원">팀원</option>
                                     <option value="팀장">팀장</option>
                                     <option value="부서장">부서장</option>
@@ -73,19 +75,20 @@
                         </tr>
                         <tr>
                             <th scope="row">내선번호</th>
-                            <td><input type="number" th:value="${manager.contact}"/></td>
+                            <td><input type="number" name="contact" th:value="${manager.contact}" oninput="handleOnInput(this, 5)"/></td>
                             <th scope="row">권한등급</th>
                             <td>
-                                <select class="authority datatable-selector" th:data-authority="${manager.authority}">
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
+                                <select class="authority datatable-selector" name="authority" th:data-authority="${manager.authority}">
+                                    <option value="null">권한등급 선택</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
                                 </select>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">이메일</th>
-                            <td colspan="3"><input type="email" size="30" th:value="${manager.email}"/></td>
+                            <td colspan="3"><input type="email" name="email" size="30" th:value="${manager.email}" required/></td>
                         </tr>
                         </tbody>
                     </table>
@@ -100,5 +103,10 @@
     </div>
 </div>
 <th:block th:replace="/admin/common/foot.html"></th:block>
+<script>
+    function handleOnInput(el, maxlength) {
+        if(el.value.length > maxlength) el.value = el.value.substr(0, maxlength);
+    }
+</script>
 </body>
 </html>

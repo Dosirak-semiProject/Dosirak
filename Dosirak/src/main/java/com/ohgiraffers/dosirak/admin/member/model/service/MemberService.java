@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MemberService {
@@ -20,8 +21,8 @@ public class MemberService {
         return memberMapper.findAllMember();
     }
 
-    public List<ManagerDTO> findAllManager() {
-        return memberMapper.findAllManager();
+    public List<MemberDTO> memberListSearch(Map<String, String> searchMap) {
+        return memberMapper.memberListSearch(searchMap);
     }
 
     public MemberDTO selectMemberView(String id) {
@@ -34,7 +35,17 @@ public class MemberService {
         if(!(result>0)) throw new MemberModifyException("회원 정보 수정 실패");
     }
 
+    public List<ManagerDTO> findAllManager() {
+        return memberMapper.findAllManager();
+    }
+
     public ManagerDTO selectManagerView(String id) {
         return memberMapper.selectManagerView(id);
+    }
+
+    @Transactional
+    public void modifyManager(ManagerDTO manager) throws MemberModifyException {
+        int result = memberMapper.modifyManager(manager);
+        if(!(result>0)) throw new MemberModifyException("관리자 정보 수정 실패");
     }
 }

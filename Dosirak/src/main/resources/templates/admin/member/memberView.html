@@ -7,12 +7,18 @@
         $(function(){
             // 마케팅동의
             let agree = $(".agree").data('agree');
-            if(agree.includes('문자')) $("#agreeSms").prop("checked", true);
-            if(agree.includes('이메일')) $("#agreeEmail").prop("checked", true);
+            if(agree == '문자') $("#agreeSms").prop("checked", true);
+            if(agree == '이메일') $("#agreeEmail").prop("checked", true);
             // 수정
             $(".editBtn").hide();
             $("input").on("propertychange change keyup paste input", function() {
                 $(".editBtn").show();
+            })
+            // 주소삭제
+            $(".deleteBtn").click(function(){
+                $("#address1").val("");
+                $("#address2").val("");
+                $("#address3").val("");
             })
         })
     </script>
@@ -58,14 +64,14 @@
                                 <td><input type="email" name="email" th:value="${member.email}" required/></td>
                                 <th scope="row">마케팅동의</th>
                                 <td class="agree" th:data-agree="${member.agree}">
-                                    <label class="me-3"><input id="agreeSms" type="checkbox" name="agree" value="sms"> 문자</label>
-                                    <label><input id="agreeEmail" type="checkbox" name="agree" value="email"> 이메일</label>
+                                    <label class="me-3"><input id="agreeSms" type="checkbox" name="agree" value="문자"> 문자</label>
+                                    <label><input id="agreeEmail" type="checkbox" name="agree" value="이메일"> 이메일</label>
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">
                                     주소<br/>
-                                    <a class="deleteAdd btn btn-outline-dark btn-sm mt-1" href="/admin/member/deleteAddress">주소삭제</a>
+                                    <button type="button" class="deleteBtn btn btn-outline-dark btn-sm mt-1">주소삭제</button>
                                 </th>
                                 <td colspan="3">
                                     <input type="text" id="address1" name="address1" th:value="${member.address1}" size="20" placeholder="우편번호" readonly>
