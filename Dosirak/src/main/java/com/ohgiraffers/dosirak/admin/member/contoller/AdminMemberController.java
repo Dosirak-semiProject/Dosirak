@@ -4,6 +4,7 @@ import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.member.model.service.MemberService;
 import com.ohgiraffers.dosirak.common.member.MemberModifyException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -51,6 +52,14 @@ public class AdminMemberController {
 
     @PostMapping("/modify")
     public String modifyMember(MemberDTO member, RedirectAttributes rttr) throws MemberModifyException {
+        if(member.getAgree().contains("sms") && member.getAgree().contains("email")){
+            member.setAgree("문자, 이메일");
+        }else if(member.getAgree().contains("sms")) {
+            member.setAgree("문자");
+        }else if(member.getAgree().contains("email")) {
+            member.setAgree("이메일");
+        }
+
         memberService.modifyMember(member);
 
         return "redirect:/admin/member/memberList";
