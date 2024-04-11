@@ -5,6 +5,7 @@ import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,4 +22,22 @@ public class MemberService {
     public List<ManagerDTO> findAllManager() {
         return memberMapper.findAllManager();
     }
+
+    public MemberDTO selectMemberView(String id) {
+        return memberMapper.selectMemberView(id);
+    }
+
+    @Transactional
+    public void modifyMember(MemberDTO member) {
+        int result = memberMapper.modifyMember(member);
+//        if(!(result>0)) throw new MemberModifyException("회원 정보 수정 실패");
+    }
+//    @Transactional
+//    public void modifyMember(MemberDTO modifyMember) throws MemberModifyException {
+//
+//        int result = memberMapper.updateMember(modifyMember);
+//
+//        if(!(result > 0)) throw new MemberModifyException("회원 정보 수정에 실패하였습니다.");
+//
+//    }
 }

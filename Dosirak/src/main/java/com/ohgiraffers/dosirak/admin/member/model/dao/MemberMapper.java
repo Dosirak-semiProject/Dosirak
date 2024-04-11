@@ -12,4 +12,8 @@ public interface MemberMapper {
     List<MemberDTO> findAllMember();
 
     List<ManagerDTO> findAllManager();
+
+    MemberDTO selectMemberView(String id);
+
+    int modifyMember(MemberDTO member);
 }

@@ -10,14 +10,25 @@
         <result property="gender" column="GENDER"/>
         <result property="phone" column="PHONE"/>
         <result property="email" column="EMAIL"/>
-        <result property="address" column="ADDRESS"/>
+        <result property="address1" column="ADDRESS1"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="address3" column="ADDRESS3"/>
         <result property="agree" column="AGREE"/>
         <result property="joindate" column="JOINDATE"/>
     </resultMap>
     <select id="findAllMember" resultMap="member">
-        SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, ADDRESS, AGREE, JOINDATE
+        SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, AGREE, JOINDATE
         FROM USER WHERE WITHDRAWAL = FALSE;
     </select>
+    <select id="selectMemberView" resultMap="member">
+        SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, ADDRESS1, ADDRESS2, ADDRESS3, AGREE, JOINDATE
+        FROM USER WHERE WITHDRAWAL = FALSE AND ID = #{id};
+    </select>
+    <update id="modifyMember">
+        UPDATE USER
+        SET PHONE = #{phone}, EMAIL = #{email}, AGREE = #{agree}, ADDRESS1 = #{address1}, ADDRESS2 = #{address2}, ADDRESS3 = #{address3}
+        WHERE ID = #{id}
+    </update>
 
     <resultMap id="manager" type="com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO">
         <id property="id" column="ID"/>

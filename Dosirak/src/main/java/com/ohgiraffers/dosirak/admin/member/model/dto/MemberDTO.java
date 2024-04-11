@@ -1,37 +1,36 @@
 package com.ohgiraffers.dosirak.admin.member.model.dto;
 
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-@Data
 public class MemberDTO {
     private String id;
     private String name;
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date birth;
+    private String birth;
     private char gender;
     private String phone;
     private String email;
-    private String address;
+    private String address1;
+    private String address2;
+    private String address3;
     private String agree;
     private String pwd;
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date joindate;
+    private String joindate;
     private boolean withdrawal;
     private String role;
-
     public MemberDTO(){}
 
-    public MemberDTO(String id, String name, Date birth, char gender, String phone, String email, String address, String agree, String pwd, Date joindate, boolean withdrawal, String role) {
+    public MemberDTO(String id, String name, String birth, char gender, String phone, String email, String address1, String address2, String address3, String agree, String pwd, String joindate, boolean withdrawal, String role) {
         this.id = id;
         this.name = name;
         this.birth = birth;
         this.gender = gender;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.address3 = address3;
         this.agree = agree;
         this.pwd = pwd;
         this.joindate = joindate;
@@ -55,11 +54,11 @@ public class MemberDTO {
         this.name = name;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 
@@ -87,12 +86,28 @@ public class MemberDTO {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddress1() {
+        return address1;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
+    }
+
+    public String getAddress2() {
+        return address2;
+    }
+
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getAddress3() {
+        return address3;
+    }
+
+    public void setAddress3(String address3) {
+        this.address3 = address3;
     }
 
     public String getAgree() {
@@ -111,11 +126,11 @@ public class MemberDTO {
         this.pwd = pwd;
     }
 
-    public Date getJoindate() {
+    public String getJoindate() {
         return joindate;
     }
 
-    public void setJoindate(Date joindate) {
+    public void setJoindate(String joindate) {
         this.joindate = joindate;
     }
 
@@ -140,14 +155,16 @@ public class MemberDTO {
         return "MemberDTO{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", birth=" + birth +
+                ", birth='" + birth + '\'' +
                 ", gender=" + gender +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
+                ", address1='" + address1 + '\'' +
+                ", address2='" + address2 + '\'' +
+                ", address3='" + address3 + '\'' +
                 ", agree='" + agree + '\'' +
                 ", pwd='" + pwd + '\'' +
-                ", joindate=" + joindate +
+                ", joindate='" + joindate + '\'' +
                 ", withdrawal=" + withdrawal +
                 ", role='" + role + '\'' +
                 '}';
