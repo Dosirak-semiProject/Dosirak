@@ -33,12 +33,8 @@ public class MemberService {
         int result = memberMapper.modifyMember(member);
         if(!(result>0)) throw new MemberModifyException("회원 정보 수정 실패");
     }
-//    @Transactional
-//    public void modifyMember(MemberDTO modifyMember) throws MemberModifyException {
-//
-//        int result = memberMapper.updateMember(modifyMember);
-//
-//        if(!(result > 0)) throw new MemberModifyException("회원 정보 수정에 실패하였습니다.");
-//
-//    }
+
+    public ManagerDTO selectManagerView(String id) {
+        return memberMapper.selectManagerView(id);
+    }
 }

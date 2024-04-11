@@ -11,9 +11,6 @@
             if(agree.includes('이메일')) $("#agreeEmail").prop("checked", true);
             // 수정
             $(".editBtn").hide();
-            // $("input").change(function(){
-            //     $(".editBtn").show();
-            // })
             $("input").on("propertychange change keyup paste input", function() {
                 $(".editBtn").show();
             })
@@ -29,7 +26,7 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">회원 상세</h1>
-                <form action="/admin/member/modify" method="post">
+                <form action="/admin/member/modifyMember" method="post">
                     <table class="datatable-table mt-4">
                         <colgroup>
                             <col style="width:15%"/>
@@ -42,10 +39,7 @@
                                 <th scope="row">이름</th>
                                 <td th:text="${member.name}"></td>
                                 <th scope="row">아이디</th>
-<!--                                <td th:text="${member.id}"></td>-->
-                                <td>
-                                    <input class="none" type="text" name="id" th:value="${member.id}" readonly/>
-                                </td>
+                                <td><input class="none" type="text" name="id" th:value="${member.id}" readonly/></td>
                             </tr>
                             <tr>
                                 <th scope="row">생년월일</th>

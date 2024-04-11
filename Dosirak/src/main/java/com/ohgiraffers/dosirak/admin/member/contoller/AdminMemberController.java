@@ -5,6 +5,7 @@ import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.member.model.service.MemberService;
 import com.ohgiraffers.dosirak.common.member.MemberModifyException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.apache.catalina.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -50,7 +51,7 @@ public class AdminMemberController {
         return "/admin/member/memberView";
     }
 
-    @PostMapping("/modify")
+    @PostMapping("/modifyMember")
     public String modifyMember(MemberDTO member, RedirectAttributes rttr) throws MemberModifyException {
         if(member.getAgree().contains("sms") && member.getAgree().contains("email")){
             member.setAgree("문자, 이메일");
@@ -64,25 +65,14 @@ public class AdminMemberController {
 
         return "redirect:/admin/member/memberList";
     }
-//    @PostMapping("/update")
-//    public String modifyMember(MemberDTO modifyMember, String zipCode, String address1, String address2,
-//                               @AuthenticationPrincipal MemberDTO loginMember, RedirectAttributes rttr) throws MemberModifyException {
-//
-//        String address = zipCode + "$" + address1 + "$" + address2;
-//        modifyMember.setAddress(address);
-//        modifyMember.setMemberNo(loginMember.getMemberNo());
-//
-//        log.info("modifyMember request Member : {}", modifyMember);
-//
-//        memberService.modifyMember(modifyMember);
-//
-//        /* 로그인 시 저장 된 Authentication 객체를 변경 된 정보로 교체한다. */
-//        SecurityContextHolder.getContext().setAuthentication(createNewAuthentication(loginMember.getMemberId()));
-//
-//        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify"));
-//
-//        return "redirect:/";
-//    }
+
+    @GetMapping("/managerView")
+    public String getManagerView(@RequestParam String id, Model model){
+        ManagerDTO manager = memberService.selectManagerView(id);
+        model.addAttribute("manager", manager);
+
+        return "/admin/member/managerView";
+    }
 
 
 }

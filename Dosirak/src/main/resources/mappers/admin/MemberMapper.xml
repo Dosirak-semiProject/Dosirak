@@ -44,7 +44,12 @@
         <result property="withdrawal" column="WITHDRAWAL"/>
     </resultMap>
     <select id="findAllManager" resultMap="manager">
-        SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, AUTHORITY, JOINDATE, WITHDRAWAL
+        SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, JOINDATE
         FROM ADMIN WHERE WITHDRAWAL = FALSE;
     </select>
+    <select id="selectManagerView" resultMap="manager">
+        SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, AUTHORITY, JOINDATE, WITHDRAWAL
+        FROM ADMIN WHERE WITHDRAWAL = FALSE AND ID = #{id};
+    </select>
+
 </mapper>

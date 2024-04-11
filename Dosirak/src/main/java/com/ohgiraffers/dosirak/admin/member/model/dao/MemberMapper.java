@@ -16,4 +16,6 @@ public interface MemberMapper {
     MemberDTO selectMemberView(String id);
 
     int modifyMember(MemberDTO member);
+
+    ManagerDTO selectManagerView(String id);
 }
