@@ -11,7 +11,7 @@ import org.springframework.http.converter.json.GsonBuilderUtils;
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("머지테스트");
+        System.out.println("머지테스트!");
         SpringApplication.run(Application.class, args);
     }
 }
