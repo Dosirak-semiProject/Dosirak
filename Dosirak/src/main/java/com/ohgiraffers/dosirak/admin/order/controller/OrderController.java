@@ -26,7 +26,7 @@ public class OrderController {
         List<OrderDTO> orderList = orderService.AllOrderList();
 
         model.addAttribute("orderList", orderList);
-
+        /* 테스트 주석 추가 */
         return "admin/order/orderList";
     }
 
