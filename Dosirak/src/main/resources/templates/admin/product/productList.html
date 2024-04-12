@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <th:block th:replace="~{/admin/common/head.html}"></th:block>
 </head>
 <body class="sb-nav-fixed">
@@ -20,7 +20,7 @@
                             <a class="btn btn-primary" href="">상품등록</a>
                             <div class="text-end">
                                 <label>
-                                    <select class="datatable-selector">
+                                    <select id="select1" class="datatable-selector">
                                         <option>판매상태 조회</option>
                                         <option>판매준비중</option>
                                         <option>판매중</option>
@@ -29,7 +29,7 @@
                                     </select>
                                 </label>
                                 <label>
-                                    <select class="datatable-selector">
+                                    <select id="select2" class="datatable-selector">
                                         <option>상품분류 조회</option>
                                         <option>건강도시락</option>
                                         <option>정성도시락</option>
@@ -38,8 +38,10 @@
                                 </label>
                                 <form class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
                                     <div class="input-group">
-                                        <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+                                        <input id="select" class="form-control" type="text" placeholder="Search for..."
+                                               aria-label="Search for..." aria-describedby="btnNavbarSearch"/>
+                                        <button class="btn btn-primary" id="btnNavbarSearch" type="button">
+                                            <i class="fas fa-search"></i></button>
                                     </div>
                                 </form>
                             </div>
@@ -66,12 +68,12 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>닭가슴살</td>
-                                <td>건강도시락</td>
-                                <td>10,000원</td>
-                                <td>판매준비중</td>
+                            <tr th:each="product : ${productList}">
+                                <td th:text="${product.productCode}"></td>
+                                <td th:text="${product.productName}"></td>
+                                <td th:text="${product.productCategoryCode}"></td>
+                                <td th:text="${product.productPrice}"></td>
+                                <td th:text:="${product.productStatus}"></td>
                             </tr>
                             </tbody>
                         </table>

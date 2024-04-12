@@ -15,4 +15,8 @@ public class ProductService {
     public List<productDTO> findAllProduct() {
         return productMapper.findAllProduct();
     }
+
+    public String productselcetlist(String key) {
+        return productMapper.productselcetlist(key);
+    }
 }
