@@ -1,11 +1,9 @@
 package com.ohgiraffers.dosirak.admin.member.model.dto;
 
-import java.util.Date;
-
 public class ManagerDTO {
     private String id;
     private String name;
-    private Date birth;
+    private String birth;
     private char gender;
     private String contact;
     private String email;
@@ -13,12 +11,12 @@ public class ManagerDTO {
     private String department;
     private char authority;
     private String pwd;
-    private Date joindate;
+    private String joindate;
     private boolean withdrawal;
     private String role;
     public ManagerDTO(){}
 
-    public ManagerDTO(String id, String name, Date birth, char gender, String contact, String email, String position, String department, char authority, String pwd, Date joindate, boolean withdrawal, String role) {
+    public ManagerDTO(String id, String name, String birth, char gender, String contact, String email, String position, String department, char authority, String pwd, String joindate, boolean withdrawal, String role) {
         this.id = id;
         this.name = name;
         this.birth = birth;
@@ -50,11 +48,11 @@ public class ManagerDTO {
         this.name = name;
     }
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 
@@ -114,11 +112,11 @@ public class ManagerDTO {
         this.pwd = pwd;
     }
 
-    public Date getJoindate() {
+    public String getJoindate() {
         return joindate;
     }
 
-    public void setJoindate(Date joindate) {
+    public void setJoindate(String joindate) {
         this.joindate = joindate;
     }
 
@@ -143,7 +141,7 @@ public class ManagerDTO {
         return "ManagerDTO{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", birth=" + birth +
+                ", birth='" + birth + '\'' +
                 ", gender=" + gender +
                 ", contact='" + contact + '\'' +
                 ", email='" + email + '\'' +
@@ -151,7 +149,7 @@ public class ManagerDTO {
                 ", department='" + department + '\'' +
                 ", authority=" + authority +
                 ", pwd='" + pwd + '\'' +
-                ", joindate=" + joindate +
+                ", joindate='" + joindate + '\'' +
                 ", withdrawal=" + withdrawal +
                 ", role='" + role + '\'' +
                 '}';
