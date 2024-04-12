@@ -1,6 +1,7 @@
 package com.ohgiraffers.dosirak.admin.order.controller;
 
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
+import com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO;
 import com.ohgiraffers.dosirak.admin.order.model.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,7 @@ public class OrderController {
     @GetMapping("refundList")
     public String refundList(Model model) {
 
-        List<OrderDTO> refundList = orderService.AllRefundList();
+        List<RefundDTO> refundList = orderService.AllRefundList();
 
         model.addAttribute("refundList", refundList);
 

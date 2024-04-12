@@ -23,11 +23,11 @@
 
     <select id="AllRefundList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO">
         SELECT
-            o.order_code,
+            r.order_code,
             r.refund_price,
             r.refund_status,
-            u.user_name,
-            u.user_id,
+            r.user_name,
+            r.user_id,
             p.pay_method
         FROM
             tbl_refund r

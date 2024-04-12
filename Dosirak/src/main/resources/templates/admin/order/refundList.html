@@ -58,11 +58,11 @@
                             <tbody>
                             <tr th:each="refund : ${ refundList }">
                                 <td th:text="${ refund.orderCode }"></td>
-                                <td th:text="${ refund.}">123,456원</td>
-                                <td>2024-04-05</td>
-                                <td>환불신청</td>
-                                <td>홍길동(abcd1234)</td>
-                                <td>카카오페이</td>
+                                <td th:text="${ refund.refundPrice }"></td>
+                                <td th:text="${ refund.refundDate }"></td>
+                                <td th:text="${ refund.refundStatus }"></td>
+                                <td th:text="|${ refund.userName }(${ refund.userId })|"></td>
+                                <td th:text="${ refund.payMethod }"></td>
                             </tr>
                             </tbody>
                         </table>
