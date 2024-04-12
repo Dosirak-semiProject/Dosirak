@@ -14,11 +14,11 @@
         SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE
         FROM PRODUCT;
     </select>
-    <select id="findSelectProduct" resultType="com/ohgiraffers/dosirak/admin/product/dao/ProductMapper">
-        SELECT name
-        FROM your_table
-        WHERE name LIKE CONCAT('%', #{keyword}, '%')
-    </select>
+<!--    <select id="findSelectProduct" resultType="com/ohgiraffers/dosirak/admin/product/dao/ProductMapper">-->
+<!--        SELECT name-->
+<!--        FROM your_table-->
+<!--        WHERE name LIKE CONCAT('%', #{keyword}, '%')-->
+<!--    </select>-->
 
 
 </mapper>
