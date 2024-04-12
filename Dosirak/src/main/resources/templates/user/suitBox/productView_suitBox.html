@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../../../../static/user/css/common/base.css">
-    <link rel="stylesheet" href="../../../../static/user/css/common/reset.css">
-    <link rel="stylesheet" href="../../../../static/user/css/common/common.css">
-    <link rel="stylesheet" href="../../../../static/user/css/product.css">
-    <link rel="stylesheet" href="../../../../static/user/css/cart.css">
-    <link rel="stylesheet" href="../../../../static/user/css/review.css">
-    <script src="../../../../static/user/js/common/jquery-3.7.1.min.js"></script>
+    <th:block th:replace="/user/common/head.html"></th:block>
+    <link rel="stylesheet" href="/user/css/product.css"/>
+    <link rel="stylesheet" href="/user/css/cart.css"/>
+    <link rel="stylesheet" href="/user/css/review.css"/>
     <script>
         $(function () {
             // tab
@@ -30,7 +27,7 @@
 <div class="ly_all bl_all">
     <div class="ly_maxWD ly_inner02 bl_pdView">
         <div class="ly_flexC ly_fitemEnd">
-            <img class="bl_pdView__img hp_mr40" src="../../../../static/user/img/main/main01.png" alt=""/>    <!--DB에서 이미지 끌어올것-->
+            <img class="bl_pdView__img hp_mr40" src="/user/img/main/main01.png" alt=""/>    <!--DB에서 이미지 끌어올것-->
             <div class="bl_pdView__wrap hp_ml20" style="width:350px;">
                 <h2 class="el_lv1Head hp_alignL">나만을 위한 맞춤 도시락</h2>
                 <div class="ly_spaceBetween ly_fitemC hp_mt30">
@@ -64,9 +61,9 @@
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">상품수량</p>
                     <div class="di_btn">
-                        <div class="decrease"><img src="../../../../static/user/img/icon/minus.png" alt="minus-btn"></div> <!--DB-->
+                        <div class="decrease"><img src="/user/img/icon/minus.png" alt="minus-btn"></div> <!--DB-->
                         <input type="number" class="quantity" value="1" min="1"/>
-                        <div class="increase"><img src="../../../../static/user/img/icon/plus.png" alt="plus-btn"></div> <!--DB-->
+                        <div class="increase"><img src="/user/img/icon/plus.png" alt="plus-btn"></div> <!--DB-->
                     </div>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_fs20 hp_mt20 hp_pt10 hp_bordDashTDE2">
@@ -145,7 +142,7 @@
             <li class="bl_tabWrap">
                 <button type="button" class="bl_tabBtn hp_br0 hp_active">상품상세내용</button>
                 <div class="bl_tabCont hp_padding70">
-                    <img src="../../../../static/user/img/main/main02.png" alt=""/>
+                    <img src="../../../static/user/img/main/main02.png" alt=""/>
                 </div>
             </li>
             <li class="bl_tabWrap">
@@ -230,17 +227,17 @@
                                 <div class="container">
                                     <div class="img-popup">
                                         <div class="popup-inner">
-                                            <img src="/img/sample/img01.jpg" alt="이미지1">
+                                            <img src="/user/img/sample/img01.jpg" alt="이미지1">
                                             <a href="#" class="close-btn"><i class="xi-close"></i><span class="blind">팝업창 닫기</span></a>
                                         </div>
                                     </div>
                                     <div class="item-box">
                                         <div class="item-img">
-                                            <a href="#"><img src="/img/sample/img01.jpg" alt=""/></a>
-                                            <a href="#"><img src="/img/sample/img02.jpg" alt=""/></a>
-                                            <a href="#"><img src="/img/sample/img03.jpg" alt=""/></a>
-                                            <a href="#"><img src="/img/sample/img01.jpg" alt=""/></a>
-                                            <a href="#"><img src="/img/sample/img03.jpg" alt=""/></a>
+                                            <a href="#"><img src="/user/img/sample/img01.jpg" alt=""/></a>
+                                            <a href="#"><img src="/user/img/sample/img02.jpg" alt=""/></a>
+                                            <a href="#"><img src="/user/img/sample/img03.jpg" alt=""/></a>
+                                            <a href="#"><img src="/user/img/sample/img01.jpg" alt=""/></a>
+                                            <a href="#"><img src="/user/img/sample/img03.jpg" alt=""/></a>
                                         </div>
                                     </div>
                                 </div>
