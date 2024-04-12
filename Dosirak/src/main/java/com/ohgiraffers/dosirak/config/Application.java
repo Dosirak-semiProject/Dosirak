@@ -12,7 +12,7 @@ public class Application {
 
     public static void main(String[] args) {
         System.out.println("머지테스트123!");
-        System.out.println("푸시테스트123!");
+        System.out.println("푸시테스트1234!");
         SpringApplication.run(Application.class, args);
     }
 }
