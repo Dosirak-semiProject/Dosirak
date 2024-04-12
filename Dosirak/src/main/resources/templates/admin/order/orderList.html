@@ -60,15 +60,15 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr>
-                                <td>8390275164</td>
-                                <td>주문완료</td>
-                                <td>김철수(abcd1234)</td>
-                                <td>김영희</td>
-                                <td>123,456원</td>
-                                <td>2024-04-05</td>
-                                <td>결제성공</td>
-                                <td>카카오페이</td>
+                            <tr th:each="order : ${ orderList }">
+                                <td th:text="${ order.orderCode }"></td>
+                                <td th:text="${ order.orderStatus }"></td>
+                                <td th:text="${ order.userId }"></td>
+                                <td th:text="${ order.orderRecipient }"></td>
+                                <td th:text="${ order.payPrice }"></td>
+                                <td th:text="${ order.payDate }"></td>
+                                <td th:text="${ order.payStatus ? '결제성공' : '결제실패'}"></td>
+                                <td th:text="${ order.payMethod }"></td>
                             </tr>
                             </tbody>
                         </table>
