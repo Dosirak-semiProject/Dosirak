@@ -10,4 +10,5 @@ public class AdminController {
 
     @GetMapping("/main")
     public void main(){}
+
 }

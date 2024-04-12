@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper">
+
+    <resultMap id="generalNoticeBoardResultMap" type="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO">
+        <id property="noticeCode" column="notice_code"/>
+    </resultMap>
+
+    <select id="findNoticeList" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO">
+        SELECT
+            notice_code,
+            notice_title,
+            notice_date,
+            admin_id
+        FROM
+            tbl_notice
+    </select>
+
+    <select id="selectBoardList" resultMap="generalBoardResultMap">
+        SELECT
+            notice_code,
+            notice_title,
+            notice_content,
+            notice_date,
+            admin_id
+        FROM
+            tbl_notice
+        WHERE
+            <if test="searchCondition == 'title'">
+                notice_title = #{ searchValue }
+            </if>
+        ORDER BY
+            notice_code DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="selectTotalCount" resultMap="_int" parameterType=""
+
+
+</mapper>
