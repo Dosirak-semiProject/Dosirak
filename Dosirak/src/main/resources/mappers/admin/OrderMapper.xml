@@ -2,8 +2,37 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ohgiraffers.dosirak.admin.order.model.dao.OrderMapper">
-    <select id="orderList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
 
+<mapper namespace="com.ohgiraffers.dosirak.admin.order.model.dao.OrderMapper">
+    <select id="AllOrderList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
+        SELECT
+            o.order_code,
+            o.order_status,
+            u.user_id,
+            u.user_name,
+            o.order_recipient,
+            p.pay_price,
+            p.pay_date,
+            p.pay_status,
+            p.pay_method
+        FROM
+            tbl_order o
+        JOIN tbl_pay p ON o.order_code = p.order_code
+        JOIN tbl_user u ON o.user_id = u.user_id
+    </select>
+
+    <select id="AllRefundList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO">
+        SELECT
+            o.order_code,
+            r.refund_price,
+            r.refund_status,
+            u.user_name,
+            u.user_id,
+            p.pay_method
+        FROM
+            tbl_refund r
+        JOIN tbl_order o ON r.order_code = o.order_code
+        JOIN tbl_user u ON r.user_id = u.user_id
+        JOIN tbl_pay p ON r.pay_method = p.pay_method
     </select>
 </mapper>
