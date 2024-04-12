@@ -10,7 +10,3 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
-logging:
-  file:
-    name: myapp.log
-    path: C:\dev\lecture_code\09_Spring-boot\chap08-crud
