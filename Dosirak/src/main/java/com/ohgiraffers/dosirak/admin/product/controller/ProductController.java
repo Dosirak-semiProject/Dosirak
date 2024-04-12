@@ -12,8 +12,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/admin/product")
 public class ProductController {
-    @Autowired
-    private ProductService productService;
+
+    private final ProductService productService;
+    public ProductController(ProductService productService){
+        this.productService=productService;
+
+    }
 
     @GetMapping("/productList")
     public String productlist(Model model){

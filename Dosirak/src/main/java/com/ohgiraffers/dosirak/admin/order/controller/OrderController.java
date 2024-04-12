@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -15,6 +16,12 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    @GetMapping("/search")
+    public String searchByName(@RequestParam String keyword) {
+        // 여기에서 마이바티스 쿼리와의 상호작용을 호출하고 응답을 반환합니다.
+        return "Searching for keyword: " + keyword;
+    }
+
 
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
