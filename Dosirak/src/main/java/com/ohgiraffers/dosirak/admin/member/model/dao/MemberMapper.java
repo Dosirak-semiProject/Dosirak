@@ -23,4 +23,6 @@ public interface MemberMapper {
     int modifyManager(ManagerDTO manager);
 
     List<MemberDTO> memberListSearch(Map<String, String> searchMap);
+
+    String checkDuplication(String id);
 }

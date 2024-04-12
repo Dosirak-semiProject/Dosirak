@@ -76,4 +76,11 @@
         WHERE ID = #{id}
     </update>
 
+
+
+
+    <select id="checkDuplication" resultType="string">
+        SELECT ID FROM ADMIN WHERE ID = #{id}
+    </select>
+
 </mapper>

@@ -48,4 +48,9 @@ public class MemberService {
         int result = memberMapper.modifyManager(manager);
         if(!(result>0)) throw new MemberModifyException("관리자 정보 수정 실패");
     }
+
+    public boolean checkDuplication(String id) {
+        String result = memberMapper.checkDuplication(id);
+        return result != null;
+    }
 }
