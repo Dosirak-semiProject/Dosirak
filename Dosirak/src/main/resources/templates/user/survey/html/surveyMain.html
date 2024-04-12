@@ -10,100 +10,127 @@
     <link rel="stylesheet" href="../../../../static/user/css/common/reset.css">
     <link rel="stylesheet" href="../../../../static/user/css/common/common.css">
 </head>
-
 <body>
-<div class="ly_all bl_all">
-    <div class="ly_midWD ly_inner02">
-        <div class="hp_bordDE hp_padding50">
-            <div class="outer">
-                <form action="">
-                    <div class="inner-list">
-                        <div class="inner">
-                            <div class="qustion_area el_lv1Head hp_mt85"> <!-- 질문란 -->
-                                건강·영양상태 조사를 시작합니다.
-                            </div>
-                            <button type="button"
+    <div class="ly_all bl_all">
+        <div class="ly_midWD ly_inner02">
+            <div class="hp_bordDE hp_padding50">
+                <div class="outer">
+                    <form action="">
+                        <div class="inner-list">
+                            <div class="inner">
+                                <div class="question_area el_lv1Head hp_mt85"> <!-- 질문란 -->
+                                    건강·영양상태 조사를 시작합니다.
+                                </div>
+                                <button type="button"
                                     class="el_btnM el_btnPointBack hp_w50 hp_br5 hp_mt30 hp_marginAuto button-start">시작</button>
+                            </div>
+                            <div class="inner">
+                                <div class="question_area">
+                                    일주일에 술을 얼마나 드시나요?
+                                </div>
+                                <div class="select">
+                                    <table class="selectTable">
+                                        <tr>
+                                            <td> <input type="radio" id="drinking1" name="drinking">
+                                                <label for="drinking1">잘 먹지 않음</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <input type="radio" id="drinking2" name="drinking">
+                                                <label for="drinking2">1~2회</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <input type="radio" id="drinking3" name="drinking">
+                                                <label for="drinking3">2~3회</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <input type="radio" id="drinking4" name="drinking">
+                                                <label for="drinking4">그 이상</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="inner">
+                                <div class="question_area">
+                                    하루에 식사를 몇 번 하시나요?
+                                </div>
+                                <div class="select">
+                                    <table class="selectTable">
+                                        <tr>
+                                            <td> <input type="radio" id="meal1" name="meal">
+                                                <label for="meal1">1회</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <input type="radio" id="meal2" name="meal">
+                                                <label for="meal2">2회</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <input type="radio" id="meal3" name="meal">
+                                                <label for="meal3">3회</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <input type="radio" id="meal4" name="meal">
+                                                <label for="meal4">그 이상</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="inner">
+                                <div class="question_area">
+                                    하루에 간식류를 얼마나 드시나요?
+                                </div>
+                                <div class="select">
+                                    <table class="selectTable">
+                                        <tr>
+                                            <td> <input type="radio" id="snack1" name="snack">
+                                                <label for="meal1">1회</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <input type="radio" id="snack2" name="snack">
+                                                <label for="meal2">2회</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <input type="radio" id="snack3" name="snack">
+                                                <label for="meal3">3회</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td> <input type="radio" id="snack4" name="snack">
+                                                <label for="meal4">그 이상</label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="inner">
+                                <div class="question_area hp_mt50">
+                                    설문이 끝났어요! <br>
+                                    제출하시겠어요?
+                                </div>
+                                <div class="hp_alignC hp_mt30"> <button type="submit"
+                                        class="submit-button el_btnPointBack hp_br5">
+                                        제출
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="inner">
-                            <div class="qustion_area">
-                                일주일에 술을 얼마나 드시나요?
-                            </div>
-                            <div class="select">
-                                <table class="selectTable">
-                                    <tr>
-                                        <td> <input type="radio" id="drinking1" name="drinking">
-                                            <label for="drinking1">잘 먹지 않음</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <input type="radio" id="drinking2" name="drinking">
-                                            <label for="drinking2">1~2회</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <input type="radio" id="drinking3" name="drinking">
-                                            <label for="drinking3">2~3회</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <input type="radio" id="drinking4" name="drinking">
-                                            <label for="drinking4">그 이상</label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="inner">
-                            <div class="qustion_area">
-                                하루에 식사를 몇 번 하시나요?
-                            </div>
-                            <div class="select">
-                                <table class="selectTable">
-                                    <tr>
-                                        <td> <input type="radio" id="meal1" name="meal">
-                                            <label for="meal1">1회</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <input type="radio" id="meal2" name="meal">
-                                            <label for="meal2">2회</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <input type="radio" id="meal3" name="meal">
-                                            <label for="meal3">3회</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td> <input type="radio" id="meal4" name="meal">
-                                            <label for="meal4">그 이상</label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="inner">
-                            <div class="qustion_area hp_mt50">
-                                설문이 끝났어요! <br>
-                                제출하시겠어요?
-                            </div>
-                            <div class="hp_alignC hp_mt30"> <button type="submit"
-                                                                    class="submit-button el_btnPointBack hp_br5">
-                                제출
-                            </button>
-                            </div>
-                        </div>
+                    </form>
+                    <div class="progress_area">
+                        <div class="progress_bar"></div>
                     </div>
-                </form>
-                <div class="progress_area">
-                    <div class="progress_bar"></div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="../js/survey.js"></script>
 </body>
-
+<script src="../js/surveyProgressIndex.js"></script>
 </html>
