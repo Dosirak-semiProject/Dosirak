@@ -18,4 +18,8 @@ public class OrderService {
     public List<OrderDTO> AllOrderList() {
         return orderMapper.AllOrderList();
     }
+
+    public List<OrderDTO> AllRefundList() {
+        return orderMapper.AllRefundList();
+    }
 }

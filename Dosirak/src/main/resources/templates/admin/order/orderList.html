@@ -63,7 +63,7 @@
                             <tr th:each="order : ${ orderList }">
                                 <td th:text="${ order.orderCode }"></td>
                                 <td th:text="${ order.orderStatus }"></td>
-                                <td th:text="${ order.userId }"></td>
+                                <td th:text="|${ order.userName }(${ order.userId })|"></td>
                                 <td th:text="${ order.orderRecipient }"></td>
                                 <td th:text="${ order.payPrice }"></td>
                                 <td th:text="${ order.payDate }"></td>

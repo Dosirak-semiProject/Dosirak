@@ -33,7 +33,14 @@ public class OrderController {
     public String orderView() {return "admin/order/orderView";}
 
     @GetMapping("refundList")
-    public String refundList() {return "admin/order/refundList";}
+    public String refundList(Model model) {
+
+        List<OrderDTO> refundList = orderService.AllRefundList();
+
+        model.addAttribute("refundList", refundList);
+
+        return "admin/order/refundList";
+    }
 
     @GetMapping("refundView")
     public String refundView() {return "admin/order/refundView";}
