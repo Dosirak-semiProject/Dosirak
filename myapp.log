@@ -8837,3 +8837,847 @@ Caused by: org.xml.sax.SAXParseException: 문서에서 루트 요소 다음에 �
 2024-04-11T23:48:25.993+09:00  WARN 8928 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
 2024-04-11T23:48:25.996+09:00  WARN 8928 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
 >>>>>>> 25e25fc885a3860bf2fe6cea897d2e76ab5302e6
+2024-04-12T16:42:19.316+09:00  INFO 11084 --- [restartedMain] c.o.dosirak.config.Application           : Starting Application using Java 17.0.10 with PID 11084 (C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\classes\java\main started by hi in C:\Himedia\dev\lecture_code\Dosirak)
+2024-04-12T16:42:19.318+09:00  INFO 11084 --- [restartedMain] c.o.dosirak.config.Application           : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T16:42:19.348+09:00  INFO 11084 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-12T16:42:19.348+09:00  INFO 11084 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-04-12T16:42:20.202+09:00  INFO 11084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-04-12T16:42:20.209+09:00  INFO 11084 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-12T16:42:20.209+09:00  INFO 11084 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-12T16:42:20.244+09:00  INFO 11084 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-12T16:42:20.244+09:00  INFO 11084 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 896 ms
+2024-04-12T16:42:20.684+09:00  INFO 11084 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@386c3db0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@405633d9, org.springframework.security.web.context.SecurityContextHolderFilter@5723f026, org.springframework.security.web.header.HeaderWriterFilter@5e2bdbc8, org.springframework.web.filter.CorsFilter@7a39909e, org.springframework.security.web.authentication.logout.LogoutFilter@19fed0c6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@22014fa, org.springframework.security.web.session.ConcurrentSessionFilter@28d50e2f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@34c08731, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@38856632, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@687be146, org.springframework.security.web.session.SessionManagementFilter@10e1f7db, org.springframework.security.web.access.ExceptionTranslationFilter@71f24525, org.springframework.security.web.access.intercept.AuthorizationFilter@3f506a75]
+2024-04-12T16:42:20.688+09:00  WARN 11084 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@77940a2d. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-04-12T16:42:20.688+09:00  INFO 11084 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@77940a2d
+2024-04-12T16:42:20.857+09:00  INFO 11084 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-04-12T16:42:20.881+09:00  INFO 11084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-04-12T16:42:20.888+09:00  INFO 11084 --- [restartedMain] c.o.dosirak.config.Application           : Started Application in 1.882 seconds (process running for 2.27)
+2024-04-12T16:42:23.747+09:00  INFO 11084 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-12T16:42:23.747+09:00  INFO 11084 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-12T16:42:23.748+09:00  INFO 11084 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-12T16:42:23.927+09:00  WARN 11084 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:23.931+09:00  WARN 11084 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:23.976+09:00  WARN 11084 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:24.120+09:00  WARN 11084 --- [http-nio-8080-exec-8] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-8][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:24.121+09:00  WARN 11084 --- [http-nio-8080-exec-8] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-8][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:24.123+09:00  WARN 11084 --- [http-nio-8080-exec-8] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-8][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:34.906+09:00  INFO 11084 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-12T16:42:35.088+09:00  INFO 11084 --- [http-nio-8080-exec-3] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@432ea0a3
+2024-04-12T16:42:35.090+09:00  INFO 11084 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-12T16:42:35.172+09:00 ERROR 11084 --- [http-nio-8080-exec-3] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'r.pay_method' in 'on clause'
+### The error may exist in file [C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\resources\main\mappers\admin\OrderMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT             o.order_code,             r.refund_price,             r.refund_status,             u.user_name,             u.user_id,             p.pay_method         FROM             tbl_refund r         JOIN tbl_order o ON r.order_code = o.order_code         JOIN tbl_user u ON r.user_id = u.user_id         JOIN tbl_pay p ON r.pay_method = p.pay_method
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'r.pay_method' in 'on clause'
+; bad SQL grammar []] with root cause
+
+java.sql.SQLSyntaxErrorException: Unknown column 'r.pay_method' in 'on clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:354) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.14.jar:3.5.14]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-3.0.3.jar:3.0.3]
+	at jdk.proxy2/jdk.proxy2.$Proxy68.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.3.jar:3.0.3]
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.14.jar:3.5.14]
+	at jdk.proxy3/jdk.proxy3.$Proxy71.AllRefundList(Unknown Source) ~[na:na]
+	at com.ohgiraffers.dosirak.admin.order.model.service.OrderService.AllRefundList(OrderService.java:24) ~[main/:na]
+	at com.ohgiraffers.dosirak.admin.order.controller.OrderController.refundList(OrderController.java:39) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:925) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:830) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:151) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:129) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-04-12T16:42:35.187+09:00  WARN 11084 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:35.188+09:00  WARN 11084 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:35.190+09:00  WARN 11084 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:35.245+09:00  WARN 11084 --- [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:35.246+09:00  WARN 11084 --- [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:42:35.248+09:00  WARN 11084 --- [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:49:14.404+09:00  INFO 11084 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 92 class path changes (0 additions, 0 deletions, 92 modifications)
+2024-04-12T16:49:14.414+09:00  INFO 11084 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-12T16:49:14.419+09:00  INFO 11084 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-12T16:49:14.472+09:00  INFO 11084 --- [restartedMain] c.o.dosirak.config.Application           : Starting Application using Java 17.0.10 with PID 11084 (C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\classes\java\main started by hi in C:\Himedia\dev\lecture_code\Dosirak)
+2024-04-12T16:49:14.472+09:00  INFO 11084 --- [restartedMain] c.o.dosirak.config.Application           : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T16:49:14.738+09:00  INFO 11084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-04-12T16:49:14.739+09:00  INFO 11084 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-12T16:49:14.739+09:00  INFO 11084 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-12T16:49:14.753+09:00  INFO 11084 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-12T16:49:14.753+09:00  INFO 11084 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 279 ms
+2024-04-12T16:49:14.862+09:00  INFO 11084 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@688d7924, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2d5e5912, org.springframework.security.web.context.SecurityContextHolderFilter@a8471f8, org.springframework.security.web.header.HeaderWriterFilter@7107b25a, org.springframework.web.filter.CorsFilter@7d8b1f23, org.springframework.security.web.authentication.logout.LogoutFilter@7904f465, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@20355ebb, org.springframework.security.web.session.ConcurrentSessionFilter@57fa76, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@465d8790, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@45d6eb19, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@774156af, org.springframework.security.web.session.SessionManagementFilter@6f6d9cae, org.springframework.security.web.access.ExceptionTranslationFilter@75cfe2d6, org.springframework.security.web.access.intercept.AuthorizationFilter@69b7265c]
+2024-04-12T16:49:14.863+09:00  WARN 11084 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@2b33dc01. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-04-12T16:49:14.863+09:00  INFO 11084 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@2b33dc01
+2024-04-12T16:49:14.895+09:00  INFO 11084 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-04-12T16:49:14.902+09:00  INFO 11084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-04-12T16:49:14.905+09:00  INFO 11084 --- [restartedMain] c.o.dosirak.config.Application           : Started Application in 0.457 seconds (process running for 416.287)
+2024-04-12T16:49:14.906+09:00  INFO 11084 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-04-12T16:51:38.669+09:00  INFO 11084 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 92 class path changes (0 additions, 0 deletions, 92 modifications)
+2024-04-12T16:51:38.724+09:00  INFO 11084 --- [restartedMain] c.o.dosirak.config.Application           : Starting Application using Java 17.0.10 with PID 11084 (C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\classes\java\main started by hi in C:\Himedia\dev\lecture_code\Dosirak)
+2024-04-12T16:51:38.724+09:00  INFO 11084 --- [restartedMain] c.o.dosirak.config.Application           : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T16:51:38.958+09:00  INFO 11084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-04-12T16:51:38.959+09:00  INFO 11084 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-12T16:51:38.959+09:00  INFO 11084 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-12T16:51:38.974+09:00  INFO 11084 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-12T16:51:38.974+09:00  INFO 11084 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 249 ms
+2024-04-12T16:51:39.065+09:00  INFO 11084 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@42f98387, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@23e8a42, org.springframework.security.web.context.SecurityContextHolderFilter@5f200f0d, org.springframework.security.web.header.HeaderWriterFilter@5aa16b58, org.springframework.web.filter.CorsFilter@5ea83e57, org.springframework.security.web.authentication.logout.LogoutFilter@345486a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6bd6908f, org.springframework.security.web.session.ConcurrentSessionFilter@5acaaa4a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@e8a541a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@53550452, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1258fe5, org.springframework.security.web.session.SessionManagementFilter@3d1c03ca, org.springframework.security.web.access.ExceptionTranslationFilter@821a9cf, org.springframework.security.web.access.intercept.AuthorizationFilter@243f0ebc]
+2024-04-12T16:51:39.066+09:00  WARN 11084 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@32de651f. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-04-12T16:51:39.066+09:00  INFO 11084 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@32de651f
+2024-04-12T16:51:39.091+09:00  INFO 11084 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-04-12T16:51:39.097+09:00  INFO 11084 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-04-12T16:51:39.100+09:00  INFO 11084 --- [restartedMain] c.o.dosirak.config.Application           : Started Application in 0.397 seconds (process running for 560.483)
+2024-04-12T16:51:39.101+09:00  INFO 11084 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-04-12T16:51:41.199+09:00  INFO 11084 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-12T16:51:41.199+09:00  INFO 11084 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-12T16:51:41.200+09:00  INFO 11084 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-12T16:51:41.209+09:00  WARN 11084 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:51:41.210+09:00  WARN 11084 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:51:41.211+09:00  WARN 11084 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:51:41.266+09:00  WARN 11084 --- [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:51:41.267+09:00  WARN 11084 --- [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:51:41.268+09:00  WARN 11084 --- [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:47.912+09:00  WARN 11084 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:47.913+09:00  WARN 11084 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:47.914+09:00  WARN 11084 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:47.968+09:00  WARN 11084 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:47.969+09:00  WARN 11084 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:47.970+09:00  WARN 11084 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:59.281+09:00  INFO 11084 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-04-12T16:56:59.292+09:00  INFO 11084 --- [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6af6dd18
+2024-04-12T16:56:59.292+09:00  INFO 11084 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-04-12T16:56:59.294+09:00 ERROR 11084 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'r.user_id' in 'on clause'
+### The error may exist in file [C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\resources\main\mappers\admin\OrderMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT             o.order_code,             r.refund_price,             r.refund_status,             u.user_name,             u.user_id,             p.pay_method         FROM             tbl_refund r         JOIN tbl_order o ON r.order_code = o.order_code         JOIN tbl_user u ON r.user_id = u.user_id         JOIN tbl_pay p ON r.pay_method = p.pay_method
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'r.user_id' in 'on clause'
+; bad SQL grammar []] with root cause
+
+java.sql.SQLSyntaxErrorException: Unknown column 'r.user_id' in 'on clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:354) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.14.jar:3.5.14]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-3.0.3.jar:3.0.3]
+	at jdk.proxy2/jdk.proxy2.$Proxy68.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.3.jar:3.0.3]
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.14.jar:3.5.14]
+	at jdk.proxy6/jdk.proxy6.$Proxy91.AllRefundList(Unknown Source) ~[na:na]
+	at com.ohgiraffers.dosirak.admin.order.model.service.OrderService.AllRefundList(OrderService.java:24) ~[main/:na]
+	at com.ohgiraffers.dosirak.admin.order.controller.OrderController.refundList(OrderController.java:39) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:925) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:830) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:151) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:129) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-04-12T16:56:59.306+09:00  WARN 11084 --- [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:59.306+09:00  WARN 11084 --- [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:59.307+09:00  WARN 11084 --- [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:59.358+09:00  WARN 11084 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:59.359+09:00  WARN 11084 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:56:59.360+09:00  WARN 11084 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:03.321+09:00  INFO 11084 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-04-12T16:57:03.324+09:00  INFO 11084 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2024-04-12T16:57:04.842+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : Starting Application using Java 17.0.10 with PID 14716 (C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\classes\java\main started by hi in C:\Himedia\dev\lecture_code\Dosirak)
+2024-04-12T16:57:04.844+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T16:57:04.874+09:00  INFO 14716 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-12T16:57:04.875+09:00  INFO 14716 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-04-12T16:57:05.746+09:00  INFO 14716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-04-12T16:57:05.753+09:00  INFO 14716 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-12T16:57:05.753+09:00  INFO 14716 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-12T16:57:05.789+09:00  INFO 14716 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-12T16:57:05.789+09:00  INFO 14716 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 914 ms
+2024-04-12T16:57:06.223+09:00  INFO 14716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@c91150d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@510371a6, org.springframework.security.web.context.SecurityContextHolderFilter@7b8771ed, org.springframework.security.web.header.HeaderWriterFilter@24209f27, org.springframework.web.filter.CorsFilter@5f97485a, org.springframework.security.web.authentication.logout.LogoutFilter@3525528e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@78215d74, org.springframework.security.web.session.ConcurrentSessionFilter@18c07658, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5c6ba8cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@70f7f100, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62962dd4, org.springframework.security.web.session.SessionManagementFilter@5d863a11, org.springframework.security.web.access.ExceptionTranslationFilter@2962cb49, org.springframework.security.web.access.intercept.AuthorizationFilter@4905b96]
+2024-04-12T16:57:06.227+09:00  WARN 14716 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@7649c591. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-04-12T16:57:06.227+09:00  INFO 14716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@7649c591
+2024-04-12T16:57:06.395+09:00  INFO 14716 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-04-12T16:57:06.418+09:00  INFO 14716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-04-12T16:57:06.425+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : Started Application in 1.885 seconds (process running for 2.284)
+2024-04-12T16:57:08.011+09:00  INFO 14716 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-12T16:57:08.011+09:00  INFO 14716 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-12T16:57:08.012+09:00  INFO 14716 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-12T16:57:08.059+09:00  INFO 14716 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-04-12T16:57:08.242+09:00  INFO 14716 --- [http-nio-8080-exec-1] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6f68a4b4
+2024-04-12T16:57:08.243+09:00  INFO 14716 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-04-12T16:57:08.408+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][admin/order/orderList] Deprecated unwrapped fragment expression "/admin/common/head.html" found in template admin/order/orderList, line 4, col 15. Please use the complete syntax of fragment expressions instead ("~{/admin/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:08.411+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][admin/order/orderList] Deprecated unwrapped fragment expression "/admin/common/header.html" found in template admin/order/orderList, line 7, col 11. Please use the complete syntax of fragment expressions instead ("~{/admin/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:08.413+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][admin/order/orderList] Deprecated unwrapped fragment expression "/admin/common/sideNav.html" found in template admin/order/orderList, line 10, col 15. Please use the complete syntax of fragment expressions instead ("~{/admin/common/sideNav.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:08.482+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][admin/order/orderList] Deprecated unwrapped fragment expression "/admin/common/foot.html" found in template admin/order/orderList, line 81, col 11. Please use the complete syntax of fragment expressions instead ("~{/admin/common/foot.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:08.567+09:00  WARN 14716 --- [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:08.568+09:00  WARN 14716 --- [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:08.572+09:00  WARN 14716 --- [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:13.764+09:00 ERROR 14716 --- [http-nio-8080-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'r.user_id' in 'on clause'
+### The error may exist in file [C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\resources\main\mappers\admin\OrderMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT             o.order_code,             r.refund_price,             r.refund_status,             u.user_name,             u.user_id,             p.pay_method         FROM             tbl_refund r         JOIN tbl_order o ON r.order_code = o.order_code         JOIN tbl_user u ON r.user_id = u.user_id         JOIN tbl_pay p ON r.pay_method = p.pay_method
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'r.user_id' in 'on clause'
+; bad SQL grammar []] with root cause
+
+java.sql.SQLSyntaxErrorException: Unknown column 'r.user_id' in 'on clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:354) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.14.jar:3.5.14]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-3.0.3.jar:3.0.3]
+	at jdk.proxy2/jdk.proxy2.$Proxy68.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.3.jar:3.0.3]
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.14.jar:3.5.14]
+	at jdk.proxy3/jdk.proxy3.$Proxy71.AllRefundList(Unknown Source) ~[na:na]
+	at com.ohgiraffers.dosirak.admin.order.model.service.OrderService.AllRefundList(OrderService.java:24) ~[main/:na]
+	at com.ohgiraffers.dosirak.admin.order.controller.OrderController.refundList(OrderController.java:39) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:925) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:830) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:151) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:129) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-04-12T16:57:13.779+09:00  WARN 14716 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:13.780+09:00  WARN 14716 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:13.782+09:00  WARN 14716 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:13.837+09:00  WARN 14716 --- [http-nio-8080-exec-10] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-10][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:13.838+09:00  WARN 14716 --- [http-nio-8080-exec-10] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-10][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T16:57:13.839+09:00  WARN 14716 --- [http-nio-8080-exec-10] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-10][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:07:39.906+09:00  INFO 14716 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 92 class path changes (0 additions, 0 deletions, 92 modifications)
+2024-04-12T17:07:39.918+09:00  INFO 14716 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-04-12T17:07:39.923+09:00  INFO 14716 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-04-12T17:07:39.975+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : Starting Application using Java 17.0.10 with PID 14716 (C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\classes\java\main started by hi in C:\Himedia\dev\lecture_code\Dosirak)
+2024-04-12T17:07:39.975+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T17:07:40.245+09:00  INFO 14716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-04-12T17:07:40.246+09:00  INFO 14716 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-12T17:07:40.246+09:00  INFO 14716 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-12T17:07:40.262+09:00  INFO 14716 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-12T17:07:40.262+09:00  INFO 14716 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 285 ms
+2024-04-12T17:07:40.369+09:00  INFO 14716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@57fc286b, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@26be1414, org.springframework.security.web.context.SecurityContextHolderFilter@1408933c, org.springframework.security.web.header.HeaderWriterFilter@5f752dd6, org.springframework.web.filter.CorsFilter@65e099cc, org.springframework.security.web.authentication.logout.LogoutFilter@423ce762, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@20b1e982, org.springframework.security.web.session.ConcurrentSessionFilter@7d27a17b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@626507f6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1881a476, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ab2810b, org.springframework.security.web.session.SessionManagementFilter@5455c96d, org.springframework.security.web.access.ExceptionTranslationFilter@181e3b18, org.springframework.security.web.access.intercept.AuthorizationFilter@2dfdcc1b]
+2024-04-12T17:07:40.370+09:00  WARN 14716 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@2cbceefe. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-04-12T17:07:40.371+09:00  INFO 14716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@2cbceefe
+2024-04-12T17:07:40.406+09:00  INFO 14716 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-04-12T17:07:40.413+09:00  INFO 14716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-04-12T17:07:40.416+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : Started Application in 0.465 seconds (process running for 636.275)
+2024-04-12T17:07:40.417+09:00  INFO 14716 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-04-12T17:08:40.568+09:00  INFO 14716 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 92 class path changes (0 additions, 0 deletions, 92 modifications)
+2024-04-12T17:08:40.624+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : Starting Application using Java 17.0.10 with PID 14716 (C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\classes\java\main started by hi in C:\Himedia\dev\lecture_code\Dosirak)
+2024-04-12T17:08:40.625+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T17:08:40.870+09:00  INFO 14716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-04-12T17:08:40.871+09:00  INFO 14716 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-12T17:08:40.871+09:00  INFO 14716 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-12T17:08:40.884+09:00  INFO 14716 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-12T17:08:40.885+09:00  INFO 14716 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 259 ms
+2024-04-12T17:08:40.986+09:00  INFO 14716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4780d941, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4c031ffd, org.springframework.security.web.context.SecurityContextHolderFilter@221af240, org.springframework.security.web.header.HeaderWriterFilter@1f786a57, org.springframework.web.filter.CorsFilter@273ecceb, org.springframework.security.web.authentication.logout.LogoutFilter@753a2e85, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@636a9daf, org.springframework.security.web.session.ConcurrentSessionFilter@7dddd9b6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e6c0e86, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13442f88, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@108eaa46, org.springframework.security.web.session.SessionManagementFilter@89cab28, org.springframework.security.web.access.ExceptionTranslationFilter@63b2461, org.springframework.security.web.access.intercept.AuthorizationFilter@59b65c1a]
+2024-04-12T17:08:40.987+09:00  WARN 14716 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@49ff2580. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-04-12T17:08:40.987+09:00  INFO 14716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@49ff2580
+2024-04-12T17:08:41.015+09:00  INFO 14716 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-04-12T17:08:41.022+09:00  INFO 14716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-04-12T17:08:41.025+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : Started Application in 0.421 seconds (process running for 696.884)
+2024-04-12T17:08:41.025+09:00  INFO 14716 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-04-12T17:08:43.231+09:00  INFO 14716 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-12T17:08:43.231+09:00  INFO 14716 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-12T17:08:43.232+09:00  INFO 14716 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2024-04-12T17:08:43.241+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:43.242+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:43.243+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:43.300+09:00  WARN 14716 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:43.301+09:00  WARN 14716 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:43.302+09:00  WARN 14716 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:49.964+09:00  INFO 14716 --- [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2024-04-12T17:08:49.974+09:00  INFO 14716 --- [http-nio-8080-exec-4] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@363b7f9f
+2024-04-12T17:08:49.974+09:00  INFO 14716 --- [http-nio-8080-exec-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2024-04-12T17:08:49.977+09:00  WARN 14716 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][admin/order/orderList] Deprecated unwrapped fragment expression "/admin/common/head.html" found in template admin/order/orderList, line 4, col 15. Please use the complete syntax of fragment expressions instead ("~{/admin/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:49.978+09:00  WARN 14716 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][admin/order/orderList] Deprecated unwrapped fragment expression "/admin/common/header.html" found in template admin/order/orderList, line 7, col 11. Please use the complete syntax of fragment expressions instead ("~{/admin/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:49.979+09:00  WARN 14716 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][admin/order/orderList] Deprecated unwrapped fragment expression "/admin/common/sideNav.html" found in template admin/order/orderList, line 10, col 15. Please use the complete syntax of fragment expressions instead ("~{/admin/common/sideNav.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:49.982+09:00  WARN 14716 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][admin/order/orderList] Deprecated unwrapped fragment expression "/admin/common/foot.html" found in template admin/order/orderList, line 81, col 11. Please use the complete syntax of fragment expressions instead ("~{/admin/common/foot.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:50.041+09:00  WARN 14716 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:50.041+09:00  WARN 14716 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:50.042+09:00  WARN 14716 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:54.763+09:00 ERROR 14716 --- [http-nio-8080-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.jdbc.BadSqlGrammarException: 
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: Unknown column 'r.user_id' in 'on clause'
+### The error may exist in file [C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\resources\main\mappers\admin\OrderMapper.xml]
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: SELECT             r.order_code,             r.refund_price,             r.refund_status,             u.user_name,             u.user_id,             p.pay_method         FROM             tbl_refund r         JOIN tbl_order o ON r.order_code = o.order_code         JOIN tbl_user u ON r.user_id = u.user_id         JOIN tbl_pay p ON r.pay_method = p.pay_method
+### Cause: java.sql.SQLSyntaxErrorException: Unknown column 'r.user_id' in 'on clause'
+; bad SQL grammar []] with root cause
+
+java.sql.SQLSyntaxErrorException: Unknown column 'r.user_id' in 'on clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:354) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-5.0.1.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-5.0.1.jar:na]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:65) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:80) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:65) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:110) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:90) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142) ~[mybatis-3.5.14.jar:3.5.14]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:425) ~[mybatis-spring-3.0.3.jar:3.0.3]
+	at jdk.proxy2/jdk.proxy2.$Proxy68.selectList(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:224) ~[mybatis-spring-3.0.3.jar:3.0.3]
+	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141) ~[mybatis-3.5.14.jar:3.5.14]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86) ~[mybatis-3.5.14.jar:3.5.14]
+	at jdk.proxy6/jdk.proxy6.$Proxy91.AllRefundList(Unknown Source) ~[na:na]
+	at com.ohgiraffers.dosirak.admin.order.model.service.OrderService.AllRefundList(OrderService.java:24) ~[main/:na]
+	at com.ohgiraffers.dosirak.admin.order.controller.OrderController.refundList(OrderController.java:39) ~[main/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:925) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:830) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.19.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:151) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.ConcurrentSessionFilter.doFilter(ConcurrentSessionFilter.java:129) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.2.3.jar:6.2.3]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:352) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:268) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.5.jar:6.1.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1744) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.19.jar:10.1.19]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2024-04-12T17:08:54.774+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:54.775+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:54.776+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:54.826+09:00  WARN 14716 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:54.827+09:00  WARN 14716 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:08:54.828+09:00  WARN 14716 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:10:31.514+09:00  INFO 14716 --- [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 92 class path changes (0 additions, 0 deletions, 92 modifications)
+2024-04-12T17:10:31.519+09:00  INFO 14716 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-04-12T17:10:31.522+09:00  INFO 14716 --- [Thread-11] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2024-04-12T17:10:31.578+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : Starting Application using Java 17.0.10 with PID 14716 (C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\classes\java\main started by hi in C:\Himedia\dev\lecture_code\Dosirak)
+2024-04-12T17:10:31.578+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T17:10:31.821+09:00  INFO 14716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-04-12T17:10:31.822+09:00  INFO 14716 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-12T17:10:31.822+09:00  INFO 14716 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-12T17:10:31.835+09:00  INFO 14716 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-12T17:10:31.835+09:00  INFO 14716 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 255 ms
+2024-04-12T17:10:31.938+09:00  INFO 14716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@59907e5e, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@273038ff, org.springframework.security.web.context.SecurityContextHolderFilter@28ac9b04, org.springframework.security.web.header.HeaderWriterFilter@1ea74907, org.springframework.web.filter.CorsFilter@f33dca4, org.springframework.security.web.authentication.logout.LogoutFilter@7a63f608, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@10633e27, org.springframework.security.web.session.ConcurrentSessionFilter@15499674, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@c670067, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ba8bb58, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6a84963, org.springframework.security.web.session.SessionManagementFilter@16482a11, org.springframework.security.web.access.ExceptionTranslationFilter@38e0a70e, org.springframework.security.web.access.intercept.AuthorizationFilter@bf46be6]
+2024-04-12T17:10:31.939+09:00  WARN 14716 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@791e81e6. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-04-12T17:10:31.939+09:00  INFO 14716 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@791e81e6
+2024-04-12T17:10:31.971+09:00  INFO 14716 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-04-12T17:10:31.977+09:00  INFO 14716 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-04-12T17:10:31.980+09:00  INFO 14716 --- [restartedMain] c.o.dosirak.config.Application           : Started Application in 0.423 seconds (process running for 807.84)
+2024-04-12T17:10:31.981+09:00  INFO 14716 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-04-12T17:15:34.540+09:00  INFO 14716 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-12T17:15:34.540+09:00  INFO 14716 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-12T17:15:34.541+09:00  INFO 14716 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-12T17:15:34.550+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:34.550+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:34.552+09:00  WARN 14716 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:34.604+09:00  WARN 14716 --- [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:34.605+09:00  WARN 14716 --- [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:34.606+09:00  WARN 14716 --- [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.277+09:00  WARN 14716 --- [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.277+09:00  WARN 14716 --- [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.278+09:00  WARN 14716 --- [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.326+09:00  WARN 14716 --- [http-nio-8080-exec-10] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-10][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.327+09:00  WARN 14716 --- [http-nio-8080-exec-10] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-10][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.328+09:00  WARN 14716 --- [http-nio-8080-exec-10] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-10][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.605+09:00  WARN 14716 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.605+09:00  WARN 14716 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.606+09:00  WARN 14716 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.657+09:00  WARN 14716 --- [http-nio-8080-exec-8] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-8][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.658+09:00  WARN 14716 --- [http-nio-8080-exec-8] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-8][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:35.659+09:00  WARN 14716 --- [http-nio-8080-exec-8] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-8][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:40.418+09:00  INFO 3456 --- [restartedMain] c.o.dosirak.config.Application           : Starting Application using Java 17.0.10 with PID 3456 (C:\Himedia\dev\lecture_code\Dosirak\Dosirak\build\classes\java\main started by hi in C:\Himedia\dev\lecture_code\Dosirak)
+2024-04-12T17:15:40.420+09:00  INFO 3456 --- [restartedMain] c.o.dosirak.config.Application           : No active profile set, falling back to 1 default profile: "default"
+2024-04-12T17:15:40.450+09:00  INFO 3456 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-04-12T17:15:40.451+09:00  INFO 3456 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-04-12T17:15:41.299+09:00  INFO 3456 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-04-12T17:15:41.307+09:00  INFO 3456 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-04-12T17:15:41.308+09:00  INFO 3456 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-04-12T17:15:41.346+09:00  INFO 3456 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-04-12T17:15:41.346+09:00  INFO 3456 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 895 ms
+2024-04-12T17:15:41.788+09:00  INFO 3456 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@660e5079, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@28f6b143, org.springframework.security.web.context.SecurityContextHolderFilter@614b5882, org.springframework.security.web.header.HeaderWriterFilter@7f25e130, org.springframework.web.filter.CorsFilter@70a139ed, org.springframework.security.web.authentication.logout.LogoutFilter@1a7fa2e2, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@c23bb29, org.springframework.security.web.session.ConcurrentSessionFilter@780b6986, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@68b942ef, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4779c05, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6112c7c0, org.springframework.security.web.session.SessionManagementFilter@122bbda0, org.springframework.security.web.access.ExceptionTranslationFilter@71faafe5, org.springframework.security.web.access.intercept.AuthorizationFilter@7e3ccaad]
+2024-04-12T17:15:41.792+09:00  WARN 3456 --- [restartedMain] o.s.s.c.a.web.builders.WebSecurity       : You are asking Spring Security to ignore org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@41844d3b. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2024-04-12T17:15:41.792+09:00  INFO 3456 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will not secure org.springframework.boot.autoconfigure.security.servlet.StaticResourceRequest$StaticResourceRequestMatcher@41844d3b
+2024-04-12T17:15:41.961+09:00  INFO 3456 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-04-12T17:15:41.984+09:00  INFO 3456 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-04-12T17:15:41.990+09:00  INFO 3456 --- [restartedMain] c.o.dosirak.config.Application           : Started Application in 1.874 seconds (process running for 2.302)
+2024-04-12T17:15:46.007+09:00  INFO 3456 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-04-12T17:15:46.007+09:00  INFO 3456 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-04-12T17:15:46.008+09:00  INFO 3456 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-04-12T17:15:46.175+09:00  WARN 3456 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.179+09:00  WARN 3456 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.224+09:00  WARN 3456 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.295+09:00  WARN 3456 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.296+09:00  WARN 3456 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.299+09:00  WARN 3456 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.372+09:00  WARN 3456 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.373+09:00  WARN 3456 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.375+09:00  WARN 3456 --- [http-nio-8080-exec-2] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-2][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.426+09:00  WARN 3456 --- [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.427+09:00  WARN 3456 --- [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.429+09:00  WARN 3456 --- [http-nio-8080-exec-3] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-3][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.533+09:00  WARN 3456 --- [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.534+09:00  WARN 3456 --- [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.535+09:00  WARN 3456 --- [http-nio-8080-exec-7] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-7][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.590+09:00  WARN 3456 --- [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.591+09:00  WARN 3456 --- [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.592+09:00  WARN 3456 --- [http-nio-8080-exec-6] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-6][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.693+09:00  WARN 3456 --- [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.694+09:00  WARN 3456 --- [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.695+09:00  WARN 3456 --- [http-nio-8080-exec-5] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-5][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.745+09:00  WARN 3456 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.745+09:00  WARN 3456 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.746+09:00  WARN 3456 --- [http-nio-8080-exec-4] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-4][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.836+09:00  WARN 3456 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.837+09:00  WARN 3456 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.838+09:00  WARN 3456 --- [http-nio-8080-exec-9] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-9][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.888+09:00  WARN 3456 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/head.html" found in template login, line 5, col 15. Please use the complete syntax of fragment expressions instead ("~{/user/common/head.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.889+09:00  WARN 3456 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/header.html" found in template login, line 9, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/header.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
+2024-04-12T17:15:46.890+09:00  WARN 3456 --- [http-nio-8080-exec-1] actStandardFragmentInsertionTagProcessor : [THYMELEAF][http-nio-8080-exec-1][login] Deprecated unwrapped fragment expression "/user/common/footer.html" found in template login, line 30, col 19. Please use the complete syntax of fragment expressions instead ("~{/user/common/footer.html}"). The old, unwrapped syntax for fragment expressions will be removed in future versions of Thymeleaf.
