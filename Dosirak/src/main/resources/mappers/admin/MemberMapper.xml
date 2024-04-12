@@ -75,9 +75,10 @@
         SET DEPARTMENT = #{department}, POSITION = #{position}, CONTACT = #{contact}, AUTHORITY = #{authority}, EMAIL = #{email}
         WHERE ID = #{id}
     </update>
-
-
-
+    <insert id="registManager">
+        INSERT INTO ADMIN (ID, NAME, BIRTH, GENDER, EMAIL, PWD, AUTHORITY, JOINDATE, ROLE)
+        VALUES (#{id}, #{name}, #{birth}, #{gender}, #{email}, #{pwd}, '3', CURDATE(), 'ADMIN')
+    </insert>
 
     <select id="checkDuplication" resultType="string">
         SELECT ID FROM ADMIN WHERE ID = #{id}

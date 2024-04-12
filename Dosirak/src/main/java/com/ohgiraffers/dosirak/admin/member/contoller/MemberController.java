@@ -4,14 +4,15 @@ import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.member.model.service.MemberService;
 import com.ohgiraffers.dosirak.common.member.MemberModifyException;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ohgiraffers.dosirak.common.member.MemberRegistException;
+import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,9 +20,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/admin/member")
 public class MemberController {
+    private final MemberService memberService;
+    private final PasswordEncoder passwordEncoder;
+    private final MessageSourceAccessor messageSourceAccessor;
 
-    @Autowired
-    private MemberService memberService;
+    public MemberController(MemberService memberService, PasswordEncoder passwordEncoder, MessageSourceAccessor messageSourceAccessor){
+        this.memberService = memberService;
+        this.passwordEncoder = passwordEncoder;
+        this.messageSourceAccessor = messageSourceAccessor;
+    }
 
     @GetMapping("/memberList")
     public String findMemberList(Model model){
@@ -49,13 +56,14 @@ public class MemberController {
         return "/admin/member/memberView";
     }
     @PostMapping("/modifyMember")
-    public String modifyMember(MemberDTO member) throws MemberModifyException {
+    public String modifyMember(MemberDTO member, RedirectAttributes rttr) throws MemberModifyException {
         if(member.getAgree() == "") member.setAgree(null);
         if(member.getAddress1() == "") member.setAddress1(null);
         if(member.getAddress2() == "") member.setAddress2(null);
         if(member.getAddress3() == "") member.setAddress3(null);
 
         memberService.modifyMember(member);
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify"));
 
         return "redirect:/admin/member/memberList";
     }
@@ -74,31 +82,39 @@ public class MemberController {
 
         return "/admin/member/managerView";
     }
-
     @PostMapping("/modifyManager")
-    public String modifyManager(ManagerDTO manager) throws MemberModifyException {
+    public String modifyManager(ManagerDTO manager, RedirectAttributes rttr) throws MemberModifyException {
         if(manager.getContact() == "") manager.setContact(null);
 
         memberService.modifyManager(manager);
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("manager.modify"));
 
         return "redirect:/admin/member/managerList";
     }
-
-
-
 
     @GetMapping("join")
     public void join(){}
 
     @PostMapping("idDupCheck")
-    public ResponseEntity<String> checkDuplication(@RequestBody MemberDTO member){
-        System.out.println(member.getEmail());
-        String[] emailSplit = member.getEmail().split("@");
-        member.setId(emailSplit[0]);
+    public ResponseEntity<String> checkDuplication(@RequestBody ManagerDTO manager){
+        String[] emailSplit = manager.getEmail().split("@");
+        manager.setId(emailSplit[0]);
 
         String result = "사용 가능한 이메일입니다.";
-        if(memberService.checkDuplication(member.getId())) result = "중복 이메일이 존재합니다.";
+        if(memberService.checkDuplication(manager.getId())) result = "중복 이메일이 존재합니다.";
 
         return ResponseEntity.ok(result);
     }
+
+    @PostMapping("regist")
+    public String registManager(ManagerDTO manager, RedirectAttributes rttr) throws MemberRegistException {
+        String[] emailSplit = manager.getEmail().split("@");
+        manager.setId(emailSplit[0]);
+        manager.setPwd(passwordEncoder.encode(manager.getPwd()));
+        memberService.registManager(manager);
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("manager.regist"));
+
+        return "redirect:/";
+    }
+
 }

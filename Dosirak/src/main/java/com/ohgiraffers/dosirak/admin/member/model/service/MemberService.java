@@ -4,6 +4,7 @@ import com.ohgiraffers.dosirak.admin.member.model.dao.MemberMapper;
 import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.common.member.MemberModifyException;
+import com.ohgiraffers.dosirak.common.member.MemberRegistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,5 +53,11 @@ public class MemberService {
     public boolean checkDuplication(String id) {
         String result = memberMapper.checkDuplication(id);
         return result != null;
+    }
+
+    @Transactional
+    public void registManager(ManagerDTO manager) throws MemberRegistException {
+        int registResult = memberMapper.registManager(manager);
+        if(!(registResult>0)) throw new MemberRegistException("회원가입 실패");
     }
 }

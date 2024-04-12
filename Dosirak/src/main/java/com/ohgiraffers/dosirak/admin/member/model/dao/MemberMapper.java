@@ -25,4 +25,6 @@ public interface MemberMapper {
     List<MemberDTO> memberListSearch(Map<String, String> searchMap);
 
     String checkDuplication(String id);
+
+    int registManager(ManagerDTO manager);
 }
