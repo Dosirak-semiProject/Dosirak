@@ -3,7 +3,6 @@
 .bl_surveyTB .bl_radioBxArea__txt{border:1px solid #426B1F;background:#fff;color:#426B1F;height:40px;}
 
 
-
 .select {
     padding: 15px 10px;
     margin: auto;
@@ -78,20 +77,20 @@
     border-spacing: 0 15px
 }
 
-.qustion_box {
+.question_box {
     width: 700px;
     height: 500px;
     margin: 0 auto;
     overflow: hidden;
 }
 
-.qustion_contents {
+.question_contents {
     display: flex;
     transition: .3s ease-out;
     height: 100%;
 }
 
-.qustion_content {
+.question_content {
     border: 6px solid olive;
 }
 
@@ -129,7 +128,7 @@
     transition: .3s ease-out;
 }
 
-.qustion_area{
+.question_area{
     margin-bottom: 10px;
     font-size: 18px;
     text-align: center;
