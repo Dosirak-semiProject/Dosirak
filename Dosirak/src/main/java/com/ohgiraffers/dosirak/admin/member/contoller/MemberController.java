@@ -97,11 +97,16 @@ public class MemberController {
 
     @PostMapping("idDupCheck")
     public ResponseEntity<String> checkDuplication(@RequestBody ManagerDTO manager){
-        String[] emailSplit = manager.getEmail().split("@");
-        manager.setId(emailSplit[0]);
+        String result = "";
+        if(manager.getEmail() == null || manager.getEmail() == ""){
+            result = "이메일을 입력해주세요";
+        }else{
+            String[] emailSplit = manager.getEmail().split("@");
+            manager.setId(emailSplit[0]);
 
-        String result = "사용 가능한 이메일입니다.";
-        if(memberService.checkDuplication(manager.getId())) result = "중복 이메일이 존재합니다.";
+            result = "사용 가능한 이메일입니다.";
+            if(memberService.checkDuplication(manager.getId())) result = "중복 이메일이 존재합니다.";
+        }
 
         return ResponseEntity.ok(result);
     }

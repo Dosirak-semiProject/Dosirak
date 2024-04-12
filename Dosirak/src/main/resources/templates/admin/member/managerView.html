@@ -54,7 +54,6 @@
                             <th scope="row">부서</th>
                             <td>
                                 <select class="department datatable-selector" th:data-department="${manager.department}" name="department">
-                                    <option value="null">부서 선택</option>
                                     <option value="마케팅">마케팅</option>
                                     <option value="운영">운영</option>
                                     <option value="고객서비스">고객서비스</option>
@@ -65,7 +64,6 @@
                             <th scope="row">직급</th>
                             <td>
                                 <select class="position datatable-selector" th:data-position="${manager.position}" name="position">
-                                    <option value="null">직급 선택</option>
                                     <option value="팀원">팀원</option>
                                     <option value="팀장">팀장</option>
                                     <option value="부서장">부서장</option>
@@ -79,7 +77,6 @@
                             <th scope="row">권한등급</th>
                             <td>
                                 <select class="authority datatable-selector" name="authority" th:data-authority="${manager.authority}">
-                                    <option value="null">권한등급 선택</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
