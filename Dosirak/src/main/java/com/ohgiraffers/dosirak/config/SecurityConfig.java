@@ -37,8 +37,8 @@ public class SecurityConfig {
                 })
                 .formLogin(login -> {
                     login.loginPage("/login");     // 로그인페이지 설정
-                    login.usernameParameter("user");
-                    login.passwordParameter("pass");
+                    login.usernameParameter("id");
+                    login.passwordParameter("pwd");
                     login.defaultSuccessUrl("/user/main", true);     // 로그인 성공시 페이지 경로 설정
                     login.failureHandler(authFailHandler);  // 실패 시 핸들러 설정
                 })

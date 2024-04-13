@@ -8,64 +8,63 @@ import java.util.List;
 
 public class LoginDTO implements java.io.Serializable {
 
-    private String userId;
-    private String userName;
-    private String userPwd;
-    private UserRole userRole;
+    private String id;
+    private String name;
+    private String pwd;
+    private UserRole role;
 
     public LoginDTO() {}
 
-    public LoginDTO(String userId, String userName, String userPwd, UserRole userRole) {
-        this.userId = userId;
-        this.userName = userName;
-        this.userPwd = userPwd;
-        this.userRole = userRole;
+    public LoginDTO(String id, String name, String pwd, UserRole role) {
+        this.id = id;
+        this.name = name;
+        this.pwd = pwd;
+        this.role = role;
     }
 
     public List<String> getRole() {
-        if(this.userRole.getRole().length() > 0) return Arrays.asList(this.userRole.getRole().split(","));
+        if(this.role.getRole().length() > 0) {
+            return Arrays.asList(this.role.getRole().split(","));
+        }
+
         return new ArrayList<>();
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUserPwd() {
-        return userPwd;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setUserPwd(String userPwd) {
-        this.userPwd = userPwd;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
-    public UserRole getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 
     @Override
     public String toString() {
         return "LoginDTO{" +
-                "userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userPwd='" + userPwd + '\'' +
-                ", userRole=" + userRole +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", role=" + role +
                 '}';
     }
 }

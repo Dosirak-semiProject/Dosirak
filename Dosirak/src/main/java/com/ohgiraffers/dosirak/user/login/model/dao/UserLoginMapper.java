@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserLoginMapper {
 
-    LoginDTO findByUserid(String userid);
+    LoginDTO findById(String id);
 }
