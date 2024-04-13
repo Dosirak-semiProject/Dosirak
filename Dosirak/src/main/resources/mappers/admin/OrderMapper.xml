@@ -4,7 +4,22 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ohgiraffers.dosirak.admin.order.model.dao.OrderMapper">
-    <select id="AllOrderList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
+    <resultMap id="orderDto" type="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
+        <id property="orderCode" column="order_code"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="orderRecipient" column="order_recipient"/>
+    </resultMap>
+
+    <resultMap id="refundList" type="com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO">
+        <result property="orderCode" column="order_code"/>
+        <result property="refundPrice" column="refund_price"/>
+        <result property="refundDate" column="refund_date"/>
+        <result property="refundStatus" column="refund_status"/>
+    </resultMap>
+
+    <select id="AllOrderList" resultMap="orderDto">
         SELECT
             o.order_code,
             o.order_status,
@@ -21,18 +36,18 @@
         JOIN tbl_user u ON o.user_id = u.user_id
     </select>
 
-    <select id="AllRefundList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO">
+    <select id="AllRefundList" resultMap="refundList">
         SELECT
             r.order_code,
             r.refund_price,
             r.refund_status,
-            r.user_name,
-            r.user_id,
+            u.user_name,
+            u.user_id,
             p.pay_method
         FROM
             tbl_refund r
         JOIN tbl_order o ON r.order_code = o.order_code
-        JOIN tbl_user u ON r.user_id = u.user_id
+        JOIN tbl_user u ON o.user_id = u.user_id
         JOIN tbl_pay p ON r.pay_method = p.pay_method
     </select>
 </mapper>
