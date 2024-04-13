@@ -2,11 +2,13 @@ package com.ohgiraffers.dosirak.admin.order.controller;
 
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO;
+import com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO;
 import com.ohgiraffers.dosirak.admin.order.model.service.OrderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -47,7 +49,16 @@ public class OrderController {
     public String refundView() {return "admin/order/refundView";}
 
     @GetMapping("shippingList")
-    public String shippingList() {return "admin/order/shippingList";}
+    public ModelAndView shippingList(ModelAndView mv) {
+
+        List<ShippingDTO> shippingList = orderService.AllShippingList();
+
+        mv.addObject("shippingList", shippingList);
+
+        mv.setViewName("admin/order/shippingList");
+
+        return mv;
+    }
 
     @GetMapping("shippingView")
     public String shippingView() {return "admin/order/shippingView";}
