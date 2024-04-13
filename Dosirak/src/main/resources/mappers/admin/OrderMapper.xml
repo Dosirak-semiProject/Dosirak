@@ -40,14 +40,15 @@
         SELECT
             r.order_code,
             r.refund_price,
+            r.refund_date,
             r.refund_status,
-            u.user_name,
             u.user_id,
+            u.user_name,
             p.pay_method
         FROM
             tbl_refund r
         JOIN tbl_order o ON r.order_code = o.order_code
         JOIN tbl_user u ON o.user_id = u.user_id
-        JOIN tbl_pay p ON r.pay_method = p.pay_method
+        JOIN tbl_pay p ON o.order_code = p.order_code
     </select>
 </mapper>
