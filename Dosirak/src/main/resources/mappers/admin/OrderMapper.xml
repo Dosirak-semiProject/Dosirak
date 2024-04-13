@@ -19,6 +19,12 @@
         <result property="refundStatus" column="refund_status"/>
     </resultMap>
 
+    <resultMap id="shippingList" type="com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO">
+        <result property="orderCode" column="order_code"/>
+        <result property="deliveryCode" column="delivery_code"/>
+        <result property="deliveryStatus" column="delivery_status"/>
+    </resultMap>
+
     <select id="AllOrderList" resultMap="orderDto">
         SELECT
             o.order_code,
@@ -50,5 +56,16 @@
         JOIN tbl_order o ON r.order_code = o.order_code
         JOIN tbl_user u ON o.user_id = u.user_id
         JOIN tbl_pay p ON o.order_code = p.order_code
+    </select>
+
+    <select id="AllShippingList" resultMap="shippingList">
+        SELECT
+            o.order_code,
+            d.delivery_code,
+            d.delivery_status,
+            o.order_recipient
+        FROM
+            tbl_delivery d
+        JOIN tbl_order o ON d.order_code = o.order_code;
     </select>
 </mapper>

@@ -53,11 +53,11 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
+                            <tr th:each="shipping : ${ shippingList }">
+                                <td th:text="${ shipping.orderCode }"></td>
+                                <td th:text="${ shipping.deliveryCode }"></td>
+                                <td th:text="${ shipping.deliveryStatus }"></td>
+                                <td th:text="${ shipping.orderRecipient }"></td>
                             </tr>
                             </tbody>
                         </table>
