@@ -61,7 +61,9 @@
                             </tfoot>
                             <tbody>
                             <tr th:each="order : ${ orderList }">
-                                <td><a th:href="'/admin/orderView/' + ${ order.orderCode }" th:text="${ order.orderCode }"></a></td>
+                                <td>
+                                    <a th:href="'/admin/orderView/' + ${ order.orderCode }" th:text="${ order.orderCode }"></a>
+                                </td>
                                 <td th:text="${ order.orderStatus }"></td>
                                 <td th:text="|${ order.userName }(${ order.userId })|"></td>
                                 <td th:text="${ order.orderRecipient }"></td>
