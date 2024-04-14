@@ -1,6 +1,7 @@
 package com.ohgiraffers.dosirak.admin.order.controller;
 
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
+import com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO;
 import com.ohgiraffers.dosirak.admin.order.model.service.OrderService;
@@ -33,7 +34,14 @@ public class OrderController {
     }
 
     @GetMapping("orderView")
-    public String orderView() {return "admin/order/orderView";}
+    public String orderView(Model model) {
+
+//        List<OrderViewDTO> orderView = orderService.AllOrderView();
+//
+//        model.addAttribute("orderView", orderView);
+
+        return "admin/order/orderView";
+    }
 
     @GetMapping("refundList")
     public String refundList(Model model) {
