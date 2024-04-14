@@ -16,4 +16,8 @@ public class AdminSuitBoxService {
     public List<SuitBoxMenuDTO> getSuitBoxMenu() {
         return mapper.getSuitBoxMenu();
     }
+
+    public int registMenu(SuitBoxMenuDTO menu) {
+        return mapper.registMenu(menu);
+    }
 }
