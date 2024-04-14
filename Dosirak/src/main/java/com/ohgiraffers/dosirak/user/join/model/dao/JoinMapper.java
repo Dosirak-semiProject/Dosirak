@@ -7,4 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface JoinMapper {
 
     int regist(JoinDTO joinDTO);
+
+    String checkDuplication(String id);
 }

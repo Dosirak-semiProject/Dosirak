@@ -29,4 +29,8 @@ public class JoinService {
         return  result;
     }
 
+    public boolean checkDuplication(String id) {
+        String result = joinMapper.checkDuplication(id);
+        return result != null;
+    }
 }

@@ -1,7 +1,6 @@
 package com.ohgiraffers.dosirak.config.handler;
 
 import com.ohgiraffers.dosirak.common.UserRole;
-import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

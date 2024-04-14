@@ -19,8 +19,8 @@
             <div class="hp_bordDE hp_padding50 hp_mt50">
                 <ul class="bl_joinAgree">
                     <li class="">
-                        <label class="bl_checkBx">
-                            <input type="checkbox" class="bl_checkBx__input">
+                        <label class="bl_checkBx bl_checkBxAll">
+                            <input type="checkbox" class="bl_checkBx__input bl_checkBxAll__input">
                             <span class="bl_checkBx__check"></span>
                             <span class="hp_ml10 hp_fs18 hp_alignL">회원가입 약관에 모두 동의합니다.
                                 <p class="hp_fs14 hp_7Color hp_mt5">이용약관/개인정보 수집 및 이용(필수), 마케팅정보 수신동의(선택)에 <br/>모두 동의합니다.</p>
@@ -29,7 +29,7 @@
                     </li>
                     <li class="hp_bordDashTDE2 hp_mt50 hp_pt50">
                         <label class="bl_checkBx hp_w100">
-                            <input type="checkbox" class="bl_checkBx__input">
+                            <input type="checkbox" class="bl_checkBx__input bl_checkBxS__input bl_checkBxRequired__input">
                             <span class="bl_checkBx__check"></span>
                             <span class="hp_ml10 ly_fgrow1 ly_spaceBetween">[필수] 이용약관 동의
                                 <a class="hp_7Color" href="">약관보기 ></a>
@@ -38,7 +38,7 @@
                     </li>
                     <li class="hp_mt10">
                         <label class="bl_checkBx hp_w100">
-                            <input type="checkbox" class="bl_checkBx__input">
+                            <input type="checkbox" class="bl_checkBx__input bl_checkBxS__input bl_checkBxRequired__input">
                             <span class="bl_checkBx__check"></span>
                             <span class="hp_ml10 ly_fgrow1 ly_spaceBetween">[필수] 개인정보 수집 및 이용 동의
                                 <a class="hp_7Color" href="">약관보기 ></a>
@@ -47,7 +47,7 @@
                     </li>
                     <li class="hp_mt10">
                         <label class="bl_checkBx hp_w100">
-                            <input type="checkbox" class="bl_checkBx__input">
+                            <input type="checkbox" class="bl_checkBx__input bl_checkBxS__input">
                             <span class="bl_checkBx__check"></span>
                             <span class="hp_ml10 ly_fgrow1 ly_spaceBetween">[선택] 마케팅정보 수신동의
                                 <a class="hp_7Color" href="">약관보기 ></a>
@@ -55,10 +55,47 @@
                         </label>
                     </li>
                 </ul>
-                <a class="el_btnM el_btnPointBack hp_w100 hp_br5 hp_mt70" href="user/join/join02">다음</a>
+                <button type="submit" id="btnJoin01" class="el_btnM el_btnPointBack hp_w100 hp_br5 hp_mt70">다음</button>
             </div>
         </div>
         <th:block th:replace="/user/common/footer.html"></th:block>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            // 전체동의
+            $(".bl_checkBxAll__input").click(function(){
+                let isCheckAll = $(".bl_checkBxAll__input").is(":checked");
+                if(isCheckAll){
+                    $(".bl_checkBx__input").prop("checked", true);
+                }else{
+                    $(".bl_checkBx__input").prop("checked", false);
+                }
+            })
+            // 전체동의 풀기
+            $(".bl_checkBxS__input").click(function(){
+                for(let i=0; i<$(".bl_checkBxS__input").length; i++){
+                    let isCheck = $(".bl_checkBxS__input").eq(i).is(":checked");
+                    if(!isCheck) $(".bl_checkBxAll__input").prop("checked", false);
+                }
+            })
+
+            // 필수동의 확인
+            $("#btnJoin01").click(function(){
+                let isTrue = true;
+
+                for(let i=0; i<$(".bl_checkBxRequired__input").length; i++){
+                    let requiredCheck = $(".bl_checkBxRequired__input").eq(i).is(":checked");
+                    if(!requiredCheck) isTrue = false;
+                }
+
+                if(isTrue){
+                    location.href = "/user/join/join02";
+                }else{
+                    alert("모든 필수약관에 동의해야만 가입이 가능합니다.");
+                }
+            })
+        })
+    </script>
 </body>
 </html>
