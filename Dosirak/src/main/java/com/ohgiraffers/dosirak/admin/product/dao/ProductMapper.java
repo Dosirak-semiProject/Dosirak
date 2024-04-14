@@ -12,5 +12,6 @@ public interface ProductMapper {
 
     String productselcetlist(String key);
 
-    String findSelectProduct(String keyword);
+
+    List<productDTO> insertProduction(productDTO product);
 }

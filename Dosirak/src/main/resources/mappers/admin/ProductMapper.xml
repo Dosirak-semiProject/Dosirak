@@ -14,11 +14,15 @@
         SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE
         FROM PRODUCT;
     </select>
-<!--    <select id="findSelectProduct" resultType="com/ohgiraffers/dosirak/admin/product/dao/ProductMapper">-->
-<!--        SELECT name-->
-<!--        FROM your_table-->
-<!--        WHERE name LIKE CONCAT('%', #{keyword}, '%')-->
-<!--    </select>-->
+    <select id="findSelectProduct" resultMap="product">
+        SELECT PRODUCT_NAME, PRODUCT_CODE, PRODUCT_PRICE, PRODUCT_STATUS, PRODUCT_CATEGORY_CODE
+        FROM tbl_product
+        WHERE PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+    <insert id="insertProduction" parameterType="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
+        INSERT INTO tbl_product (PRODUCT_NAME, PRODUCT_CODE, PRODUCT_PRICE, PRODUCT_STATUS, PRODUCT_CATEGORY_CODE)
+        VALUES (#{productName}, #{productCode}, #{productPrice}, #{productStatus}, #{productCategoryCode})
+    </insert>
 
 
 </mapper>

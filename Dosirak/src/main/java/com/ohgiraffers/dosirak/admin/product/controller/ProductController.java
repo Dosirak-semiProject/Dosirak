@@ -31,4 +31,12 @@ public class ProductController {
         model.addAttribute("productselcetlist",productselcetlist);
         return key;
     }
+    @PostMapping("/product/add")
+    public String addProduct(@ModelAttribute productDTO product, Model model) {
+        List<productDTO>insertProduction= productService.insertProduction(product); // ProductService에 해당 메소드를 구현해야 함
+        model.addAttribute("insertProduction",insertProduction);
+        return "redirect:/admin/product/productList"; // 상품 목록 페이지로 리다이렉트
+    }
+
+
 }

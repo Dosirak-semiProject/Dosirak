@@ -19,4 +19,9 @@ public class ProductService {
     public String productselcetlist(String key) {
         return productMapper.productselcetlist(key);
     }
+
+    public List<productDTO> insertProduction(productDTO product) {
+
+        return productMapper.insertProduction(product);
+    }
 }
