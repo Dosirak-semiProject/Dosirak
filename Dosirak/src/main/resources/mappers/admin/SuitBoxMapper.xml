@@ -18,4 +18,25 @@
         SELECT * FROM MENU
         WHERE menu_code = #{menuCode}
     </select>
+    <update id="modifyMenu">
+        UPDATE MENU
+        SET
+        menu_name = #{menu.menuName},
+        menu_category = #{menu.menuCategory},
+        menu_extracash = #{menu.menuExtracash},
+        menu_status = #{menu.menuStatus},
+        menu_carbo = #{menu.menuCarbo},
+        menu_sugar = #{menu.menuSugar},
+        menu_protein = #{menu.menuProtein},
+        menu_fat = #{menu.menuFat},
+        menu_saturatedfat = #{menu.menuSaturatedFat},
+        menu_transfat = #{menu.menuTransFat},
+        menu_cholesterol = #{menu.menuCholesterol},
+        menu_natrium = #{menu.menuNatrium},
+        menu_calory = #{menu.menuCalory}
+        WHERE menu_code = #{menuCode}
+    </update>
+    <delete id="deleteMenu">
+        DELETE FROM MENU WHERE menu_code = #{menuCode}
+    </delete>
 </mapper>

@@ -12,4 +12,8 @@ public interface AdminSuitBoxDAO {
     int registMenu(SuitBoxMenuDTO menu);
 
     SuitBoxMenuDTO menuFindByMenuCode(int menuCode);
+
+    int modifyMenu(SuitBoxMenuDTO menu, int menuCode);
+
+    int deleteMenu(int menuCode);
 }

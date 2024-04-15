@@ -75,12 +75,13 @@
                         <th:block th:switch="${setCondition}">
                             <span th:case="regist">
                                 <button type="submit" class="btn btn-primary">등록</button>
-                                <button type="button" class="btn btn-secondary">목록</button>
+                                <button type="submit" class="btn btn-secondary" formaction="/admin/suit-box/menu/view" formmethod="get">목록</button>
                             </span>
                             <span th:case="modify">
-                                <button type="submit" class="btn btn-primary">수정</button>
-                                <button type="button" class="btn btn-primary">삭제</button>
-                                <button type="button" class="btn btn-secondary">목록</button>
+                                <input type="hidden" name="menuCode" th:value="${menu?.menuCode}">
+                                <button type="submit" class="btn btn-primary" formaction="/admin/suit-box/menu/modify-menu">수정</button>
+                                <button type="submit" class="btn btn-primary" formaction="/admin/suit-box/menu/delete-menu">삭제</button>
+                                <button type="submit" class="btn btn-secondary" formaction="/admin/suit-box/menu/view" formmethod="get">목록</button>
                             </span>
                         </th:block>
                     </div>

@@ -41,10 +41,25 @@ public class AdminSuitBoxController {
     }
     @GetMapping("/modify")
     public String modify(Model model, @RequestParam int menuCode) {
-        System.out.println(menuCode);
         SuitBoxMenuDTO targetMenu = service.menuFindByMenuCode(menuCode);
         model.addAttribute("setCondition", "modify");
         model.addAttribute("menu", targetMenu);
         return "admin/suitBox/suitBoxMenuSet";
+    }
+    @PostMapping("/modify-menu")
+    public String  modifyMenu(Model model, SuitBoxMenuDTO menu, @RequestParam int menuCode) {
+        int modResult = service.modifyMenu(menu, menuCode);
+        return "redirect:/admin/suit-box/menu/view";
+    }
+    @PostMapping("/delete-menu")
+    public String deleteMenu(Model model, @RequestParam int menuCode) {
+        int delResult = service.deleteMenu(menuCode);
+        String result = "";
+        if(delResult == 1){
+            result = "redirect:/admin/suit-box/menu/view";
+        } else {
+            result = "redirect:/admin/suit-box/menu/modify";
+        }
+        return result;
     }
 }
