@@ -20,4 +20,8 @@ public class AdminSuitBoxService {
     public int registMenu(SuitBoxMenuDTO menu) {
         return mapper.registMenu(menu);
     }
+
+    public SuitBoxMenuDTO menuFindByMenuCode(int menuCode) {
+        return mapper.menuFindByMenuCode(menuCode);
+    }
 }

@@ -14,4 +14,8 @@
         #{menuCarbo}, #{menuSugar}, #{menuProtein}, #{menuFat}, #{menuSaturatedFat},
         #{menuTransFat}, #{menuCholesterol}, #{menuNatrium}, #{menuCalory})
     </insert>
+    <select id="menuFindByMenuCode" resultType="com.ohgiraffers.dosirak.admin.suitBox.model.dto.SuitBoxMenuDTO">
+        SELECT * FROM MENU
+        WHERE menu_code = #{menuCode}
+    </select>
 </mapper>

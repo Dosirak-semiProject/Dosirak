@@ -10,4 +10,6 @@ public interface AdminSuitBoxDAO {
     List<SuitBoxMenuDTO> getSuitBoxMenu();
 
     int registMenu(SuitBoxMenuDTO menu);
+
+    SuitBoxMenuDTO menuFindByMenuCode(int menuCode);
 }

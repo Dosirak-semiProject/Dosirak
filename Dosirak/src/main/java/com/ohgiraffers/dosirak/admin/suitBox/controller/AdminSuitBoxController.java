@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -37,5 +38,13 @@ public class AdminSuitBoxController {
             result = "redirect:/admin/suit-box/menu/view";
         }
         return result;
+    }
+    @GetMapping("/modify")
+    public String modify(Model model, @RequestParam int menuCode) {
+        System.out.println(menuCode);
+        SuitBoxMenuDTO targetMenu = service.menuFindByMenuCode(menuCode);
+        model.addAttribute("setCondition", "modify");
+        model.addAttribute("menu", targetMenu);
+        return "admin/suitBox/suitBoxMenuSet";
     }
 }

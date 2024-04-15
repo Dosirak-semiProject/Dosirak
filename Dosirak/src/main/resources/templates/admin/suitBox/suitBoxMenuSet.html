@@ -22,16 +22,14 @@
                         <tbody>
                         <tr>
                             <th scope="row"><label for="menuName">메뉴이름</label></th>
-                            <td colspan="2"><input id="menuName" type="text" name="menuName" /></td>
+                            <td colspan="2"><input id="menuName" type="text" name="menuName" th:value="${menu?.menuName}" /></td>
                             <th scope="row"><label for="extraCash">추가금</label></th>
-                            <td colspan="3"><input id="extraCash" type="number" name="menuExtracash" /></td>
+                            <td colspan="2"><input id="extraCash" type="number" name="menuExtracash" th:value="${menu?.menuExtracash}" /></td>
                         </tr>
                         <tr>
-                            <th scope="row">카테고리</th>
-                            <td>123456</td>
                             <th scope="row"><label for="menuCategory">메뉴분류</label></th>
-                            <td>
-                                <select id="menuCategory" class="datatable-selector" name="menuCategory">
+                            <td colspan="2">
+                                <select id="menuCategory" class="datatable-selector" name="menuCategory" th:value="${menu?.menuCategory}">
                                     <option value="rice">밥</option>
                                     <option value="main">메인</option>
                                     <option value="side">서브</option>
@@ -39,8 +37,8 @@
                                 </select>
                             </td>
                             <th scope="row"><label for="menuStatus">판매상태</label></th>
-                            <td>
-                                <select id="menuStatus" class="datatable-selector" name="menuStatus">
+                            <td colspan="2">
+                                <select id="menuStatus" class="datatable-selector" name="menuStatus" th:value="${menu?.menuStatus}">
                                     <option value="Y">판매 가능</option>
                                     <option value="S">일시 중단</option>
                                     <option value="N">판매 중단</option>
@@ -49,41 +47,41 @@
                         </tr>
                         <tr>
                             <th scope="row"><label for="carbo">탄수화물</label></th>
-                            <td><input id="carbo" type="number" name="menuCarbo" /></td>
+                            <td><input id="carbo" type="number" name="menuCarbo" th:value="${menu?.menuCarbo}" /></td>
                             <th scope="row"><label for="sugar">당류</label></th>
-                            <td><input id="sugar" type="number" name="menuSugar" /></td>
+                            <td><input id="sugar" type="number" name="menuSugar" th:value="${menu?.menuSugar}" /></td>
                             <th scope="row"><label for="protein">단백질</label></th>
-                            <td><input id="protein" type="number" name="menuProtein" /></td>
+                            <td><input id="protein" type="number" name="menuProtein" th:value="${menu?.menuProtein}" /></td>
                         </tr>
                         <tr>
                             <th scope="row"><label for="fat">지방</label></th>
-                            <td><input id="fat" type="number" name="menuFat" /></td>
+                            <td><input id="fat" type="number" name="menuFat" th:value="${menu?.menuFat}" /></td>
                             <th scope="row"><label for="saturateFat">포화지방</label></th>
-                            <td><input id="saturateFat" type="number" name="menuSaturatedFat" /></td>
+                            <td><input id="saturateFat" type="number" name="menuSaturatedFat" th:value="${menu?.menuSaturatedFat}" /></td>
                             <th scope="row"><label for="transFat">트랜스지방</label></th>
-                            <td><input id="transFat" type="number" name="menuTransFat" /></td>
+                            <td><input id="transFat" type="number" name="menuTransFat" th:value="${menu?.menuTransFat}" /></td>
                         </tr>
                         <tr>
                             <th scope="row"><label for="cholesterol">콜레스테롤</label></th>
-                            <td><input id="cholesterol" type="number" name="menuCholesterol" /></td>
+                            <td><input id="cholesterol" type="number" name="menuCholesterol" th:value="${menu?.menuCholesterol}" /></td>
                             <th scope="row"><label for="natrium">나트륨</label></th>
-                            <td><input id="natrium" type="number" name="menuNatrium" /></td>
+                            <td><input id="natrium" type="number" name="menuNatrium" th:value="${menu?.menuNatrium}" /></td>
                             <th scope="row"><label for="calory">칼로리</label></th>
-                            <td><input id="calory" type="number" name="menuCalory" /></td>
+                            <td><input id="calory" type="number" name="menuCalory" th:value="${menu?.menuCalory}" /></td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="editBtn" style="text-align: right;">
                         <th:block th:switch="${setCondition}">
-                        <span th:case="regist">
-                            <button type="submit" class="btn btn-primary">등록</button>
-                            <button type="button" class="btn btn-secondary">목록</button>
-                        </span>
-                            <span th:case="2">
-                            <button type="submit" class="btn btn-primary">수정</button>
-                            <button type="button" class="btn btn-primary">삭제</button>
-                            <button type="button" class="btn btn-secondary">목록</button>
-                        </span>
+                            <span th:case="regist">
+                                <button type="submit" class="btn btn-primary">등록</button>
+                                <button type="button" class="btn btn-secondary">목록</button>
+                            </span>
+                            <span th:case="modify">
+                                <button type="submit" class="btn btn-primary">수정</button>
+                                <button type="button" class="btn btn-primary">삭제</button>
+                                <button type="button" class="btn btn-secondary">목록</button>
+                            </span>
                         </th:block>
                     </div>
                 </form>
