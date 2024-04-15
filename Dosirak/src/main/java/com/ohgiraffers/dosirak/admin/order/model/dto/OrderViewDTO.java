@@ -3,6 +3,7 @@ package com.ohgiraffers.dosirak.admin.order.model.dto;
 import java.time.LocalDate;
 
 public class OrderViewDTO {
+    private String detailCode;
     private String orderCode;
     private String orderStatus;
     private String refundStatus;
@@ -10,17 +11,19 @@ public class OrderViewDTO {
     private String userName;
     private String userId;
     private String orderRecipient;
-    private String orderAddress;
+    private String  userPhone;
+    private String userAddress;
     private int payPrice;
     private LocalDate payDate;
     private String payMethod;
     private String productName;
-    private int cartItemCount;
+    private int itemQuantity;
     private int productPrice;
 
     public OrderViewDTO() {}
 
-    public OrderViewDTO(String orderCode, String orderStatus, String refundStatus, String deliveryStatus, String userName, String userId, String orderRecipient, String orderAddress, int payPrice, LocalDate payDate, String payMethod, String productName, int cartItemCount, int productPrice) {
+    public OrderViewDTO(String detailCode, String orderCode, String orderStatus, String refundStatus, String deliveryStatus, String userName, String userId, String orderRecipient, String userPhone, String userAddress, int payPrice, LocalDate payDate, String payMethod, String productName, int itemQuantity, int productPrice) {
+        this.detailCode = detailCode;
         this.orderCode = orderCode;
         this.orderStatus = orderStatus;
         this.refundStatus = refundStatus;
@@ -28,13 +31,22 @@ public class OrderViewDTO {
         this.userName = userName;
         this.userId = userId;
         this.orderRecipient = orderRecipient;
-        this.orderAddress = orderAddress;
+        this.userPhone = userPhone;
+        this.userAddress = userAddress;
         this.payPrice = payPrice;
         this.payDate = payDate;
         this.payMethod = payMethod;
         this.productName = productName;
-        this.cartItemCount = cartItemCount;
+        this.itemQuantity = itemQuantity;
         this.productPrice = productPrice;
+    }
+
+    public String getDetailCode() {
+        return detailCode;
+    }
+
+    public void setDetailCode(String detailCode) {
+        this.detailCode = detailCode;
     }
 
     public String getOrderCode() {
@@ -93,12 +105,20 @@ public class OrderViewDTO {
         this.orderRecipient = orderRecipient;
     }
 
-    public String getOrderAddress() {
-        return orderAddress;
+    public String getUserPhone() {
+        return userPhone;
     }
 
-    public void setOrderAddress(String orderAddress) {
-        this.orderAddress = orderAddress;
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public String getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(String userAddress) {
+        this.userAddress = userAddress;
     }
 
     public int getPayPrice() {
@@ -133,12 +153,12 @@ public class OrderViewDTO {
         this.productName = productName;
     }
 
-    public int getCartItemCount() {
-        return cartItemCount;
+    public int getItemQuantity() {
+        return itemQuantity;
     }
 
-    public void setCartItemCount(int cartItemCount) {
-        this.cartItemCount = cartItemCount;
+    public void setItemQuantity(int itemQuantity) {
+        this.itemQuantity = itemQuantity;
     }
 
     public int getProductPrice() {
@@ -152,19 +172,21 @@ public class OrderViewDTO {
     @Override
     public String toString() {
         return "OrderViewDTO{" +
-                "orderCode='" + orderCode + '\'' +
+                "detailCode='" + detailCode + '\'' +
+                ", orderCode='" + orderCode + '\'' +
                 ", orderStatus='" + orderStatus + '\'' +
                 ", refundStatus='" + refundStatus + '\'' +
                 ", deliveryStatus='" + deliveryStatus + '\'' +
                 ", userName='" + userName + '\'' +
                 ", userId='" + userId + '\'' +
                 ", orderRecipient='" + orderRecipient + '\'' +
-                ", orderAddress='" + orderAddress + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userAddress='" + userAddress + '\'' +
                 ", payPrice=" + payPrice +
                 ", payDate=" + payDate +
                 ", payMethod='" + payMethod + '\'' +
                 ", productName='" + productName + '\'' +
-                ", cartItemCount=" + cartItemCount +
+                ", itemQuantity=" + itemQuantity +
                 ", productPrice=" + productPrice +
                 '}';
     }

@@ -21,51 +21,50 @@
                     <tbody>
                     <tr>
                         <th scope="row">주문코드</th>
-                        <td>8390275164</td>
-                        <!-- <th scope="row">주문상태</th>
-                        <td>구매확정</td> -->
-                        <!-- <th scope="row">주문상태 / 배송상태</th>
-                        <td>구매확정 / 배송완료</td> -->
-                        <!-- <th scope="row">환불상태</th>
-                        <td>환불신청</td> -->
+                        <td th:text="${ orderViewDTO.orderCode }"></td>
+
                         <th scope="row">주문상태</th>
-                        <td>주문완료</td>
+                        <td th:text="${ orderViewDTO.orderStatus }"></td>
                     </tr>
-                    <tr>
+                    <tr >
                         <th scope="row">환불상태</th>
-                        <td></td>
+                        <td th:text="${ orderViewDTO.refundStatus }"></td>
 
                         <th scope="row">배송상태</th>
-                        <td>배송중</td>
+                        <td th:text="${ orderViewDTO.deliveryStatus }"></td>
                     </tr>
                     <tr>
                         <th scope="row">회원이름(아이디)</th>
-                        <td colspan="3">abcd1234</td>
+                        <td colspan="3" th:text="|${ orderViewDTO.userName }(${ orderViewDTO.userId })|"></td>
                     </tr>
                     <tr>
                         <th scope="row">수령인</th>
-                        <td>김철수</td>
+                        <td th:text="${ orderViewDTO.orderRecipient }"></td>
                         <th scope="row">연락처</th>
-                        <td>01012345678</td>
+                        <td th:text="${ orderViewDTO.userPhone }"></td>
                     </tr>
                     <tr>
                         <th scope="row">배송지</th>
-                        <td colspan="3"></td>
+                        <td colspan="3" th:text="${ orderViewDTO.userAddress }"></td>
                     </tr>
                     <tr>
                         <th scope="row">결제금액</th>
-                        <td>123,456원</td>
+                        <td th:text="${ orderViewDTO.payPrice }"></td>
                         <th scope="row">결제날짜</th>
-                        <td>2024-02-02</td>
+                        <td th:text="${ orderViewDTO.payDate }"></td>
                     </tr>
                     <tr>
                         <th scope="row">결제방법</th>
-                        <td colspan="3">카카오페이</td>
+                        <td colspan="3" th:text="${ orderViewDTO.payMethod }"></td>
                     </tr>
                     <tr>
                         <th scope="row">주문상세</th>
                         <td colspan="3">
-                            <label><input type="checkbox"/> 가나다라마바사 / 1개 / 100,000원</label><br/>
+                            <label>
+                                <input type="checkbox">
+                                <th:block th:text="${ orderViewDTO.productName + ' / ' + orderViewDTO.itemQuantity + '개' + ' / ' + (orderViewDTO.itemQuantity * orderViewDTO.productPrice + ' 원')}"></th:block>
+                            </label>
+                            <br/>
                         </td>
                     </tr>
                     </tbody>
