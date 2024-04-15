@@ -12,10 +12,5 @@ public interface CustomerMapper {
 
     List<NoticeDTO> findNoticeList();
 
-    int selectTotalCount(Map<String, String> searchMap);
-
-    List<NoticeDTO> selectNoticeList(SelectCriteria selectCriteria);
-
-    List<NoticeDTO> searchPosts(String keyword);
-
+    NoticeDTO searchNoticeDetail(int noticeCode);
 }

@@ -50,7 +50,7 @@
                             <tbody>
                             <tr th:each="notice : ${ noticeList }">
                                 <td th:text="${ notice.noticeCode }"></td>
-                                <td th:text="${ notice.noticeTitle }"></td>
+                                <td><a th:href="|noticeDetail?noticeCode=${ notice.noticeCode }|" th:text="${ notice.noticeTitle }"></a></td>
                                 <td th:text="${ notice.noticeDate }"></td>
                                 <td th:text="${ notice.adminId }"></td>
                                 <td><button type="button" class="btn btn-secondary btn-sm">삭제</button></td>

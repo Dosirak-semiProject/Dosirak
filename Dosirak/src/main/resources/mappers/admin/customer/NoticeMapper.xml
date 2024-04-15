@@ -4,8 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper">
 
-    <resultMap id="generalNoticeBoardResultMap" type="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO">
+    <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO" id="generalNoticeResultMap" >
         <id property="noticeCode" column="notice_code"/>
+        <result property="adminId" column="admin_id"/>
+        <result property="noticeDate" column="notice_date"/>
+        <result property="noticeTitle" column="notice_title"/>
+        <result property="noticeContent" column="notice_content"/>
     </resultMap>
 
     <select id="findNoticeList" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO">
@@ -16,27 +20,34 @@
             admin_id
         FROM
             tbl_notice
+        ORDER BY
+            notice_code desc
     </select>
 
-    <select id="selectBoardList" resultMap="generalBoardResultMap">
+<!--    <select id="searchNoticeDetail" resultMap="generalNoticeResultMap">-->
+<!--        SELECT-->
+<!--            notice_code,-->
+<!--            admin_id,-->
+<!--            notice_date,-->
+<!--            notice_title,-->
+<!--            notice_content-->
+<!--        FROM-->
+<!--            tbl_notice-->
+<!--        WHERE-->
+<!--            notice_code = #{ noticeCode }-->
+<!--    </select>-->
+
+    <select id="searchNoticeDetail" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO">
         SELECT
             notice_code,
-            notice_title,
-            notice_content,
+            admin_id,
             notice_date,
-            admin_id
+            notice_title,
+            notice_content
         FROM
             tbl_notice
         WHERE
-            <if test="searchCondition == 'title'">
-                notice_title = #{ searchValue }
-            </if>
-        ORDER BY
-            notice_code DESC
-        LIMIT #{offset}, #{limit}
+            notice_code = #{ noticeCode }
     </select>
-
-    <select id="selectTotalCount" resultMap="_int" parameterType=""
-
 
 </mapper>

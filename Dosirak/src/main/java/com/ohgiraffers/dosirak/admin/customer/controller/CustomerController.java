@@ -24,57 +24,26 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-//    @GetMapping("/noticeList")
-//    public String noticeList(Model model) {
-//
-//        List<NoticeDTO> noticeList = customerService.findNoticeList();
-//
-//        model.addAttribute("noticeList", noticeList);
-//
-//        return "admin/customer/noticeList";
-//    }
-
-
-//    @GetMapping("/noticeList")
-//    public String noticeList(@RequestParam(defaultValue = "1") int page,
-//                             @RequestParam(required = false) String searchValue,
-//                             Model model) {
-//
-//        Map<String, Object> noticeListAndPaging = customerService.selectNoticeList(searchValue, page);
-//        model.addAttribute("paging", noticeListAndPaging.get("paging"));
-//        model.addAttribute("noticeList", noticeListAndPaging.get("noticeList"));
-//
-//
-//        return "admin/customer/noticeList";
-//    }
-
     @GetMapping("/noticeList")
-    public String noticeList(@RequestParam(defaultValue = "1") int page,
-                            @RequestParam(required = false) String searchCondition,
-                            @RequestParam(required = false) String searchValue,
-                            Model model) {
+    public String noticeList(Model model) {
 
-        Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("searchCondition", searchCondition);
-        searchMap.put("searchValue", searchValue);
+        List<NoticeDTO> noticeList = customerService.findNoticeList();
 
-        Map<String, Object> noticeListAndPaging = customerService.selectNoticeList(searchMap, page);
-        model.addAttribute("paging", noticeListAndPaging.get("paging"));
-        model.addAttribute("noticeList", noticeListAndPaging.get("noticeList"));
-
+        model.addAttribute("noticeList", noticeList);
 
         return "admin/customer/noticeList";
     }
 
-//    @GetMapping("/searchNoticeList")
-//    public String search(@RequestParam(value = "keyword") String keyword,
-//                         Model model) {
-//
-//        List<NoticeDTO> noticeList = customerService.searchPosts(keyword);
-//        model.addAttribute("noticeList", noticeList);
-//
-//        return "admin/customer/searchNoticeList";
-//    }
+    @GetMapping("/noticeDetail")
+    public String getNoticeDetail(@RequestParam("noticeCode") int noticeCode, Model model) {
+
+        NoticeDTO noticeDetail = customerService.selectNoticeDetail(noticeCode);
+
+        model.addAttribute("notice", noticeDetail);
+
+        return "admin/customer/noticeDetail";
+    }
+    // parameter 인식 오류, 어노테이션 옆에 파라미터 값의 이름을 정확히 입력해주어 해결
 
 
 }
