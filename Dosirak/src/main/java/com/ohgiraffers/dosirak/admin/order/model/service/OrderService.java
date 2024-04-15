@@ -2,6 +2,7 @@ package com.ohgiraffers.dosirak.admin.order.model.service;
 
 import com.ohgiraffers.dosirak.admin.order.model.dao.OrderMapper;
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
+import com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,9 @@ public class OrderService {
 
     public List<ShippingDTO> AllShippingList() {
         return orderMapper.AllShippingList();
+    }
+
+    public List<OrderViewDTO> AllOrderView() {
+        return orderMapper.AllOrderView();
     }
 }
