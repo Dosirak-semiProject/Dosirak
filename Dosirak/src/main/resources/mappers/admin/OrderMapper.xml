@@ -25,23 +25,6 @@
         <result property="deliveryStatus" column="delivery_status"/>
     </resultMap>
 
-    <resultMap id="orderView" type="com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO">
-        <result property="orderCode" column="order_code"/>
-        <result property="orderStatus" column="order_status"/>
-        <result property="refundStatus" column="refund_status"/>
-        <result property="deliveryStatus" column="delivery_status"/>
-        <result property="userName" column="user_name"/>
-        <result property="userId" column="user_id"/>
-        <result property="orderRecipient" column="order_recipient"/>
-        <result property="orderAddress" column="order_address"/>
-        <result property="payPrice" column="pay_price"/>
-        <result property="PayDate" column="pay_date"/>
-        <result property="payMethod" column="pay_method"/>
-        <result property="productName" column="product_name"/>
-        <result property="cartItemCount" column="cartItem_count"/>
-        <result property="productPrice" column="product_price"/>
-    </resultMap>
-
     <select id="AllOrderList" resultMap="orderDto">
         SELECT
             o.order_code,
@@ -84,5 +67,36 @@
         FROM
             tbl_delivery d
         JOIN tbl_order o ON d.order_code = o.order_code;
+    </select>
+
+    <select id="AllOrderView" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO">
+        SELECT
+            dt.detail_code,
+            o.order_code,
+            o.order_status,
+            r.refund_status,
+            d.delivery_status,
+            u.user_name,
+            u.user_id,
+            o.order_recipient,
+            u.user_phone,
+            u.user_address,
+            p.pay_price,
+            p.pay_date,
+            p.pay_method,
+            pd.product_name,
+            c.item_quantity,
+            pd.product_price
+        FROM
+            tbl_order o
+        JOIN tbl_detail dt ON o.order_code = dt.order_code
+        LEFT JOIN tbl_refund r ON o.order_code = r.order_code
+        JOIN tbl_delivery d ON o.order_code = d.order_code
+        LEFT JOIN tbl_user u ON o.user_id = u.user_id
+        JOIN tbl_pay p ON o.order_code = p.order_code
+        JOIN tbl_cart c ON u.user_id = c.user_id
+        JOIN tbl_product pd ON c.product_code = pd.product_code
+<!--        WHERE-->
+<!--            dt.order_code = ${orderCode}-->
     </select>
 </mapper>
