@@ -12,8 +12,8 @@ public class UserLoginService {
     @Autowired
     private UserLoginMapper userLoginMapper;
 
-    public LoginDTO findByUserid(String username){
-        LoginDTO login = userLoginMapper.findByUserid(username);
+    public LoginDTO findById(String id){
+        LoginDTO login = userLoginMapper.findById(id);
 
         if(!Objects.isNull(login)){
             return login;

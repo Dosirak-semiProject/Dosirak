@@ -14,4 +14,6 @@ public interface ProductMapper {
 
 
     List<productDTO> insertProduction(productDTO product);
+
+    List<productDTO> viewProduct();
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
     <th:block th:replace="~{/admin/common/head.html}"></th:block>
 </head>
 <body class="sb-nav-fixed">
@@ -17,7 +16,7 @@
                 <div class="card mb-4 mt-4">
                     <div class="card-header">
                         <div class="justify-content-between d-flex align-items-center">
-                            <a class="btn btn-primary" href="">상품등록</a>
+                            <a class="btn btn-primary" href="/admin/product/productView">상품등록</a>
                             <div class="text-end">
                                 <label>
                                     <select id="select1" class="datatable-selector">
@@ -48,7 +47,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table id="datatablesSimple">
+                        <table class="datatable-table">
                             <thead>
                             <tr>
                                 <th>상품코드</th>
@@ -58,24 +57,32 @@
                                 <th>판매상태</th>
                             </tr>
                             </thead>
-                            <tfoot>
-                            <tr>
-                                <th>상품코드</th>
-                                <th>상품이름</th>
-                                <th>상품분류</th>
-                                <th>상품가격</th>
-                                <th>판매상태</th>
-                            </tr>
-                            </tfoot>
                             <tbody>
                             <tr th:each="product : ${productList}">
-                                <td th:text="${product.productCode}"></td>
+                                <td th:text="${ product.productCode }"></td>
                                 <td th:text="${product.productName}"></td>
                                 <td th:text="${product.productCategoryCode}"></td>
                                 <td th:text="${product.productPrice}"></td>
                                 <td th:text:="${product.productStatus}"></td>
                             </tr>
                             </tbody>
+                            <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    // 각 상품 행에 클릭 이벤트 리스너 추가
+                                    var productRows = document.querySelectorAll('.datatable-table tbody tr');
+                                    productRows.forEach(function (row) {
+                                        row.addEventListener('click', function () {
+                                            // 선택한 상품의 상품 코드 가져오기
+                                            var productCode = row.querySelector('td:nth-child(1)').innerText; // 상품코드가 첫 번째 열에 있다고 가정합니다.
+
+                                            // 새로운 URL 생성하여 상품뷰 클래스로 이동
+                                            var newUrl = '/admin/product/productView?productCode=' + encodeURIComponent(productCode);
+                                            window.location.href = newUrl;
+                                        });
+                                    });
+                                });
+
+                            </script>
                         </table>
                     </div>
                 </div>

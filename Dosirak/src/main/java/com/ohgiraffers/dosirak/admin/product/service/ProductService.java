@@ -24,4 +24,8 @@ public class ProductService {
 
         return productMapper.insertProduction(product);
     }
+
+    public List<productDTO> viewProduct() {
+        return productMapper.viewProduct();
+    }
 }

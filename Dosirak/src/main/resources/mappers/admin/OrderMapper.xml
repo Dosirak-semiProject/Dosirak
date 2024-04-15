@@ -4,7 +4,45 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ohgiraffers.dosirak.admin.order.model.dao.OrderMapper">
-    <select id="AllOrderList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
+    <resultMap id="orderDto" type="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
+        <id property="orderCode" column="order_code"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="orderRecipient" column="order_recipient"/>
+    </resultMap>
+
+    <resultMap id="refundList" type="com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO">
+        <result property="orderCode" column="order_code"/>
+        <result property="refundPrice" column="refund_price"/>
+        <result property="refundDate" column="refund_date"/>
+        <result property="refundStatus" column="refund_status"/>
+    </resultMap>
+
+    <resultMap id="shippingList" type="com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO">
+        <result property="orderCode" column="order_code"/>
+        <result property="deliveryCode" column="delivery_code"/>
+        <result property="deliveryStatus" column="delivery_status"/>
+    </resultMap>
+
+    <resultMap id="orderView" type="com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO">
+        <result property="orderCode" column="order_code"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="refundStatus" column="refund_status"/>
+        <result property="deliveryStatus" column="delivery_status"/>
+        <result property="userName" column="user_name"/>
+        <result property="userId" column="user_id"/>
+        <result property="orderRecipient" column="order_recipient"/>
+        <result property="orderAddress" column="order_address"/>
+        <result property="payPrice" column="pay_price"/>
+        <result property="PayDate" column="pay_date"/>
+        <result property="payMethod" column="pay_method"/>
+        <result property="productName" column="product_name"/>
+        <result property="cartItemCount" column="cartItem_count"/>
+        <result property="productPrice" column="product_price"/>
+    </resultMap>
+
+    <select id="AllOrderList" resultMap="orderDto">
         SELECT
             o.order_code,
             o.order_status,
@@ -21,18 +59,30 @@
         JOIN tbl_user u ON o.user_id = u.user_id
     </select>
 
-    <select id="AllRefundList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO">
+    <select id="AllRefundList" resultMap="refundList">
         SELECT
             r.order_code,
             r.refund_price,
+            r.refund_date,
             r.refund_status,
-            r.user_name,
-            r.user_id,
+            u.user_id,
+            u.user_name,
             p.pay_method
         FROM
             tbl_refund r
         JOIN tbl_order o ON r.order_code = o.order_code
-        JOIN tbl_user u ON r.user_id = u.user_id
-        JOIN tbl_pay p ON r.pay_method = p.pay_method
+        JOIN tbl_user u ON o.user_id = u.user_id
+        JOIN tbl_pay p ON o.order_code = p.order_code
+    </select>
+
+    <select id="AllShippingList" resultMap="shippingList">
+        SELECT
+            o.order_code,
+            d.delivery_code,
+            d.delivery_status,
+            o.order_recipient
+        FROM
+            tbl_delivery d
+        JOIN tbl_order o ON d.order_code = o.order_code;
     </select>
 </mapper>

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin/product")
+@RequestMapping("/admin/product/*")
 public class ProductController {
 
     private final ProductService productService;
@@ -37,6 +37,13 @@ public class ProductController {
         model.addAttribute("insertProduction",insertProduction);
         return "redirect:/admin/product/productList"; // 상품 목록 페이지로 리다이렉트
     }
+    @GetMapping("/productView")
+    public String productView(Model model){
+        List<productDTO> productView=productService.viewProduct();
+        model.addAttribute("productView",productView);
+        return "/admin/product/productView";
+    }
+
 
 
 }

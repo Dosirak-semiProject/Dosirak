@@ -1,11 +1,6 @@
 package com.ohgiraffers.dosirak.admin.order.model.dto;
 
-import lombok.*;
-import org.springframework.cglib.core.Local;
-
 import java.time.LocalDate;
-import java.util.Date;
-
 public class OrderDTO {
 
     private String orderCode;

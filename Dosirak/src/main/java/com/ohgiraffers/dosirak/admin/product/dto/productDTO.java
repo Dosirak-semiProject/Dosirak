@@ -7,17 +7,22 @@ public class productDTO {
     private String productStatus;
     private String productSummary;
     private int productCategoryCode;
+    private int subcategory;
+
+    private String description;
 
     public productDTO() {
     }
 
-    public productDTO(String productName, String productCode, int productPrice, String productStatus, String productSummary, int productCategoryCode) {
+    public productDTO(String productName, String productCode, int productPrice, String productStatus, String productSummary, int productCategoryCode, int subcategory, String description) {
         this.productName = productName;
         this.productCode = productCode;
         this.productPrice = productPrice;
         this.productStatus = productStatus;
-        this.productSummary = productSummary;
+        this.productSummary = productSummary; //한줄
         this.productCategoryCode = productCategoryCode;
+        this.subcategory = subcategory;
+
     }
 
     public String getProductName() {
@@ -68,6 +73,15 @@ public class productDTO {
         this.productCategoryCode = productCategoryCode;
     }
 
+    public int getSubcategory() {
+        return subcategory;
+    }
+
+    public void setSubcategory(int subcategory) {
+        this.subcategory = subcategory;
+    }
+
+
     @Override
     public String toString() {
         return "productDTO{" +
@@ -77,6 +91,7 @@ public class productDTO {
                 ", productStatus='" + productStatus + '\'' +
                 ", productSummary='" + productSummary + '\'' +
                 ", productCategoryCode=" + productCategoryCode +
+                ", subcategory=" + subcategory  + '\'' +
                 '}';
     }
 }

@@ -9,20 +9,26 @@
     <result property="productPrice" column="PRODUCT_PRICE"/>
     <result property="productStatus" column="PRODUCT_STATUS"/>
     <result property="productCategoryCode" column="PRODUCT_CATEGORY_CODE"/>
+    <result property="subcategory" column="PRODUCT_SUBCATEGORY_CODE"/>
+    <result property="productSummary" column="product_summary"/>
 </resultMap>
     <select id="findAllProduct" resultMap="product">
         SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE
-        FROM PRODUCT;
+        FROM tbl_product;
     </select>
     <select id="findSelectProduct" resultMap="product">
         SELECT PRODUCT_NAME, PRODUCT_CODE, PRODUCT_PRICE, PRODUCT_STATUS, PRODUCT_CATEGORY_CODE
         FROM tbl_product
-        WHERE PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%')
+        WHERE PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%');
     </select>
     <insert id="insertProduction" parameterType="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
         INSERT INTO tbl_product (PRODUCT_NAME, PRODUCT_CODE, PRODUCT_PRICE, PRODUCT_STATUS, PRODUCT_CATEGORY_CODE)
-        VALUES (#{productName}, #{productCode}, #{productPrice}, #{productStatus}, #{productCategoryCode})
+        VALUES (#{productName}, #{productCode}, #{productPrice}, #{productStatus}, #{productCategoryCode}, #{productSummary})
     </insert>
+    <select id="viewProduct" resultMap="product">
+        SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE
+        FROM tbl_product;
+    </select>
 
 
 </mapper>
