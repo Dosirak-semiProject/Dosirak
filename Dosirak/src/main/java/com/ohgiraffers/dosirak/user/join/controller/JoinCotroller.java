@@ -1,18 +1,27 @@
 package com.ohgiraffers.dosirak.user.join.controller;
 
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
+import com.ohgiraffers.dosirak.common.member.MemberRegistException;
 import com.ohgiraffers.dosirak.user.join.model.service.JoinService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/user/join")
 public class JoinCotroller {
 
-    @Autowired
-    private JoinService joinService;
+    private final JoinService joinService;
+    private final PasswordEncoder passwordEncoder;
+    private final MessageSourceAccessor messageSourceAccessor;
+
+    public JoinCotroller(JoinService joinService, PasswordEncoder passwordEncoder, MessageSourceAccessor messageSourceAccessor){
+        this.joinService = joinService;
+        this.passwordEncoder = passwordEncoder;
+        this.messageSourceAccessor = messageSourceAccessor;
+    }
 
     @GetMapping("/join01")
     public void join01(){}
@@ -20,20 +29,23 @@ public class JoinCotroller {
     @GetMapping("/join02")
     public void join02(){}
 
-    @GetMapping("/join03")
-    public void join03(){}
+    @GetMapping("/joinDone")
+    public void joinDone(){}
 
-    @PostMapping("/idDupCheck")
-    public ResponseEntity<String> checkDuplication(@RequestBody MemberDTO member){
-        String result = "";
-        if(member.getId() == null || member.getId() == ""){
-            result = "아이디를 입력해주세요";
-        }else{
-            result = "사용 가능한 아이디입니다";
-            if(joinService.checkDuplication(member.getId())) result = "중복 아이디가 존재합니다";
-        }
+    @PostMapping("/idCheck")
+    @ResponseBody
+    public boolean idCheck(@RequestParam("id") String id){
+        boolean result = joinService.idCheck(id);
+        return result;
+    }
 
-        return ResponseEntity.ok(result);
+    @PostMapping("joinForm")
+    public String joinForm(MemberDTO member, RedirectAttributes rttr) throws MemberRegistException {
+        member.setPwd(passwordEncoder.encode(member.getPwd()));
+        joinService.registMember(member);
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.regist"));
+
+        return "redirect:/user/join/joinDone";
     }
 
 }

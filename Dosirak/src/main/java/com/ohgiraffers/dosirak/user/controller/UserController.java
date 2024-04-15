@@ -14,7 +14,7 @@ public class UserController {
 //    public void main(){}
 
     @GetMapping("main")
-    public ModelAndView main(ModelAndView mv, @RequestParam String message){
+    public ModelAndView main(ModelAndView mv, @RequestParam(required = false) String message){
         mv.addObject("message", message);
         mv.setViewName("/user/main");
         return mv;

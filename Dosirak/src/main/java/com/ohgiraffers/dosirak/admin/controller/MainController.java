@@ -11,7 +11,7 @@ public class MainController {
     @GetMapping(value = {"/", "/login"})
     public String login(){return "login";}
 
-    @GetMapping("loginFail")
+    @GetMapping("/loginFail")
     public ModelAndView loginFail(ModelAndView mv, @RequestParam String message){
         mv.addObject("message", message);
         mv.setViewName("/loginFail");
