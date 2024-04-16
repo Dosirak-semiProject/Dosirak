@@ -14,6 +14,7 @@
         <result property="address2" column="ADDRESS2"/>
         <result property="address3" column="ADDRESS3"/>
         <result property="agree" column="AGREE"/>
+        <result property="pwd" column="PWD"/>
         <result property="joindate" column="JOINDATE"/>
         <result property="withdrawal" column="WITHDRAWAL"/>
         <result property="role" column="ROLE"/>
@@ -47,6 +48,9 @@
             AND EMAIL LIKE CONCAT('%', #{memberSearchValue}, '%')
         </if>
     </select>
+    <update id="memberPwdReset">
+        UPDATE USER SET PWD = #{pwd} WHERE ID = #{id}
+    </update>
 
     <resultMap id="manager" type="com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO">
         <id property="id" column="ID"/>
@@ -58,6 +62,7 @@
         <result property="position" column="POSITION"/>
         <result property="department" column="DEPARTMENT"/>
         <result property="authority" column="AUTHORITY"/>
+        <result property="pwd" column="PWD"/>
         <result property="joindate" column="JOINDATE"/>
         <result property="withdrawal" column="WITHDRAWAL"/>
         <result property="role" column="ROLE"/>
@@ -79,9 +84,11 @@
         INSERT INTO ADMIN (ID, NAME, BIRTH, GENDER, EMAIL, PWD, AUTHORITY, JOINDATE, ROLE)
         VALUES (#{id}, #{name}, #{birth}, #{gender}, #{email}, #{pwd}, '3', CURDATE(), 'ADMIN')
     </insert>
-
     <select id="checkDuplication" resultType="string">
         SELECT ID FROM ADMIN WHERE ID = #{id}
     </select>
+    <update id="managerPwdReset">
+        UPDATE ADMIN SET PWD = #{pwd} WHERE ID = #{id}
+    </update>
 
 </mapper>
