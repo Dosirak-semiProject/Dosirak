@@ -10,8 +10,8 @@
         <result property="role" column="ROLE"/>
     </resultMap>
     <select id="findById" resultMap="login">
-        SELECT ID, NAME, PWD, ROLE FROM USER WHERE ID = #{id}
+        SELECT ID, NAME, PWD, ROLE FROM USER WHERE ID = #{id} AND WITHDRAWAL = FALSE
         UNION
-        SELECT ID, NAME, PWD, ROLE FROM ADMIN WHERE ID = #{id}
+        SELECT ID, NAME, PWD, ROLE FROM ADMIN WHERE ID = #{id} AND WITHDRAWAL = FALSE
     </select>
 </mapper>

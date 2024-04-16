@@ -19,13 +19,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     private final LoginFailHandler loginFailHandler;
-    private final AuthenticationSuccessHandler loginSuccessHandler;
+    private final LoginSuccessHandler loginSuccessHandler;
 
-    public SecurityConfig(LoginFailHandler loginFailHandler, AuthenticationSuccessHandler loginSuccessHandler){
+    public SecurityConfig(LoginFailHandler loginFailHandler, LoginSuccessHandler loginSuccessHandler){
             this.loginFailHandler = loginFailHandler;
             this.loginSuccessHandler = loginSuccessHandler;
     }
-
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){

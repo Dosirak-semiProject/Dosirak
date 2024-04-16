@@ -5,10 +5,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script>
         $(function(){
-            // 마케팅동의
-            let agree = $(".agree").data('agree');
-            if(agree == '문자') $("#agreeSms").prop("checked", true);
-            if(agree == '이메일') $("#agreeEmail").prop("checked", true);
             // 수정
             $(".editBtn").hide();
             $("input").on("propertychange change keyup paste input", function() {
@@ -20,6 +16,10 @@
                 $("#address2").val("");
                 $("#address3").val("");
             })
+            // 마케팅동의
+            let agree = $(".agree").data('agree');
+            if(agree == '문자') $("#agreeSms").prop("checked", true);
+            if(agree == '이메일') $("#agreeEmail").prop("checked", true);
         })
     </script>
 </head>

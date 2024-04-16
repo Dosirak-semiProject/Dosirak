@@ -20,7 +20,17 @@
     </resultMap>
     <select id="myinfoSelect" resultMap="member">
         SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, ADDRESS1, ADDRESS2, ADDRESS3, AGREE, JOINDATE
-        FROM USER WHERE WITHDRAWAL = FALSE AND ID = #{id};
+        FROM USER WHERE WITHDRAWAL = FALSE AND ID = #{id}
     </select>
+    <update id="modifyMyinfo">
+        UPDATE USER
+        SET PHONE = #{phone}, EMAIL = #{email}, AGREE = #{agree}, ADDRESS1 = #{address1}, ADDRESS2 = #{address2}, ADDRESS3 = #{address3}
+        WHERE ID = #{id}
+    </update>
+    <update id="withdrawalMember">
+        UPDATE USER
+        SET WITHDRAWAL = #{withdrawal}
+        WHERE ID = #{id}
+    </update>
 
 </mapper>
