@@ -5,15 +5,11 @@ import com.ohgiraffers.dosirak.admin.customer.model.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
+@Slf4j
 @Controller
 @RequestMapping("/admin/customer")
 public class CustomerController {
@@ -45,5 +41,46 @@ public class CustomerController {
     }
     // parameter 인식 오류, 어노테이션 옆에 파라미터 값의 이름을 정확히 입력해주어 해결
 
+    @GetMapping("/noticeWrite")
+    public String noticeWrite() {
+
+        return "admin/customer/noticeWrite";
+    }
+
+    @PostMapping("/noticeWrite")
+    public String noticeWritePro(NoticeDTO notice) {
+
+        customerService.writeNotice(notice);
+
+        return "redirect:/admin/customer/noticeList";
+    }
+
+    @RequestMapping("/noticeDelete")
+    public String noticeDelete(NoticeDTO notice) {
+
+        customerService.deleteNotice(notice.getNoticeCode());
+
+        return "redirect:/noticeList";
+    }
+
+
+    @GetMapping("/noticeEdit/{noticeCode}")
+    public String noticeEdit(@PathVariable("noticeCode") int noticeCode, Model model) {
+
+        model.addAttribute("notice", customerService.selectNoticeDetail(noticeCode));
+
+        return "admin/customer/noticeEdit";
+    }
+
+    @PostMapping("/noticeUpdate/{noticeCode}")
+    public String noticeUpdate(@PathVariable("noticeCode") int noticeCode, NoticeDTO notice) {
+
+        // 업데이트
+        customerService.updateNotice(noticeCode, notice);
+        System.out.println(noticeCode);
+        System.out.println(notice);
+
+        return "redirect:/noticeList";
+    }
 
 }

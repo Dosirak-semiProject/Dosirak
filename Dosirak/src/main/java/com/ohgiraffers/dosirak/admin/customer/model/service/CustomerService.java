@@ -7,6 +7,7 @@ import com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import java.util.*;
 
@@ -31,5 +32,22 @@ public class CustomerService {
 
         /* 게시글 상세 내용 조회 후 리턴 */
         return customerMapper.searchNoticeDetail(noticeCode);
+    }
+
+    public void writeNotice(NoticeDTO notice) {
+
+        customerMapper.insertNotice(notice);
+    }
+
+
+    public void deleteNotice(int noticeCode) {
+
+        customerMapper.deleteNotice(noticeCode);
+    }
+
+    public void updateNotice(int noticeCode, NoticeDTO notice) {
+
+        customerMapper.updateNotice(noticeCode, notice);
+        System.out.println(customerMapper);
     }
 }

@@ -50,4 +50,24 @@
             notice_code = #{ noticeCode }
     </select>
 
+    <insert id="insertNotice">
+        INSERT
+        INTO tbl_notice
+            (notice_title, notice_content, notice_date, admin_id)
+        VALUE
+            (#{ noticeTitle }, #{ noticeContent }, NOW(), "admin01")
+    </insert>
+
+    <delete id="deleteNotice">
+        DELETE FROM tbl_notice
+        WHERE notice_code = #{ noticeCode }
+    </delete>
+
+    <update id="updateNotice">
+        UPDATE tbl_notice
+        SET notice_title = #{ noticeTitle },
+            notice_content #{ noticeContent }
+        WHERE notice_code = #{ noticeCode }
+    </update>
+
 </mapper>

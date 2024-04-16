@@ -16,7 +16,7 @@
                 <div class="card mb-4 mt-4">
                     <div class="card-header">
                         <div class="justify-content-between d-flex align-items-center">
-                            <a class="btn btn-primary" href="">공지사항 등록</a>
+                            <a class="btn btn-primary" href="/admin/customer/noticeWrite">공지사항 등록</a>
                             <div class="text-end">
                                 <form class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
                                     <div class="input-group">
@@ -53,7 +53,23 @@
                                 <td><a th:href="|noticeDetail?noticeCode=${ notice.noticeCode }|" th:text="${ notice.noticeTitle }"></a></td>
                                 <td th:text="${ notice.noticeDate }"></td>
                                 <td th:text="${ notice.adminId }"></td>
-                                <td><button type="button" class="btn btn-secondary btn-sm">삭제</button></td>
+                                <td>
+<!--                                    <a th:href="|noticeDelete?noticeCode=${ notice.noticeCode }|">삭제</a>-->
+<!--                                    <button type="button" class="btn btn-secondary btn-sm" th:href="|noticeDelete?noticeCode=${ notice.noticeCode }|">삭제</button>-->
+                                    <form action="noticeDelete" method="GET" onsubmit="return delete_event()">
+                                        <input type="hidden" name="noticeCode" th:value="${ notice.noticeCode }" />
+                                        <button type="submit" class="btn btn-secondary btn-sm">삭제</button>
+                                        <script type="text/javascript">
+                                            function delete_event() {
+                                                if(confirm("정말 삭제하시겠습니까?") === true) {
+                                                    return true;
+                                                } else {
+                                                    return false;
+                                                }
+                                            }
+                                        </script>
+                                    </form>
+<!--                                </td>-->
                             </tr>
                             </tbody>
                         </table>
