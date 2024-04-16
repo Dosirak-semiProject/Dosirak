@@ -65,7 +65,15 @@ public class MemberController {
         memberService.modifyMember(member);
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify"));
 
-        return "redirect:/admin/member/memberList";
+        return "redirect:/admin/member/memberView?id="+member.getId();
+    }
+    @GetMapping("/memberPwdReset")
+    public String memberPwdReset(@RequestParam String id, MemberDTO member, RedirectAttributes rttr) throws MemberModifyException {
+        member.setPwd(passwordEncoder.encode(id));
+        memberService.memberPwdReset(member);
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.pwdReset"));
+
+        return "redirect:/admin/member/memberView?id="+member.getId();
     }
 
     @GetMapping("/managerList")
@@ -89,7 +97,18 @@ public class MemberController {
         memberService.modifyManager(manager);
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("manager.modify"));
 
-        return "redirect:/admin/member/managerList";
+        return "redirect:/admin/member/managerView?id="+manager.getId();
+    }
+    @GetMapping("/managerPwdReset")
+    public String managerPwdReset(@RequestParam String id, ManagerDTO manager, RedirectAttributes rttr) throws MemberModifyException {
+        System.out.println(id);
+        manager.setPwd(passwordEncoder.encode(id));
+        System.out.println(manager.getPwd());
+        memberService.managerPwdReset(manager);
+        System.out.println(manager.getPwd());
+        rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("manager.pwdReset"));
+
+        return "redirect:/admin/member/managerView?id="+manager.getId();
     }
 
     @GetMapping("join")

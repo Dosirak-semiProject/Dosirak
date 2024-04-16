@@ -1,10 +1,8 @@
 package com.ohgiraffers.dosirak.admin.order.model.service;
 
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dao.OrderMapper;
-import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO;
+import com.ohgiraffers.dosirak.admin.order.model.dto.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,19 +16,20 @@ public class OrderService {
         this.orderMapper = orderMapper;
     }
 
-    public List<OrderDTO> AllOrderList() {
-        return orderMapper.AllOrderList();
+    public List<OrderDTO> allOrderLists() {
+        return orderMapper.allOrderLists();
     }
 
-    public List<RefundDTO> AllRefundList() {
-        return orderMapper.AllRefundList();
+    public List<RefundDTO> allRefundList() {
+        return orderMapper.allRefundList();
     }
 
-    public List<ShippingDTO> AllShippingList() {
-        return orderMapper.AllShippingList();
+    public List<ShippingDTO> allShippingList() {
+        return orderMapper.allShippingList();
     }
 
-    public List<OrderViewDTO> AllOrderView() {
-        return orderMapper.AllOrderView();
+    public List<OrderViewDTO> allOrderView() {
+        return orderMapper.allOrderView();
     }
+
 }

@@ -60,4 +60,16 @@ public class MemberService {
         int registResult = memberMapper.registManager(manager);
         if(!(registResult>0)) throw new MemberRegistException("회원가입 실패");
     }
+
+    @Transactional
+    public void memberPwdReset(MemberDTO member) throws MemberModifyException {
+        int resetResult = memberMapper.memberPwdReset(member);
+        if(!(resetResult>0)) throw new MemberModifyException("비밀번호 초기화 실패");
+    }
+
+    @Transactional
+    public void managerPwdReset(ManagerDTO manager) throws MemberModifyException {
+        int resetResult = memberMapper.managerPwdReset(manager);
+        if(!(resetResult>0)) throw new MemberModifyException("비밀번호 초기화 실패");
+    }
 }

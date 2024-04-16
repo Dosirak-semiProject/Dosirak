@@ -57,14 +57,16 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr th:each="refund : ${ refundList }">
-                                <td th:text="${ refund.orderCode }"></td>
-                                <td th:text="${ refund.refundPrice }"></td>
-                                <td th:text="${ refund.refundDate }"></td>
-                                <td th:text="${ refund.refundStatus == 'W' ? '환불진행중'
-                                : (refund.refundStatus  == 'Y' ? '환불승인' : '환불거절')}"></td>
-                                <td th:text="|${ refund.userName }(${ refund.userId })|"></td>
-                                <td th:text="${ refund.payMethod }"></td>
+                            <tr th:each="refundList : ${ refundLists }">
+                                <td>
+                                    <a th:href="@{'/admin/refundView?orderCode=' + ${ refundList.orderCode }}" th:text="${ refundList.orderCode }"></a>
+                                </td>
+                                <td th:text="${ refundList.refundPrice }"></td>
+                                <td th:text="${ refundList.refundDate }"></td>
+                                <td th:text="${ refundList.refundStatus == 'W' ? '환불진행중'
+                                : (refundList.refundStatus  == 'Y' ? '환불승인' : '환불거절')}"></td>
+                                <td th:text="|${ refundList.memberDTO.name }(${ refundList.memberDTO.id })|"></td>
+                                <td th:text="${ refundList.payDTO.payMethod }"></td>
                             </tr>
                             </tbody>
                         </table>
