@@ -27,4 +27,8 @@ public interface MemberMapper {
     String checkDuplication(String id);
 
     int registManager(ManagerDTO manager);
+
+    int memberPwdReset(MemberDTO member);
+
+    int managerPwdReset(ManagerDTO manager);
 }
