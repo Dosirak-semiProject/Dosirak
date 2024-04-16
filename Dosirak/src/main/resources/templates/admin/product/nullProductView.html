@@ -25,49 +25,49 @@
                         <!-- 보기, 수정 -->
                         <tr>
                             <th scope="">상품코드</th>
-                            <td colspan="3" th:each="product : ${productlist} " th:value="${product.productCode}">1</td>
+                            <td colspan="3" >1</td>
                         </tr>
                         <!-- // 보기, 수정 -->
                         <tr >
                             <th scope="row">상품이름</th>
-                            <td colspan="3"><input type="text" th:each="product : ${productlist} " th:value="${product.productName}" /></td>
+                            <td colspan="3"><input type="text"  /></td>
                         </tr>
                         <tr>
                             <th scope="row">판매상태</th>
                             <td>
                                 <select class="datatable-selector" name="productStatus">
                                     <option value="">판매상태 선택</option>
-                                    <option value="판매준비중" th:each="product : ${productlist} " th:selected="${product.productStatus == '판매준비중'}">판매준비중</option>
-                                    <option value="판매중" th:each="product : ${productlist} " th:selected="${product.productStatus == '판매중'}">판매중</option>
-                                    <option value="절판" th:each="product : ${productlist} " th:selected="${product.productStatus == '절판'}">절판</option>
-                                    <option value="판매중단" th:each="product : ${productlist} " th:selected="${product.productStatus == '판매중단'}">판매중단</option>
+                                    <option value="판매준비중" >판매준비중</option>
+                                    <option value="판매중" >판매중</option>
+                                    <option value="절판" >절판</option>
+                                    <option value="판매중단" >판매중단</option>
                                 </select>
                             </td>
                             <th scope="row">상품가격</th>
-                            <td ><input type="text"  th:value="${product.productPrice}" /></td>
+                            <td ><input type="text"   /></td>
                         </tr>
                         <tr>
                             <th scope="row">상품분류</th>
                             <td colspan="3" >
-                                <select class="datatable-selector1"  th:value="${product.productCategoryCode}">
+                                <select class="datatable-selector1"  >
                                     <option value="NONE">상품분류 선택</option>
-                                    <option value="1" th:selected="${product.productCategoryCode == '1'}">건강도시락</option>
-                                    <option value="2" th:selected="${product.productCategoryCode == '2'}">정성도시락</option>
-                                    <option value="3" th:selected="${product.productCategoryCode == '3'}">간편식</option>
+                                    <option value="1" >건강도시락</option>
+                                    <option value="2" >정성도시락</option>
+                                    <option value="3" >간편식</option>
                                 </select>
 
-                                <select class="datatable-selector2"  th:value="${product.subcategory}">
+                                <select class="datatable-selector2"  >
                                     <option value="">소분류 선택</option>
-                                    <option value="1" th:selected="${product.subcategory == '1'}">암환자회복식단</option>
-                                    <option value="2" th:selected="${product.subcategory == '2'}">신장관리식단</option>
-                                    <option value="3" th:selected="${product.subcategory == '3'}">혈압관리식단</option>
-                                    <option value="4" th:selected="${product.subcategory == '4'}">혈당관리식단</option>
+                                    <option value="1" >암환자회복식단</option>
+                                    <option value="2" >신장관리식단</option>
+                                    <option value="3" >혈압관리식단</option>
+                                    <option value="4" >혈당관리식단</option>
                                 </select>
 
-                                <select class="datatable-selector3"  th:value="${product.subcategory}">
+                                <select class="datatable-selector3"  >
                                     <option value="">소분류 선택</option>
-                                    <option value="5" th:selected="${product.subcategory == '5'}">샐러드</option>
-                                    <option value="6" th:selected="${product.subcategory == '6'}">닭가슴살</option>
+                                    <option value="5" >샐러드</option>
+                                    <option value="6" >닭가슴살</option>
                                 </select>
 
                                 <script th:inline="javascript">
@@ -101,7 +101,7 @@
                         <tr>
                             <th scope="row">한줄설명</th>
                             <td  colspan="3">
-                                <input type="text" th:value="${product.productSummary}" />
+                                <input type="text"  />
                             </td>
                         </tr>
                         <tr>

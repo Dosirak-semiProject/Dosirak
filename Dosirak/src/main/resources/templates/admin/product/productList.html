@@ -58,31 +58,43 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="product : ${productList}">
-                                <td th:text="${ product.productCode }"></td>
+                            <tr th:each="product : ${productList}" onclick="sendProductData('${product.productCode}', '${product.productName}', '${product.productCategoryCode}', '${product.productPrice}', '${product.productStatus}')">
+                                <td th:text="${product.productCode }"></td>
                                 <td th:text="${product.productName}"></td>
                                 <td th:text="${product.productCategoryCode}"></td>
                                 <td th:text="${product.productPrice}"></td>
-                                <td th:text:="${product.productStatus}"></td>
+                                <td th:text="${product.productStatus}"></td>
                             </tr>
-                            </tbody>
                             <script>
-                                document.addEventListener('DOMContentLoaded', function () {
-                                    // 각 상품 행에 클릭 이벤트 리스너 추가
-                                    var productRows = document.querySelectorAll('.datatable-table tbody tr');
-                                    productRows.forEach(function (row) {
-                                        row.addEventListener('click', function () {
-                                            // 선택한 상품의 상품 코드 가져오기
-                                            var productCode = row.querySelector('td:nth-child(1)').innerText; // 상품코드가 첫 번째 열에 있다고 가정합니다.
+                                function sendProductData(productCode, productName, productCategoryCode, productPrice, productStatus) {
+                                    // 클릭한 행의 정보를 모두 묶어 객체로 생성
+                                    var productData = {
+                                        productCode: productCode,
+                                        productName: productName,
+                                        productCategoryCode: productCategoryCode,
+                                        productPrice: productPrice,
+                                        productStatus: productStatus
+                                    };
 
-                                            // 새로운 URL 생성하여 상품뷰 클래스로 이동
-                                            var newUrl = '/admin/product/productView?productCode=' + encodeURIComponent(productCode);
-                                            window.location.href = newUrl;
-                                        });
+                                    // AJAX 요청을 사용하여 컨트롤러 클래스로 데이터 전송
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '/productViewSend',
+                                        data: JSON.stringify(productData),
+                                        contentType: 'application/json',
+                                        success: function(response) {
+                                            // 성공 시 처리
+                                            console.log('Data sent successfully');
+                                        },
+                                        error: function(xhr, status, error) {
+                                            // 실패 시 처리
+                                            console.error('Error sending data:', error);
+                                        }
                                     });
-                                });
+                                }
 
                             </script>
+                            </tbody>
                         </table>
                     </div>
                 </div>

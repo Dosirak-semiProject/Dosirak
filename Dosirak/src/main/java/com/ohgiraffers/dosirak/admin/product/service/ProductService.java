@@ -16,16 +16,20 @@ public class ProductService {
         return productMapper.findAllProduct();
     }
 
-    public String productselcetlist(String key) {
-        return productMapper.productselcetlist(key);
-    }
 
     public List<productDTO> insertProduction(productDTO product) {
 
         return productMapper.insertProduction(product);
     }
 
-    public List<productDTO> viewProduct() {
-        return productMapper.viewProduct();
+
+    public List<productDTO> productSelectList(String key) {
+        return productMapper.productSelectList(key);
     }
+
+    public String productView(String product) {
+        return  productMapper.productView(product);
+    }
+
 }
+

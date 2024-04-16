@@ -16,7 +16,7 @@
         SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE
         FROM tbl_product;
     </select>
-    <select id="findSelectProduct" resultMap="product">
+    <select id="productSelectList" resultMap="product">
         SELECT PRODUCT_NAME, PRODUCT_CODE, PRODUCT_PRICE, PRODUCT_STATUS, PRODUCT_CATEGORY_CODE
         FROM tbl_product
         WHERE PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%');
@@ -25,10 +25,16 @@
         INSERT INTO tbl_product (PRODUCT_NAME, PRODUCT_CODE, PRODUCT_PRICE, PRODUCT_STATUS, PRODUCT_CATEGORY_CODE)
         VALUES (#{productName}, #{productCode}, #{productPrice}, #{productStatus}, #{productCategoryCode}, #{productSummary})
     </insert>
-    <select id="viewProduct" resultMap="product">
-        SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE
+    <select id="productView" resultMap="product">
+        SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE,PRODUCT_SUBCATEGORY_CODE,product_summary
+        FROM tbl_product
+        WHERE PRODUCT_CODE = #{productCode};
+    </select>
+    <select id="productViewPage" resultMap="product">
+        SELECT NULL
         FROM tbl_product;
     </select>
+
 
 
 </mapper>

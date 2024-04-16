@@ -9,8 +9,6 @@ public class productDTO {
     private int productCategoryCode;
     private int subcategory;
 
-    private String description;
-
     public productDTO() {
     }
 
@@ -19,7 +17,7 @@ public class productDTO {
         this.productCode = productCode;
         this.productPrice = productPrice;
         this.productStatus = productStatus;
-        this.productSummary = productSummary; //한줄
+        this.productSummary = productSummary;
         this.productCategoryCode = productCategoryCode;
         this.subcategory = subcategory;
 
@@ -91,7 +89,7 @@ public class productDTO {
                 ", productStatus='" + productStatus + '\'' +
                 ", productSummary='" + productSummary + '\'' +
                 ", productCategoryCode=" + productCategoryCode +
-                ", subcategory=" + subcategory  + '\'' +
+                ", subcategory=" + subcategory + '\'' +
                 '}';
     }
 }

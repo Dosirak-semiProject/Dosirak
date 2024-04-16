@@ -14,36 +14,41 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
-    public ProductController(ProductService productService){
-        this.productService=productService;
 
+    @Autowired
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @GetMapping("/productList")
-    public String productlist(Model model){
-        List<productDTO> productList=productService.findAllProduct();
-        model.addAttribute("productList",productList);
+    public String productList(Model model) {
+        List<productDTO> productList = productService.findAllProduct();
+        model.addAttribute("productList", productList);
         return "/admin/product/productList";
     }
+
     @PostMapping("/product/search")
-    public @ResponseBody String productselcetlist(@RequestParam String key,Model model){
-        String productselcetlist=productService.productselcetlist(key);
-        model.addAttribute("productselcetlist",productselcetlist);
-        return key;
+    public String productSelectList(@RequestParam String key, Model model) {
+        List<productDTO> productList = productService.productSelectList(key);
+        model.addAttribute("productList", productList);
+        return "/admin/product/productList";
     }
+
     @PostMapping("/product/add")
-    public String addProduct(@ModelAttribute productDTO product, Model model) {
-        List<productDTO>insertProduction= productService.insertProduction(product); // ProductService에 해당 메소드를 구현해야 함
-        model.addAttribute("insertProduction",insertProduction);
-        return "redirect:/admin/product/productList"; // 상품 목록 페이지로 리다이렉트
+    public String addProduct(@ModelAttribute productDTO product) {
+        productService.insertProduction(product);
+        return "redirect:/admin/product/productList";
     }
-    @GetMapping("/productView")
-    public String productView(Model model){
-        List<productDTO> productView=productService.viewProduct();
-        model.addAttribute("productView",productView);
+
+    @PostMapping("/productViewSend")
+    public String productView(@RequestParam String product, Model model) {
+        String productlist = productService.productView(product);
+        model.addAttribute("productlist", productlist);
         return "/admin/product/productView";
     }
-
-
+    @GetMapping("/nullProductView")
+    public String getProductViewPage() {
+     return "/admin/product/nullProductView";
+    }
 
 }
