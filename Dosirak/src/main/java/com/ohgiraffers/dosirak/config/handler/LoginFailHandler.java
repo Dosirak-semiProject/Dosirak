@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 
 @Configuration
-public class AuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
+public class LoginFailHandler extends SimpleUrlAuthenticationFailureHandler {
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
@@ -40,7 +40,7 @@ public class AuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
 
         errorMessage = URLEncoder.encode(errorMessage, "UTF-8");
 
-        setDefaultFailureUrl("/auth/fail?message=" + errorMessage);
+        setDefaultFailureUrl("/loginFail?message=" + errorMessage);
 
         super.onAuthenticationFailure(request, response, exception);
     }

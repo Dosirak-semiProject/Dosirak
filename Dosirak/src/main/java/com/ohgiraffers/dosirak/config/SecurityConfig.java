@@ -1,8 +1,7 @@
 package com.ohgiraffers.dosirak.config;
 
-import com.ohgiraffers.dosirak.common.UserRole;
-import com.ohgiraffers.dosirak.config.handler.AuthFailHandler;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.ohgiraffers.dosirak.config.handler.LoginFailHandler;
+import com.ohgiraffers.dosirak.config.handler.LoginSuccessHandler;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,14 +11,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private AuthFailHandler authFailHandler;
+    private final LoginFailHandler loginFailHandler;
+    private final LoginSuccessHandler loginSuccessHandler;
+
+    public SecurityConfig(LoginFailHandler loginFailHandler, LoginSuccessHandler loginSuccessHandler){
+            this.loginFailHandler = loginFailHandler;
+            this.loginSuccessHandler = loginSuccessHandler;
+    }
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer(){
@@ -30,7 +35,7 @@ public class SecurityConfig {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         /* 요청에 대한 권한 체크 */
         http.authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/user/**", "/", "/login", "/admin/**").permitAll();    // 권한이 없어도 접근가능한 페이지 URL, 모든 사용자 접근가능
+                    auth.requestMatchers("/user/**", "/", "/login", "/admin/**", "**").permitAll();    // 권한이 없어도 접근가능한 페이지 URL, 모든 사용자 접근가능
 //                    auth.requestMatchers("/admin/*").hasAnyAuthority(UserRole.ADMIN.getRole());
 //                    auth.requestMatchers("/user/mypage/**").hasAnyAuthority(UserRole.USER.getRole());
                     auth.anyRequest().authenticated();      // 그 외의 요청은 인증이 된 사용자만 사용가능
@@ -40,10 +45,11 @@ public class SecurityConfig {
                     login.usernameParameter("id");
                     login.passwordParameter("pwd");
                     login.defaultSuccessUrl("/user/main", true);     // 로그인 성공시 페이지 경로 설정
-                    login.failureHandler(authFailHandler);  // 실패 시 핸들러 설정
+//                    login.successHandler(loginSuccessHandler);
+                    login.failureHandler(loginFailHandler);  // 실패 시 핸들러 설정
                 })
                 .logout(logout -> {
-                    logout.logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout"));
+                    logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
                     logout.deleteCookies("JSESSIONID");
                     logout.invalidateHttpSession(true);
                     logout.logoutSuccessUrl("/");

@@ -3,6 +3,29 @@
 <head>
     <title>나의정보</title>
     <th:block th:replace="/user/common/head.html"></th:block>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            $("#pwd").on("propertychange change keyup paste input", function() {
+                let inputVal = $(this).val();
+
+                if(inputVal == null || inputVal == ""){
+                    $(".el_pwdConfirmBtn").attr("disabled", true);
+                }else{
+                    $(".el_pwdConfirmBtn").attr("disabled", false);
+                }
+            })
+        })
+        function noSpace(obj){
+            let str_space = /\s/;
+            if(str_space.exec(obj.value)){
+                alert("공백 입력 불가");
+                obj.focus();
+                obj.value = obj.value.replace(' ', '');
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="ly_all bl_all">
@@ -17,14 +40,15 @@
                         <div class="bl_doneBox__wrap">
                             <div class="hp_fs18 hp_alignC">회원님의 개인정보를 안전하게 보호하기 위해 <br/>비밀번호를 확인해주세요.</div>
                         </div>
-                        <input type="text" id="" class="hp_w100 el_btnM hp_mt50 hp_inputBack hp_fs16" name="" value=""placeholder="비밀번호 입력" title="비밀번호 입력"/>
-                        <a class="el_btnM hp_br5 el_btnPointBack hp_w100 hp_mt15" href="/html/mypage/mypageEdit.html">확인</a>
+                        <form action="/user/myinfo/pwdCheckForm" method="post">
+                            <input type="text" onkeyup="noSpace(this)" id="pwd" class="hp_w100 el_btnM hp_mt50 hp_inputBack hp_fs16" name="pwd" value="" placeholder="비밀번호 입력" title="비밀번호 입력"/>
+                            <button type="submit" class="el_pwdConfirmBtn el_btnM hp_br5 el_btnPointBack hp_w100 hp_mt15" disabled>확인</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
 </body>
