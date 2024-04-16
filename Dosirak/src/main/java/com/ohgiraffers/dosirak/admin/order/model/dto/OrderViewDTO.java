@@ -1,6 +1,7 @@
 package com.ohgiraffers.dosirak.admin.order.model.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class OrderViewDTO {
     private String detailCode;
@@ -11,7 +12,7 @@ public class OrderViewDTO {
     private String userName;
     private String userId;
     private String orderRecipient;
-    private String  userPhone;
+    private String userPhone;
     private String userAddress;
     private int payPrice;
     private LocalDate payDate;

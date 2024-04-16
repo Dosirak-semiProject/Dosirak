@@ -4,99 +4,122 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ohgiraffers.dosirak.admin.order.model.dao.OrderMapper">
-    <resultMap id="orderDto" type="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
-        <id property="orderCode" column="order_code"/>
-        <result property="orderStatus" column="order_status"/>
-        <result property="userId" column="user_id"/>
-        <result property="userName" column="user_name"/>
-        <result property="orderRecipient" column="order_recipient"/>
+
+    <resultMap id="memberResultMap" type="com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO">
+        <id property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="address1" column="ADDRESS1"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="address3" column="ADDRESS3"/>
     </resultMap>
 
-    <resultMap id="refundList" type="com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO">
+    <resultMap id="payResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO">
+        <result property="payPrice" column="pay_price"/>
+        <result property="payDate" column="pay_date"/>
+        <result property="payStatus" column="pay_status"/>
+        <result property="payMethod" column="pay_method"/>
         <result property="orderCode" column="order_code"/>
+    </resultMap>
+
+    <resultMap id="detailResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.DetailDTO">
+        <result property="orderCode" column="order_code"/>
+        <result property="detailCode" column="detail_code"/>
+        <result property="detailItemCount" column="detailitem_count"/>
+        <result property="detailItemCode" column="detailitem_code"/>
+        <result property="suitBoxCode" column="suitbox_code"/>
+    </resultMap>
+
+    <resultMap id="orderResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
+        <id property="orderCode" column="order_code"/>
+        <result property="orderStatus" column="order_status"/>
+        <association property="memberDTOList" resultMap="memberResultMap"/>
+        <association property="payDTOList" resultMap="payResultMap"/>
+        <association property="detailDTOList" resultMap="detailResultMap"/>
+    </resultMap>
+
+    <resultMap id="refundResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO">
+        <id property="refundCode" column="refund_code"/>
         <result property="refundPrice" column="refund_price"/>
         <result property="refundDate" column="refund_date"/>
         <result property="refundStatus" column="refund_status"/>
-    </resultMap>
-
-    <resultMap id="shippingList" type="com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO">
         <result property="orderCode" column="order_code"/>
-        <result property="deliveryCode" column="delivery_code"/>
-        <result property="deliveryStatus" column="delivery_status"/>
+        <association property="memberDTO" resultMap="memberResultMap"/>
+        <association property="payDTO" resultMap="payResultMap"/>
     </resultMap>
 
-    <select id="AllOrderList" resultMap="orderDto">
+    <select id="allOrderLists" resultMap="orderResultMap">
         SELECT
             o.order_code,
-            o.order_status,
-            u.user_id,
-            u.user_name,
             o.order_recipient,
+            o.order_status,
+            u.ID,
+            u.NAME,
             p.pay_price,
             p.pay_date,
             p.pay_status,
             p.pay_method
         FROM
             tbl_order o
-        JOIN tbl_pay p ON o.order_code = p.order_code
-        JOIN tbl_user u ON o.user_id = u.user_id
+        JOIN user u ON u.ID = o.ID
+        JOIN tbl_pay p ON p.order_code = o.order_code
     </select>
 
-    <select id="AllRefundList" resultMap="refundList">
+    <select id="allRefundList" resultMap="refundResultMap">
         SELECT
-            r.order_code,
-            r.refund_price,
-            r.refund_date,
-            r.refund_status,
-            u.user_id,
-            u.user_name,
-            p.pay_method
+        r.order_code,
+        r.refund_price,
+        r.refund_date,
+        r.refund_status,
+        u.ID,
+        u.NAME,
+        p.pay_method
         FROM
-            tbl_refund r
+        tbl_refund r
         JOIN tbl_order o ON r.order_code = o.order_code
-        JOIN tbl_user u ON o.user_id = u.user_id
-        JOIN tbl_pay p ON o.order_code = p.order_code
+        JOIN tbl_pay p ON r.order_code = p.order_code
+        JOIN user u ON o.ID = u.ID
     </select>
 
-    <select id="AllShippingList" resultMap="shippingList">
-        SELECT
-            o.order_code,
-            d.delivery_code,
-            d.delivery_status,
-            o.order_recipient
-        FROM
-            tbl_delivery d
-        JOIN tbl_order o ON d.order_code = o.order_code;
-    </select>
+<!--        <select id="allOrderView" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO">-->
+<!--            SELECT-->
+<!--                dt.detail_code,-->
+<!--                o.order_code,-->
+<!--                o.order_status,-->
+<!--                r.refund_status,-->
+<!--                d.delivery_status,-->
+<!--                u.user_name,-->
+<!--                u.user_id,-->
+<!--                o.order_recipient,-->
+<!--                u.user_phone,-->
+<!--                u.user_address,-->
+<!--                p.pay_price,-->
+<!--                p.pay_date,-->
+<!--                p.pay_method,-->
+<!--                pd.product_name,-->
+<!--                c.item_quantity,-->
+<!--                pd.product_price-->
+<!--            FROM-->
+<!--                tbl_order o-->
+<!--&lt;!&ndash;            JOIN tbl_detail dt ON o.order_code = dt.order_code&ndash;&gt;-->
+<!--&lt;!&ndash;            LEFT JOIN tbl_refund r ON o.order_code = r.order_code&ndash;&gt;-->
+<!--&lt;!&ndash;            JOIN tbl_delivery d ON o.order_code = d.order_code&ndash;&gt;-->
+<!--&lt;!&ndash;            LEFT JOIN tbl_user u ON o.user_id = u.user_id&ndash;&gt;-->
+<!--&lt;!&ndash;            JOIN tbl_pay p ON o.order_code = p.order_code&ndash;&gt;-->
+<!--&lt;!&ndash;            JOIN tbl_cart c ON u.user_id = c.user_id&ndash;&gt;-->
+<!--&lt;!&ndash;            JOIN tbl_product pd ON c.product_code = pd.product_code&ndash;&gt;-->
+<!--    &lt;!&ndash;        WHERE&ndash;&gt;-->
+<!--    &lt;!&ndash;            dt.order_code = ${orderCode}&ndash;&gt;-->
+<!--        </select>-->
 
-    <select id="AllOrderView" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO">
-        SELECT
-            dt.detail_code,
-            o.order_code,
-            o.order_status,
-            r.refund_status,
-            d.delivery_status,
-            u.user_name,
-            u.user_id,
-            o.order_recipient,
-            u.user_phone,
-            u.user_address,
-            p.pay_price,
-            p.pay_date,
-            p.pay_method,
-            pd.product_name,
-            c.item_quantity,
-            pd.product_price
-        FROM
-            tbl_order o
-        JOIN tbl_detail dt ON o.order_code = dt.order_code
-        LEFT JOIN tbl_refund r ON o.order_code = r.order_code
-        JOIN tbl_delivery d ON o.order_code = d.order_code
-        LEFT JOIN tbl_user u ON o.user_id = u.user_id
-        JOIN tbl_pay p ON o.order_code = p.order_code
-        JOIN tbl_cart c ON u.user_id = c.user_id
-        JOIN tbl_product pd ON c.product_code = pd.product_code
-<!--        WHERE-->
-<!--            dt.order_code = ${orderCode}-->
-    </select>
+<!--    <select id="allShippingList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO">-->
+<!--        SELECT-->
+<!--            o.order_code,-->
+<!--            d.delivery_code,-->
+<!--            d.delivery_status,-->
+<!--            o.order_recipient-->
+<!--        FROM-->
+<!--            tbl_delivery d-->
+<!--        JOIN tbl_order o ON d.order_code = o.order_code;-->
+<!--    </select>-->
 </mapper>

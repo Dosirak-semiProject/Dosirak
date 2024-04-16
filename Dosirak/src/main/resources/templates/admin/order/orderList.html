@@ -60,17 +60,17 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr th:each="order : ${ orderList }">
+                            <tr th:each="orderList : ${ orderLists }">
                                 <td>
-                                    <a th:href="@{'/admin/orderView?orderCode=' + ${order.orderCode}}" th:text="${order.orderCode}"></a>
+                                    <a th:href="@{'/admin/orderView?orderCode=' + ${ orderList.orderCode }}" th:text="${ orderList.orderCode }"></a>
                                 </td>
-                                <td th:text="${ order.orderStatus }"></td>
-                                <td th:text="|${ order.userName }(${ order.userId })|"></td>
-                                <td th:text="${ order.orderRecipient }"></td>
-                                <td th:text="${ order.payPrice }"></td>
-                                <td th:text="${ order.payDate }"></td>
-                                <td th:text="${ order.payStatus ? '결제성공' : '결제실패'}"></td>
-                                <td th:text="${ order.payMethod }"></td>
+                                <td th:text="${ orderList.orderStatus }"></td>
+                                <td th:text="|${ orderList.memberDTOList.name }(${ orderList.memberDTOList.id })|"></td>
+                                <td th:text="${ orderList.orderRecipient }"></td>
+                                <td th:text="${ orderList.payDTOList.payPrice }"></td>
+                                <td th:text="${ orderList.payDTOList.payDate }"></td>
+                                <td th:text="${ orderList.payDTOList.payStatus ? '결제성공' : '결제실패'}"></td>
+                                <td th:text="${ orderList.payDTOList.payMethod }"></td>
                             </tr>
                             </tbody>
                         </table>
