@@ -4,6 +4,7 @@ import com.ohgiraffers.dosirak.admin.suitBox.model.dto.SuitBoxMenuDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface AdminSuitBoxDAO {
@@ -16,4 +17,6 @@ public interface AdminSuitBoxDAO {
     int modifyMenu(SuitBoxMenuDTO menu, int menuCode);
 
     int deleteMenu(int menuCode);
+
+    List<SuitBoxMenuDTO> searchMenuByCondition(Map<String ,String > condition);
 }
