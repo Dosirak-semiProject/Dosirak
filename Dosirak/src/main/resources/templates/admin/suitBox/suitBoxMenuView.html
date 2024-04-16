@@ -1,92 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <th:block th:replace="/admin/common/head.html"></th:block>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <th:block th:replace="~{/admin/common/head.html}"></th:block>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+        integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script>
-        $(function(){
-            $("#datatablesSimple tbody tr").click(function(){
+        $(function () {
+            $("#datatablesSimple tbody tr").click(function () {
                 let menuCode = $("td:nth-of-type(1)", this).text();
-                location.href = "/admin/suit-box/menu/modify?menuCode="+menuCode;
+                location.href = "/admin/suit-box/menu/modify?menuCode=" + menuCode;
             })
         })
     </script>
 </head>
+
 <body class="sb-nav-fixed">
-<th:block th:replace="/admin/common/header.html"></th:block>
-<div id="layoutSidenav">
-    <th:block th:replace="/admin/common/sideNav.html"></th:block>
-    <div id="layoutSidenav_content">
-        <main>
-            <div class="container-fluid px-4">
-                <h1 class="mt-4">맞춤도시락</h1>
-                <div class="card mb-4 mt-4">
-                    <div class="card-header">
-                        <div class="justify-content-between d-flex align-items-center">
-                            <a class="btn btn-primary" href="/admin/suit-box/menu/set">메뉴등록</a>
-                            <div class="text-end">
-                                <label>
-                                    <select class="datatable-selector">
-                                        <option>분류 조회</option>
-                                    </select>
-                                </label>
-                                <form class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
-                                    <div class="input-group">
-                                        <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                        <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                                    </div>
-                                </form>
+    <th:block th:replace="~{/admin/common/header.html}"></th:block>
+    <div id="layoutSidenav">
+        <th:block th:replace="~{/admin/common/sideNav.html}"></th:block>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid px-4">
+                    <h1 class="mt-4">맞춤도시락</h1>
+                    <div class="card mb-4 mt-4">
+                        <div class="card-header">
+                            <div class="justify-content-between d-flex align-items-center">
+                                <a class="btn btn-primary" href="/admin/suit-box/menu/set">메뉴등록</a>
+                                <div class="text-end">
+                                    <label>
+                                        <select class="datatable-selector" id="criteria">
+                                            <option value="all">=== 전체 ===</option>
+                                            <option value="category">메뉴 분류</option>
+                                            <option value="status">판매 상태</option>
+                                        </select>
+                                        <select class="datatable-selector" id="value">
+                                            <option>=== 전체 ===</option>
+                                        </select>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple">
-                            <thead>
-                            <tr>
-                                <th>메뉴코드</th>
-                                <th>메뉴이름</th>
-                                <th>메뉴분류</th>
-                                <th>추가금</th>
-                                <th>판매상태</th>
-                                <th>탄수화물</th>
-                                <th>당류</th>
-                                <th>단백질</th>
-                                <th>지방</th>
-                                <th>포화지방</th>
-                                <th>트랜스지방</th>
-                                <th>콜레스테롤</th>
-                                <th>나트륨</th>
-                                <th>칼로리</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="menu : ${menuList}">
-                                <td th:text="${menu.menuCode}"></td>
-                                <td th:text="${menu.menuName}"></td>
-                                <td th:text="${menu.menuCategory}"></td>
-                                <td th:text="${menu.menuExtracash}"></td>
-                                <td th:text="${menu.menuStatus}"></td>
-                                <td th:text="${menu.menuCarbo}"></td>
-                                <td th:text="${menu.menuSugar}"></td>
-                                <td th:text="${menu.menuProtein}"></td>
-                                <td th:text="${menu.menuFat}"></td>
-                                <td th:text="${menu.menuSaturatedFat}"></td>
-                                <td th:text="${menu.menuTransFat}"></td>
-                                <td th:text="${menu.menuCholesterol}"></td>
-                                <td th:text="${menu.menuNatrium}"></td>
-                                <td th:text="${menu.menuCalory}"></td>
-                            </tr>
-                            </tbody>
-
-                        </table>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>메뉴코드</th>
+                                        <th>메뉴이름</th>
+                                        <th>메뉴분류</th>
+                                        <th>추가금</th>
+                                        <th>판매상태</th>
+                                        <th>탄수화물</th>
+                                        <th>당류</th>
+                                        <th>단백질</th>
+                                        <th>지방</th>
+                                        <th>포화지방</th>
+                                        <th>트랜스지방</th>
+                                        <th>콜레스테롤</th>
+                                        <th>나트륨</th>
+                                        <th>칼로리</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="menuRows">
+                                    <tr th:each="menu : ${menuList}">
+                                        <td th:text="${menu.menuCode}"></td>
+                                        <td th:text="${menu.menuName}"></td>
+                                        <td th:text="${menu.menuCategory}"></td>
+                                        <td th:text="${menu.menuExtracash}"></td>
+                                        <td th:text="${menu.menuStatus}"></td>
+                                        <td th:text="${menu.menuCarbo}"></td>
+                                        <td th:text="${menu.menuSugar}"></td>
+                                        <td th:text="${menu.menuProtein}"></td>
+                                        <td th:text="${menu.menuFat}"></td>
+                                        <td th:text="${menu.menuSaturatedFat}"></td>
+                                        <td th:text="${menu.menuTransFat}"></td>
+                                        <td th:text="${menu.menuCholesterol}"></td>
+                                        <td th:text="${menu.menuNatrium}"></td>
+                                        <td th:text="${menu.menuCalory}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
-</div>
-<th:block th:replace="/admin/common/foot.html"></th:block>
-<script>
-</script>
+    <th:block th:replace="~{/admin/common/foot.html}"></th:block>
+    <script>
+        const $menuRows = document.querySelector('#menuRows')   // 메뉴가 담긴 테이블
+        const $criteria = document.querySelector('#criteria')   // 분류
+        const $value = document.querySelector('#value')         // 값
+
+        //select, name, value 을 할당하여 option을 추가하는 메소드
+        function insertOption(select, name, value) {
+            const option = document.createElement('option')
+            option.innerText = name
+            option.value = value
+            select.append(option);
+        }
+
+        function createTableRow(menu) { //innerHtml 을 통해 추가할 tableRow 태그
+            return `<tr>
+                <td>${menu.menuCode}</td>
+                <td>${menu.menuName}</td>
+                <td>${menu.menuCategory}</td>
+                <td>${menu.menuExtracash}</td>
+                <td>${menu.menuStatus}</td>
+                <td>${menu.menuCarbo}</td>
+                <td>${menu.menuSugar}</td>
+                <td>${menu.menuProtein}</td>
+                <td>${menu.menuFat}</td>
+                <td>${menu.menuSaturatedFat}</td>
+                <td>${menu.menuTransFat}</td>
+                <td>${menu.menuCholesterol}</td>
+                <td>${menu.menuNatrium}</td>
+                <td>${menu.menuCalory}</td>
+            </tr>
+            `
+        }
+        // 분류와 값에 따라 로우 리턴하는 함수
+        async function resultRows() {
+            const criteria = $criteria.value
+            const value = $value.value
+            const selectCondition = { criteria, value }
+            const json = JSON.stringify(selectCondition)
+            const response = await fetch('/admin/suit-box/menu/fetch-view', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                body: json
+            });
+            const responseJson = await response.json();
+            console.log(responseJson)
+            responseJson.forEach(menu => {
+                const menuTr = createTableRow(menu)
+                console.log(menuTr)
+                const nowHtml = $menuRows.innerHTML
+                $menuRows.innerHTML = nowHtml + menuTr
+            })
+        }
+
+
+
+        //분류를 선택할 경우 해당 분류에 해당하는 value select option 할당하기
+        $criteria.addEventListener('change', () => {
+            $value.innerHTML = ''
+            const option = $criteria.value;
+            switch (option) {
+                case ('all'):
+                    insertOption($value, '=== 전체 ===', 'all'); 
+                    $menuRows.innerHTML = ''
+                    resultRows()
+                    break;
+                case ('category'):
+                    insertOption($value, '=== 전체 ===', 'all');
+                    insertOption($value, '밥류', 'rice');
+                    insertOption($value, '메인', 'main');
+                    insertOption($value, '서브', 'side');
+                    insertOption($value, '김치', 'kimchi'); break;
+                case ('status'):
+                    insertOption($value, '=== 전체 ===', 'all');
+                    insertOption($value, '판매중', 'Y');
+                    insertOption($value, '일시 중단', 'S');
+                    insertOption($value, '판매 중단', 'N'); break;
+
+            }
+        })
+        $value.addEventListener('change', () => {
+            $menuRows.innerHTML = ''
+            resultRows()
+        })
+    </script>
 </body>
 </html>
