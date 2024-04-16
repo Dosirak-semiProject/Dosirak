@@ -39,4 +39,9 @@
     <delete id="deleteMenu">
         DELETE FROM MENU WHERE menu_code = #{menuCode}
     </delete>
+    <select id="searchMenuByCondition" resultType="com.ohgiraffers.dosirak.admin.suitBox.model.dto.SuitBoxMenuDTO" parameterType="hashMap">
+        SELECT * FROM MENU WHERE
+        <if test="criteria == 'category'"> menu_category = #{value}</if>
+        <if test="criteria == 'status'"> menu_status = #{value}</if>
+    </select>
 </mapper>
