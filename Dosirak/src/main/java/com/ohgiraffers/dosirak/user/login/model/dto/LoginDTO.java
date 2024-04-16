@@ -11,14 +11,16 @@ public class LoginDTO implements java.io.Serializable {
     private String id;
     private String name;
     private String pwd;
+    private String authority;
     private UserRole role;
 
     public LoginDTO() {}
 
-    public LoginDTO(String id, String name, String pwd, UserRole role) {
+    public LoginDTO(String id, String name, String pwd, String authority, UserRole role) {
         this.id = id;
         this.name = name;
         this.pwd = pwd;
+        this.authority = authority;
         this.role = role;
     }
 
@@ -54,6 +56,14 @@ public class LoginDTO implements java.io.Serializable {
         this.pwd = pwd;
     }
 
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
+
     public void setRole(UserRole role) {
         this.role = role;
     }
@@ -64,6 +74,7 @@ public class LoginDTO implements java.io.Serializable {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", pwd='" + pwd + '\'' +
+                ", authority='" + authority + '\'' +
                 ", role=" + role +
                 '}';
     }

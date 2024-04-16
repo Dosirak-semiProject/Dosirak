@@ -1,12 +1,18 @@
 package com.ohgiraffers.dosirak.admin.member.contoller;
 
+import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
 import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.member.model.service.MemberService;
 import com.ohgiraffers.dosirak.common.member.MemberModifyException;
 import com.ohgiraffers.dosirak.common.member.MemberRegistException;
+import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/admin/member")
@@ -50,6 +57,21 @@ public class MemberController {
     }
     @GetMapping("/memberView")
     public String getMemberView(@RequestParam String id, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                String managerAuthor = login.getAuthority();
+                System.out.println("관리자 권한 등급 : " + managerAuthor);
+
+                model.addAttribute("managerAuthor", managerAuthor);
+            }
+        }
+
         MemberDTO member = memberService.selectMemberView(id);
         model.addAttribute("member", member);
 
@@ -85,6 +107,21 @@ public class MemberController {
     }
     @GetMapping("/managerView")
     public String getManagerView(@RequestParam String id, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                String managerAuthor = login.getAuthority();
+                System.out.println("관리자 권한 등급 : " + managerAuthor);
+
+                model.addAttribute("managerAuthor", managerAuthor);
+            }
+        }
+
         ManagerDTO manager = memberService.selectManagerView(id);
         model.addAttribute("manager", manager);
 
@@ -101,11 +138,8 @@ public class MemberController {
     }
     @GetMapping("/managerPwdReset")
     public String managerPwdReset(@RequestParam String id, ManagerDTO manager, RedirectAttributes rttr) throws MemberModifyException {
-        System.out.println(id);
         manager.setPwd(passwordEncoder.encode(id));
-        System.out.println(manager.getPwd());
         memberService.managerPwdReset(manager);
-        System.out.println(manager.getPwd());
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("manager.pwdReset"));
 
         return "redirect:/admin/member/managerView?id="+manager.getId();
