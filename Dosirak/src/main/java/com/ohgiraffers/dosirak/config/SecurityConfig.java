@@ -1,5 +1,6 @@
 package com.ohgiraffers.dosirak.config;
 
+import com.ohgiraffers.dosirak.common.UserRole;
 import com.ohgiraffers.dosirak.config.handler.LoginFailHandler;
 import com.ohgiraffers.dosirak.config.handler.LoginSuccessHandler;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -33,19 +34,23 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+
+
         /* 요청에 대한 권한 체크 */
         http.authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/user/**", "/", "/login", "/admin/**", "**").permitAll();    // 권한이 없어도 접근가능한 페이지 URL, 모든 사용자 접근가능
-//                    auth.requestMatchers("/admin/*").hasAnyAuthority(UserRole.ADMIN.getRole());
-//                    auth.requestMatchers("/user/mypage/**").hasAnyAuthority(UserRole.USER.getRole());
+//                    auth.requestMatchers("/user/**", "/", "/login", "/admin/**", "**").permitAll();    // 권한이 없어도 접근가능한 페이지 URL, 모든 사용자 접근가능
+
+                    auth.requestMatchers("/admin/**").hasAnyAuthority(UserRole.ADMIN.getRole());
+                    auth.requestMatchers("/user/myinfo/**").hasAnyAuthority(UserRole.USER.getRole());
+                    auth.requestMatchers("/", "/login", "/loginFail", "/user/**").permitAll();
                     auth.anyRequest().authenticated();      // 그 외의 요청은 인증이 된 사용자만 사용가능
                 })
                 .formLogin(login -> {
                     login.loginPage("/login");     // 로그인페이지 설정
                     login.usernameParameter("id");
                     login.passwordParameter("pwd");
-                    login.defaultSuccessUrl("/user/main", true);     // 로그인 성공시 페이지 경로 설정
-//                    login.successHandler(loginSuccessHandler);
+//                    login.defaultSuccessUrl("/user/main", true);     // 로그인 성공시 페이지 경로 설정
+                    login.successHandler(loginSuccessHandler);
                     login.failureHandler(loginFailHandler);  // 실패 시 핸들러 설정
                 })
                 .logout(logout -> {
