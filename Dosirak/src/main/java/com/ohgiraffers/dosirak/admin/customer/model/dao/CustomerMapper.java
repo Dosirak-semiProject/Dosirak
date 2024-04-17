@@ -20,5 +20,5 @@ public interface CustomerMapper {
 
     void deleteNotice(int noticeCode);
 
-    void updateNotice(int noticeCode, NoticeDTO noticeTemp);
+    void updateNotice(NoticeDTO noticeTemp);
 }

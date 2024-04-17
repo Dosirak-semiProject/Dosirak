@@ -45,9 +45,8 @@ public class CustomerService {
         customerMapper.deleteNotice(noticeCode);
     }
 
-    public void updateNotice(int noticeCode, NoticeDTO notice) {
+    public void updateNotice(NoticeDTO noticeTemp) {
 
-        customerMapper.updateNotice(noticeCode, notice);
-        System.out.println(customerMapper);
+        customerMapper.updateNotice(noticeTemp);
     }
 }

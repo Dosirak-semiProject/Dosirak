@@ -66,7 +66,7 @@
     <update id="updateNotice">
         UPDATE tbl_notice
         SET notice_title = #{ noticeTitle },
-            notice_content #{ noticeContent }
+            notice_content = #{ noticeContent }
         WHERE notice_code = #{ noticeCode }
     </update>
 

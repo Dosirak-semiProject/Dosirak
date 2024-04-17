@@ -52,7 +52,7 @@ public class CustomerController {
 
         customerService.writeNotice(notice);
 
-        return "redirect:/admin/customer/noticeList";
+        return "redirect:noticeList";
     }
 
     @RequestMapping("/noticeDelete")
@@ -60,7 +60,7 @@ public class CustomerController {
 
         customerService.deleteNotice(notice.getNoticeCode());
 
-        return "redirect:/noticeList";
+        return "redirect:noticeList";
     }
 
 
@@ -75,12 +75,17 @@ public class CustomerController {
     @PostMapping("/noticeUpdate/{noticeCode}")
     public String noticeUpdate(@PathVariable("noticeCode") int noticeCode, NoticeDTO notice) {
 
-        // 업데이트
-        customerService.updateNotice(noticeCode, notice);
-        System.out.println(noticeCode);
-        System.out.println(notice);
+        //noticeTemp에 현재 공지사항 정보 담아 반환
+        NoticeDTO noticeTemp = customerService.selectNoticeDetail(noticeCode);
 
-        return "redirect:/noticeList";
+        // 덮어쓰기
+        noticeTemp.setNoticeTitle(notice.getNoticeTitle());
+        noticeTemp.setNoticeContent(notice.getNoticeContent());
+
+        // 업데이트
+        customerService.updateNotice(noticeTemp);
+
+        return "redirect:/admin/customer/noticeList";
     }
 
 }

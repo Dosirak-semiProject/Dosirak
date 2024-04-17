@@ -13,7 +13,7 @@
         <main>
             <div class="container-fluid px-4">
                 <h2 class="mt-4">공지사항 수정페이지</h2>
-                <form th:action="|/admin/customer/${notice.noticeCode}|" method="post">
+                <form th:action="|/admin/customer/noticeUpdate/${ notice.noticeCode }|" method="post">
                     <table class="datatable-table mt-4">
                         <colgroup>
                             <col style="width:15%"/>
@@ -50,7 +50,7 @@
                         </tbody>
                     </table>
                     <div class="editBtn text-end">
-                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="noticeCode" th:value="${ notice.noticeCode }">
                         <button type="submit" class="btn btn-secondary">등록</button>
                         <button type="button" class="btn btn-secondary" onclick="location.href='http://localhost:8080/admin/customer/noticeList'">목록</button>
                     </div>
