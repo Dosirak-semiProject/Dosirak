@@ -19,10 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin/member")
@@ -147,7 +144,22 @@ public class MemberController {
     }
 
     @GetMapping("join")
-    public void join(){}
+    public String join(Model model){
+        // 페이지 랜덤코드 생성 : 이메일 인증번호 저장시 사용
+        Random random = new Random();
+        int createNum = 0;
+        String randomNum = "";
+        int letter = 12;
+        String resultNum = "";
+        for(int i=0; i<letter; i++){
+            createNum = random.nextInt(9);
+            randomNum = Integer.toString(createNum);
+            resultNum += randomNum;
+        }
+        model.addAttribute("resultNum", resultNum);
+
+        return "/admin/member/join";
+    }
 
     @PostMapping("idDupCheck")
     public ResponseEntity<String> checkDuplication(@RequestBody ManagerDTO manager){
