@@ -36,12 +36,12 @@ public class OrderController {
     }
 
     @GetMapping("orderView")
-    public String orderView(Model model) {
+    public String orderView(Model model, @RequestParam String orderCode) {
 
-        List<OrderViewDTO> orderView = orderService.allOrderView();
+        OrderDTO orderView = orderService.allOrderView(orderCode);
+        System.out.println(orderView);
 
         model.addAttribute("orderView", orderView);
-
 
         return "admin/order/orderView";
     }

@@ -11,19 +11,19 @@ public class RefundDTO {
     private int refundPrice;
     private LocalDate refundDate;
     private char refundStatus;
-    private MemberDTO memberDTO;
-    private PayDTO payDTO;
+    private MemberDTO member;
+    private PayDTO pay;
     private String orderCode;
 
     public RefundDTO() {}
 
-    public RefundDTO(String refundCode, int refundPrice, LocalDate refundDate, char refundStatus, MemberDTO memberDTO, PayDTO payDTO, String orderCode) {
+    public RefundDTO(String refundCode, int refundPrice, LocalDate refundDate, char refundStatus, MemberDTO member, PayDTO pay, String orderCode) {
         this.refundCode = refundCode;
         this.refundPrice = refundPrice;
         this.refundDate = refundDate;
         this.refundStatus = refundStatus;
-        this.memberDTO = memberDTO;
-        this.payDTO = payDTO;
+        this.member = member;
+        this.pay = pay;
         this.orderCode = orderCode;
     }
 
@@ -59,20 +59,20 @@ public class RefundDTO {
         this.refundStatus = refundStatus;
     }
 
-    public MemberDTO getMemberDTO() {
-        return memberDTO;
+    public MemberDTO getMember() {
+        return member;
     }
 
-    public void setMemberDTO(MemberDTO memberDTO) {
-        this.memberDTO = memberDTO;
+    public void setMember(MemberDTO member) {
+        this.member = member;
     }
 
-    public PayDTO getPayDTO() {
-        return payDTO;
+    public PayDTO getPay() {
+        return pay;
     }
 
-    public void setPayDTO(PayDTO payDTO) {
-        this.payDTO = payDTO;
+    public void setPay(PayDTO pay) {
+        this.pay = pay;
     }
 
     public String getOrderCode() {
@@ -90,8 +90,8 @@ public class RefundDTO {
                 ", refundPrice=" + refundPrice +
                 ", refundDate=" + refundDate +
                 ", refundStatus=" + refundStatus +
-                ", memberDTO=" + memberDTO +
-                ", payDTO=" + payDTO +
+                ", member=" + member +
+                ", pay=" + pay +
                 ", orderCode='" + orderCode + '\'' +
                 '}';
     }
