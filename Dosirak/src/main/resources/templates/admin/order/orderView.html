@@ -53,22 +53,22 @@
                     </tr>
                     <tr>
                         <th scope="row">결제금액</th>
-                        <td th:text="${ '￦ ' + orderView.pay.payPrice }"></td>
+                        <td th:text="${ '￦' + orderView.pay.payPrice }"></td>
                         <th scope="row">결제날짜</th>
-<!--                        <td th:text="${ orderViewDTO.payDate }"></td>-->
+                        <td th:text="${ orderView.pay.payDate }"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <th scope="row">결제방법</th>
-<!--                        <td colspan="3" th:text="${ orderViewDTO.payMethod }"></td>-->
+                        <td colspan="3" th:text="${ orderView.pay.payMethod }"></td>
                         <td colspan="3"></td>
                     </tr>
                     <tr>
                         <th scope="row">주문상세</th>
-                        <td colspan="3">
+                        <td colspan="3" th:each="detail : ${ orderView.detail }">
                             <label>
                                 <input type="checkbox">
-<!--                                <th:block th:text="${ orderViewDTO.productName + ' / ' + orderViewDTO.itemQuantity + '개' + ' / ' + (orderViewDTO.itemQuantity * orderViewDTO.productPrice + ' 원')}"></th:block>-->
+                                <span th:text="${ detail.detailCode + ' / ' + detail.detailItemCode + ' / ' + detail.detailItemCount + '개'  + ' / ' + (detail.detailItemCount)}"></span>
                             </label>
                             <br/>
                         </td>

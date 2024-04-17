@@ -39,7 +39,6 @@ public class OrderController {
     public String orderView(Model model, @RequestParam String orderCode) {
 
         OrderDTO orderView = orderService.allOrderView(orderCode);
-        System.out.println(orderView);
 
         model.addAttribute("orderView", orderView);
 
