@@ -19,23 +19,10 @@
             notice_date,
             admin_id
         FROM
-            tbl_notice
+            notice
         ORDER BY
             notice_code desc
     </select>
-
-<!--    <select id="searchNoticeDetail" resultMap="generalNoticeResultMap">-->
-<!--        SELECT-->
-<!--            notice_code,-->
-<!--            admin_id,-->
-<!--            notice_date,-->
-<!--            notice_title,-->
-<!--            notice_content-->
-<!--        FROM-->
-<!--            tbl_notice-->
-<!--        WHERE-->
-<!--            notice_code = #{ noticeCode }-->
-<!--    </select>-->
 
     <select id="searchNoticeDetail" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO">
         SELECT
@@ -45,26 +32,26 @@
             notice_title,
             notice_content
         FROM
-            tbl_notice
+            notice
         WHERE
             notice_code = #{ noticeCode }
     </select>
 
     <insert id="insertNotice">
         INSERT
-        INTO tbl_notice
+        INTO notice
             (notice_title, notice_content, notice_date, admin_id)
         VALUE
             (#{ noticeTitle }, #{ noticeContent }, NOW(), "admin01")
     </insert>
 
     <delete id="deleteNotice">
-        DELETE FROM tbl_notice
+        DELETE FROM notice
         WHERE notice_code = #{ noticeCode }
     </delete>
 
     <update id="updateNotice">
-        UPDATE tbl_notice
+        UPDATE notice
         SET notice_title = #{ noticeTitle },
             notice_content = #{ noticeContent }
         WHERE notice_code = #{ noticeCode }
