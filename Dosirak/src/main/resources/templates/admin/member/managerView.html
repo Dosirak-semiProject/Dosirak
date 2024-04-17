@@ -43,6 +43,15 @@
                     $(".tr_withdrawal").show();
                     break;
             }
+
+            // 관리자 본인페이지인 경우 : 내선번호, 이메일 수정가능
+            const managerId = '[[${managerId}]]';
+            const urlId = new URL(location.href).searchParams.get("id");
+            if(managerId == urlId){
+                $(".emailInput, .contactInput").removeClass("none");
+                $(".emailInput, .contactInput").attr("readonly", false);
+                $(".editBtn").removeClass("hp_dpNone");
+            }
         })
     </script>
 </head>
@@ -99,7 +108,7 @@
                         </tr>
                         <tr>
                             <th scope="row">내선번호</th>
-                            <td><input class="none grade1Input" type="number" name="contact" th:value="${manager.contact}" oninput="handleOnInput(this, 5)" readonly/></td>
+                            <td><input class="none grade1Input contactInput" maxlength="5" type="number" name="contact" th:value="${manager.contact}" oninput="handleOnInput(this, 5)" readonly/></td>
                             <th scope="row">권한등급</th>
                             <td>
                                 <select class="authority datatable-selector" name="authority" th:data-authority="${manager.authority}" disabled>
@@ -111,7 +120,7 @@
                         </tr>
                         <tr>
                             <th scope="row">이메일</th>
-                            <td><input class="none grade1Input" type="email" name="email" size="30" th:value="${manager.email}" required readonly/></td>
+                            <td><input class="none grade1Input emailInput" type="email" name="email" size="30" th:value="${manager.email}" required readonly/></td>
                             <th scope="row">입사날짜</th>
                             <td th:text="${manager.joindate}"></td>
                         </tr>

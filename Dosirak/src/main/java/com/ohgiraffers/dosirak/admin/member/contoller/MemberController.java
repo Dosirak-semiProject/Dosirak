@@ -116,9 +116,10 @@ public class MemberController {
                 AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
                 LoginDTO login = adminLoginDetails.getLoginDTO();
                 String managerAuthor = login.getAuthority();
-                System.out.println("관리자 권한 등급 : " + managerAuthor);
+                String managerId = login.getId();
 
                 model.addAttribute("managerAuthor", managerAuthor);
+                model.addAttribute("managerId", managerId);
             }
         }
 
