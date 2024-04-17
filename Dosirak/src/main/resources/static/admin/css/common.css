@@ -2,3 +2,5 @@
 .none{border:none;padding:0;background:none;}
 .none:focus-visible{outline:none;}
 .hp_dpNone{display:none;}
+
+.sendCodeBtn{display:none;}
