@@ -29,6 +29,7 @@ dependencies {
 
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor(compileOnly 'org.projectlombok:lombok:1.18.24')
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
 
 }
 
