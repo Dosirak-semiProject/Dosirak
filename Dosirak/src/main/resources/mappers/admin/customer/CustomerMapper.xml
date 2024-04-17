@@ -4,6 +4,8 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper">
 
+    <!-- 공지사항 페이지 -->
+
     <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO" id="generalNoticeResultMap" >
         <id property="noticeCode" column="notice_code"/>
         <result property="adminId" column="admin_id"/>
@@ -56,5 +58,17 @@
             notice_content = #{ noticeContent }
         WHERE notice_code = #{ noticeCode }
     </update>
+
+    <!-- 1대1 문의 페이지 -->
+
+    <select id="findAskList" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO">
+        SELECT
+            *
+        FROM
+            ask
+        ORDER BY
+            ask_code desc
+    </select>
+
 
 </mapper>

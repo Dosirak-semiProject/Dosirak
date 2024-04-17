@@ -3,6 +3,7 @@ package com.ohgiraffers.dosirak.admin.customer.model.service;
 import com.ohgiraffers.dosirak.admin.customer.common.Pagenation;
 import com.ohgiraffers.dosirak.admin.customer.common.SelectCriteria;
 import com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper;
+import com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,11 @@ public class CustomerService {
     }
 
 
+    /* 공지사항 */
     public List<NoticeDTO> findNoticeList() {
 
         return customerMapper.findNoticeList();
     }
-
 
     public NoticeDTO selectNoticeDetail(int noticeCode) {
 
@@ -39,7 +40,6 @@ public class CustomerService {
         customerMapper.insertNotice(notice);
     }
 
-
     public void deleteNotice(int noticeCode) {
 
         customerMapper.deleteNotice(noticeCode);
@@ -48,5 +48,12 @@ public class CustomerService {
     public void updateNotice(NoticeDTO noticeTemp) {
 
         customerMapper.updateNotice(noticeTemp);
+    }
+
+    /* 1대1 문의 */
+    public List<AskDTO> findAskList() {
+
+        // 1대1 문의내역 반환
+        return customerMapper.findAskList();
     }
 }

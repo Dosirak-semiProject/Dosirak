@@ -1,5 +1,6 @@
 package com.ohgiraffers.dosirak.admin.customer.controller;
 
+import com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO;
 import com.ohgiraffers.dosirak.admin.customer.model.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,8 @@ public class CustomerController {
     public CustomerController(CustomerService customerService) {
         this.customerService = customerService;
     }
+
+    /* 공지사항 관리페이지 */
 
     @GetMapping("/noticeList")
     public String noticeList(Model model) {
@@ -86,6 +89,18 @@ public class CustomerController {
         customerService.updateNotice(noticeTemp);
 
         return "redirect:/admin/customer/noticeList";
+    }
+
+    /* 1대1 관리페이지 */
+
+    @GetMapping("/askList")
+    public String askList(Model model) {
+
+        List<AskDTO> askList = customerService.findAskList();
+
+        model.addAttribute("askList", askList);
+
+        return "/admin/customer/askList";
     }
 
 }
