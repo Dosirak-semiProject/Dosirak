@@ -48,6 +48,13 @@
         <association property="payDTO" resultMap="payResultMap"/>
     </resultMap>
 
+    <resultMap id="shippingResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO">
+        <result property="orderCode" column="order_code"/>
+        <result property="deliveryCode" column="delivery_code"/>
+        <result property="deliveryStatus" column="delivery_status"/>
+        <result property="orderRecipient" column="order_recipient"/>
+    </resultMap>
+
     <select id="allOrderLists" resultMap="orderResultMap">
         SELECT
             o.order_code,
@@ -81,6 +88,17 @@
         JOIN user u ON o.ID = u.ID
     </select>
 
+    <select id="allShippingList" resultMap="shippingResultMap">
+        SELECT
+            d.order_code,
+            d.delivery_code,
+            d.delivery_status,
+            o.order_recipient
+        FROM
+            tbl_delivery d
+        JOIN tbl_order o ON d.order_code = o.order_code
+    </select>
+
 <!--        <select id="allOrderView" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO">-->
 <!--            SELECT-->
 <!--                dt.detail_code,-->
@@ -112,14 +130,4 @@
 <!--    &lt;!&ndash;            dt.order_code = ${orderCode}&ndash;&gt;-->
 <!--        </select>-->
 
-<!--    <select id="allShippingList" resultType="com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO">-->
-<!--        SELECT-->
-<!--            o.order_code,-->
-<!--            d.delivery_code,-->
-<!--            d.delivery_status,-->
-<!--            o.order_recipient-->
-<!--        FROM-->
-<!--            tbl_delivery d-->
-<!--        JOIN tbl_order o ON d.order_code = o.order_code;-->
-<!--    </select>-->
 </mapper>
