@@ -28,8 +28,8 @@ public class OrderService {
         return orderMapper.allShippingList();
     }
 
-    public List<OrderViewDTO> allOrderView() {
-        return orderMapper.allOrderView();
+    public OrderDTO allOrderView(String orderCode) {
+        return orderMapper.allOrderView(orderCode);
     }
 
 }

@@ -65,8 +65,8 @@
                                 <td th:text="${ refundList.refundDate }"></td>
                                 <td th:text="${ refundList.refundStatus == 'W' ? '환불진행중'
                                 : (refundList.refundStatus  == 'Y' ? '환불승인' : '환불거절')}"></td>
-                                <td th:text="|${ refundList.memberDTO.name }(${ refundList.memberDTO.id })|"></td>
-                                <td th:text="${ refundList.payDTO.payMethod }"></td>
+                                <td th:text="|${ refundList.member.name }(${ refundList.member.id })|"></td>
+                                <td th:text="${ refundList.pay.payMethod }"></td>
                             </tr>
                             </tbody>
                         </table>

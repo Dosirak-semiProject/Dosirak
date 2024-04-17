@@ -14,6 +14,5 @@ public interface OrderMapper {
 
     List<ShippingDTO> allShippingList();
 
-    List<OrderViewDTO> allOrderView();
-
+    OrderDTO allOrderView(String orderCode);
 }

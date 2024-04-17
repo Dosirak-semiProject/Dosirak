@@ -13,21 +13,25 @@ public class OrderDTO {
     private String orderRecipient;
     private String orderConcat;
     private String orderAddress;
-    private PayDTO payDTOList;
-    private MemberDTO memberDTOList;
-    private List<DetailDTO> detailDTOList;
+    private PayDTO pay;
+    private MemberDTO member;
+    private RefundDTO refund;
+    private ShippingDTO shipping;
+    private List<DetailDTO> detail;
 
     public OrderDTO() {}
 
-    public OrderDTO(String orderCode, String orderStatus, String orderRecipient, String orderConcat, String orderAddress, PayDTO payDTOList, MemberDTO memberDTOList, List<DetailDTO> detailDTOList) {
+    public OrderDTO(String orderCode, String orderStatus, String orderRecipient, String orderConcat, String orderAddress, PayDTO pay, MemberDTO member, RefundDTO refund, ShippingDTO shipping, List<DetailDTO> detail) {
         this.orderCode = orderCode;
         this.orderStatus = orderStatus;
         this.orderRecipient = orderRecipient;
         this.orderConcat = orderConcat;
         this.orderAddress = orderAddress;
-        this.payDTOList = payDTOList;
-        this.memberDTOList = memberDTOList;
-        this.detailDTOList = detailDTOList;
+        this.pay = pay;
+        this.member = member;
+        this.refund = refund;
+        this.shipping = shipping;
+        this.detail = detail;
     }
 
     public String getOrderCode() {
@@ -70,28 +74,44 @@ public class OrderDTO {
         this.orderAddress = orderAddress;
     }
 
-    public PayDTO getPayDTOList() {
-        return payDTOList;
+    public PayDTO getPay() {
+        return pay;
     }
 
-    public void setPayDTOList(PayDTO payDTOList) {
-        this.payDTOList = payDTOList;
+    public void setPay(PayDTO pay) {
+        this.pay = pay;
     }
 
-    public MemberDTO getMemberDTOList() {
-        return memberDTOList;
+    public MemberDTO getMember() {
+        return member;
     }
 
-    public void setMemberDTOList(MemberDTO memberDTOList) {
-        this.memberDTOList = memberDTOList;
+    public void setMember(MemberDTO member) {
+        this.member = member;
     }
 
-    public List<DetailDTO> getDetailDTOList() {
-        return detailDTOList;
+    public RefundDTO getRefund() {
+        return refund;
     }
 
-    public void setDetailDTOList(List<DetailDTO> detailDTOList) {
-        this.detailDTOList = detailDTOList;
+    public void setRefund(RefundDTO refund) {
+        this.refund = refund;
+    }
+
+    public ShippingDTO getShipping() {
+        return shipping;
+    }
+
+    public void setShipping(ShippingDTO shipping) {
+        this.shipping = shipping;
+    }
+
+    public List<DetailDTO> getDetail() {
+        return detail;
+    }
+
+    public void setDetail(List<DetailDTO> detail) {
+        this.detail = detail;
     }
 
     @Override
@@ -102,9 +122,11 @@ public class OrderDTO {
                 ", orderRecipient='" + orderRecipient + '\'' +
                 ", orderConcat='" + orderConcat + '\'' +
                 ", orderAddress='" + orderAddress + '\'' +
-                ", payDTOList=" + payDTOList +
-                ", memberDTOList=" + memberDTOList +
-                ", detailDTOList=" + detailDTOList +
+                ", pay=" + pay +
+                ", member=" + member +
+                ", refund=" + refund +
+                ", shipping=" + shipping +
+                ", detail=" + detail +
                 '}';
     }
 }
