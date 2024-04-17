@@ -1,20 +1,18 @@
 package com.ohgiraffers.dosirak.admin.order.model.dao;
 
-import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO;
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
+import com.ohgiraffers.dosirak.admin.order.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 @Mapper
 public interface OrderMapper {
-    List<OrderDTO> AllOrderList();
+    List<OrderDTO> allOrderLists();
 
-    List<RefundDTO> AllRefundList();
+    List<RefundDTO> allRefundList();
 
-    List<ShippingDTO> AllShippingList();
+    List<ShippingDTO> allShippingList();
 
-    List<OrderViewDTO> AllOrderView();
+    OrderDTO allOrderView(String orderCode);
 }

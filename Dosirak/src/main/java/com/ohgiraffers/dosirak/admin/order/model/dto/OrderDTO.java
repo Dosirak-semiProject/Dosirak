@@ -1,30 +1,37 @@
 package com.ohgiraffers.dosirak.admin.order.model.dto;
 
-import java.time.LocalDate;
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
+import com.ohgiraffers.dosirak.admin.product.dto.categoryDTO;
+import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
+
+import java.util.List;
+
 public class OrderDTO {
 
     private String orderCode;
     private String orderStatus;
-    private String userId;
-    private String userName;
     private String orderRecipient;
-    private int payPrice;
-    private LocalDate payDate;
-    private boolean payStatus;
-    private String payMethod;
+    private String orderConcat;
+    private String orderAddress;
+    private PayDTO pay;
+    private MemberDTO member;
+    private RefundDTO refund;
+    private ShippingDTO shipping;
+    private List<DetailDTO> detail;
 
     public OrderDTO() {}
 
-    public OrderDTO(String orderCode, String orderStatus, String userId, String userName, String orderRecipient, int payPrice, LocalDate payDate, boolean payStatus, String payMethod) {
+    public OrderDTO(String orderCode, String orderStatus, String orderRecipient, String orderConcat, String orderAddress, PayDTO pay, MemberDTO member, RefundDTO refund, ShippingDTO shipping, List<DetailDTO> detail) {
         this.orderCode = orderCode;
         this.orderStatus = orderStatus;
-        this.userId = userId;
-        this.userName = userName;
         this.orderRecipient = orderRecipient;
-        this.payPrice = payPrice;
-        this.payDate = payDate;
-        this.payStatus = payStatus;
-        this.payMethod = payMethod;
+        this.orderConcat = orderConcat;
+        this.orderAddress = orderAddress;
+        this.pay = pay;
+        this.member = member;
+        this.refund = refund;
+        this.shipping = shipping;
+        this.detail = detail;
     }
 
     public String getOrderCode() {
@@ -43,22 +50,6 @@ public class OrderDTO {
         this.orderStatus = orderStatus;
     }
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getOrderRecipient() {
         return orderRecipient;
     }
@@ -67,36 +58,60 @@ public class OrderDTO {
         this.orderRecipient = orderRecipient;
     }
 
-    public int getPayPrice() {
-        return payPrice;
+    public String getOrderConcat() {
+        return orderConcat;
     }
 
-    public void setPayPrice(int payPrice) {
-        this.payPrice = payPrice;
+    public void setOrderConcat(String orderConcat) {
+        this.orderConcat = orderConcat;
     }
 
-    public LocalDate getPayDate() {
-        return payDate;
+    public String getOrderAddress() {
+        return orderAddress;
     }
 
-    public void setPayDate(LocalDate payDate) {
-        this.payDate = payDate;
+    public void setOrderAddress(String orderAddress) {
+        this.orderAddress = orderAddress;
     }
 
-    public boolean isPayStatus() {
-        return payStatus;
+    public PayDTO getPay() {
+        return pay;
     }
 
-    public void setPayStatus(boolean payStatus) {
-        this.payStatus = payStatus;
+    public void setPay(PayDTO pay) {
+        this.pay = pay;
     }
 
-    public String getPayMethod() {
-        return payMethod;
+    public MemberDTO getMember() {
+        return member;
     }
 
-    public void setPayMethod(String payMethod) {
-        this.payMethod = payMethod;
+    public void setMember(MemberDTO member) {
+        this.member = member;
+    }
+
+    public RefundDTO getRefund() {
+        return refund;
+    }
+
+    public void setRefund(RefundDTO refund) {
+        this.refund = refund;
+    }
+
+    public ShippingDTO getShipping() {
+        return shipping;
+    }
+
+    public void setShipping(ShippingDTO shipping) {
+        this.shipping = shipping;
+    }
+
+    public List<DetailDTO> getDetail() {
+        return detail;
+    }
+
+    public void setDetail(List<DetailDTO> detail) {
+        this.detail = detail;
     }
 
     @Override
@@ -104,13 +119,14 @@ public class OrderDTO {
         return "OrderDTO{" +
                 "orderCode='" + orderCode + '\'' +
                 ", orderStatus='" + orderStatus + '\'' +
-                ", userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
                 ", orderRecipient='" + orderRecipient + '\'' +
-                ", payPrice=" + payPrice +
-                ", payDate=" + payDate +
-                ", payStatus=" + payStatus +
-                ", payMethod='" + payMethod + '\'' +
+                ", orderConcat='" + orderConcat + '\'' +
+                ", orderAddress='" + orderAddress + '\'' +
+                ", pay=" + pay +
+                ", member=" + member +
+                ", refund=" + refund +
+                ", shipping=" + shipping +
+                ", detail=" + detail +
                 '}';
     }
 }

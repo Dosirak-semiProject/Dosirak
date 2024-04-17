@@ -1,10 +1,10 @@
 package com.ohgiraffers.dosirak.admin.order.controller;
 
-import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.OrderViewDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.ShippingDTO;
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
+import com.ohgiraffers.dosirak.admin.member.model.service.MemberService;
+import com.ohgiraffers.dosirak.admin.order.model.dto.*;
 import com.ohgiraffers.dosirak.admin.order.model.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,16 +20,17 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    public OrderController(OrderService orderService) {
+    @Autowired
+    public OrderController(OrderService orderService, MemberService memberService) {
         this.orderService = orderService;
     }
 
     @GetMapping("orderList")
     public String orderList(Model model) {
 
-        List<OrderDTO> orderList = orderService.AllOrderList();
+        List<OrderDTO> orderLists = orderService.allOrderLists();
 
-        model.addAttribute("orderList", orderList);
+        model.addAttribute("orderLists", orderLists);
 
         return "admin/order/orderList";
     }
@@ -37,16 +38,10 @@ public class OrderController {
     @GetMapping("orderView")
     public String orderView(Model model, @RequestParam String orderCode) {
 
-        List<OrderViewDTO> orderView = orderService.AllOrderView();
+        OrderDTO orderView = orderService.allOrderView(orderCode);
+        System.out.println(orderView);
 
-        for (OrderViewDTO orderViewDTO : orderView) {
-            if (orderViewDTO.getOrderCode().equals(orderCode)) {
-                model.addAttribute("orderViewDTO", orderViewDTO);
-                System.out.println("orderViewDTO = " + orderViewDTO);
-            }
-        }
-
-//        model.addAttribute("orderView", orderView);
+        model.addAttribute("orderView", orderView);
 
         return "admin/order/orderView";
     }
@@ -54,9 +49,13 @@ public class OrderController {
     @GetMapping("refundList")
     public String refundList(Model model) {
 
-        List<RefundDTO> refundList = orderService.AllRefundList();
+        List<RefundDTO> refundLists = orderService.allRefundList();
 
-        model.addAttribute("refundList", refundList);
+        model.addAttribute("refundLists", refundLists);
+
+        for (RefundDTO refundDTO : refundLists) {
+            System.out.println("refundDTO = " + refundDTO);
+        }
 
         return "admin/order/refundList";
     }
@@ -67,7 +66,7 @@ public class OrderController {
     @GetMapping("shippingList")
     public ModelAndView shippingList(ModelAndView mv) {
 
-        List<ShippingDTO> shippingList = orderService.AllShippingList();
+        List<ShippingDTO> shippingList = orderService.allShippingList();
 
         mv.addObject("shippingList", shippingList);
 

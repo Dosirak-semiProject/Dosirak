@@ -1,36 +1,38 @@
 package com.ohgiraffers.dosirak.admin.order.model.dto;
 
 
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
+
 import java.time.LocalDate;
 
 public class RefundDTO {
 
-    private String orderCode;
+    private String refundCode;
     private int refundPrice;
     private LocalDate refundDate;
-    private String refundStatus;
-    private String userName;
-    private String userId;
-    private String payMethod;
+    private char refundStatus;
+    private MemberDTO member;
+    private PayDTO pay;
+    private String orderCode;
 
     public RefundDTO() {}
 
-    public RefundDTO(String orderCode, int refundPrice, LocalDate refundDate, String refundStatus, String userName, String userId, String payMethod) {
-        this.orderCode = orderCode;
+    public RefundDTO(String refundCode, int refundPrice, LocalDate refundDate, char refundStatus, MemberDTO member, PayDTO pay, String orderCode) {
+        this.refundCode = refundCode;
         this.refundPrice = refundPrice;
         this.refundDate = refundDate;
         this.refundStatus = refundStatus;
-        this.userName = userName;
-        this.userId = userId;
-        this.payMethod = payMethod;
-    }
-
-    public String getOrderCode() {
-        return orderCode;
-    }
-
-    public void setOrderCode(String orderCode) {
+        this.member = member;
+        this.pay = pay;
         this.orderCode = orderCode;
+    }
+
+    public String getRefundCode() {
+        return refundCode;
+    }
+
+    public void setRefundCode(String refundCode) {
+        this.refundCode = refundCode;
     }
 
     public int getRefundPrice() {
@@ -49,48 +51,48 @@ public class RefundDTO {
         this.refundDate = refundDate;
     }
 
-    public String getRefundStatus() {
+    public char getRefundStatus() {
         return refundStatus;
     }
 
-    public void setRefundStatus(String refundStatus) {
+    public void setRefundStatus(char refundStatus) {
         this.refundStatus = refundStatus;
     }
 
-    public String getUserName() {
-        return userName;
+    public MemberDTO getMember() {
+        return member;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setMember(MemberDTO member) {
+        this.member = member;
     }
 
-    public String getUserId() {
-        return userId;
+    public PayDTO getPay() {
+        return pay;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setPay(PayDTO pay) {
+        this.pay = pay;
     }
 
-    public String getPayMethod() {
-        return payMethod;
+    public String getOrderCode() {
+        return orderCode;
     }
 
-    public void setPayMethod(String payMethod) {
-        this.payMethod = payMethod;
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
     }
 
     @Override
     public String toString() {
         return "RefundDTO{" +
-                "orderCode='" + orderCode + '\'' +
-                ", refundAmount=" + refundPrice +
+                "refundCode='" + refundCode + '\'' +
+                ", refundPrice=" + refundPrice +
                 ", refundDate=" + refundDate +
-                ", refundStatus='" + refundStatus + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userId='" + userId + '\'' +
-                ", payMethod='" + payMethod + '\'' +
+                ", refundStatus=" + refundStatus +
+                ", member=" + member +
+                ", pay=" + pay +
+                ", orderCode='" + orderCode + '\'' +
                 '}';
     }
 }
