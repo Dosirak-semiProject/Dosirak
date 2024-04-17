@@ -10,37 +10,47 @@ CREATE TABLE  tbl_product
     product_status  VARCHAR(20)                         NOT NULL,
     product_summary VARCHAR(20)                         NOT NULL,
     product_category_code int(10) NOT NULL ,
-    product_subcategory_code INT(255),
-    FOREIGN KEY (product_category_code) REFERENCES tbl_product_category(product_main_category_code),
-    FOREIGN KEY (product_subcategory_code) REFERENCES tbl_product_category(product_subcategory_code)
+    FOREIGN KEY (product_category_code) REFERENCES tbl_product_category(product_main_category_code)
 ) ENGINE = INNODB;
 INSERT INTO tbl_product
-    VALUE ('1','헬시 도시락','12000','판매중','맛난거','1','1');
+    VALUE ('1','헬시 도시락','12000','판매중','맛난거','1');
 INSERT INTO tbl_product
-    VALUE ('2','샐러드','13000','판매중단','안맛난거','2','5');
+    VALUE ('2','샐러드','13000','판매중단','안맛난거','2');
+INSERT INTO tbl_product
+    VALUE ('3','닭 가슴살 도시락','1000','판매중','맛난거','9');
+INSERT INTO tbl_product
+    VALUE ('4','암 도시락','12000','판매중','맛난거','4');
+INSERT INTO tbl_product
+    VALUE ('5','혈당 도시락','12000','판매중','맛난거','7');
+
 
 
 DROP TABLE tbl_product_category;
 CREATE TABLE IF NOT EXISTS tbl_product_category
 (
-    product_subcategory_code     INT(255) AUTO_INCREMENT PRIMARY KEY NOT NULL,
-    product_subcategory_name     VARCHAR(20)                  NOT NULL,
-    product_main_category_code INT(255)                         ,
-    product_main_category_name VARCHAR(20),
-    FOREIGN KEY (product_main_category_code) REFERENCES tbl_product_category (product_subcategory_code)
+    product_main_category_code     INT(255) AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    product_main_category_name     VARCHAR(20)                  NOT NULL,
+    product_sub_category_code INT(255)                         ,
+    FOREIGN KEY (product_sub_category_code) REFERENCES tbl_product_category (product_main_category_code)
 ) ENGINE = INNODB;
 INSERT INTO tbl_product_category
-VALUES ('1','암환자 회복식단','1','건강관리식단');
+VALUES ('1','건강 도시락',null);
 INSERT INTO tbl_product_category
-VALUES ('2','신장 관리식단','1','건강관리식단');
+VALUES ('2','정성 도시락',null);
 INSERT INTO tbl_product_category
-VALUES ('3','혈압 관리식단','1','건강관리식단');
+VALUES ('3','간편식',null);
 INSERT INTO tbl_product_category
-VALUES ('4','혈당 관리식단','1','건강관리식단');
+VALUES ('4','암환자 회복식단','1');
 INSERT INTO tbl_product_category
-VALUES ('5','샐러드','2','간편식');
+VALUES ('5','신장 관리식단','1');
 INSERT INTO tbl_product_category
-VALUES ('6','닭 가슴살','2','간편식');
+VALUES ('6','혈압 관리식단','1');
+INSERT INTO tbl_product_category
+VALUES ('7','혈당 관리식단','1');
+INSERT INTO tbl_product_category
+VALUES ('8','샐러드','3');
+INSERT INTO tbl_product_category
+VALUES ('9','닭 가슴살','3');
 
 
 CREATE TABLE IF NOT EXISTS tbl_detail

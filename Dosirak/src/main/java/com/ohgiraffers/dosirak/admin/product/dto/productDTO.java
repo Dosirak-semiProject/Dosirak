@@ -2,25 +2,24 @@ package com.ohgiraffers.dosirak.admin.product.dto;
 
 public class productDTO {
     private String productName;
-    private String productCode;
+    private int productCode;
     private int productPrice;
     private String productStatus;
     private String productSummary;
     private int productCategoryCode;
-    private int subcategory;
+
+
 
     public productDTO() {
     }
 
-    public productDTO(String productName, String productCode, int productPrice, String productStatus, String productSummary, int productCategoryCode, int subcategory, String description) {
+    public productDTO(String productName, int productCode, int productPrice, String productStatus, String productSummary, int productCategoryCode) {
         this.productName = productName;
         this.productCode = productCode;
         this.productPrice = productPrice;
         this.productStatus = productStatus;
         this.productSummary = productSummary;
         this.productCategoryCode = productCategoryCode;
-        this.subcategory = subcategory;
-
     }
 
     public String getProductName() {
@@ -31,11 +30,11 @@ public class productDTO {
         this.productName = productName;
     }
 
-    public String getProductCode() {
+    public int getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(String productCode) {
+    public void setProductCode(int productCode) {
         this.productCode = productCode;
     }
 
@@ -71,25 +70,15 @@ public class productDTO {
         this.productCategoryCode = productCategoryCode;
     }
 
-    public int getSubcategory() {
-        return subcategory;
-    }
-
-    public void setSubcategory(int subcategory) {
-        this.subcategory = subcategory;
-    }
-
-
     @Override
     public String toString() {
         return "productDTO{" +
                 "productName='" + productName + '\'' +
-                ", productCode='" + productCode + '\'' +
+                ", productCode=" + productCode +
                 ", productPrice=" + productPrice +
                 ", productStatus='" + productStatus + '\'' +
                 ", productSummary='" + productSummary + '\'' +
                 ", productCategoryCode=" + productCategoryCode +
-                ", subcategory=" + subcategory + '\'' +
                 '}';
     }
 }

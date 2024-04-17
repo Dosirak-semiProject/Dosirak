@@ -16,7 +16,5 @@ public interface ProductMapper {
     List<productDTO> productSelectList(String key);
 
 
-    String productView(String product);
-
-
+    productDTO getProductByCode(int productCode);
 }

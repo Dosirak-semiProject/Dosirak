@@ -25,22 +25,22 @@
                         <!-- 보기, 수정 -->
                         <tr>
                             <th scope="">상품코드</th>
-                            <td colspan="3" th:each="product : ${productlist} " th:value="${product.productCode}">1</td>
+                            <td colspan="3"  th:value="${product.productCode}">1</td>
                         </tr>
                         <!-- // 보기, 수정 -->
                         <tr >
                             <th scope="row">상품이름</th>
-                            <td colspan="3"><input type="text" th:each="product : ${productlist} " th:value="${product.productName}" /></td>
+                            <td colspan="3"><input type="text" th:value="${product.productName}" /></td>
                         </tr>
                         <tr>
                             <th scope="row">판매상태</th>
                             <td>
                                 <select class="datatable-selector" name="productStatus">
                                     <option value="">판매상태 선택</option>
-                                    <option value="판매준비중" th:each="product : ${productlist} " th:selected="${product.productStatus == '판매준비중'}">판매준비중</option>
-                                    <option value="판매중" th:each="product : ${productlist} " th:selected="${product.productStatus == '판매중'}">판매중</option>
-                                    <option value="절판" th:each="product : ${productlist} " th:selected="${product.productStatus == '절판'}">절판</option>
-                                    <option value="판매중단" th:each="product : ${productlist} " th:selected="${product.productStatus == '판매중단'}">판매중단</option>
+                                    <option value="판매준비중"  th:selected="${product.productStatus == '판매준비중'}">판매준비중</option>
+                                    <option value="판매중"  th:selected="${product.productStatus == '판매중'}">판매중</option>
+                                    <option value="절판"  th:selected="${product.productStatus == '절판'}">절판</option>
+                                    <option value="판매중단"  th:selected="${product.productStatus == '판매중단'}">판매중단</option>
                                 </select>
                             </td>
                             <th scope="row">상품가격</th>

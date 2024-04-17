@@ -40,10 +40,15 @@ public class ProductController {
         return "redirect:/admin/product/productList";
     }
 
-    @PostMapping("/productViewSend")
-    public String productView(@RequestParam String product, Model model) {
-        String productlist = productService.productView(product);
-        model.addAttribute("productlist", productlist);
+//    파라미터 넘긴 방식이 Get 인데 PostMapping 되어있었음
+//    html 링크에서 /admin 명시 안되어있음
+//    view페이지 오류 ex) 찾을수없는값 있을경우
+    @GetMapping("/productView")
+    public String productView(@RequestParam int productCode, Model model) {
+        System.out.println(productCode);
+        productDTO product = productService.getProductByCode(productCode);
+        System.out.println(product);
+//        model.addAttribute("product", product);
         return "/admin/product/productView";
     }
     @GetMapping("/nullProductView")

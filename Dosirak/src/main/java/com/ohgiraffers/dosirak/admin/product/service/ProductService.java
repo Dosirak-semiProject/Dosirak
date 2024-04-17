@@ -27,9 +27,9 @@ public class ProductService {
         return productMapper.productSelectList(key);
     }
 
-    public String productView(String product) {
-        return  productMapper.productView(product);
-    }
 
+    public productDTO getProductByCode(int productCode) {
+        return productMapper.getProductByCode(productCode);
+    }
 }
 

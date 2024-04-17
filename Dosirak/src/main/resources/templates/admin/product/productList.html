@@ -58,42 +58,40 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="product : ${productList}" onclick="sendProductData('${product.productCode}', '${product.productName}', '${product.productCategoryCode}', '${product.productPrice}', '${product.productStatus}')">
+                            <tr th:each="product : ${productList}">
                                 <td th:text="${product.productCode }"></td>
                                 <td th:text="${product.productName}"></td>
                                 <td th:text="${product.productCategoryCode}"></td>
                                 <td th:text="${product.productPrice}"></td>
                                 <td th:text="${product.productStatus}"></td>
-                            </tr>
-                            <script>
-                                function sendProductData(productCode, productName, productCategoryCode, productPrice, productStatus) {
-                                    // 클릭한 행의 정보를 모두 묶어 객체로 생성
-                                    var productData = {
-                                        productCode: productCode,
-                                        productName: productName,
-                                        productCategoryCode: productCategoryCode,
-                                        productPrice: productPrice,
-                                        productStatus: productStatus
-                                    };
+                                <td><a class="edit" th:href="@{/admin/product/productView(productCode=${product.productCode})}">수정</a></td>
+                                <script th:inline="javascript">
+                                    /*<![CDATA[*/
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const editButtons = document.querySelectorAll('.edit');
 
-                                    // AJAX 요청을 사용하여 컨트롤러 클래스로 데이터 전송
-                                    $.ajax({
-                                        type: 'POST',
-                                        url: '/productViewSend',
-                                        data: JSON.stringify(productData),
-                                        contentType: 'application/json',
-                                        success: function(response) {
-                                            // 성공 시 처리
-                                            console.log('Data sent successfully');
-                                        },
-                                        error: function(xhr, status, error) {
-                                            // 실패 시 처리
-                                            console.error('Error sending data:', error);
-                                        }
+                                        editButtons.forEach(function(button) {
+                                            button.addEventListener('click', function() {
+                                                const productCode = button.getAttribute('data-product-code');
+                                                fetch('/productView?productCode=' + productCode, {
+                                                    method: 'POST'
+                                                }).then(function(response) {
+                                                    if (response.ok) {
+                                                        // 성공적으로 처리된 경우
+                                                        window.location.href = '/productView?productCode=' + productCode;
+                                                    } else {
+                                                        // 오류가 발생한 경우
+                                                        console.error('오류 발생: ' + response.status);
+                                                    }
+                                                }).catch(function(error) {
+                                                    console.error('네트워크 오류:', error);
+                                                });
+                                            });
+                                        });
                                     });
-                                }
-
-                            </script>
+                                    /*]]>*/
+                                </script>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
