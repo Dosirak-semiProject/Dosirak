@@ -7,11 +7,12 @@
         <id property="id" column="ID"/>
         <result property="name" column="NAME"/>
         <result property="pwd" column="PWD"/>
+        <result property="authority" column="AUTHORITY"/>
         <result property="role" column="ROLE"/>
     </resultMap>
     <select id="findById" resultMap="login">
-        SELECT ID, NAME, PWD, ROLE FROM USER WHERE ID = #{id} AND WITHDRAWAL = FALSE
+        SELECT ID, NAME, PWD, AUTHORITY, ROLE FROM ADMIN WHERE ID = #{id} AND WITHDRAWAL = FALSE
         UNION
-        SELECT ID, NAME, PWD, ROLE FROM ADMIN WHERE ID = #{id} AND WITHDRAWAL = FALSE
+        SELECT ID, NAME, PWD, PHONE, ROLE FROM USER WHERE ID = #{id} AND WITHDRAWAL = FALSE
     </select>
 </mapper>
