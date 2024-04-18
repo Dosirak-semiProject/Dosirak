@@ -8,9 +8,13 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
     List<productDTO> findAllProduct();
+    
+
+    List<productDTO> insertProduction(productDTO product);
 
 
-    String productselcetlist(String key);
+    List<productDTO> productSelectList(String key);
 
-    String findSelectProduct(String keyword);
+
+    productDTO getProductByCode(int productCode);
 }

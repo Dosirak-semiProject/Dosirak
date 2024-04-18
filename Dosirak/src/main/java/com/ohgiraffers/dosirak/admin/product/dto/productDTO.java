@@ -2,16 +2,18 @@ package com.ohgiraffers.dosirak.admin.product.dto;
 
 public class productDTO {
     private String productName;
-    private String productCode;
+    private int productCode;
     private int productPrice;
     private String productStatus;
     private String productSummary;
     private int productCategoryCode;
 
+
+
     public productDTO() {
     }
 
-    public productDTO(String productName, String productCode, int productPrice, String productStatus, String productSummary, int productCategoryCode) {
+    public productDTO(String productName, int productCode, int productPrice, String productStatus, String productSummary, int productCategoryCode) {
         this.productName = productName;
         this.productCode = productCode;
         this.productPrice = productPrice;
@@ -28,11 +30,11 @@ public class productDTO {
         this.productName = productName;
     }
 
-    public String getProductCode() {
+    public int getProductCode() {
         return productCode;
     }
 
-    public void setProductCode(String productCode) {
+    public void setProductCode(int productCode) {
         this.productCode = productCode;
     }
 
@@ -72,7 +74,7 @@ public class productDTO {
     public String toString() {
         return "productDTO{" +
                 "productName='" + productName + '\'' +
-                ", productCode='" + productCode + '\'' +
+                ", productCode=" + productCode +
                 ", productPrice=" + productPrice +
                 ", productStatus='" + productStatus + '\'' +
                 ", productSummary='" + productSummary + '\'' +

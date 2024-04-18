@@ -5,6 +5,7 @@ public class categoryDTO {
     private String categoryName;
     private int refCategoryCode;
 
+
     public categoryDTO() {
     }
 

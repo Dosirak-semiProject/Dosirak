@@ -17,6 +17,12 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    @GetMapping("/search")
+    public String searchByName(@RequestParam String keyword) {
+        // 여기에서 마이바티스 쿼리와의 상호작용을 호출하고 응답을 반환합니다.
+        return "Searching for keyword: " + keyword;
+    }
+
 
     @Autowired
     public OrderController(OrderService orderService) {

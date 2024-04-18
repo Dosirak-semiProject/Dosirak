@@ -16,7 +16,20 @@ public class ProductService {
         return productMapper.findAllProduct();
     }
 
-    public String productselcetlist(String key) {
-        return productMapper.productselcetlist(key);
+
+    public List<productDTO> insertProduction(productDTO product) {
+
+        return productMapper.insertProduction(product);
+    }
+
+
+    public List<productDTO> productSelectList(String key) {
+        return productMapper.productSelectList(key);
+    }
+
+
+    public productDTO getProductByCode(int productCode) {
+        return productMapper.getProductByCode(productCode);
     }
 }
+
