@@ -39,3 +39,56 @@ function passwordCheck(){
         $(".pwdCheckHidden").val(false);
     }
 }
+
+
+// 이메일인증
+function sendCode(){
+    let email = document.getElementById("inputEmail").value;
+    let hiddenCode = document.getElementById("hiddenCode").value;
+
+    if(!email.includes("@")){
+        alert("올바른 이메일 주소를 입력해주세요");
+        return;
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/sendVerificationCode", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            alert("인증코드가 이메일로 전송되었습니다.");
+        }
+    };
+    xhr.send(JSON.stringify({"email": email, "hiddenCode": hiddenCode}));
+}
+
+function verifyCode(){
+    let inputCode = document.getElementById("inputCode").value;
+    let hiddenCode = document.getElementById("hiddenCode").value;
+    if(inputCode == null || inputCode == ""){
+        alert("인증코드를 입력해주세요");
+        return;
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/verifyVerificationCode", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === 4){
+            if(xhr.status === 200){
+                let response = JSON.parse(xhr.responseText);
+                if(response.valid){
+                    alert("인증되었습니다.");
+                    document.getElementById("verifyVerificationCode").value = "pass";
+                }else{
+                    alert("인증코드가 올바르지 않습니다.");
+                    document.getElementById("verifyVerificationCode").value = "";
+                }
+            }else{
+                alert("인증코드 확인 중 오류가 발생했습니다.");
+                document.getElementById("verifyCode").value = "";
+            }
+        }
+    }
+    xhr.send(JSON.stringify({"inputCode":inputCode, "hiddenCode":hiddenCode}));
+}

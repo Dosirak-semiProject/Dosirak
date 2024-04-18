@@ -9,11 +9,11 @@
     <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_midWD ly_inner02">
         <h2 class="el_lv1Head">비밀번호 찾기</h2>
-        <div class="bl_doneBox hp_padding70 hp_mt50">
-            <div class="bl_doneBox__wrap">
-                <div class="bl_doneBox__txt">비밀번호가 재설정되었습니다.</div>
+        <div class="hp_bordDE hp_padding70 hp_mt50">
+            <div class="hp_alignC hp_fs16">
+                <p class="" th:text="${message}"></p>
             </div>
-            <a class="el_btnM hp_br5 el_btnPointBack hp_w100" href="/login">로그인</a>
+            <a class="hp_mt50 el_btnM hp_br5 el_btnPointBack hp_w100" href="/login">로그인</a>
         </div>
     </div>
     <th:block th:replace="/user/common/footer.html"></th:block>

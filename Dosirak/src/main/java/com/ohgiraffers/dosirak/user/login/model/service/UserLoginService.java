@@ -5,6 +5,7 @@ import com.ohgiraffers.dosirak.user.login.model.dao.UserLoginMapper;
 import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 @Service
@@ -29,5 +30,17 @@ public class UserLoginService {
 
     public MemberDTO findPWDform(MemberDTO member) {
         return userLoginMapper.findPWDform(member);
+    }
+
+    @Transactional
+    public boolean pwdResetAdmin(String encodePwd, String id) {
+        int result = userLoginMapper.pwdResetAdmin(encodePwd, id);
+        return (result > 0)? true : false;
+    }
+
+    @Transactional
+    public boolean pwdResetUser(String encodePwd, String id) {
+        int result = userLoginMapper.pwdResetUser(encodePwd, id);
+        return (result > 0)? true : false;
     }
 }

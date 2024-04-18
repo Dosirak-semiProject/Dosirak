@@ -12,4 +12,8 @@ public interface UserLoginMapper {
     MemberDTO findIDform(MemberDTO member);
 
     MemberDTO findPWDform(MemberDTO member);
+
+    int pwdResetAdmin(String encodePwd, String id);
+
+    int pwdResetUser(String encodePwd, String id);
 }

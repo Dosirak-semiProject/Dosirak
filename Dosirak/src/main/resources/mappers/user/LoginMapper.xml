@@ -39,8 +39,14 @@
         SELECT ID, NAME, JOINDATE FROM USER WHERE NAME = #{name} AND EMAIL = #{email} AND WITHDRAWAL = FALSE
     </select>
     <select id="findPWDform" resultMap="member">
-        SELECT NAME, JOINDATE FROM ADMIN WHERE NAME = #{name} AND ID = #{id} AND EMAIL = #{email} AND WITHDRAWAL = FALSE
+        SELECT ID, NAME, JOINDATE, ROLE FROM ADMIN WHERE NAME = #{name} AND ID = #{id} AND EMAIL = #{email} AND WITHDRAWAL = FALSE
         UNION
-        SELECT NAME, JOINDATE FROM USER WHERE NAME = #{name} AND ID = #{id} AND EMAIL = #{email} AND WITHDRAWAL = FALSE
+        SELECT ID, NAME, JOINDATE, ROLE FROM USER WHERE NAME = #{name} AND ID = #{id} AND EMAIL = #{email} AND WITHDRAWAL = FALSE
     </select>
+    <update id="pwdResetAdmin">
+        UPDATE ADMIN SET PWD = #{encodePwd} WHERE ID = #{id}
+    </update>
+    <update id="pwdResetUser">
+        UPDATE USER SET PWD = #{encodePwd} WHERE ID = #{id}
+    </update>
 </mapper>
