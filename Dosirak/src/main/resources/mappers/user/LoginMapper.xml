@@ -2,16 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ohgiraffers.dosirak.user.join.model.dao.JoinMapper">
+<mapper namespace="com.ohgiraffers.dosirak.user.login.model.dao.UserLoginMapper">
     <resultMap id="login" type="com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO">
-        <id property="userId" column="ID"/>
-        <result property="userName" column="NAME"/>
-        <result property="userPwd" column="PWD"/>
-        <result property="userRole" column="ROLE"/>
+        <id property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="pwd" column="PWD"/>
+        <result property="authority" column="AUTHORITY"/>
+        <result property="role" column="ROLE"/>
     </resultMap>
-    <select id="findByUserid" resultMap="login">
-        SELECT ID, NAME, PWD, ROLE FROM USER WHERE ID = #{userName}
+    <select id="findById" resultMap="login">
+        SELECT ID, NAME, PWD, AUTHORITY, ROLE FROM ADMIN WHERE ID = #{id} AND WITHDRAWAL = FALSE
         UNION
-        SELECT ID, NAME, PWD, ROLE FROM ADMIN WHERE ID = #{userName};
+        SELECT ID, NAME, PWD, PHONE, ROLE FROM USER WHERE ID = #{id} AND WITHDRAWAL = FALSE
     </select>
 </mapper>

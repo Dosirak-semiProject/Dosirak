@@ -28,12 +28,12 @@ public class AdminLoginDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return loginDTO.getUserPwd();
+        return loginDTO.getPwd();
     }
 
     @Override
     public String getUsername() {
-        return loginDTO.getUserName();
+        return loginDTO.getName();
     }
 
     @Override

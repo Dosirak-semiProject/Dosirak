@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>login</title>
+    <title>로그인</title>
     <th:block th:replace="/user/common/head.html"></th:block>
+    <script>
+        const message = '[[${message}]]';
+        message && alert(message);
+    </script>
 </head>
 <body>
     <div class="ly_all bl_all">
@@ -11,8 +15,8 @@
             <h2 class="el_lv1Head">로그인</h2>
             <div class="hp_bordDE hp_padding70 hp_mt50">
                 <form th:action="@{/login}" th:method="post">
-                    <input type="text" class="el_btnM hp_inputBack hp_w100" name="user" value="" placeholder="아이디를 입력해주세요"/>
-                    <input type="password" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="pass" value="" placeholder="비밀번호를 입력해주세요"/>
+                    <input type="text" class="el_btnM hp_inputBack hp_w100" name="id" value="" placeholder="아이디를 입력해주세요"/>
+                    <input type="password" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="pwd" value="" placeholder="비밀번호를 입력해주세요"/>
                     <ul class="ly_flexEnd hp_mt10">
                         <li><a class="" href="/user/login/findID">아이디 찾기</a></li>
                         <li class="hp_ml10 hp_mr10">|</li>
@@ -26,6 +30,8 @@
                 </div>
                 <a class="el_btnM el_btnPointBord hp_w100 hp_br5 hp_mt40" href="/user/join/join01">회원가입</a>
             </div>
+            <!-- 임시 -->
+            <a class="hp_fColor" href="/admin/member/join">관리자 회원가입</a>
         </div>
         <th:block th:replace="/user/common/footer.html"></th:block>
     </div>
