@@ -33,6 +33,11 @@
         SELECT *
         FROM tbl_product;
     </select>
+    <update id="productUpdate">
+        SET
+
+
+    </update>
 
 
 

@@ -31,5 +31,9 @@ public class ProductService {
     public productDTO getProductByCode(int productCode) {
         return productMapper.getProductByCode(productCode);
     }
+
+    public List<productDTO> productUpdate(productDTO product) {
+        return productMapper.productUpdate(product);
+    }
 }
 
