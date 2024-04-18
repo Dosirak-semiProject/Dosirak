@@ -1,5 +1,6 @@
 package com.ohgiraffers.dosirak.user.login.model.service;
 
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.user.login.model.dao.UserLoginMapper;
 import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,13 @@ public class UserLoginService {
         }else{
             return null;
         }
+    }
+
+    public MemberDTO findIDform(MemberDTO member) {
+        return userLoginMapper.findIDform(member);
+    }
+
+    public MemberDTO findPWDform(MemberDTO member) {
+        return userLoginMapper.findPWDform(member);
     }
 }
