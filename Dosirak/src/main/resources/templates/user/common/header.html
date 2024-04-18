@@ -1,7 +1,7 @@
-<header class="bl_head">
+<header class="bl_head" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <div class="bl_header__wrap ly_maxWD ly_spaceBetween ly_fitemC ly_inner01">
         <h1 class="bl_head__logo">
-            <a class="bl_head__logoBtn" href="user/main" title="메인페이지로 이동">
+            <a class="bl_head__logoBtn" href="/user/main" title="메인페이지로 이동">
                 <img src="/user/img/common/logo_main.png" alt="도시락 로고"/>
             </a>
         </h1>
@@ -14,19 +14,22 @@
         </ul>
         <ul class="bl_head__menuR ly_flex ly_fitemC">
             <li class="hp_relative">
-                <!-- 로그인전 : 로그인 페이지로 이동 -->
-                <!-- <a class="" href=""><img src="/user/img/icon/header_myinfo.png" alt="마이페이지"></a> -->
+                <th:block sec:authorize="isAnonymous()">
+                    <a href="/login" class="bl_headIcon bl_headIcon__mypage"><img src="/user/img/icon/header_myinfo.png" alt="로그인"></a>
+                </th:block>
                 <!-- 로그인후 : 마이페이지 메뉴 펼치기 -->
-                <button type="button" class="bl_headIcon bl_headIcon__mypage">
-                    <img src="/user/img/icon/header_myinfo.png" alt="마이페이지">
-                    <ul class="bl_head__menuSub">
-                        <li class=""><a class="" href="/user/myinfo/default">나의정보</a></li>
-                        <li class=""><a class="" href="">주문내역</a></li>
-                        <li class=""><a class="" href="">리뷰내역</a></li>
-                        <li class=""><a class="" href="">나의설문</a></li>
-                        <li class=""><a class="" href="">로그아웃</a></li>
-                    </ul>
-                </button>
+                <th:block sec:authorize="isAuthenticated()">
+                    <a href="/logout" class="bl_headIcon bl_headIcon__logout"><img src="/user/img/icon/header_logout.png" alt="로그아웃"></a>
+                    <button type="button" class="bl_headIcon bl_headIcon__mypage hp_relative">
+                        <img src="/user/img/icon/header_myinfo.png" alt="마이페이지">
+                        <ul class="bl_head__menuSub">
+                            <li class=""><a class="" href="/user/myinfo/pwdCheck">나의정보</a></li>
+                            <li class=""><a class="" href="">주문내역</a></li>
+                            <li class=""><a class="" href="">리뷰내역</a></li>
+                            <li class=""><a class="" href="">나의설문</a></li>
+                        </ul>
+                    </button>
+                </th:block>
             </li>
             <li class=""><a class="bl_headIcon bl_headIcon__cart" href=""><img src="/user/img/icon/header_cart.png" alt="장바구니"></a></li>
             <li class="hp_relative">

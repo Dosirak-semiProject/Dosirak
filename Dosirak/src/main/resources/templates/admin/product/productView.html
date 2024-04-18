@@ -49,25 +49,26 @@
                         <tr>
                             <th scope="row">상품분류</th>
                             <td colspan="3" >
-                                <select class="datatable-selector1"  th:value="${product.productCategoryCode}">
+                                <select class="datatable-selector1" >
                                     <option value="NONE">상품분류 선택</option>
-                                    <option value="1" th:selected="${product.productCategoryCode == '1'}">건강도시락</option>
+                                    <option value="1" th:selected="${product.productCategoryCode == '4' || product.productCategoryCode == '5' || product.productCategoryCode == '6'|| product.productCategoryCode == '7'}"
+                                    >건강도시락</option>
                                     <option value="2" th:selected="${product.productCategoryCode == '2'}">정성도시락</option>
-                                    <option value="3" th:selected="${product.productCategoryCode == '3'}">간편식</option>
+                                    <option value="3" th:selected="${product.productCategoryCode == '8'|| product.productCategoryCode == '9'}">간편식</option>
                                 </select>
 
-                                <select class="datatable-selector2"  th:value="${product.subcategory}">
+                                <select class="datatable-selector2" >
                                     <option value="">소분류 선택</option>
-                                    <option value="1" th:selected="${product.subcategory == '1'}">암환자회복식단</option>
-                                    <option value="2" th:selected="${product.subcategory == '2'}">신장관리식단</option>
-                                    <option value="3" th:selected="${product.subcategory == '3'}">혈압관리식단</option>
-                                    <option value="4" th:selected="${product.subcategory == '4'}">혈당관리식단</option>
+                                    <option value="1" th:selected="${product.productCategoryCode == '4'}">암환자회복식단</option>
+                                    <option value="2" th:selected="${product.productCategoryCode == '5'}">신장관리식단</option>
+                                    <option value="3" th:selected="${product.productCategoryCode == '6'}">혈압관리식단</option>
+                                    <option value="4" th:selected="${product.productCategoryCode == '7'}">혈당관리식단</option>
                                 </select>
 
-                                <select class="datatable-selector3"  th:value="${product.subcategory}">
+                                <select class="datatable-selector3" >
                                     <option value="">소분류 선택</option>
-                                    <option value="5" th:selected="${product.subcategory == '5'}">샐러드</option>
-                                    <option value="6" th:selected="${product.subcategory == '6'}">닭가슴살</option>
+                                    <option value="5" th:selected="${product.productCategoryCode == '8'}">샐러드</option>
+                                    <option value="6" th:selected="${product.productCategoryCode == '9'}">닭가슴살</option>
                                 </select>
 
                                 <script th:inline="javascript">

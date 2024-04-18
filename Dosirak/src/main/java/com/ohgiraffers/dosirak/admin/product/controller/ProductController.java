@@ -47,8 +47,8 @@ public class ProductController {
     public String productView(@RequestParam int productCode, Model model) {
         System.out.println(productCode);
         productDTO product = productService.getProductByCode(productCode);
+        model.addAttribute("product",product);
         System.out.println(product);
-//        model.addAttribute("product", product);
         return "/admin/product/productView";
     }
     @GetMapping("/nullProductView")

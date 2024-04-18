@@ -5,6 +5,7 @@ import com.ohgiraffers.dosirak.admin.suitBox.model.dto.SuitBoxMenuDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AdminSuitBoxService {
@@ -32,5 +33,9 @@ public class AdminSuitBoxService {
 
     public int deleteMenu(int menuCode) {
         return mapper.deleteMenu(menuCode);
+    }
+
+    public List<SuitBoxMenuDTO> searchMenuByCondition(Map<String ,String > condition) {
+        return mapper.searchMenuByCondition(condition);
     }
 }
