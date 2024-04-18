@@ -29,7 +29,32 @@ public class OrderService {
     }
 
     public OrderDTO allOrderView(String orderCode) {
-        return orderMapper.allOrderView(orderCode);
+        OrderDTO orderDTO = orderMapper.allOrderView(orderCode);
+
+        if (orderDTO == null) {
+            return null;
+        }
+
+        if (orderDTO.getRefund().getRefundStatus() != null || orderDTO.getRefund().getRefundStatus() == null) {
+            switch (orderDTO.getRefund().getRefundStatus() + "") {
+                case "R":
+                    orderDTO.getRefund().setRefundStatus("환불요청");
+                    break;
+                case "P":
+                    orderDTO.getRefund().setRefundStatus("환불처리중");
+                    break;
+                case "A":
+                    orderDTO.getRefund().setRefundStatus("환불승인");
+                    break;
+                case "D":
+                    orderDTO.getRefund().setRefundStatus("환불거부");
+                    break;
+                default:
+                    orderDTO.getRefund().setRefundStatus("환불미요청");
+            }
+        }
+
+        return orderDTO;
     }
 
 }

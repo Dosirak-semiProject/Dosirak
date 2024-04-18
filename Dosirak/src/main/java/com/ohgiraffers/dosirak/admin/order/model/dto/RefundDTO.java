@@ -10,14 +10,14 @@ public class RefundDTO {
     private String refundCode;
     private int refundPrice;
     private LocalDate refundDate;
-    private char refundStatus;
+    private String refundStatus;
     private MemberDTO member;
     private PayDTO pay;
     private String orderCode;
 
     public RefundDTO() {}
 
-    public RefundDTO(String refundCode, int refundPrice, LocalDate refundDate, char refundStatus, MemberDTO member, PayDTO pay, String orderCode) {
+    public RefundDTO(String refundCode, int refundPrice, LocalDate refundDate, String refundStatus, MemberDTO member, PayDTO pay, String orderCode) {
         this.refundCode = refundCode;
         this.refundPrice = refundPrice;
         this.refundDate = refundDate;
@@ -51,11 +51,11 @@ public class RefundDTO {
         this.refundDate = refundDate;
     }
 
-    public char getRefundStatus() {
+    public String getRefundStatus() {
         return refundStatus;
     }
 
-    public void setRefundStatus(char refundStatus) {
+    public void setRefundStatus(String refundStatus) {
         this.refundStatus = refundStatus;
     }
 
@@ -89,7 +89,7 @@ public class RefundDTO {
                 "refundCode='" + refundCode + '\'' +
                 ", refundPrice=" + refundPrice +
                 ", refundDate=" + refundDate +
-                ", refundStatus=" + refundStatus +
+                ", refundStatus='" + refundStatus + '\'' +
                 ", member=" + member +
                 ", pay=" + pay +
                 ", orderCode='" + orderCode + '\'' +

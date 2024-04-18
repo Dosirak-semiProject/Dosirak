@@ -24,7 +24,7 @@
                         <td th:text="${ orderView.orderCode }"></td>
 
                         <th scope="row">주문/환불상태</th>
-                        <td th:text="${ orderView.refund?.refundStatus }"></td>
+                        <td th:text="${ orderView.orderStatus + ' / ' + orderView.refund.refundStatus }"></td>
                     </tr>
                     <tr>
                         <th scope="row">회원이름(아이디)</th>
