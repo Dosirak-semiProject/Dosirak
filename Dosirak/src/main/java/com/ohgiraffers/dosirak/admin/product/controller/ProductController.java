@@ -60,8 +60,7 @@ public class ProductController {
     @PostMapping("/updateProduct")
     @ResponseBody
     public String productUpdate(@RequestBody productDTO product) {
-        List<productDTO> productList = productService.productUpdate(product);
-        System.out.println(productList);
+        productService.productUpdate(product);
         return "/admin/product/productList";
 
 

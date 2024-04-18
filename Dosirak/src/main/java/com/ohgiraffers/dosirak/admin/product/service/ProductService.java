@@ -4,6 +4,7 @@ import com.ohgiraffers.dosirak.admin.product.dao.ProductMapper;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -32,8 +33,10 @@ public class ProductService {
         return productMapper.getProductByCode(productCode);
     }
 
-    public List<productDTO> productUpdate(productDTO product) {
-        return productMapper.productUpdate(product);
+    @Transactional
+    public void productUpdate(productDTO product) {
+        productMapper.productUpdate(product);
+
     }
 }
 
