@@ -23,34 +23,34 @@
                     <tbody>
                     <tr>
                         <th scope="row">환불코드</th>
-                        <td>1</td>
+                        <td th:text="${ refundLists.refundStatus }"></td>
                         <th scope="row">환불사유</th>
-                        <td>회원 귀책사유 / 회사 귀책사유</td>
+                        <td th:text="${ refundLists.refundReason }"></td>
                     </tr>
                     <tr>
                         <th scope="row">주문코드</th>
-                        <td>8390275164</td>
+                        <td th:text="${ refundLists.orderCode }"></td>
                         <th scope="row">회원이름(회원아이디)</th>
-                        <td>김철수(abcd1234)</td>
+                        <td th:text="${ refundLists.member.name }(${ refundLists.member.id })"></td>
                     </tr>
                     <tr>
                         <th scope="row">환불날짜</th>
-                        <td>2024-02-02</td>
+                        <td th:text="${ refundLists.refundDate }"></td>
                         <th scope="row">환불상태</th>
-                        <td>환불진행중</td>
+                        <td th:text="${ refundLists.refundStatus }"></td>
                     </tr>
                     <tr>
                         <th scope="row">결제방법</th>
-                        <td colspan="3">카카오페이</td>
+                        <td colspan="3" th:text="${ refundLists.pay.payMethod }"></td>
                     </tr>
                     <tr>
                         <th scope="row">이미지파일</th>
                         <td colspan="3">
-                            <img src="/img/review/review.jpg" alt=""/>
-                            <img src="/img/review/review.jpg" alt=""/>
-                            <img src="/img/review/review.jpg" alt=""/>
-                            <img src="/img/review/review.jpg" alt=""/>
-                            <img src="/img/review/review.jpg" alt=""/>
+<!--                            <img src="/img/review/review.jpg" alt=""/>-->
+<!--                            <img src="/img/review/review.jpg" alt=""/>-->
+<!--                            <img src="/img/review/review.jpg" alt=""/>-->
+<!--                            <img src="/img/review/review.jpg" alt=""/>-->
+<!--                            <img src="/img/review/review.jpg" alt=""/>-->
                         </td>
                     </tr>
                     <tr>
@@ -58,7 +58,7 @@
                         <td colspan="3">
                             <div class="justify-content-between d-flex align-items-center">
                                 <p>총 결제금액</p>
-                                <p>123,456원</p>
+                                <p th:text="${ refundLists.pay.payPrice } + ' 원'"></p>
                             </div>
                             <div class="justify-content-between d-flex align-items-center">
                                 <p>배송비</p>
