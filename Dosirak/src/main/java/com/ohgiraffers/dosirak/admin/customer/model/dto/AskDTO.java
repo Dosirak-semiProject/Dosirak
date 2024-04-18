@@ -16,10 +16,9 @@ public class AskDTO {
     private String askContent;
     private LocalDateTime askDate;
     private String userId;
-//    private LocalDateTime editDate; //추후 수정
+    private LocalDateTime editDate;
     private Boolean askDelete;
-    private int askCategoryCode; //추후 수정
-
-    public AskDTO() {}
+    private AskCategoryDTO askCategoryCode; //추후 수정
+    private AnswerDTO answerDTO;
 
 }
