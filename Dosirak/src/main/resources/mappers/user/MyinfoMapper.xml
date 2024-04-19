@@ -32,5 +32,10 @@
         SET WITHDRAWAL = #{withdrawal}
         WHERE ID = #{id}
     </update>
+    <select id="emailDupCheck" resultType="string">
+        SELECT EMAIL FROM USER WHERE EMAIL = #{email}
+        UNION
+        SELECT EMAIL FROM ADMIN WHERE EMAIL = #{email}
+    </select>
 
 </mapper>

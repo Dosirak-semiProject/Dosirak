@@ -11,6 +11,9 @@ button:disabled{background:#888;color:#fff;cursor:default;}
 
 .el_checkMsg{position:absolute;top:0;right:0;padding:0 10px;height:100%;display:flex;align-items:center;background:#eee;border-radius:5px;border-bottom-left-radius:0;broder-top-left-radius:0;}
 .tr_none{display:none;}
+.tr_inputCode{display:none;}
+.sendCodeBtn{display:none;}
+.tr_inputPwdConfirm{display:none;}
 
 
 

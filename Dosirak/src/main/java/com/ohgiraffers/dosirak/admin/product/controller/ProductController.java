@@ -2,6 +2,7 @@ package com.ohgiraffers.dosirak.admin.product.controller;
 
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.admin.product.service.ProductService;
+import com.ohgiraffers.dosirak.common.product.ProductUpdateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,11 +58,11 @@ public class ProductController {
         return "/admin/product/nullProductView";
     }
 
-    @PostMapping("/updateProduct")
-    @ResponseBody
-    public String productUpdate(@RequestBody productDTO product) {
-        List<productDTO> productList = productService.productUpdate(product);
-        System.out.println(productList);
+    @PostMapping("/productUpdate")
+    public String productUpdate(productDTO product) {
+        System.out.println(product);
+//        productService.productUpdate(product);
+//        System.out.println("리스트"+product);
         return "/admin/product/productList";
 
 

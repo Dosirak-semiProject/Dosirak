@@ -61,10 +61,9 @@
                                 <td>
                                     <a th:href="@{'/admin/refundView?orderCode=' + ${ refundList.orderCode }}" th:text="${ refundList.orderCode }"></a>
                                 </td>
-                                <td th:text="${ refundList.refundPrice }"></td>
+                                <td th:text="${ '￦ ' + refundList.refundPrice }"></td>
                                 <td th:text="${ refundList.refundDate }"></td>
-                                <td th:text="${ refundList.refundStatus == 'W' ? '환불진행중'
-                                : (refundList.refundStatus  == 'Y' ? '환불승인' : '환불거절')}"></td>
+                                <td th:text="${ refundList.refundStatus }"></td>
                                 <td th:text="|${ refundList.member.name }(${ refundList.member.id })|"></td>
                                 <td th:text="${ refundList.pay.payMethod }"></td>
                             </tr>

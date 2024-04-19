@@ -13,6 +13,7 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">주문 상세보기</h1>
+                <form action="/admin/orderCancel" method="post" onsubmit="cancel(event)">
                 <table class="datatable-table mt-4">
                     <colgroup>
                         <col style="width:200px"/>
@@ -21,10 +22,10 @@
                     <tbody>
                     <tr>
                         <th scope="row">주문코드</th>
-                        <td th:text="${ orderView.orderCode }"></td>
+                        <td colspan="2" th:text="${ orderView.orderCode }"></td>
 
                         <th scope="row">주문/환불상태</th>
-                        <td th:text="${ orderView.refund?.refundStatus }"></td>
+                        <td colspan="2" th:text="${ orderView.orderStatus + ' / ' + orderView.refund.refundStatus }"></td>
                     </tr>
                     <tr>
                         <th scope="row">회원이름(아이디)</th>
@@ -33,19 +34,19 @@
                     </tr>
                     <tr>
                         <th scope="row">수령인</th>
-                        <td>
+                        <td colspan="2">
                             <span th:if="${ orderView.orderRecipient }" th:text="${ orderView.orderRecipient }"></span>
                             <span th:unless="${ orderView.orderRecipient }" th:text="${orderView.member.name}"></span>
                         </td>
                         <th scope="row">연락처</th>
-                        <td>
+                        <td colspan="2">
                             <span th:if="${ orderView.orderConcat }" th:text="${ orderView.orderConcat }"></span>
                             <span th:unless="${ orderView.orderConcat }" th:text="${ orderView.member.phone }"></span>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">배송지</th>
-                        <td colspan="3">
+                        <td colspan="5">
                             <span th:if="${ orderView.orderRecipient }" th:text="${ orderView.orderRecipient }"></span>
                             <span th:unless="${ orderView.orderRecipient }"
                                   th:text="${orderView.member.address1 + ' / ' + orderView.member.address2 + ' / ' + orderView.member.address3 }"></span>
@@ -53,36 +54,51 @@
                     </tr>
                     <tr>
                         <th scope="row">결제금액</th>
-                        <td th:text="${ '￦' + orderView.pay.payPrice }"></td>
+                        <td colspan="2" th:text="${ '￦' + orderView.pay.payPrice }"></td>
                         <th scope="row">결제날짜</th>
-                        <td th:text="${ orderView.pay.payDate }"></td>
-                        <td></td>
+                        <td colspan="2" th:text="${ orderView.pay.payDate }"></td>
                     </tr>
                     <tr>
                         <th scope="row">결제방법</th>
-                        <td colspan="3" th:text="${ orderView.pay.payMethod }"></td>
-                        <td colspan="3"></td>
+                        <td colspan="5" th:text="${ orderView.pay.payMethod }"></td>
                     </tr>
                     <tr>
-                        <th scope="row">주문상세</th>
-                        <td colspan="3" th:each="detail : ${ orderView.detail }">
+                        <th colspan="5">주문상세</th>
+                    </tr>
+                    <tr th:each="detail : ${orderView.detail}" th:id="${detail.detailCode}">
+                        <td colspan="5">
                             <label>
-                                <input type="checkbox">
-                                <span th:text="${ detail.detailCode + ' / ' + detail.detailItemCode + ' / ' + detail.detailItemCount + '개'  + ' / ' + (detail.detailItemCount)}"></span>
+                                <input type="checkbox" th:attr="name='selected'" th:value="${detail.detailCode}">
+                                <span th:text="${detail.detailCode + ' / ' + detail.product.productName + ' / ' + detail.detailItemCount + '개' + ' / ' + (detail.detailItemCount * detail.product.productPrice) + ' 원'}"></span>
                             </label>
-                            <br/>
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="editBtn" style="text-align: right;">
-                    <button type="button" class="btn btn-secondary">주문취소</button>
-                    <button type="button" class="btn btn-secondary">목록</button>
+                    <button type="submit" class="btn btn-secondary">주문취소</button>
+                    <button type="button" class="btn btn-secondary" onclick="history.back()">목록</button>
                 </div>
+                </form>
             </div>
         </main>
     </div>
 </div>
 <th:block th:replace="admin/common/foot.html"></th:block>
+<script>
+    function cancel(event) {
+        const selected = document.querySelectorAll('input[name="selected"]:checked')
+        if (selected.length > 0) {
+            const confirmMessage = confirm("주문을 취소하시겠습니까?")
+            if (!confirmMessage) {
+                event.preventDefault()
+            }
+            return confirmMessage;
+        } else {
+            alert("취소할 항목을 선택해 주세요.")
+            event.preventDefault()
+        }
+    }
+</script>
 </body>
 </html>
