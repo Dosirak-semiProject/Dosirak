@@ -160,4 +160,8 @@ public class OrderService {
 
         return refundDTO;
     }
+
+    public DeliveryDTO allDeliveryView(String orderCode) {
+        return orderMapper.allDeliveryView(orderCode);
+    }
 }

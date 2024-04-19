@@ -16,4 +16,6 @@ public interface OrderMapper {
     OrderDTO allOrderView(String orderCode);
 
     RefundDTO allRefundView(String orderCode);
+
+    DeliveryDTO allDeliveryView(String orderCode);
 }

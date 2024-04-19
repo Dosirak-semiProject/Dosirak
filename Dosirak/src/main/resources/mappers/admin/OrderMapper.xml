@@ -58,10 +58,10 @@
 
     <!-- DeliveryDTO Mapping -->
     <resultMap id="deliveryResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.DeliveryDTO">
-        <result property="orderCode" column="order_code"/>
         <result property="deliveryCode" column="delivery_code"/>
         <result property="deliveryStatus" column="delivery_status"/>
-        <result property="orderRecipient" column="order_recipient"/>
+        <association property="member" resultMap="memberResultMap"/>
+        <association property="order" resultMap="orderResultMap"/>
     </resultMap>
 
     <!-- ProductDTO Mapping -->
@@ -112,10 +112,12 @@
             d.order_code,
             d.delivery_code,
             d.delivery_status,
-            o.order_recipient
+            o.order_recipient,
+            u.name
         FROM
             delivery d
         JOIN `order` o ON d.order_code = o.order_code
+        JOIN user u ON o.id = u.id
     </select>
 
     <!-- OrderView Query -->
@@ -161,6 +163,7 @@
             r.refund_date,
             r.refund_status,
             p.pay_method,
+            p.pay_price,
             r.refund_price
         FROM
             refund r
@@ -168,6 +171,28 @@
         JOIN user u ON o.id = u.id
         JOIN pay p ON o.order_code = p.order_code
         WHERE
+            r.order_code = #{ orderCode }
+    </select>
 
+    <select id="allDeliveryView" resultMap="deliveryResultMap">
+        SELECT
+            o.order_code,
+            d.delivery_code,
+            d.delivery_status,
+            u.name,
+            u.id,
+            o.order_recipient,
+            o.order_contact,
+            u.phone,
+            o.order_address,
+            u.address1,
+            u.address2,
+            u.address3
+        FROM
+            delivery d
+        JOIN `order` o ON d.order_code = o.order_code
+        JOIN user u ON o.id = u.id
+        WHERE
+            d.order_code = #{ orderCode }
     </select>
 </mapper>

@@ -23,25 +23,25 @@
                     <tbody>
                     <tr>
                         <th scope="row">환불코드</th>
-                        <td th:text="${ refundLists.refundStatus }"></td>
+                        <td th:text="${ refundView.refundStatus }"></td>
                         <th scope="row">환불사유</th>
-                        <td th:text="${ refundLists.refundReason }"></td>
+                        <td th:text="${ refundView.refundReason }"></td>
                     </tr>
                     <tr>
                         <th scope="row">주문코드</th>
-                        <td th:text="${ refundLists.orderCode }"></td>
+                        <td th:text="${ refundView.orderCode }"></td>
                         <th scope="row">회원이름(회원아이디)</th>
-                        <td th:text="${ refundLists.member.name }(${ refundLists.member.id })"></td>
+                        <td th:text="|${ refundView.member.name }(${ refundView.member.id })|"></td>
                     </tr>
                     <tr>
                         <th scope="row">환불날짜</th>
-                        <td th:text="${ refundLists.refundDate }"></td>
+                        <td th:text="${ refundView.refundDate }"></td>
                         <th scope="row">환불상태</th>
-                        <td th:text="${ refundLists.refundStatus }"></td>
+                        <td th:text="${ refundView.refundStatus }"></td>
                     </tr>
                     <tr>
                         <th scope="row">결제방법</th>
-                        <td colspan="3" th:text="${ refundLists.pay.payMethod }"></td>
+                        <td colspan="3" th:text="${ refundView.pay.payMethod }"></td>
                     </tr>
                     <tr>
                         <th scope="row">이미지파일</th>
@@ -58,15 +58,15 @@
                         <td colspan="3">
                             <div class="justify-content-between d-flex align-items-center">
                                 <p>총 결제금액</p>
-                                <p th:text="${ refundLists.pay.payPrice } + ' 원'"></p>
+                                <p th:text="${ refundView.pay.payPrice } + ' 원'"></p>
                             </div>
-                            <div class="justify-content-between d-flex align-items-center">
-                                <p>배송비</p>
-                                <p>123,456원</p>
-                            </div>
+<!--                            <div class="justify-content-between d-flex align-items-center">-->
+<!--                                <p>배송비</p>-->
+<!--                                <p>123,456원</p>-->
+<!--                            </div>-->
                             <div class="justify-content-between d-flex align-items-center">
                                 <p class="text-primary fw-bold">총 환불금액</p>
-                                <p class="text-primary fw-bold">123,456원</p>
+                                <p class="text-primary fw-bold" th:text="${ refundView.pay.payPrice } + ' 원'"></p>
                             </div>
                         </td>
                     </tr>

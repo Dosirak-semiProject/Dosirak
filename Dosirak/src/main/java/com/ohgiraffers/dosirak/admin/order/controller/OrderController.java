@@ -17,12 +17,6 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
-    @GetMapping("/search")
-    public String searchByName(@RequestParam String keyword) {
-        // 여기에서 마이바티스 쿼리와의 상호작용을 호출하고 응답을 반환합니다.
-        return "Searching for keyword: " + keyword;
-    }
-
 
     @Autowired
     public OrderController(OrderService orderService) {
@@ -62,9 +56,9 @@ public class OrderController {
     @GetMapping("refundView")
     public String refundView(Model model, @RequestParam String orderCode) {
 
-        RefundDTO refundLists = orderService.allRefundView(orderCode);
+        RefundDTO refundView = orderService.allRefundView(orderCode);
 
-        model.addAttribute("refundLists", refundLists);
+        model.addAttribute("refundView", refundView);
 
         return "admin/order/refundView";
     }
@@ -82,5 +76,16 @@ public class OrderController {
     }
 
     @GetMapping("deliveryView")
-    public String shippingView() {return "admin/order/deliveryView";}
+    public ModelAndView shippingView(ModelAndView mv, @RequestParam String orderCode) {
+
+        DeliveryDTO deliveryView = orderService.allDeliveryView(orderCode);
+
+        mv.addObject("deliveryView", deliveryView);
+
+        mv.setViewName("admin/order/deliveryView");
+
+        System.out.println("@@@@@@@@@@@@@@" + deliveryView.getOrder().getOrderCode());
+
+        return mv;
+    }
 }
