@@ -84,26 +84,6 @@
         <result property="answerStatus" column="answer_status"/>
     </resultMap>
 
-<!--    <select id="findAskList" resultMap="generalAskResultMap">-->
-<!--        SELECT-->
-<!--            a.ask_code,-->
-<!--            b.ask_category_name,-->
-<!--            a.ask_title,-->
-<!--            a.ask_date,-->
-<!--            a.user_id,-->
-<!--            a.ask_editDate,-->
-<!--            a.ask_delete-->
-<!--&lt;!&ndash;            c.answer_status&ndash;&gt;-->
-<!--        FROM-->
-<!--            ask a-->
-<!--        JOIN-->
-<!--            ask_category b ON (a.ask_category_code = b.ask_category_code)-->
-<!--        JOIN-->
-<!--            answer c ON (a.ask_code = c.ask_code)-->
-<!--        WHERE-->
-<!--            a.ask_delete = 0-->
-<!--    </select>-->
-
     <select id="findAskList" resultMap="generalAskResultMap">
         SELECT
             *
@@ -117,11 +97,7 @@
 
     <select id="searchAskDetail" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO">
         SELECT
-            ask_code,
-            user_id,
-            ask_date,
-            ask_title,
-            ask_content
+            *
         FROM
             ask
         WHERE

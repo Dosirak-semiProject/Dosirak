@@ -1,10 +1,12 @@
 package com.ohgiraffers.dosirak.admin.customer.model.dto;
 
+import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,5 +22,7 @@ public class AskDTO {
     private Boolean askDelete;
     private AskCategoryDTO askCategoryCode; //추후 수정
     private AnswerDTO answerDTO;
+
+    private List<UserCustomerImgDTO> imageList;
 
 }
