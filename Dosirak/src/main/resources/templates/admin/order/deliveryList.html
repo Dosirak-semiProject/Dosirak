@@ -53,11 +53,16 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr th:each="shipping : ${ shippingList }">
-                                <td th:text="${ shipping.orderCode }"></td>
-                                <td th:text="${ shipping.deliveryCode }"></td>
-                                <td th:text="${ shipping.deliveryStatus }"></td>
-                                <td th:text="${ shipping.orderRecipient }"></td>
+                            <tr th:each="delivery : ${ deliveryList }">
+                                <td>
+                                    <a th:href="@{'/admin/deliveryView?orderCode=' + ${ delivery.order.orderCode }}" th:text="${ delivery.order.orderCode }"></a>
+                                </td>
+                                <td th:text="${ delivery.deliveryCode }"></td>
+                                <td th:text="${ delivery.deliveryStatus }"></td>
+                                <td>
+                                    <span th:if="${ delivery.order.orderRecipient }" th:text="${ delivery.order.orderRecipient }"></span>
+                                    <span th:unless="${ delivery.order.orderRecipient }" th:text="${delivery.member.name}"></span>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
