@@ -36,15 +36,12 @@
     <update id="productUpdate">
         UPDATE tbl_product
         SET
-        productName=${productName},
-        productPrice=${productPrice},
-        productStatus=${productStatus},
-        productSummary=${productSummary},
-        productCategoryCode=${productCategoryCode}
+        productName=#{productName},
+        productPrice=#{productPrice},
+        productStatus=#{productStatus},
+        productSummary=#{productSummary},
+        productCategoryCode=#{productCategoryCode}
         WHERE PRODUCT_CODE = #{productCode};
-
-
-
     </update>
 
 

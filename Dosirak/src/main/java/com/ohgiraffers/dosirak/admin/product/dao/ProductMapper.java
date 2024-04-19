@@ -19,5 +19,5 @@ public interface ProductMapper {
     productDTO getProductByCode(int productCode);
 
 
-    void productUpdate(productDTO product);
+    int productUpdate(productDTO product);
 }

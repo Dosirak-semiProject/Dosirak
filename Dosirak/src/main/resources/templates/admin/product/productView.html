@@ -15,57 +15,67 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">상품 상세보기</h1>
-                <form action="#" th:action="@{/saveProduct}" method="post" id="form">
+                <form method="post" action="/admin/product/productUpdate">
                     <table class="datatable-table mt-4">
                         <colgroup>
-                            <col style="width:200px" />
-                            <col style="width:200px" />
+                            <col style="width:200px"/>
+                            <col style="width:200px"/>
                         </colgroup>
                         <tbody>
                         <!-- 보기, 수정 -->
                         <tr>
                             <th scope="">상품코드</th>
-                            <td colspan="3"  th:text="${product.productCode}">1</td>
+                            <td colspan="3"  class="productCode" th:text="${product.productCode}">1</td>
                         </tr>
                         <!-- // 보기, 수정 -->
-                        <tr >
+                        <tr>
                             <th scope="row">상품이름</th>
-                            <td colspan="3"><input th:value="${product.productName}"/></td>
+                            <td colspan="3"><input name="productName" class="productName" th:value="${product.productName}"/></td>
                         </tr>
                         <tr>
                             <th scope="row">판매상태</th>
                             <td>
                                 <select class="datatable-selector" name="productStatus">
                                     <option value="">판매상태 선택</option>
-                                    <option value="판매준비중"  th:selected="${product.productStatus == '판매준비중'}">판매준비중</option>
-                                    <option value="판매중"  th:selected="${product.productStatus == '판매중'}">판매중</option>
-                                    <option value="절판"  th:selected="${product.productStatus == '절판'}">절판</option>
-                                    <option value="판매중단"  th:selected="${product.productStatus == '판매중단'}">판매중단</option>
+                                    <option value="판매준비중" th:selected="${product.productStatus == '판매준비중'}">판매준비중
+                                    </option>
+                                    <option value="판매중" th:selected="${product.productStatus == '판매중'}">판매중</option>
+                                    <option value="절판" th:selected="${product.productStatus == '절판'}">절판</option>
+                                    <option value="판매중단" th:selected="${product.productStatus == '판매중단'}">판매중단</option>
                                 </select>
                             </td>
                             <th scope="row">상품가격</th>
-                            <td ><input type="text"  th:value="${product.productPrice}" /></td>
+                            <td><input type="text" name="productPrice" class="productPrice" th:value="${product.productPrice}"/></td>
                         </tr>
                         <tr>
                             <th scope="row">상품분류</th>
-                            <td colspan="3" >
-                                <select class="datatable-selector1" >
-                                    <option value="NONE">상품분류 선택</option>
-                                    <option value="1" th:selected="${product.productCategoryCode} == '4' or ${product.productCategoryCode} == '5' or ${product.productCategoryCode} == '6' or ${product.productCategoryCode} == '7'"
-                                    >건강도시락</option>
+                            <td colspan="3">
+                                <select class="datatable-selector1">
+                                    <option value="">상품분류 선택</option>
+                                    <option value="1"
+                                            th:selected="${product.productCategoryCode} == '4' or ${product.productCategoryCode} == '5' or ${product.productCategoryCode} == '6' or ${product.productCategoryCode} == '7'"
+                                    >건강도시락
+                                    </option>
                                     <option value="2" th:selected="${product.productCategoryCode == '2'}">정성도시락</option>
-                                    <option value="3" th:selected="${product.productCategoryCode} == '8' or ${product.productCategoryCode} == '9'">간편식</option>
+                                    <option value="3"
+                                            th:selected="${product.productCategoryCode} == '8' or ${product.productCategoryCode} == '9'">
+                                        간편식
+                                    </option>
                                 </select>
 
-                                <select class="datatable-selector2" >
+                                <select class="datatable-selector2">
                                     <option value="">소분류 선택</option>
-                                    <option value="4" th:selected="${product.productCategoryCode} == '4'">암환자회복식단</option>
-                                    <option value="5" th:selected="${product.productCategoryCode} == '5'">신장관리식단</option>
-                                    <option value="6" th:selected="${product.productCategoryCode} == '6'">혈압관리식단</option>
-                                    <option value="7" th:selected="${product.productCategoryCode} == '7'">혈당관리식단</option>
+                                    <option value="4" th:selected="${product.productCategoryCode} == '4'">암환자회복식단
+                                    </option>
+                                    <option value="5" th:selected="${product.productCategoryCode} == '5'">신장관리식단
+                                    </option>
+                                    <option value="6" th:selected="${product.productCategoryCode} == '6'">혈압관리식단
+                                    </option>
+                                    <option value="7" th:selected="${product.productCategoryCode} == '7'">혈당관리식단
+                                    </option>
                                 </select>
 
-                                <select class="datatable-selector3" >
+                                <select class="datatable-selector3">
                                     <option value="">소분류 선택</option>
                                     <option value="8" th:selected="${product.productCategoryCode} == '8'">샐러드</option>
                                     <option value="9" th:selected="${product.productCategoryCode} == '9'">닭가슴살</option>
@@ -99,39 +109,19 @@
                         </tr>
                         <tr>
                             <th scope="row">한줄설명</th>
-                            <td  colspan="3">
-                                <input type="text" th:value="${product.productSummary}" />
+                            <td colspan="3">
+                                <input type="text" th:value="${product.productSummary}"/>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">파일첨부</th>
-                            <td colspan="3"><input type="file" /></td>
+                            <td colspan="3"><input type="file"/></td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="editBtn" style="text-align: right;">
                         <button type="submit" class="btn btn-primary">수정</button>
-                        <script>
-                            document.getElementById("form").addEventListener("btn btn-primary", function(event) {
-                                event.preventDefault(); // Prevent the default form submission
 
-                                // Collect form data
-                                var formData = new FormData(this);
-
-                                // Send form data to the server using fetch API
-                                fetch('/updateProduct', {
-                                    method: 'POST',
-                                    body: formData
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        document.getElementById("message").innerText = data.message; // Display server response message
-                                    })
-                                    .catch(error => {
-                                        console.error('Error:', error);
-                                    });
-                            });
-                        </script>
 
                         <button type="button" class="btn btn-secondary">삭제</button>
                     </div>
@@ -144,7 +134,8 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#infoManage" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#infoManage"
+                   aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     회원정보 관리
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -155,7 +146,8 @@
                         <a class="nav-link" href="/admin/member/managerList">관리자 관리</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#QManage" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#QManage"
+                   aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     문의 관리
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -167,7 +159,8 @@
                         <a class="nav-link" href="/html/customer/qnaList.html">자주묻는질문 관리</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#itemManage" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#itemManage"
+                   aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     상품 관리
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
@@ -182,7 +175,8 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     리뷰 관리
                 </a>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#orderManage" aria-expanded="false" aria-controls="collapseLayouts">
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#orderManage"
+                   aria-expanded="false" aria-controls="collapseLayouts">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     주문 관리
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
