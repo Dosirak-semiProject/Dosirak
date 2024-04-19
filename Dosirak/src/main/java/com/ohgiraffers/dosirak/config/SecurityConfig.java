@@ -35,9 +35,9 @@ public class SecurityConfig{
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> {
-//                    auth.requestMatchers("/admin/**").hasAnyAuthority(UserRole.ADMIN.getRole());
-//                    auth.requestMatchers("/user/myinfo/**").hasAnyAuthority(UserRole.USER.getRole());
-                    auth.requestMatchers("**").permitAll();
+                    auth.requestMatchers("/admin/**").hasAnyAuthority(UserRole.ADMIN.getRole());
+                    auth.requestMatchers("/user/myinfo/**").hasAnyAuthority(UserRole.USER.getRole());
+                    auth.requestMatchers("/", "/user/main", "/user/join/**", "/admin/join").permitAll();
                     auth.anyRequest().authenticated();      // 그 외의 요청은 인증이 된 사용자만 사용가능
                 })
                 .formLogin(login -> {
@@ -55,8 +55,10 @@ public class SecurityConfig{
                 })
                 .sessionManagement(session -> {
                     session.maximumSessions(1);
-                    session.invalidSessionUrl("/logoutPage");
-                }).csrf(csrf -> csrf.disable());    // Cross-Site Request Forgery 개발단계에서만 disable() 설정해줌
+                    // 회원탈퇴시 세션 만료시키면 logoutPage로 redirect 되는걸 막기 위해 주석처리
+                    // session.invalidSessionUrl("/logoutPage");
+                })
+                .csrf(csrf -> csrf.disable());    // Cross-Site Request Forgery 개발단계에서만 disable() 설정해줌
 
         return http.build();
     }
