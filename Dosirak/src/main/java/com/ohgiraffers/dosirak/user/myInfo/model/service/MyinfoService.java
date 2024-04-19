@@ -28,4 +28,8 @@ public class MyinfoService {
         if(!(result>0)) throw new MemberModifyException("회원 탈퇴 실패");
     }
 
+    public boolean emailDupCheck(String email) {
+        String result = myinfoMapper.emailDupCheck(email);
+        return result != null;
+    }
 }
