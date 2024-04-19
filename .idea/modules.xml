@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/.idea/Dosirak.iml" filepath="$PROJECT_DIR$/.idea/Dosirak.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dosirak.Dosirak.main~1.iml" filepath="$PROJECT_DIR$/.idea/modules/Dosirak.Dosirak.main~1.iml" />
-=======
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Dosirak.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Dosirak.main.iml" />
->>>>>>> main
     </modules>
   </component>
 </project>
