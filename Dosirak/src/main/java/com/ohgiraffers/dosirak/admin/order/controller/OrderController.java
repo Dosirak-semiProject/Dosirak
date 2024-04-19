@@ -47,11 +47,11 @@ public class OrderController {
     }
 
     @PostMapping("orderCancel")
-    public String orderViewDelete(Model model, @RequestParam String detailCode) {
+    public String orderViewDelete(Model model, @RequestParam("selected") List<String> detailCode) {
 
-//        List<OrderDTO> orderDTO = orderService.deleteOrderCancel(detailCode);
+        List<DetailDTO> orderDTO = orderService.deleteOrderCancel(detailCode);
 
-//        model.addAttribute("orderDTO", orderDTO);
+        model.addAttribute("orderDTO", orderDTO);
 
         return "redirect:/admin/order/orderView";
     }
