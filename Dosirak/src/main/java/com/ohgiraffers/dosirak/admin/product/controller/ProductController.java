@@ -59,10 +59,10 @@ public class ProductController {
     }
 
     @PostMapping("/productUpdate")
-    public String productUpdate(productDTO product) {
+    public String productUpdate(productDTO product) throws ProductUpdateException {
+
         System.out.println(product);
-//        productService.productUpdate(product);
-//        System.out.println("리스트"+product);
+        productService.productUpdate(product);
         return "/admin/product/productList";
 
 
