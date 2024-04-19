@@ -102,14 +102,14 @@
                             <tbody>
                             <tr th:each="ask : ${ askList }">
                                 <td th:text="${ ask.askCode }"></td>
-                                <td th:text="${ ask.askCategoryCode }"></td>
+                                <td th:text="${ ask.askCategoryCode.askCategoryName }"></td>
                                 <!-- 답변 페이지로 이동, 답변 완료 시 조회만 가능(수정 불가) -->
-                                <td th:text="${ ask.askTitle }"></td>
+                                <td><a th:href="|askDetail?askCode=${ ask.askCode }|" th:text="${ ask.askTitle }"></a></td>
                                 <td th:text="${ ask.askDate }"></td>
                                 <td th:text="${ ask.userId }"></td>
-                                <td>수정시간</td>
+                                <td th:text="${ ask.askDate }"></td>  <!-- 추후 수정 -->
                                 <td th:text="${ ask.askDelete }"></td>
-                                <td>미답변</td>
+                                <td>수정 중</td>
                             </tr>
                             </tbody>
                         </table>
