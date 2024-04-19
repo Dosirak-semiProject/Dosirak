@@ -80,7 +80,6 @@ window.onload = function() {
                     document.getElementById("duplCheck").value = "";
                     hideInputCode();
                 })
-                // .catch((error) => error.text().then((res) => alert(res)));
         }
     }
 }
@@ -116,10 +115,12 @@ function passwordCondition(){
 
     if(password.length < 8){
         alert("8자리 이상 입력해주세요");
+        $("#inputPwd").focus();
         $(".tr_inputPwdConfirm").hide();
         return false;
     }else if(pwNum<0 || pwEng<0 || pwSpe<0){
         alert("영문자, 숫자, 특수기호가 반드시 포함되어야 합니다");
+        $("#inputPwd").focus();
         $(".tr_inputPwdConfirm").hide();
         return false;
     }
