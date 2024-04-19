@@ -12,4 +12,6 @@ public interface MyinfoMapper {
     int withdrawalMember(MemberDTO member);
 
     MemberDTO pwdCheckForMyinfo(MemberDTO member);
+
+    String emailDupCheck(String email);
 }

@@ -9,6 +9,7 @@
     <title>관리자 회원가입</title>
     <link href="/admin/css/styles.css" rel="stylesheet" />
     <link href="/admin/css/common.css" rel="stylesheet" />
+    <link href="/admin/css/join.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/admin/js/join.js"></script>
@@ -48,29 +49,36 @@
                                     </div>
                                     <div class="form-floating mb-3 d-flex">
                                         <input class="form-control me-3" id="inputEmail" name="email" type="email" required/>
-                                        <input type="hidden" th:value="${resultNum}" id="hiddenCode" name="hiddenCode"/>
                                         <label for="inputEmail">이메일</label>
                                         <input type="button" value="중복확인" id="duplicationCheck" class="btn btn-dark"/>
+                                        <input type="hidden" id="duplCheck" value=""/>
                                         <input type="button" value="인증코드 전송" onclick="sendCode()" class="sendCodeBtn btn btn-dark"/>
+                                        <input type="hidden" th:value="${resultNum}" id="hiddenCode" name="hiddenCode"/>
                                     </div>
-                                    <div class="form-floating mb-3 d-flex">
-                                        <input class="form-control me-3" id="inputCode" name="" type="text" required/>
-                                        <label for="inputEmail">인증코드</label>
-                                        <input type="button" value="인증확인" onclick="verifyCode()" class="btn btn-dark"/>
+                                    <div class="tr_inputCode">
+                                        <div class="form-floating mb-3 d-flex">
+                                            <input type="text" class="form-control me-3" id="inputCode"/>
+                                            <label for="inputEmail">인증코드</label>
+                                            <input type="button" value="인증확인" onclick="verifyCode()" class="btn btn-dark"/>
+                                            <input type="hidden" id="verifyVerificationCode" value=""/>
+                                        </div>
                                     </div>
                                     <div class="form-floating mb-3">
                                         <input onkeyup="noSpace(this)" onchange="passwordCondition()" class="form-control" id="inputPwd" name="pwd" type="password" required/>
                                         <label for="inputPwd">비밀번호</label>
                                         <p class="mt-2" id="pwdConditionMsg">※ 비밀번호는 영문자, 숫자, 특수기호 조합 8자 이상 작성 (한글, 공백 사용불가)</p>
                                     </div>
-                                    <div class="form-floating mb-3">
-                                        <input onchange="passwordCheck()" class="form-control" id="inputPwdConfirm" name="pwdCheck" type="password" required/>
-                                        <label for="inputPwdConfirm">비밀번호 확인</label>
-                                        <p class="mt-2" id="pwdCheckMsg">※ 비밀번호를 한번 더 입력해주세요</p>
+                                    <div class="tr_inputPwdConfirm">
+                                        <div class="form-floating mb-3">
+                                            <input onchange="passwordCheck()" class="form-control" id="inputPwdConfirm" name="pwdCheck" type="password"/>
+                                            <input type="hidden" id="inputPwdCheck" value=""/>
+                                            <label for="inputPwdConfirm">비밀번호 확인</label>
+                                            <p class="mt-2" id="pwdCheckMsg">※ 비밀번호를 한번 더 입력해주세요</p>
+                                        </div>
                                     </div>
                                     <div class="mt-4 mb-0">
                                         <div class="d-grid">
-                                            <input type="submit" class="joinBtn btn btn-primary btn-block" value="회원가입" disabled/>
+                                            <input type="submit" class="joinBtn btn btn-primary btn-block" value="회원가입"/>
                                         </div>
                                     </div>
                                 </form>

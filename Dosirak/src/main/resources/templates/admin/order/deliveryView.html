@@ -23,25 +23,35 @@
                     <tbody>
                     <tr>
                         <th scope="row">주문코드</th>
-                        <td>12134</td>
+                        <td th:text="${ deliveryView.order.orderCode }"></td>
                         <th scope="row">운송장번호</th>
-                        <td>4689789</td>
+                        <td th:text="${ deliveryView.deliveryCode}"></td>
                     </tr>
                     <tr>
                         <th scope="row">배송상태</th>
-                        <td>배송중</td>
+                        <td th:text="${ deliveryView.deliveryStatus }"></td>
                         <th scope="row">회원이름(회원아이디)</th>
-                        <td>김철수(abcd1234)</td>
+                        <td th:text="|${ deliveryView.member.name}(${ deliveryView.member.id})|"></td>
                     </tr>
                     <tr>
                         <th scope="row">수령인</th>
-                        <td>김영희</td>
+                        <td>
+                            <span th:if="${ deliveryView.order.orderRecipient }" th:text="${ deliveryView.order.orderRecipient }"></span>
+                            <span th:unless="${ deliveryView.order.orderRecipient }" th:text="${ deliveryView.member.name }"></span>
+                        </td>
                         <th scope="row">연락처</th>
-                        <td>01023456789</td>
+                        <td>
+                            <span th:if="${ deliveryView.order.orderConcat }" th:text="${ deliveryView.order.orderConcat }"></span>
+                            <span th:unless="${ deliveryView.order.orderConcat }" th:text="${ deliveryView.member.name }"></span>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">배송지</th>
-                        <td colspan="3"></td>
+                        <td colspan="3">
+                            <span th:if="${ deliveryView.order.orderAddress }" th:text="${ deliveryView.order.orderAddress }"></span>
+                            <span th:unless="${ deliveryView.order.orderAddress }" th:text="|${ deliveryView.member.address1 }  /  ${ deliveryView.member.address2 }  /  ${ deliveryView.member.address3 }|">
+                            </span>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

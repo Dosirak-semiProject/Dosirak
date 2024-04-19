@@ -21,10 +21,10 @@
                     <tbody>
                     <tr>
                         <th scope="row">주문코드</th>
-                        <td th:text="${ orderView.orderCode }"></td>
+                        <td colspan="2" th:text="${ orderView.orderCode }"></td>
 
                         <th scope="row">주문/환불상태</th>
-                        <td th:text="${ orderView.refund?.refundStatus }"></td>
+                        <td colspan="2" th:text="${ orderView.orderStatus + ' / ' + orderView.refund.refundStatus }"></td>
                     </tr>
                     <tr>
                         <th scope="row">회원이름(아이디)</th>
@@ -33,19 +33,19 @@
                     </tr>
                     <tr>
                         <th scope="row">수령인</th>
-                        <td>
+                        <td colspan="2">
                             <span th:if="${ orderView.orderRecipient }" th:text="${ orderView.orderRecipient }"></span>
                             <span th:unless="${ orderView.orderRecipient }" th:text="${orderView.member.name}"></span>
                         </td>
                         <th scope="row">연락처</th>
-                        <td>
+                        <td colspan="2">
                             <span th:if="${ orderView.orderConcat }" th:text="${ orderView.orderConcat }"></span>
                             <span th:unless="${ orderView.orderConcat }" th:text="${ orderView.member.phone }"></span>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">배송지</th>
-                        <td colspan="3">
+                        <td colspan="5">
                             <span th:if="${ orderView.orderRecipient }" th:text="${ orderView.orderRecipient }"></span>
                             <span th:unless="${ orderView.orderRecipient }"
                                   th:text="${orderView.member.address1 + ' / ' + orderView.member.address2 + ' / ' + orderView.member.address3 }"></span>
@@ -53,24 +53,23 @@
                     </tr>
                     <tr>
                         <th scope="row">결제금액</th>
-                        <td th:text="${ '￦' + orderView.pay.payPrice }"></td>
+                        <td colspan="2" th:text="${ '￦' + orderView.pay.payPrice }"></td>
                         <th scope="row">결제날짜</th>
-                        <td th:text="${ orderView.pay.payDate }"></td>
-                        <td></td>
+                        <td colspan="2" th:text="${ orderView.pay.payDate }"></td>
                     </tr>
                     <tr>
                         <th scope="row">결제방법</th>
-                        <td colspan="3" th:text="${ orderView.pay.payMethod }"></td>
-                        <td colspan="3"></td>
+                        <td colspan="5" th:text="${ orderView.pay.payMethod }"></td>
                     </tr>
                     <tr>
-                        <th scope="row">주문상세</th>
-                        <td colspan="3" th:each="detail : ${ orderView.detail }">
+                        <th colspan="5">주문상세</th>
+                    </tr>
+                    <tr th:each="detail : ${ orderView.detail }" >
+                        <td colspan="5">
                             <label>
                                 <input type="checkbox">
-                                <span th:text="${ detail.detailCode + ' / ' + detail.detailItemCode + ' / ' + detail.detailItemCount + '개'  + ' / ' + (detail.detailItemCount)}"></span>
+                                <span th:text="${ detail.detailCode + ' / ' + detail.product.productName + ' / ' + detail.detailItemCount + '개'  + ' / ' + (detail.detailItemCount * detail.product.productPrice) + ' 원'}"></span>
                             </label>
-                            <br/>
                         </td>
                     </tr>
                     </tbody>

@@ -66,10 +66,13 @@
                                 </td>
                                 <td th:text="${ orderList.orderStatus }"></td>
                                 <td th:text="|${ orderList.member.name }(${ orderList.member.id })|"></td>
-                                <td th:text="${ orderList.orderRecipient }"></td>
+                                <td>
+                                    <span th:if="${ orderList.orderRecipient }" th:text="${ orderList.orderRecipient }"></span>
+                                    <span th:unless="${ orderList.orderRecipient }" th:text="${orderList.member.name}"></span>
+                                </td>
                                 <td th:text="${ '￦ ' + orderList.pay.payPrice }"></td>
                                 <td th:text="${ orderList.pay.payDate }"></td>
-                                <td th:text="${ orderList.pay.payStatus ? '결제성공' : '결제실패'}"></td>
+                                <td th:text="${ orderList.pay.payStatus }"></td>
                                 <td th:text="${ orderList.pay.payMethod }"></td>
                             </tr>
                             </tbody>
