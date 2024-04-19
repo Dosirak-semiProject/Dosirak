@@ -2,17 +2,10 @@
 const $menuRows = document.querySelector('#menuRows')   // 메뉴가 담긴 테이블
 const $criteria = document.querySelector('#criteria')   // 분류
 const $value = document.querySelector('#value')         // 값
-
-//select, name, value 을 할당하여 option을 추가하는 메소드
-function insertOption(select, name, value) {
-    const option = document.createElement('option')
-    option.innerText = name
-    option.value = value
-    select.append(option);
-}
+import { insertOption } from '/admin/js/module/functions.mjs';
 
 function createTableRow(menu) { //innerHtml 을 통해 추가할 tableRow 태그
-    return `<tr>
+    return `<tr class="menuTable" id="${menu.menuCode}">
         <td>${menu.menuCode}</td>
         <td>${menu.menuName}</td>
         <td>${menu.menuCategory}</td>
@@ -44,12 +37,17 @@ async function resultRows() {
         body: json
     });
     const responseJson = await response.json();
-    console.log(responseJson)
     responseJson.forEach(menu => {
         const menuTr = createTableRow(menu)
-        console.log(menuTr)
         const nowHtml = $menuRows.innerHTML
         $menuRows.innerHTML = nowHtml + menuTr
+    })
+    const $menuTable = document.querySelectorAll('.menuTable')
+
+    $menuTable.forEach((row) => {
+        row.addEventListener('click', () => {
+            location.href = "/admin/suit-box/menu/modify?menuCode=" + row.id;
+        })
     })
 }
 
@@ -59,7 +57,7 @@ $criteria.addEventListener('change', () => {
     const option = $criteria.value;
     switch (option) {
         case ('all'):
-            insertOption($value, '=== 전체 ===', 'all'); 
+            insertOption($value, '=== 전체 ===', 'all');
             $menuRows.innerHTML = ''
             resultRows()
             break;
@@ -74,11 +72,11 @@ $criteria.addEventListener('change', () => {
             insertOption($value, '판매중', 'Y');
             insertOption($value, '일시 중단', 'S');
             insertOption($value, '판매 중단', 'N'); break;
-
     }
 })
 
 $value.addEventListener('change', () => {
     $menuRows.innerHTML = ''
+    console.log(`${$menuRows.innerHTML}`)
     resultRows()
 })
