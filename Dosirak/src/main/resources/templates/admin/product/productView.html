@@ -15,7 +15,7 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">상품 상세보기</h1>
-                <form action="#" th:action="@{/saveProduct}" method="post">
+                <form action="#" th:action="@{/saveProduct}" method="post" id="form">
                     <table class="datatable-table mt-4">
                         <colgroup>
                             <col style="width:200px" />
@@ -25,12 +25,12 @@
                         <!-- 보기, 수정 -->
                         <tr>
                             <th scope="">상품코드</th>
-                            <td colspan="3"  th:value="${product.productCode}">1</td>
+                            <td colspan="3"  th:text="${product.productCode}">1</td>
                         </tr>
                         <!-- // 보기, 수정 -->
                         <tr >
                             <th scope="row">상품이름</th>
-                            <td colspan="3"><input type="text" th:value="${product.productName}" /></td>
+                            <td colspan="3"><input th:value="${product.productName}"/></td>
                         </tr>
                         <tr>
                             <th scope="row">판매상태</th>
@@ -51,24 +51,24 @@
                             <td colspan="3" >
                                 <select class="datatable-selector1" >
                                     <option value="NONE">상품분류 선택</option>
-                                    <option value="1" th:selected="${product.productCategoryCode == '4' || product.productCategoryCode == '5' || product.productCategoryCode == '6'|| product.productCategoryCode == '7'}"
+                                    <option value="1" th:selected="${product.productCategoryCode} == '4' or ${product.productCategoryCode} == '5' or ${product.productCategoryCode} == '6' or ${product.productCategoryCode} == '7'"
                                     >건강도시락</option>
                                     <option value="2" th:selected="${product.productCategoryCode == '2'}">정성도시락</option>
-                                    <option value="3" th:selected="${product.productCategoryCode == '8'|| product.productCategoryCode == '9'}">간편식</option>
+                                    <option value="3" th:selected="${product.productCategoryCode} == '8' or ${product.productCategoryCode} == '9'">간편식</option>
                                 </select>
 
                                 <select class="datatable-selector2" >
                                     <option value="">소분류 선택</option>
-                                    <option value="1" th:selected="${product.productCategoryCode == '4'}">암환자회복식단</option>
-                                    <option value="2" th:selected="${product.productCategoryCode == '5'}">신장관리식단</option>
-                                    <option value="3" th:selected="${product.productCategoryCode == '6'}">혈압관리식단</option>
-                                    <option value="4" th:selected="${product.productCategoryCode == '7'}">혈당관리식단</option>
+                                    <option value="4" th:selected="${product.productCategoryCode} == '4'">암환자회복식단</option>
+                                    <option value="5" th:selected="${product.productCategoryCode} == '5'">신장관리식단</option>
+                                    <option value="6" th:selected="${product.productCategoryCode} == '6'">혈압관리식단</option>
+                                    <option value="7" th:selected="${product.productCategoryCode} == '7'">혈당관리식단</option>
                                 </select>
 
                                 <select class="datatable-selector3" >
                                     <option value="">소분류 선택</option>
-                                    <option value="5" th:selected="${product.productCategoryCode == '8'}">샐러드</option>
-                                    <option value="6" th:selected="${product.productCategoryCode == '9'}">닭가슴살</option>
+                                    <option value="8" th:selected="${product.productCategoryCode} == '8'">샐러드</option>
+                                    <option value="9" th:selected="${product.productCategoryCode} == '9'">닭가슴살</option>
                                 </select>
 
                                 <script th:inline="javascript">
@@ -80,7 +80,6 @@
 
                                         selector1.addEventListener('change', function () {
                                             const selectedValue = selector1.value;
-
                                             if (selectedValue === '1') {
                                                 selector2.style.display = 'block';
                                                 selector3.style.display = 'none';
@@ -91,9 +90,8 @@
                                                 selector2.style.display = 'none';
                                                 selector3.style.display = 'none';
                                             }
+
                                         });
-                                        selector2.style.display = 'none';
-                                        selector3.style.display = 'none';
                                     });
                                     /*]]>*/
                                 </script>
@@ -113,6 +111,28 @@
                     </table>
                     <div class="editBtn" style="text-align: right;">
                         <button type="submit" class="btn btn-primary">수정</button>
+                        <script>
+                            document.getElementById("form").addEventListener("btn btn-primary", function(event) {
+                                event.preventDefault(); // Prevent the default form submission
+
+                                // Collect form data
+                                var formData = new FormData(this);
+
+                                // Send form data to the server using fetch API
+                                fetch('/updateProduct', {
+                                    method: 'POST',
+                                    body: formData
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        document.getElementById("message").innerText = data.message; // Display server response message
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                    });
+                            });
+                        </script>
+
                         <button type="button" class="btn btn-secondary">삭제</button>
                     </div>
                 </form>
