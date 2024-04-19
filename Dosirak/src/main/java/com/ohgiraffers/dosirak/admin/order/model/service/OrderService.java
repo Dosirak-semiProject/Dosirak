@@ -164,4 +164,8 @@ public class OrderService {
     public DeliveryDTO allDeliveryView(String orderCode) {
         return orderMapper.allDeliveryView(orderCode);
     }
+
+    public List<DetailDTO> deleteOrderCancel(List<String> detailCode) {
+        return orderMapper.deleteOrderCancel(detailCode);
+    }
 }
