@@ -35,9 +35,9 @@ public class SecurityConfig{
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
         http.authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/admin/**").hasAnyAuthority(UserRole.ADMIN.getRole());
-                    auth.requestMatchers("/user/myinfo/**").hasAnyAuthority(UserRole.USER.getRole());
-                    auth.requestMatchers("/", "/user/main", "/user/join/**", "/admin/join").permitAll();
+//                    auth.requestMatchers("/admin/**").hasAnyAuthority(UserRole.ADMIN.getRole());
+//                    auth.requestMatchers("/user/myinfo/**").hasAnyAuthority(UserRole.USER.getRole());
+                    auth.requestMatchers("**").permitAll();
                     auth.anyRequest().authenticated();      // 그 외의 요청은 인증이 된 사용자만 사용가능
                 })
                 .formLogin(login -> {
