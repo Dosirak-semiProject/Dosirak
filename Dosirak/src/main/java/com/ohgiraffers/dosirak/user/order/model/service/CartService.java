@@ -1,6 +1,6 @@
 package com.ohgiraffers.dosirak.user.order.model.service;
 
-import com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO;
+import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
 import com.ohgiraffers.dosirak.user.order.model.dao.CartMapper;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,11 +17,15 @@ public class CartService {
         this.cartMapper = cartMapper;
     }
 
-    public List<CartDTO> cartListView() {
-        return cartMapper.cartListView();
+    public List<CartDTO> userCartList() {
+        return cartMapper.userCartList();
     }
 
-    public PayDTO payListView() {
-        return cartMapper.payListView();
+    public List<OrderDTO> userOrderDone() {
+        return cartMapper.userOrderDone();
+    }
+
+    public List<CartDTO> userPayment() {
+        return cartMapper.userPayment();
     }
 }

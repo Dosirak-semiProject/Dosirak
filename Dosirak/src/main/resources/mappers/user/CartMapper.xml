@@ -5,6 +5,16 @@
 
 <mapper namespace="com.ohgiraffers.dosirak.user.order.model.dao.CartMapper">
 
+    <!-- MemberDTO Mapping -->
+    <resultMap id="MemberResultMap" type="com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO">
+        <id property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="phone" column="PHONE"/>
+        <result property="address1" column="ADDRESS1"/>
+        <result property="address2" column="ADDRESS2"/>
+        <result property="address3" column="ADDRESS3"/>
+    </resultMap>
+
     <!-- PayDTO Mapping -->
     <resultMap id="PayResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO">
         <result property="payPrice" column="pay_price"/>
@@ -29,10 +39,23 @@
         <result property="suitboxCode" column="suitBoxCode"/>
         <association property="payDTO" resultMap="PayResultMap"/>
         <association property="productDTO" resultMap="ProductResultMap"/>
+        <association property="memberDTO" resultMap="MemberResultMap"/>
     </resultMap>
 
-    <!-- CartListView Query -->
-    <select id="cartListView" resultMap="CartResultMap">
+    <!-- OrderDTO Mapping -->
+    <resultMap id="orderResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
+        <id property="orderCode" column="order_code"/>
+        <association property="pay" resultMap="payResultMap"/>
+    </resultMap>
+
+    <!-- PayDTO Mapping -->
+    <resultMap id="payResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO">
+        <result property="payDate" column="pay_date"/>
+        <result property="orderCode" column="order_code"/>
+    </resultMap>
+
+    <!-- UserCartListView Query -->
+    <select id="userCartList" resultMap="CartResultMap">
         SELECT
             p.product_name,
             p.product_price,
@@ -43,8 +66,31 @@
         JOIN user u ON c.id = u.id
     </select>
 
-    <select id="payListView" resultMap="PayResultMap">
-        SELECT *
-        FROM pay
+    <!-- UserOrderDone Query -->
+    <select id="userOrderDone" resultMap="orderResultMap">
+        SELECT
+            o.order_code,
+            p.pay_date
+        FROM
+            `order` o
+        JOIN pay p ON o.order_code = p.order_code
+    </select>
+
+    <!-- UserPayment Query-->
+    <select id="userPayment" resultMap="CartResultMap">
+        SELECT
+            p.product_name,
+            p.product_price,
+            c.cartitem_count,
+            u.name,
+            u.phone,
+            u.address1,
+            u.address2,
+            u.address3
+        FROM
+            cart c
+        JOIN user u ON c.id = u.id
+        JOIN `order` o ON u.id = o.id
+        JOIN product p ON c.product_code = p.product_code
     </select>
 </mapper>
