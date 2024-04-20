@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ohgiraffers.dosirak.user.order.model.dao.CartMapper">
+
+    <!-- PayDTO Mapping -->
+    <resultMap id="PayResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO">
+        <result property="payPrice" column="pay_price"/>
+        <result property="payDate" column="pay_date"/>
+        <result property="payStatus" column="pay_status"/>
+        <result property="payMethod" column="pay_method"/>
+        <result property="orderCode" column="order_code"/>
+    </resultMap>
+
+    <!-- ProductDTO Mapping -->
+    <resultMap id="ProductResultMap" type="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
+        <id property="productCode" column="product_code"/>
+        <result property="productName" column="product_name"/>
+        <result property="productPrice" column="product_price"/>
+    </resultMap>
+
+    <!-- CartDTO Mapping -->
+    <resultMap id="CartResultMap" type="com.ohgiraffers.dosirak.user.order.model.dto.CartDTO">
+        <result property="cartitemCount" column="cartitem_count"/>
+        <result property="id" column="id"/>
+        <result property="productCode" column="product_code"/>
+        <result property="suitboxCode" column="suitBoxCode"/>
+        <association property="payDTO" resultMap="PayResultMap"/>
+        <association property="productDTO" resultMap="ProductResultMap"/>
+    </resultMap>
+
+    <!-- CartListView Query -->
+    <select id="cartListView" resultMap="CartResultMap">
+        SELECT
+            p.product_name,
+            p.product_price,
+            c.cartitem_count
+        FROM
+            cart c
+        JOIN product p ON c.product_code = p.product_code
+        JOIN user u ON c.id = u.id
+    </select>
+
+    <select id="payListView" resultMap="PayResultMap">
+        SELECT *
+        FROM pay
+    </select>
+</mapper>

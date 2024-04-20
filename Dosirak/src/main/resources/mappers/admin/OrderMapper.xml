@@ -28,9 +28,10 @@
     <resultMap id="detailResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.DetailDTO">
         <result property="orderCode" column="order_code"/>
         <result property="detailCode" column="detail_code"/>
+        <result property="detailStatus" column="detail_status"/>
         <result property="detailItemCount" column="detailitem_count"/>
-        <result property="detailItemCode" column="detailitem_code"/>
-        <result property="suitBoxCode" column="suitbox_code"/>
+        <result property="detailItemProductCode" column="detailitem_product_code"/>
+        <result property="detailItemSuitboxCode" column="detailitem_suitbox_code"/>
         <association property="product" resultMap="productResultMap"/>
     </resultMap>
 
@@ -124,6 +125,7 @@
     <select id="allOrderView" resultMap="orderResultMap">
         SELECT
             dt.detail_code,
+            dt.detail_status,
             pd.product_name,
             pd.product_price,
             dt.detailitem_count,
@@ -151,6 +153,18 @@
         WHERE
             dt.order_code = #{ orderCode }
     </select>
+
+    <!-- 에러 -->
+<!--    <select id="searchDetail" resultMap="detailResultMap">-->
+<!--        SELECT-->
+<!--            d.detail_status,-->
+<!--            d.detailitem_count,-->
+<!--            p.product_price-->
+<!--        FROM-->
+<!--            detail d-->
+<!--        JOIN `order` o ON d.order_code = o.order_code-->
+<!--        JOIN product p ON d.detailitem_product_code = p.product_code-->
+<!--    </select>-->
 
     <!-- RefundView Query -->
     <select id="allRefundView" resultMap="refundResultMap">
@@ -197,13 +211,17 @@
             d.order_code = #{ orderCode }
     </select>
 
-    <update id="deleteOrderCancel" >
-        SELECT
-            d.detail_code
-        FROM
+    <!-- UpdateOrderStatus Query -->
+    <update id="updateOrderStatus" parameterType="list">
+        UPDATE
             `order` o
         JOIN detail d ON o.order_code = d.order_code
+        SET
+            d.detail_status = 'X'
         WHERE
-            d.detail_code = #{ detailCode }
+            d.detail_code IN
+        <foreach collection="detailCode" item="code" open="(" separator="," close=")">
+            #{code}
+        </foreach>
     </update>
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -40,20 +41,22 @@ public class OrderController {
     public String orderView(Model model, @RequestParam String orderCode) {
 
         OrderDTO orderView = orderService.allOrderView(orderCode);
+//        DetailDTO detailDTO = orderService.searchDetail(orderCode);
 
         model.addAttribute("orderView", orderView);
+//        model.addAttribute("detailDTO", detailDTO);
 
         return "admin/order/orderView";
     }
 
     @PostMapping("orderCancel")
-    public String orderViewDelete(Model model, @RequestParam("selected") List<String> detailCode) {
+    public String orderViewDelete(Model model,
+                                  @RequestParam("selected") List<String> detailCode,
+                                  @RequestParam String orderCode) {
 
-        List<DetailDTO> orderDTO = orderService.deleteOrderCancel(detailCode);
+        orderService.updateOrderStatus(detailCode);
 
-        model.addAttribute("orderDTO", orderDTO);
-
-        return "redirect:/admin/order/orderView";
+        return "redirect:/admin/orderView?orderCode=" + orderCode;
     }
 
     @GetMapping("refundList")

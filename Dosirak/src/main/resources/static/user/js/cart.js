@@ -25,12 +25,13 @@ window.addEventListener('scroll', () => {
         element.style.position = 'absolute';
         element.style.top = '0';
         element.style.right = '0';
-    };
+    }
 });
 
 // 수량 조절 버튼
 const decreaseButton = document.querySelectorAll('.decrease');
 const increaseButton = document.querySelectorAll('.increase');
+const quantity = document.querySelector('#cartitemCount').value
 
 Array.from(decreaseButton).forEach(function(button) {
     button.addEventListener('click', function(){
@@ -54,6 +55,7 @@ Array.from(increaseButton).forEach(function(button) {
     });
 });
 
+
 // 이미지 드래그 방지
 document.querySelectorAll('.di_btn img').forEach(function(img) {
     img.addEventListener('dragstart', function() {
@@ -69,5 +71,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cartItems.length === 0) {
         cartEmptyMessage.parentNode.classList.add('hide-empty-row');
         cartEmptyMessage.classList.add('show_empty_message');
-    };
+    }
 });
