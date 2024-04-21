@@ -14,6 +14,7 @@
             <div class="container-fluid px-4">
                 <h1 class="mt-4">주문 상세보기</h1>
                 <form action="/admin/orderCancel" method="post" onsubmit="cancel(event)">
+                    <input type="hidden" name="orderCode" th:value="${ orderView.orderCode }">
                 <table class="datatable-table mt-4">
                     <colgroup>
                         <col style="width:200px"/>
@@ -54,7 +55,10 @@
                     </tr>
                     <tr>
                         <th scope="row">결제금액</th>
-                        <td colspan="2" th:text="${ '￦' + orderView.pay.payPrice }"></td>
+<!--                        <td colspan="2" th:text="${ '￦' + ((orderView.pay.payPrice) - (detailDTO.detailStatus == 'X' ? detailDTO.detailItemCount * detailDTO.product.productPrice : 0)) }"></td>-->
+                        <td colspan="2">
+                            <span th:text="${ '￦' + orderView.pay.payPrice }"></span>
+                        </td>
                         <th scope="row">결제날짜</th>
                         <td colspan="2" th:text="${ orderView.pay.payDate }"></td>
                     </tr>
@@ -68,8 +72,8 @@
                     <tr th:each="detail : ${orderView.detail}" th:id="${detail.detailCode}">
                         <td colspan="5">
                             <label>
-                                <input type="checkbox" th:attr="name='selected'" th:value="${detail.detailCode}">
-                                <span th:text="${detail.detailCode + ' / ' + detail.product.productName + ' / ' + detail.detailItemCount + '개' + ' / ' + (detail.detailItemCount * detail.product.productPrice) + ' 원'}"></span>
+                                <input type="checkbox" th:attr="name='selected'" th:value="${detail.detailCode}" th:if="${ detail.detailStatus == 'O'}">
+                                <span th:text="${detail.detailCode + ' / ' + detail.product.productName + ' / ' + detail.detailItemCount + '개' + ' / ' + (detail.detailItemCount * detail.product.productPrice) + ' 원'}"></span><span th:if="${detail.detailStatus == 'X'}"> (주문취소)</span>
                             </label>
                         </td>
                     </tr>

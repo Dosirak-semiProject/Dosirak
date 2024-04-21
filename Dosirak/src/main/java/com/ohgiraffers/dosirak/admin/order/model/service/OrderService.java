@@ -2,11 +2,16 @@ package com.ohgiraffers.dosirak.admin.order.model.service;
 
 import com.ohgiraffers.dosirak.admin.order.model.dao.OrderMapper;
 import com.ohgiraffers.dosirak.admin.order.model.dto.*;
+import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
+@Transactional
 public class OrderService {
 
     private final OrderMapper orderMapper;
@@ -26,7 +31,7 @@ public class OrderService {
 
             if (order.getPay().getPayStatus() != null) {
                 switch (order.getPay().getPayStatus() + "") {
-                    case "C":
+                    case "O":
                         order.getPay().setPayStatus("결제완료");
                         break;
                     case "F":
@@ -165,7 +170,12 @@ public class OrderService {
         return orderMapper.allDeliveryView(orderCode);
     }
 
-    public List<DetailDTO> deleteOrderCancel(List<String> detailCode) {
-        return orderMapper.deleteOrderCancel(detailCode);
+    public void updateOrderStatus(List<String> detailCode) {
+        orderMapper.updateOrderStatus(detailCode);
     }
+
+    public DetailDTO searchDetail(String orderCode) {
+        return orderMapper.searchDetail(orderCode);
+    }
+
 }

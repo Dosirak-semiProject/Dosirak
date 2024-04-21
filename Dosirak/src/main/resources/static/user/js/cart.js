@@ -15,44 +15,58 @@ checkAll.addEventListener('click', () => {
 window.addEventListener('scroll', () => {
     const element = document.querySelector('.sticky');
     const offset = window.pageYOffset;
-    console.log(offset);
 
     if(offset >= 200) {
         element.style.position = 'fixed';
         element.style.top = '35px';
-        element.style.right = '341px';
+        element.style.right = '110px';
     } else {
         element.style.position = 'absolute';
         element.style.top = '0';
         element.style.right = '0';
-    };
+    }
 });
 
 // 수량 조절 버튼
-const decreaseButton = document.querySelectorAll('.decrease');
-const increaseButton = document.querySelectorAll('.increase');
+const buttons = document.querySelectorAll('.decrease, .increase')
+Array.from(buttons).forEach(function(button) {
+    button.addEventListener('click', ButtonClick);
+});
 
-Array.from(decreaseButton).forEach(function(button) {
-    button.addEventListener('click', function(){
-        const input = this.parentElement.querySelector('.quantity');
-        const value = parseInt(input.value, 10);
+function ButtonClick(e) {
+    const button = e.currentTarget;
+    const input = button.parentElement.querySelector('.quantity');
+    const value = parseInt(input.value, 10);
+    let newValue = value;
 
-        if(value > 1) {
-            input.value = value - 1;
-            console.log(value);
+    if (button.classList.contains('decrease')) {
+        if (value > 1) {
+            newValue = value -1;
+            input.value = newValue;
         }
-    });
-});
+    } else if (button.classList.contains('increase')) {
+        newValue = value + 1;
+        input.value = newValue;
+    }
+    console.log(input.value);
 
-Array.from(increaseButton).forEach(function(button) {
-    button.addEventListener('click', function(){
-        const input = this.parentElement.querySelector('.quantity');
-        const value = parseInt(input.value, 10);
+    const productCode = button.closest('tr').getAttribute('data-product-code');
 
-        input.value = value + 1;
-        console.log(value);
-    });
-});
+    axios.post('/user/cart/update-quantity', {
+        productCode: productCode,
+        cartitemCount: newValue
+    }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(res => {
+            console.log('성공:', res.status.message);
+        })
+        .catch(err => {
+            console.log('오류:', err.response.message);
+        })
+}
 
 // 이미지 드래그 방지
 document.querySelectorAll('.di_btn img').forEach(function(img) {
@@ -69,5 +83,5 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cartItems.length === 0) {
         cartEmptyMessage.parentNode.classList.add('hide-empty-row');
         cartEmptyMessage.classList.add('show_empty_message');
-    };
+    }
 });
