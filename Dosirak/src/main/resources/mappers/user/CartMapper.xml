@@ -57,6 +57,7 @@
     <!-- UserCartListView Query -->
     <select id="userCartList" resultMap="CartResultMap">
         SELECT
+            p.product_code,
             p.product_name,
             p.product_price,
             c.cartitem_count
@@ -93,4 +94,14 @@
         JOIN `order` o ON u.id = o.id
         JOIN product p ON c.product_code = p.product_code
     </select>
+
+    <!-- CartUpdateQuantity Query -->
+    <update id="cartUpdateQuantity" parameterType="com.ohgiraffers.dosirak.user.order.model.dto.CartDTO">
+        UPDATE
+            cart
+        SET
+            cartitem_count = #{updatedQuantity}
+        WHERE
+            product_code = #{productCode}
+    </update>
 </mapper>

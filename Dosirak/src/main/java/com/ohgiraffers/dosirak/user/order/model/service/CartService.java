@@ -1,10 +1,12 @@
 package com.ohgiraffers.dosirak.user.order.model.service;
 
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
+import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dao.CartMapper;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 @org.springframework.stereotype.Service
@@ -28,4 +30,17 @@ public class CartService {
     public List<CartDTO> userPayment() {
         return cartMapper.userPayment();
     }
+
+    public void cartUpdateQuantity(CartDTO cartDTO) {
+
+        if (cartDTO != null) {
+            int productCode = cartDTO.getProductCode();
+            int updatedQuantity = cartDTO.getCartitemCount();
+
+            cartMapper.cartUpdateQuantity(productCode, updatedQuantity);
+        } else {
+            System.out.println("productDTO가 null입니다. 요청을 확인하세요.");
+        }
+    }
+
 }

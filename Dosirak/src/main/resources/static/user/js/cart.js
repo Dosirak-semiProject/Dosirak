@@ -20,7 +20,7 @@ window.addEventListener('scroll', () => {
     if(offset >= 200) {
         element.style.position = 'fixed';
         element.style.top = '35px';
-        element.style.right = '341px';
+        element.style.right = '110px';
     } else {
         element.style.position = 'absolute';
         element.style.top = '0';
@@ -29,32 +29,47 @@ window.addEventListener('scroll', () => {
 });
 
 // 수량 조절 버튼
-const decreaseButton = document.querySelectorAll('.decrease');
-const increaseButton = document.querySelectorAll('.increase');
-const quantity = document.querySelector('#cartitemCount').value
+const buttons = document.querySelectorAll('.decrease, .increase')
+Array.from(buttons).forEach(function(button) {
+    button.addEventListener('click', ButtonClick);
+});
 
-Array.from(decreaseButton).forEach(function(button) {
-    button.addEventListener('click', function(){
-        const input = this.parentElement.querySelector('.quantity');
-        const value = parseInt(input.value, 10);
+function ButtonClick(e) {
+    const button = e.currentTarget;
+    const input = button.parentElement.querySelector('.quantity');
+    const value = parseInt(input.value, 10);
+    let newValue = value;
 
-        if(value > 1) {
-            input.value = value - 1;
-            console.log(value);
+    if (button.classList.contains('decrease')) {
+        if (value > 1) {
+            newValue = value -1;
+            input.value = newValue;
         }
-    });
-});
+    } else if (button.classList.contains('increase')) {
+        newValue = value + 1;
+        input.value = newValue;
+    }
+    console.log(input.value);
 
-Array.from(increaseButton).forEach(function(button) {
-    button.addEventListener('click', function(){
-        const input = this.parentElement.querySelector('.quantity');
-        const value = parseInt(input.value, 10);
+    const productCode = button.closest('tr').getAttribute('data-product-code');
 
-        input.value = value + 1;
-        console.log(value);
-    });
-});
-
+    axios.post('/user/cart/update-quantity', {
+        productCode: productCode,
+        cartitemCount: newValue
+    }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(res => {
+            console.log('응답 코드:', res.status);
+            console.log('응답 헤더:', res.headers);
+            console.log('응답 본문:', res.data);
+        })
+        .catch(err => {
+            console.log('수량 업데이트 오류:', err.response);
+        })
+}
 
 // 이미지 드래그 방지
 document.querySelectorAll('.di_btn img').forEach(function(img) {

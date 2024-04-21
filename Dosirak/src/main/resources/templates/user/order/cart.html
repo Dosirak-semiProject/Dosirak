@@ -39,7 +39,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="hidden_block" th:if="cart != null" th:each="cart : ${ cartDTO }">
+                    <tr class="hidden_block" th:data-product-code="${ cart.productCode }" th:if="cart != null" th:each="cart : ${ cartDTO }">
                         <td>
                             <label class="bl_checkBx hp_w100">
                                 <input type="checkbox" class="bl_checkBx__input checkOne">
@@ -52,7 +52,8 @@
                                 <p class="hp_ellipsis hp_ellipsis3" th:text="${ cart.productDTO.productName }"></p>
                             </a>
                         </td>
-                        <td th:text="${ cart.productDTO.productPrice * cart.cartitemCount }"></td>
+<!--                        <td class="priceNode" th:data-price="${ cart.productDTO.productPrice }" th:text="${ cart.productDTO.productPrice }"></td>-->
+                        <td class="price" th:text="${ cart.productDTO.productPrice * cart.cartitemCount }"></td>
                         <td>
                             <div class="di_btn">
                                 <div id="decrease" class="decrease"><img src="/user/img/icon/minus.png" alt="minus-btn"></div>
@@ -74,7 +75,7 @@
                 <ul class="bl_orderCancel">
                     <li class="ly_spaceBetween ly_fitemC">
                         <p class="bl_orderCancel__ttl">총 상품금액</p>
-                        <p class="bl_orderCancel__price">18,300원</p>
+                        <p class="bl_orderCancel__price">0원</p>
                     </li>
                     <li class="ly_spaceBetween ly_fitemC">
                         <p class="bl_orderCancel__ttl">배송비</p>
@@ -82,7 +83,7 @@
                     </li>
                     <li class="ly_spaceBetween ly_fitemC bl_orderCancel__total hp_bordDashTDE2 hp_pt30 hp_mt30">
                         <p class="bl_orderCancel__ttl hp_fs18 hp_fw700 hp_0Color">주문 예상금액</p>
-                        <p class="bl_orderCancel__price hp_fs18 hp_fw700 hp_pointColor">18,300원</p>
+                        <p class="bl_orderCancel__price hp_fs18 hp_fw700 hp_pointColor">0원</p>
                     </li>
                 </ul>
                 <a class="el_btnM hp_br5 el_btnPointBack hp_w100 hp_mt30" href="">구매하기</a>

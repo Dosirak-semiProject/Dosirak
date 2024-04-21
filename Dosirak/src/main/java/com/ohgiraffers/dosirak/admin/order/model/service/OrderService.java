@@ -31,7 +31,7 @@ public class OrderService {
 
             if (order.getPay().getPayStatus() != null) {
                 switch (order.getPay().getPayStatus() + "") {
-                    case "C":
+                    case "O":
                         order.getPay().setPayStatus("결제완료");
                         break;
                     case "F":
