@@ -2,7 +2,6 @@ package com.ohgiraffers.dosirak.admin.product.service;
 
 import com.ohgiraffers.dosirak.admin.product.dao.ProductMapper;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
-import com.ohgiraffers.dosirak.common.member.MemberModifyException;
 import com.ohgiraffers.dosirak.common.product.ProductUpdateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +19,9 @@ public class ProductService {
     }
 
 
-    public List<productDTO> insertProduction(productDTO product) {
+    public void insertProduction(productDTO product) {
 
-        return productMapper.insertProduction(product);
+        productMapper.insertProduction(product);
     }
 
 
@@ -41,6 +40,10 @@ public class ProductService {
         if(!(result > 0)) throw new ProductUpdateException("수정에 실패하였습니다.");
 
 
+    }
+
+    public void deleteProduct(productDTO product) {
+        productMapper.deleteProduct(product);
     }
 }
 

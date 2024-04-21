@@ -174,7 +174,6 @@
             r.order_code = #{ orderCode }
     </select>
 
-    <!-- DeliveryView Query -->
     <select id="allDeliveryView" resultMap="deliveryResultMap">
         SELECT
             o.order_code,
@@ -196,14 +195,4 @@
         WHERE
             d.order_code = #{ orderCode }
     </select>
-
-    <update id="deleteOrderCancel" >
-        SELECT
-            d.detail_code
-        FROM
-            `order` o
-        JOIN detail d ON o.order_code = d.order_code
-        WHERE
-            d.detail_code = #{ detailCode }
-    </update>
 </mapper>

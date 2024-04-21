@@ -18,6 +18,4 @@ public interface OrderMapper {
     RefundDTO allRefundView(String orderCode);
 
     DeliveryDTO allDeliveryView(String orderCode);
-
-    List<DetailDTO> deleteOrderCancel(List<String> detailCode);
 }

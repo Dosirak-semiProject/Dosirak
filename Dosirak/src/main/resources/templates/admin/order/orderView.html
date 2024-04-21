@@ -13,7 +13,6 @@
         <main>
             <div class="container-fluid px-4">
                 <h1 class="mt-4">주문 상세보기</h1>
-                <form action="/admin/orderCancel" method="post" onsubmit="cancel(event)">
                 <table class="datatable-table mt-4">
                     <colgroup>
                         <col style="width:200px"/>
@@ -65,40 +64,24 @@
                     <tr>
                         <th colspan="5">주문상세</th>
                     </tr>
-                    <tr th:each="detail : ${orderView.detail}" th:id="${detail.detailCode}">
+                    <tr th:each="detail : ${ orderView.detail }" >
                         <td colspan="5">
                             <label>
-                                <input type="checkbox" th:attr="name='selected'" th:value="${detail.detailCode}">
-                                <span th:text="${detail.detailCode + ' / ' + detail.product.productName + ' / ' + detail.detailItemCount + '개' + ' / ' + (detail.detailItemCount * detail.product.productPrice) + ' 원'}"></span>
+                                <input type="checkbox">
+                                <span th:text="${ detail.detailCode + ' / ' + detail.product.productName + ' / ' + detail.detailItemCount + '개'  + ' / ' + (detail.detailItemCount * detail.product.productPrice) + ' 원'}"></span>
                             </label>
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="editBtn" style="text-align: right;">
-                    <button type="submit" class="btn btn-secondary">주문취소</button>
-                    <button type="button" class="btn btn-secondary" onclick="history.back()">목록</button>
+                    <button type="button" class="btn btn-secondary">주문취소</button>
+                    <button type="button" class="btn btn-secondary">목록</button>
                 </div>
-                </form>
             </div>
         </main>
     </div>
 </div>
 <th:block th:replace="admin/common/foot.html"></th:block>
-<script>
-    function cancel(event) {
-        const selected = document.querySelectorAll('input[name="selected"]:checked')
-        if (selected.length > 0) {
-            const confirmMessage = confirm("주문을 취소하시겠습니까?")
-            if (!confirmMessage) {
-                event.preventDefault()
-            }
-            return confirmMessage;
-        } else {
-            alert("취소할 항목을 선택해 주세요.")
-            event.preventDefault()
-        }
-    }
-</script>
 </body>
 </html>

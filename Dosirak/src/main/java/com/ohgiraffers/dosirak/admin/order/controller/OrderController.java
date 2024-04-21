@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,8 +17,6 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
-
-    /* 관리자 기능 일단 제외 */
 
     @Autowired
     public OrderController(OrderService orderService) {
@@ -44,16 +41,6 @@ public class OrderController {
         model.addAttribute("orderView", orderView);
 
         return "admin/order/orderView";
-    }
-
-    @PostMapping("orderCancel")
-    public String orderViewDelete(Model model, @RequestParam("selected") List<String> detailCode) {
-
-        List<DetailDTO> orderDTO = orderService.deleteOrderCancel(detailCode);
-
-        model.addAttribute("orderDTO", orderDTO);
-
-        return "redirect:/admin/order/orderView";
     }
 
     @GetMapping("refundList")
@@ -96,6 +83,8 @@ public class OrderController {
         mv.addObject("deliveryView", deliveryView);
 
         mv.setViewName("admin/order/deliveryView");
+
+        System.out.println("@@@@@@@@@@@@@@" + deliveryView.getOrder().getOrderCode());
 
         return mv;
     }

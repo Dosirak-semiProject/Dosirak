@@ -10,7 +10,7 @@ public interface ProductMapper {
     List<productDTO> findAllProduct();
     
 
-    List<productDTO> insertProduction(productDTO product);
+    void insertProduction(productDTO product);
 
 
     List<productDTO> productSelectList(String key);
@@ -20,4 +20,6 @@ public interface ProductMapper {
 
 
     int productUpdate(productDTO product);
+
+    void deleteProduct(productDTO product);
 }

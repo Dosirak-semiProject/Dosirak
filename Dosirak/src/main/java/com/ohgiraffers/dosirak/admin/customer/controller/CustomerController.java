@@ -1,7 +1,5 @@
 package com.ohgiraffers.dosirak.admin.customer.controller;
 
-import com.ohgiraffers.dosirak.admin.customer.model.dto.AnswerDTO;
-import com.ohgiraffers.dosirak.admin.customer.model.dto.AskCategoryDTO;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO;
 import com.ohgiraffers.dosirak.admin.customer.model.service.CustomerService;
@@ -10,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -104,20 +101,6 @@ public class CustomerController {
         model.addAttribute("askList", askList);
 
         return "/admin/customer/askList";
-    }
-
-    @GetMapping("/askDetail")
-    public String getAskDetail(@RequestParam("askCode") int askCode, Model model) {
-
-        AskDTO askDetail = customerService.selectAskDetail(askCode);
-        AnswerDTO answerDetail = customerService.selectAnswerDetail(askCode);
-        List<AskCategoryDTO> categoryList = customerService.findCategoryList();
-
-        model.addAttribute("ask", askDetail);
-        model.addAttribute("answer", answerDetail);
-        model.addAttribute("askCategory", categoryList);
-
-        return "admin/customer/askDetail";
     }
 
 }
