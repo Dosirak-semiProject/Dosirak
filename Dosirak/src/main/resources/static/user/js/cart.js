@@ -15,7 +15,6 @@ checkAll.addEventListener('click', () => {
 window.addEventListener('scroll', () => {
     const element = document.querySelector('.sticky');
     const offset = window.pageYOffset;
-    console.log(offset);
 
     if(offset >= 200) {
         element.style.position = 'fixed';
@@ -62,12 +61,10 @@ function ButtonClick(e) {
         }
     })
         .then(res => {
-            console.log('응답 코드:', res.status);
-            console.log('응답 헤더:', res.headers);
-            console.log('응답 본문:', res.data);
+            console.log('성공:', res.status.message);
         })
         .catch(err => {
-            console.log('수량 업데이트 오류:', err.response);
+            console.log('오류:', err.response.message);
         })
 }
 
