@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <th:block th:replace="/user/common/head.html"></th:block>
+</head>
+<body>
+<div>
+    <th:block th:replace="/user/common/header.html"></th:block>
+</div>
+<div class="ly_all bl_all">
+    <div class="bl_sideMenuBack">
+        <div class="ly_maxWD ly_flex">
+            <th:block th:replace="/user/customer/sideMenu.html"></th:block>
+            <div class="ly_inner02 ly_fgrow1 hp_fBack">
+                <div class="ly_midWDside hp_mt50">
+                    <h2 class="el_lv1Head">공지사항</h2>
+                    <table class="bl_TBList hp_mt50">
+                        <caption class="WA">검색</caption>
+                        <colgroup>
+                            <col style="width:100px"/>
+                            <col style="width:*"/>
+                            <col style="width:100px"/>
+                            <col style="width:100px"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th scope="col">번호</th>
+                            <th scope="col">제목</th>
+                            <th scope="col">작성일</th>
+                            <th scope="col">작성자</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="notice : ${ noticeList }">
+                            <td th:text="${ notice.noticeCode }"></td>
+                            <td><a th:href="|noticeDetail?noticeCode=${ notice.noticeCode }|" th:text="${ notice.noticeTitle }"></a></td>
+                            <td th:text="${ notice.noticeDate }"></td>
+                            <td th:text="${ notice.adminId }"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <ul class="bl_paging hp_mt70">
+                        <li><a class="bl_pagingIcon__prev" href=""><p class="WA">이전 페이지로</p></a></li>
+                        <li><a class="hp_active" href="">1</a></li>
+                        <li><a class="bl_pagingIcon__next" href=""><p class="WA">다음 페이지로</p></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+
+</div>
+</body>
+</html>
