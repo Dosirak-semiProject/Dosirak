@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper">
+
+    <!-- 공지사항 페이지 -->
+
+    <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO" id="generalNoticeResultMap" >
+        <id property="noticeCode" column="notice_code"/>
+        <result property="adminId" column="admin_id"/>
+        <result property="noticeDate" column="notice_date"/>
+        <result property="noticeTitle" column="notice_title"/>
+        <result property="noticeContent" column="notice_content"/>
+    </resultMap>
+
+    <select id="findNoticeList" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO">
+        SELECT
+            notice_code,
+            notice_title,
+            notice_date,
+            admin_id
+        FROM
+            notice
+        ORDER BY
+            notice_code desc
+    </select>
+
+    <select id="searchNoticeDetail" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO">
+        SELECT
+            notice_code,
+            admin_id,
+            notice_date,
+            notice_title,
+            notice_content
+        FROM
+            notice
+        WHERE
+            notice_code = #{ noticeCode }
+    </select>
+
+    <insert id="insertNotice">
+        INSERT
+        INTO notice
+            (notice_title, notice_content, notice_date, admin_id)
+        VALUE
+            (#{ noticeTitle }, #{ noticeContent }, NOW(), "admin01")
+    </insert>
+
+    <delete id="deleteNotice">
+        DELETE FROM notice
+        WHERE notice_code = #{ noticeCode }
+    </delete>
+
+    <update id="updateNotice">
+        UPDATE notice
+        SET notice_title = #{ noticeTitle },
+            notice_content = #{ noticeContent }
+        WHERE notice_code = #{ noticeCode }
+    </update>
+
+    <!-- 1대1 문의 페이지 -->
+
+    <select id="findAskList" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO">
+        SELECT
+            *
+        FROM
+            ask
+        ORDER BY
+            ask_code desc
+    </select>
+
+
+</mapper>
