@@ -42,7 +42,26 @@
         product_Summary=#{productSummary},
         PRODUCT_CATEGORY_CODE=#{productCategoryCode}
         WHERE PRODUCT_CODE = #{productCode};
+<<<<<<< HEAD
     </update>   
+=======
+    </update>
+    <insert id="insertProduction">
+        INSERT tbl_product
+        SET
+        PRODUCT_NAME=#{productName},
+        PRODUCT_PRICE=#{productPrice},
+        PRODUCT_STATUS=#{productStatus},
+        product_Summary=#{productSummary},
+        PRODUCT_CATEGORY_CODE=#{productCategoryCode}
+    </insert>
+    <select id="productSelectList" resultMap="product">
+        SELECT * FROM tbl_product WHERE PRODUCT_NAME LIKE CONCAT('%', ?, '%');
+    </select>
+    <delete id="deleteProduct">
+        DELETE
+    </delete>
+>>>>>>> 16c9787c8ea33cbe2b781e1023d38d93be61b4c1
 
 
 

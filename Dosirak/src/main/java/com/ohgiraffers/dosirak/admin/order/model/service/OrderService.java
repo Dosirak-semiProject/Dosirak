@@ -169,6 +169,7 @@ public class OrderService {
     public DeliveryDTO allDeliveryView(String orderCode) {
         return orderMapper.allDeliveryView(orderCode);
     }
+<<<<<<< HEAD
 
     public void updateOrderStatus(List<String> detailCode) {
         orderMapper.updateOrderStatus(detailCode);
@@ -178,4 +179,6 @@ public class OrderService {
         return orderMapper.searchDetail(orderCode);
     }
 
+=======
+>>>>>>> 16c9787c8ea33cbe2b781e1023d38d93be61b4c1
 }

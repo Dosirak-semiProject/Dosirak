@@ -132,7 +132,7 @@
                                     let maxCategoryCode = -Infinity; // 최솟값을 의미하는 음의 무한대로 초기화
 
                                     selectors.forEach(sel => {
-                                        const value = Number(sel.value);
+                                        const value = parseInt(sel.value);
                                         if (!isNaN(value)) {
                                             maxCategoryCode = Math.max(maxCategoryCode, value);
                                         }
@@ -150,6 +150,35 @@
                         </script>
 
                         <button type="button" class="btn btn-secondary">삭제</button>
+                        <script>
+                            function deleteProduct() {
+                                // 사용자에게 삭제 여부를 확인
+                                if (confirm("정말로 이 상품을 삭제하시겠습니까?")) {
+                                    // 삭제할 상품의 코드를 가져옴
+                                    const productCode = document.querySelector('.productCode input').value;
+
+                                    // 서버로 삭제 요청을 보냄 (예시: AJAX 요청)
+                                    const xhr = new XMLHttpRequest();
+                                    xhr.open('POST', '/admin/product/delete', true);
+                                    xhr.setRequestHeader('Content-Type', 'application/json');
+                                    xhr.onreadystatechange = function () {
+                                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                                            if (xhr.status === 200) {
+                                                // 삭제 요청이 성공적으로 처리되었을 때의 처리
+                                                alert("상품이 성공적으로 삭제되었습니다.");
+                                                // 페이지를 다시 로드하여 변경된 상태를 반영
+                                                window.location.reload();
+                                            } else {
+                                                // 삭제 요청이 실패했을 때의 처리
+                                                alert("상품 삭제 중 오류가 발생했습니다.");
+                                            }
+                                        }
+                                    };
+                                    xhr.send(JSON.stringify({ productCode: productCode }));
+                                }
+                            }
+                        </script>
+
                     </div>
                 </form>
             </div>

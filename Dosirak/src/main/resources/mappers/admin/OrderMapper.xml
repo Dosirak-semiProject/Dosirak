@@ -188,7 +188,6 @@
             r.order_code = #{ orderCode }
     </select>
 
-    <!-- DeliveryView Query -->
     <select id="allDeliveryView" resultMap="deliveryResultMap">
         SELECT
             o.order_code,
@@ -210,6 +209,7 @@
         WHERE
             d.order_code = #{ orderCode }
     </select>
+<<<<<<< HEAD
 
     <!-- UpdateOrderStatus Query -->
     <update id="updateOrderStatus" parameterType="list">
@@ -224,4 +224,6 @@
             #{code}
         </foreach>
     </update>
+=======
+>>>>>>> 16c9787c8ea33cbe2b781e1023d38d93be61b4c1
 </mapper>
