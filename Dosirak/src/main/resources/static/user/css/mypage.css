@@ -5,8 +5,11 @@
 .bl_withdrawTB th,.bl_withdrawTB td{padding:15px;color:#777;font-size:12px;}
 .bl_withdrawTB td{border-left:1px solid #dedede;}
 
-
-
+.el_editBtn{display:none;}
+.tr_inputCode{display:none;}
+.sendCodeBtn{display:none;}
+.tr_inputPwdConfirm{display:none;}
+.duplicationCheck{display:none;}
 
 
 

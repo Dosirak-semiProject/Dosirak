@@ -5,6 +5,10 @@
     <th:block th:replace="/user/common/head.html"></th:block>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="/user/css/main.css"/>
+    <script>
+        const message = '[[${message}]]';
+        message && alert(message);
+    </script>
 </head>
 <body>
     <div class="ly_all bl_all">

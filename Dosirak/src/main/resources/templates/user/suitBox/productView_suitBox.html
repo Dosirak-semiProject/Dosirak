@@ -8,20 +8,13 @@
     <link rel="stylesheet" href="/user/css/product.css"/>
     <link rel="stylesheet" href="/user/css/cart.css"/>
     <link rel="stylesheet" href="/user/css/review.css"/>
-    <script>
-        $(function () {
-            // tab
-            let tabLength = $(".bl_tabBtn").length;
-            let tabWD = 100 / tabLength;
-            $(".bl_tabBtn").css("width", tabWD + "%");
-            for (let i = 0; i < tabLength; i++) $(".bl_tabWrap:nth-of-type(" + (i + 1) + ") .bl_tabBtn").css("margin-left", (tabWD * i) + "%");
-
-            $(".bl_tabBtn").click(function () {
-                $(".bl_tabBtn").removeClass("hp_active")
-                $(this).addClass("hp_active");
-            });
-        })
+    <script th:inline="javascript">
+        const menuList = [[${menuList}]]
+        console.log(menuList)
     </script>
+    <script type="module" defer src="/user/js/suit-box/tab.mjs"></script>
+    <script type="module" defer src="/user/js/suit-box/setOption.mjs"></script>
+    <script type="module" defer src="/user/js/suit-box/calculator.mjs"></script>
 </head>
 <body>
 <div class="ly_all bl_all">
@@ -31,44 +24,44 @@
             <div class="bl_pdView__wrap hp_ml20" style="width:350px;">
                 <h2 class="el_lv1Head hp_alignL">나만을 위한 맞춤 도시락</h2>
                 <div class="ly_spaceBetween ly_fitemC hp_mt30">
-                    <p class="hp_fs16">상품가격</p>
-                    <p class="hp_fs18 hp_alignR"><b class="hp_fw700 hp_fs24">123,456</b> 원</p>
+                    <p class="hp_fs16">기본가격</p>
+                    <p class="hp_fs18 hp_alignR"><b class="hp_fw700 hp_fs24">7,000</b> 원</p>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">밥류</p>
-                    <select class="hp_w200px">
-                        <option>밥</option>
+                    <select class="hp_w200px menu-select" id="rice">
+                        <option></option>
                     </select>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">메인반찬</p>
-                    <select class="hp_w200px">
-                        <option>밥</option>
+                    <select class="hp_w200px menu-select" id="main">
+                        <option></option>
                     </select>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">서브반찬</p>
-                    <select class="hp_w200px">
-                        <option>밥</option>
+                    <select class="hp_w200px menu-select" id="side">
+                        <option></option>
                     </select>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">김치류</p>
-                    <select class="hp_w200px">
-                        <option>밥</option>
+                    <select class="hp_w200px menu-select" id="kimchi">
+                        <option></option>
                     </select>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">상품수량</p>
                     <div class="di_btn">
-                        <div class="decrease"><img src="/user/img/icon/minus.png" alt="minus-btn"></div> <!--DB-->
-                        <input type="number" class="quantity" value="1" min="1"/>
-                        <div class="increase"><img src="/user/img/icon/plus.png" alt="plus-btn"></div> <!--DB-->
+                        <div class="decrease" id="minusButton"><img src="/user/img/icon/minus.png" alt="minus-btn"></div>
+                        <input type="number" class="quantity" value="1" min="1" id="quantity"/>
+                        <div class="increase" id="plusButton"><img src="/user/img/icon/plus.png" alt="plus-btn"></div>
                     </div>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_fs20 hp_mt20 hp_pt10 hp_bordDashTDE2">
                     <span>총 상품금액</span>
-                    <span><b class="hp_fs28 hp_fw700 hp_pointColor">123,456</b> 원</span>
+                    <span><b class="hp_fs28 hp_fw700 hp_pointColor" id="totalPrice">7,000</b> 원</span>
                 </div>
                 <div class="ly_flexC hp_mt30">
                     <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBord">장바구니</button>
@@ -87,47 +80,47 @@
                     <tbody>
                     <tr>
                         <th scope="row">탄수화물</th>
-                        <td>10g</td>
+                        <td id="absCarbo">0g</td>
                         <td>4%</td>
                     </tr>
                     <tr>
                         <th scope="row" class="hp_fs14">당류</th>
-                        <td>10g</td>
+                        <td id="absSugar">0g</td>
                         <td>4%</td>
                     </tr>
                     <tr class="hp_bordTBlack">
                         <th scope="row">단백질</th>
-                        <td>10g</td>
+                        <td id="absProtein">0g</td>
                         <td>4%</td>
                     </tr>
                     <tr class="hp_bordTBlack">
                         <th scope="row">지방</th>
-                        <td>10g</td>
+                        <td id="absFat">0g</td>
                         <td>4%</td>
                     </tr>
                     <tr>
                         <th scope="row" class="hp_fs14">포화지방</th>
-                        <td>10g</td>
+                        <td id="absSaturatedFat">0g</td>
                         <td>4%</td>
                     </tr>
                     <tr>
                         <th scope="row" class="hp_fs14">트랜스지방</th>
-                        <td>10g</td>
+                        <td id="absTransFat">0g</td>
                         <td>4%</td>
                     </tr>
                     <tr class="hp_bordTBlack">
                         <th scope="row">콜레스테롤</th>
-                        <td>10g</td>
+                        <td id="absCholesterol">0g</td>
                         <td>4%</td>
                     </tr>
                     <tr class="hp_bordTBlack">
                         <th scope="row">나트륨</th>
-                        <td>10g</td>
+                        <td id="absNatrium">0g</td>
                         <td>4%</td>
                     </tr>
                     <tr class="hp_bordTBlack">
                         <th scope="row">칼로리</th>
-                        <td>200kcal</td>
+                        <td id="absCalory">0kcal</td>
                         <td>4%</td>
                     </tr>
                     </tbody>
@@ -142,7 +135,7 @@
             <li class="bl_tabWrap">
                 <button type="button" class="bl_tabBtn hp_br0 hp_active">상품상세내용</button>
                 <div class="bl_tabCont hp_padding70">
-                    <img src="../../../static/user/img/main/main02.png" alt=""/>
+                    <img src="/user/img/icon/plus.png" alt=""/>
                 </div>
             </li>
             <li class="bl_tabWrap">
@@ -227,17 +220,17 @@
                                 <div class="container">
                                     <div class="img-popup">
                                         <div class="popup-inner">
-                                            <img src="/user/img/sample/img01.jpg" alt="이미지1">
+                                            <img src="/user/img/icon/minus.png" alt="이미지1">
                                             <a href="#" class="close-btn"><i class="xi-close"></i><span class="blind">팝업창 닫기</span></a>
                                         </div>
                                     </div>
                                     <div class="item-box">
                                         <div class="item-img">
-                                            <a href="#"><img src="/user/img/sample/img01.jpg" alt=""/></a>
-                                            <a href="#"><img src="/user/img/sample/img02.jpg" alt=""/></a>
-                                            <a href="#"><img src="/user/img/sample/img03.jpg" alt=""/></a>
-                                            <a href="#"><img src="/user/img/sample/img01.jpg" alt=""/></a>
-                                            <a href="#"><img src="/user/img/sample/img03.jpg" alt=""/></a>
+                                            <a href="#"><img src="/user/img/icon/minus.png" alt=""/></a>
+                                            <a href="#"><img src="/user/img/icon/minus.png" alt=""/></a>
+                                            <a href="#"><img src="/user/img/icon/minus.png" alt=""/></a>
+                                            <a href="#"><img src="/user/img/icon/minus.png" alt=""/></a>
+                                            <a href="#"><img src="/user/img/icon/minus.png" alt=""/></a>
                                         </div>
                                     </div>
                                 </div>

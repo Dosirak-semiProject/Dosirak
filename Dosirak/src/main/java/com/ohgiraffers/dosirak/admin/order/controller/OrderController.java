@@ -1,13 +1,17 @@
 package com.ohgiraffers.dosirak.admin.order.controller;
 
-import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.RefundDTO;
+import com.ohgiraffers.dosirak.admin.order.model.dto.*;
 import com.ohgiraffers.dosirak.admin.order.model.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -16,6 +20,9 @@ public class OrderController {
 
     private final OrderService orderService;
 
+    /* 관리자 기능 일단 제외 */
+
+    @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
@@ -23,32 +30,76 @@ public class OrderController {
     @GetMapping("orderList")
     public String orderList(Model model) {
 
-        List<OrderDTO> orderList = orderService.AllOrderList();
+        List<OrderDTO> orderLists = orderService.allOrderLists();
 
-        model.addAttribute("orderList", orderList);
+        model.addAttribute("orderLists", orderLists);
 
         return "admin/order/orderList";
     }
 
     @GetMapping("orderView")
-    public String orderView() {return "admin/order/orderView";}
+    public String orderView(Model model, @RequestParam String orderCode) {
+
+        OrderDTO orderView = orderService.allOrderView(orderCode);
+//        DetailDTO detailDTO = orderService.searchDetail(orderCode);
+
+        model.addAttribute("orderView", orderView);
+//        model.addAttribute("detailDTO", detailDTO);
+
+        return "admin/order/orderView";
+    }
+
+    @PostMapping("orderCancel")
+    public String orderViewDelete(Model model,
+                                  @RequestParam("selected") List<String> detailCode,
+                                  @RequestParam String orderCode) {
+
+        orderService.updateOrderStatus(detailCode);
+
+        return "redirect:/admin/orderView?orderCode=" + orderCode;
+    }
 
     @GetMapping("refundList")
     public String refundList(Model model) {
 
-        List<RefundDTO> refundList = orderService.AllRefundList();
+        List<RefundDTO> refundLists = orderService.allRefundList();
 
-        model.addAttribute("refundList", refundList);
+        model.addAttribute("refundLists", refundLists);
 
         return "admin/order/refundList";
     }
 
     @GetMapping("refundView")
-    public String refundView() {return "admin/order/refundView";}
+    public String refundView(Model model, @RequestParam String orderCode) {
 
-    @GetMapping("shippingList")
-    public String shippingList() {return "admin/order/shippingList";}
+        RefundDTO refundView = orderService.allRefundView(orderCode);
 
-    @GetMapping("shippingView")
-    public String shippingView() {return "admin/order/shippingView";}
+        model.addAttribute("refundView", refundView);
+
+        return "admin/order/refundView";
+    }
+
+    @GetMapping("deliveryList")
+    public ModelAndView deliveryList(ModelAndView mv) {
+
+        List<DeliveryDTO> deliveryList = orderService.allDeliveryList();
+
+        mv.addObject("deliveryList", deliveryList);
+
+        mv.setViewName("admin/order/deliveryList");
+
+        return mv;
+    }
+
+    @GetMapping("deliveryView")
+    public ModelAndView shippingView(ModelAndView mv, @RequestParam String orderCode) {
+
+        DeliveryDTO deliveryView = orderService.allDeliveryView(orderCode);
+
+        mv.addObject("deliveryView", deliveryView);
+
+        mv.setViewName("admin/order/deliveryView");
+
+        return mv;
+    }
 }

@@ -18,8 +18,8 @@ public class AdminLoginService implements UserDetailsService {
     private UserLoginService userLoginService;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        LoginDTO login = userLoginService.findByUserid(username);
+    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
+        LoginDTO login = userLoginService.findById(id);
 
         if(Objects.isNull(login)){
             throw new UsernameNotFoundException("해당하는 회원 정보 없음");

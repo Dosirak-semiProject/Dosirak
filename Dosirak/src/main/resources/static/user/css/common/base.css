@@ -115,6 +115,7 @@ input[type=date].hp_inputBack,.hp_inputBack{background-color:#eee;border:none;}
 .hp_ellipsis2{white-space:unset;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;}
 .hp_ellipsis3{white-space:unset;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;}
 .hp_overVisible{overflow:visible!important;}
+.hp_overHidden{overflow:hidden!important;}
 .hp_scrollX{overflow-x:scroll!important;}
 .hp_scrollY{overflow-y:scroll!important;}
 .hp_linethrough{text-decoration:line-through!important;}

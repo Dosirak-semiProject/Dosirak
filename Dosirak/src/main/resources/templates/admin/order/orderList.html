@@ -12,7 +12,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">주문결제</h1>
+                <h1 class="mt-4">결제 관리</h1>
                 <div class="card mb-4 mt-4">
                     <div class="card-header justify-content-between d-flex align-items-center">
                         <i class="fas fa-table me-1"></i>
@@ -60,15 +60,20 @@
                             </tr>
                             </tfoot>
                             <tbody>
-                            <tr th:each="order : ${ orderList }">
-                                <td th:text="${ order.orderCode }"></td>
-                                <td th:text="${ order.orderStatus }"></td>
-                                <td th:text="|${ order.userName }(${ order.userId })|"></td>
-                                <td th:text="${ order.orderRecipient }"></td>
-                                <td th:text="${ order.payPrice }"></td>
-                                <td th:text="${ order.payDate }"></td>
-                                <td th:text="${ order.payStatus ? '결제성공' : '결제실패'}"></td>
-                                <td th:text="${ order.payMethod }"></td>
+                            <tr th:each="orderList : ${ orderLists }">
+                                <td>
+                                    <a th:href="@{'/admin/orderView?orderCode=' + ${ orderList.orderCode }}" th:text="${ orderList.orderCode }"></a>
+                                </td>
+                                <td th:text="${ orderList.orderStatus }"></td>
+                                <td th:text="|${ orderList.member.name }(${ orderList.member.id })|"></td>
+                                <td>
+                                    <span th:if="${ orderList.orderRecipient }" th:text="${ orderList.orderRecipient }"></span>
+                                    <span th:unless="${ orderList.orderRecipient }" th:text="${orderList.member.name}"></span>
+                                </td>
+                                <td th:text="${ '￦ ' + orderList.pay.payPrice }"></td>
+                                <td th:text="${ orderList.pay.payDate }"></td>
+                                <td th:text="${ orderList.pay.payStatus }"></td>
+                                <td th:text="${ orderList.pay.payMethod }"></td>
                             </tr>
                             </tbody>
                         </table>

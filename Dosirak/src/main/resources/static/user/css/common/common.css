@@ -12,6 +12,7 @@
 .bl_head__menuR>li{display:flex;}
 .bl_head__menuSub{display:none;position:absolute;bottom:0;left:50%;transform:translate(-50%, 100%);padding:15px 20px;text-align:center;background:#426B1F;color:#fff;}
 .bl_head__menuSub a{display:block;line-height:2;}
+.bl_headIcon__logout{padding:13px;}
 /* foot */
 .bl_foot{background:#fff;border-top:1px solid #dedede;height:550px;position:absolute;bottom:0;left:0;width:100%;z-index:999;}
 .bl_foot *{letter-spacing:1.2px;}
@@ -23,7 +24,7 @@
 .bl_sideMenuBack{background:linear-gradient(90deg, #F9F9F9 50%, #fff 50%);}
 .bl_sideMenu{background:#F9F9F9;width:250px;min-height:calc(100vh - 75px - 550px);height:100%;padding:70px 0 0 30px;}
 .bl_sideMenu__head{font-size:24px;font-weight:700;}
-.bl_sideMenu__cont{line-height:2.5;}
+.bl_sideMenu__cont{line-height:3;font-size:16px;}
 /* paging */
 .bl_paging{display:flex;justify-content:center;}
 .bl_paging a{border:1px solid #dedede;background-color:#fff;display:flex;width:35px;height:35px;justify-content:center;align-items:center;}
@@ -57,7 +58,7 @@
 .bl_TBView{border-top:1px solid #777;}
 .bl_TBView tr{border-bottom:1px solid #dedede;}
 .bl_TBView th{background:#F9F9F9;padding:20px;}
-.bl_TBView td{padding:28px;}
+.bl_TBView td{padding:20px;}
 .bl_TBViewImg{}
 .bl_TBViewImg__cont{display:inline-block;width:100px;height:100px;margin-right:10px;border-radius:5px;overflow:hidden;}
 /* Write */
@@ -69,7 +70,7 @@
 /* 완료페이지 */
 .bl_doneBox{border:1px solid #dedede;padding:50px;}
 .bl_doneBox__txt{display:flex;justify-content:center;align-items:center;margin:50px 0 70px;font-size:16px;}
-.bl_doneBox__txt::before{content:"";margin-right:20px;display:block;width:60px;height:60px;background:url("/img/icon/check.png")no-repeat center/cover;}
+.bl_doneBox__txt::before{content:"";margin-right:20px;display:block;width:60px;height:60px;background:url("/user/img/icon/check.png")no-repeat center/cover;}
 /* Tab */
 .bl_tab{position:relative;padding-top:50px;}
 .bl_tabBtn{height:50px;position:absolute;top:0;left:0;background:#F9F9F9;border-radius:10px;border-bottom-left-radius:0;border-bottom-right-radius:0;font-size:14px;}
