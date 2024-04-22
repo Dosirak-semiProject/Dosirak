@@ -106,10 +106,39 @@
                         </tbody>
                     </table>
                     <ul class="bl_paging hp_mt70">
+                        <li><button th:onclick="'location.href=\'/user/customer/askList?page=1\''"></button></li>
                         <li><a class="bl_pagingIcon__prev" href=""><p class="WA">이전 페이지로</p></a></li>
                         <li><a class="hp_active" href="">1</a></li>
                         <li><a class="bl_pagingIcon__next" href=""><p class="WA">다음 페이지로</p></a></li>
                     </ul>
+<!--                    <th:block class="bl_paging hp_mt70"-->
+<!--                            th:if="${ paging.searchCondition == null  || paging.searchValue == null }">-->
+<!--                        &lt;!&ndash; 맨 앞으로 이동 &ndash;&gt;-->
+<!--                        <button th:onclick="'location.href=\'/board/list?page=1\''">&lt;&lt;</button>-->
+
+<!--                        &lt;!&ndash; 이전 페이지로 이동 &ndash;&gt;-->
+<!--                        <button-->
+<!--                                th:onclick="'location.href=\'/board/list?page=' + @{${paging.page - 1}} + '\''"-->
+<!--                                th:disabled="${ paging.page <= 1 }">&lt;</button>-->
+
+<!--                        &lt;!&ndash; 숫자 버튼 &ndash;&gt;-->
+<!--                        <th:block-->
+<!--                                th:each="page : ${ #numbers.sequence(paging.startPage, paging.endPage)}">-->
+<!--                            <button-->
+<!--                                    th:onclick="'location.href=\'/board/list?page=' + @{${page}} + '\''"-->
+<!--                                    th:text="${ page }" th:disabled="${ paging.page eq page }">-->
+<!--                            </button>-->
+<!--                        </th:block>-->
+
+<!--                        &lt;!&ndash; 다음 페이지로 이동 &ndash;&gt;-->
+<!--                        <button-->
+<!--                                th:onclick="'location.href=\'/board/list?page=' + @{${paging.page + 1}} + '\''"-->
+<!--                                th:disabled="${ paging.page >= paging.maxPage }">></button>-->
+
+<!--                        &lt;!&ndash; 맨 끝으로 이동 &ndash;&gt;-->
+<!--                        <button-->
+<!--                                th:onclick="'location.href=\'/board/list?page=' + @{${paging.maxPage}} + '\''">>></button>-->
+<!--                    </th:block>-->
                 </div>
             </div>
         </div>

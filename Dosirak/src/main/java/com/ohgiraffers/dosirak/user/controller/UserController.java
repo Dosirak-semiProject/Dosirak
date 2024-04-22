@@ -14,6 +14,7 @@ public class UserController {
 
 //    @GetMapping("/main")
 //    public void main(){}
+
     @Autowired
     private MyinfoService myinfoService;
 

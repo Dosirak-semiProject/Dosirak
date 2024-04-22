@@ -81,11 +81,29 @@
 
     <!-- 1대1 문의페이지  -->
 
+    <resultMap type="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO" id="generalUserAskResultMap">
+        <id property="askCode" column="ask_code"/>
+        <result property="askTitle" column="ask_title"/>
+        <result property="askContent" column="ask_content"/>
+        <result property="askDate" column="ask_date"/>
+        <result property="userId" column="user_id"/>
+        <result property="askDelete" column="ask_delete"/>
+        <association property="askCategoryCode" resultMap="askCategoryResultMap"/>
+        <association property="answerDTO" resultMap="answerResultMap"/>
+    </resultMap>
+
+    <resultMap type="com.ohgiraffers.dosirak.user.customer.model.dto.UserAnswerDTO" id="answerResultMap">
+        <id property="answerCode" column="answer_code"/>
+        <result property="answerStatus" column="answer_status"/>
+    </resultMap>
+
     <select id="findAskList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO">
         SELECT
             *
         FROM
             ask
+        ORDER BY
+            ask_code desc
     </select>
 
     <select id="searchAskDetail" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO">
@@ -93,6 +111,18 @@
             *
         FROM
             ask
+        WHERE
+            ask_code = #{ askCode }
+    </select>
+
+    <select id="searchAnswerDetail" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAnswerDTO">
+        SELECT
+            answer_code,
+            admin_id,
+            answer_date,
+            answer_content
+        FROM
+            answer
         WHERE
             ask_code = #{ askCode }
     </select>
@@ -120,5 +150,30 @@
         VALUES
             (#{ ref_ask_code }, #{ originalName }, #{ savedName }, #{ savePath })
     </insert>
+
+    <!-- 추가 -->
+
+    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+        SELECT
+            COUNT(*)
+        FROM
+            ask
+    </select>
+
+    <select id="selectAskList" resultMap="generalUserAskResultMap">
+        SELECT
+            a.ask_code,
+            a.ask_title,
+            b.ask_category_code,
+            b.ask_category_name,
+            a.ask_date
+        FROM
+            ask a
+        JOIN
+            ask_category b ON (a.ask_category_code = b.ask_category_code)
+        ORDER BY
+            a.ask_code DESC
+        LIMIT #{offset}, #{limit}
+    </select>
 
 </mapper>
