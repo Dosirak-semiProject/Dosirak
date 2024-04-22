@@ -19,7 +19,7 @@ window.addEventListener('scroll', () => {
     if(offset >= 200) {
         element.style.position = 'fixed';
         element.style.top = '35px';
-        element.style.right = '110px';
+        element.style.right = '341px';
     } else {
         element.style.position = 'absolute';
         element.style.top = '0';
@@ -61,11 +61,26 @@ function ButtonClick(e) {
         }
     })
         .then(res => {
-            console.log('성공:', res.status.message);
+            console.log('성공:', res.data);
+
+            const singleTotalPrices = res.data.singleTotalPrices;
+
+            const priceElements  = document.querySelectorAll('.price')
+
+            if (singleTotalPrices.length !== priceElements.length) {
+                console.error('배열 길이와 요소 수가 일치하지 않습니다.');
+                return;
+            }
+
+            priceElements.forEach((priceElement, index) => {
+                if (singleTotalPrices[index] !== undefined) {
+                    priceElement.textContent = `${ singleTotalPrices[index] } 원`;
+                } else {
+                    console.error(`인덱스 ${index}의 값이 정의되지 않았습니다.`);
+                }
+            });
         })
-        .catch(err => {
-            console.log('오류:', err.response.message);
-        })
+        .catch(err => console.log('오류:', err.response.message))
 }
 
 // 이미지 드래그 방지
