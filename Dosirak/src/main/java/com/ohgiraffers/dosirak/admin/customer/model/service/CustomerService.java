@@ -3,10 +3,7 @@ package com.ohgiraffers.dosirak.admin.customer.model.service;
 import com.ohgiraffers.dosirak.admin.customer.common.Pagenation;
 import com.ohgiraffers.dosirak.admin.customer.common.SelectCriteria;
 import com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper;
-import com.ohgiraffers.dosirak.admin.customer.model.dto.AnswerDTO;
-import com.ohgiraffers.dosirak.admin.customer.model.dto.AskCategoryDTO;
-import com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO;
-import com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO;
+import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,6 +49,35 @@ public class CustomerService {
         customerMapper.updateNotice(noticeTemp);
     }
 
+    /* ----- 자주 묻는 질문 ----- */
+
+    public List<QnaDTO> findQnaList() {
+
+        return customerMapper.findQnaList();
+    }
+
+    public QnaDTO selectQnaDetail(int qnaCode) {
+
+        /* 상세 내용 조회 후 리턴 */
+        return customerMapper.searchQnaDetail(qnaCode);
+    }
+
+    public void writeQna(QnaDTO qna) {
+
+        customerMapper.insertQna(qna);
+    }
+
+    public void deleteQna(int qnaCode) {
+
+        customerMapper.deleteQna(qnaCode);
+    }
+
+    public void updateQna(QnaDTO qnaTemp) {
+
+        customerMapper.updateQna(qnaTemp);
+    }
+
+
     /* ----- 1대1 문의 ----- */
     public List<AskDTO> findAskList() {
 
@@ -75,4 +101,5 @@ public class CustomerService {
 
         return customerMapper.findCategoryList();
     }
+
 }

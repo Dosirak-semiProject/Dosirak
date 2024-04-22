@@ -103,7 +103,6 @@
                             <tr th:each="ask : ${ askList }">
                                 <td th:text="${ ask.askCode }"></td>
                                 <td th:text="${ ask.askCategoryCode.askCategoryName }"></td>
-                                <!-- 답변 페이지로 이동, 답변 완료 시 조회만 가능(수정 불가) -->
                                 <td><a th:href="|askDetail?askCode=${ ask.askCode }|" th:text="${ ask.askTitle }"></a></td>
                                 <td th:text="${ ask.askDate }"></td>
                                 <td th:text="${ ask.userId }"></td>

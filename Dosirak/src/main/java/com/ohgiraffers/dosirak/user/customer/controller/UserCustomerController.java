@@ -1,7 +1,7 @@
 package com.ohgiraffers.dosirak.user.customer.controller;
 
-import com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO;
-import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
+import com.ohgiraffers.dosirak.admin.customer.model.dto.QnaDTO;
+import com.ohgiraffers.dosirak.user.customer.model.dto.*;
 import com.ohgiraffers.dosirak.user.customer.model.service.UserCustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,8 +33,90 @@ public class UserCustomerController {
         this.userCustomerService = userCustomerService;
     }
 
+
+    /* ----- 고객센터 메인 ----- */
+
+    @GetMapping("/main")
+    public String getMainePage(Model model) {
+
+
+        return "user/customer/main";
+    }
+
+
+    /* ----- 공지사항 ----- */
+
+    @GetMapping("/noticeList")
+    public String getNoticePage(Model model) {
+
+        List<UserNoticeDTO> noticeList = userCustomerService.findNoticeList();
+
+        model.addAttribute("noticeList", noticeList);
+
+        return "user/customer/noticeList";
+    }
+
+    @GetMapping("/noticeDetail")
+    public String getNoticeDetail(@RequestParam("noticeCode") int noticeCode, Model model) {
+
+        UserNoticeDTO noticeDetail = userCustomerService.selectNoticeDetail(noticeCode);
+
+        model.addAttribute("notice", noticeDetail);
+
+        return "user/customer/noticeDetail";
+    }
+
+
+    /* ----- 자주 묻는 질문 ----- */
+
+    @GetMapping("/qnaList")
+    public String getQnaPage(Model model) {
+
+        List<UserQnaDTO> qnaList = userCustomerService.findQnaList();
+
+        model.addAttribute("qnaList", qnaList);
+
+        return "user/customer/qnaList";
+    }
+
+    @GetMapping("/qnaDetail")
+    public String getQnaDetail(@RequestParam("qnaCode") int qnaCode, Model model) {
+
+        UserQnaDTO qnaDetail = userCustomerService.selectQnaDetail(qnaCode);
+        List<UserAskCategoryDTO> categoryList = userCustomerService.findCategoryList();
+
+        model.addAttribute("qna", qnaDetail);
+        model.addAttribute("category", categoryList);
+
+        return "user/customer/qnaDetail";
+    }
+
+
+    /* ----- 1대1 문의 ----- */
+
+    @GetMapping("/askList")
+    public String getAskPage(Model model) {
+
+        List<UserAskDTO> askList = userCustomerService.findAskList();
+
+        model.addAttribute("askList", askList);
+
+        return "user/customer/askList";
+    }
+
+    @GetMapping("/askDetail")
+    public String getAskDetail(@RequestParam("askCode") int askCode, Model model) {
+
+        UserAskDTO askDetail = userCustomerService.selectAskDetail(askCode);
+
+        model.addAttribute("ask", askDetail);
+
+        return "user/customer/askDetail";
+    }
+
     @GetMapping("/askRegist")
     public String getRegistPage() {
+
         return "user/customer/askRegist";
     }
 
@@ -62,7 +144,6 @@ public class UserCustomerController {
         List<UserCustomerImgDTO> imageList = new ArrayList<>();
 
         try {
-
             for(int i = 0; i < attachImage.size(); i++) {
                 /* 첨부파일이 실제로 존재하는 경우 로직 수행 */
                 if(attachImage.get(i).getSize() > 0) {
@@ -102,5 +183,4 @@ public class UserCustomerController {
 
         return "user/customer/result";
     }
-
 }
