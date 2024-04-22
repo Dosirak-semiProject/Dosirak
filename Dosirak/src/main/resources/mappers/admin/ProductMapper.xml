@@ -42,7 +42,7 @@
         product_Summary=#{productSummary},
         PRODUCT_CATEGORY_CODE=#{productCategoryCode}
         WHERE PRODUCT_CODE = #{productCode};
-    </update>
+    </update>   
 
 
 
