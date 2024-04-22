@@ -33,9 +33,4 @@ mybatis:
 image:
   image-dir: src\main\resources\customerUpload\
 
-server:
-  error:
-    include-exception: true
-    include-message: always
-    include-binding-errors: always
-    include-stacktrace: always
+

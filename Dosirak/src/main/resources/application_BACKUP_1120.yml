@@ -4,7 +4,6 @@ spring:
     url: jdbc:mysql://localhost/dosirak
     username: dosirak
     password: dosirak
-
   mail:
     host: smtp.gmail.com
     port: 587
@@ -17,17 +16,12 @@ spring:
           starttls:
             enable: true
 
-  # file upload config
-  servlet:
-    multipart:
-      location: C:\dev\semi-project_dosirak\Dosirak
-      max-file-size: 10MB
-      max-request-size: 10MB
-
 mybatis:
   mapper-locations: mappers/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
+<<<<<<< HEAD
+=======
 
 # image upload dir
 image:
@@ -39,3 +33,4 @@ server:
     include-message: always
     include-binding-errors: always
     include-stacktrace: always
+>>>>>>> 6a1bdc3d9b9943dd2b970a89c9df25b220b145e2
