@@ -1,6 +1,7 @@
 package com.ohgiraffers.dosirak.admin.survey.model.service;
 
-import com.ohgiraffers.dosirak.admin.survey.model.dao.SurveyAdminMapping;
+import com.ohgiraffers.dosirak.admin.survey.model.dao.SurveyAdminDAO;
+import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyCategoryRangeDTO;
 import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyQuestionDTO;
 import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyResultDTO;
 import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyVersionDTO;
@@ -8,15 +9,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 @Service
 @Transactional
 public class SurveyAdminService {
-    private final SurveyAdminMapping surveyMapper;
+    private final SurveyAdminDAO surveyMapper;
 
-    public SurveyAdminService(SurveyAdminMapping surveyMapper) {
+    public SurveyAdminService(SurveyAdminDAO surveyMapper) {
         this.surveyMapper = surveyMapper;
     }
 
@@ -34,5 +33,9 @@ public class SurveyAdminService {
 
     public List<SurveyQuestionDTO> getQuestionListByVersionId(int versionId) {
         return surveyMapper.getQuestionListByVersionId(versionId);
+    }
+
+    public List<SurveyCategoryRangeDTO> getRangeListByVersionId(int versionId) {
+        return surveyMapper.getRangeListByVersionId(versionId);
     }
 }

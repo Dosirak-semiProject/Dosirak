@@ -1,12 +1,12 @@
 package com.ohgiraffers.dosirak.admin.survey.controller;
 
+import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyCategoryRangeDTO;
 import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyQuestionDTO;
 import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyVersionDTO;
 import com.ohgiraffers.dosirak.admin.survey.model.service.SurveyAdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,9 +35,9 @@ public class SurveyAdminController {
     public String versionList(Model model, @RequestParam int versionId){
         SurveyVersionDTO version = surveyAdminService.getVersionByVersionId(versionId);
         List<SurveyQuestionDTO> questionList = surveyAdminService.getQuestionListByVersionId(versionId);
-        System.out.println(questionList);
+        List<SurveyCategoryRangeDTO> rangeList = surveyAdminService.getRangeListByVersionId(versionId);
         model.addAttribute("version", version);
         model.addAttribute("questionList", questionList);
-        return "admin/survey/surveyVersionSet";
+        return "admin/survey/surveyVersionView";
     }
 }

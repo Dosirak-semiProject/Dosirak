@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ohgiraffers.dosirak.admin.survey.model.dao.SurveyAdminMapping">
+<mapper namespace="com.ohgiraffers.dosirak.admin.survey.model.dao.SurveyAdminDAO">
     <resultMap id="SurveyQuestionMap" type="com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyQuestionDTO">
         <id property="questionId" column="question_id"/>
         <result property="versionId" column="version_id"/>
@@ -37,5 +37,9 @@
         LEFT JOIN SURVEY_ANSWER a
         ON q.QUESTION_ID = a.QUESTION_ID
         WHERE q.version_id = #{versionId}
+    </select>
+    <select id="getRangeListByVersionId">
+        SELECT * FROM SURVEY_RANGE
+        WHERE version_id = #{versionId}
     </select>
 </mapper>
