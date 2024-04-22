@@ -60,37 +60,41 @@
                                     </td>
                                 </tr>
                                 <!-- 답변 등록전 -->
-                                <tr>
-                                    <th scope="row">답변내용</th>
-                                    <td colspan="3">
-                                        <label>
-                                            <textarea style="width:100%;min-height:150px;"></textarea>
-                                        </label>
-                                    </td>
-                                </tr>
+<!--                                <tr>-->
+<!--                                    <th scope="row">답변내용</th>-->
+<!--                                    <td colspan="3">-->
+<!--                                        <label>-->
+<!--                                            <textarea id="answerContent" style="width:100%;min-height:150px;"></textarea>-->
+<!--                                        </label>-->
+<!--                                    </td>-->
+<!--                                </tr>-->
                                 <!-- // 답변 등록전 -->
                                 <!-- 답변 등록후 -->
-                                <!-- <tr>
+                                <tr>
                                     <th scope="row">답변코드</th>
                                     <td>1</td>
+<!--                                    <td th:text="${ answer.answerCode }"></td>-->
                                     <th scope="row">답변날짜</th>
                                     <td>2024-02-02</td>
+<!--                                    <td th:text="${ answer.answerDate }"></td>-->
                                 </tr>
-                                <tr>
+                                <tr th:>
                                     <th scope="row">관리자아이디</th>
                                     <td colspan="3">abcd1234</td>
+<!--                                    <td th:text="${ answer.adminId }"></td>-->
                                 </tr>
                                 <tr>
                                     <th scope="row">답변내용</th>
                                     <td colspan="3">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, distinctio fugiat. Numquam iste nam soluta earum. Est placeat, aliquam tenetur deleniti quidem, voluptatum ea nemo quaerat animi laborum, at enim!</td>
-                                </tr> -->
-                                <!-- // 답변 등록후 -->
+<!--                                    <td colspan="3" th:text="${ answer.answerContent }"></td>-->
+                                </tr>
+                                 // 답변 등록후
                             </tbody>
                         </table>
-                        <div class="editBtn text-end">
-                            <button type="button" class="btn btn-primary">답변등록</button>
-                            <button type="button" class="btn btn-secondary">리뷰삭제</button>
-                        </div>
+<!--                        <div class="editBtn text-end">-->
+<!--                            <button id="registAnswer" type="button"  class="btn btn-primary">답변등록</button>-->
+<!--                            <button type="button" class="btn btn-secondary">리뷰삭제</button>-->
+<!--                        </div>-->
                     </div>
                 </main>
             </div>

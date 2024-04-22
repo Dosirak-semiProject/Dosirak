@@ -22,4 +22,21 @@
             review_code = #{reviewCode}
     </select>
 
+    <select id="searchAnswerDetail" resultType="com.ohgiraffers.dosirak.admin.review.model.dto.AnswerDTO">
+        SELECT
+        *
+        FROM
+        tbl_answer
+        WHERE
+        answer_code = #{answerCode}
+    </select>
+
+    <insert id="insertAnswer">
+        INSERT
+        INTO tbl_answer
+        (review_code, answer_content, admin_id)
+        VALUES
+        (#{ reviewCode }, #{ answerContent }, #{ adminId })
+    </insert>
+
 </mapper>

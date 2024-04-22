@@ -19,6 +19,7 @@ public class ReviewDTO {
     private String reviewDelete;
     private int detailCode;
     private LocalDateTime reviewDate;
+    private AdminDTO adminId;
 
     public ReviewDTO() {
     }

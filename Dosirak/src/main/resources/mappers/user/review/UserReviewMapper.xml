@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.dosirak.user.review.model.dao.UserReviewMapper">
+
+    <select id="allUserReview" resultType="com.ohgiraffers.dosirak.user.review.model.dto.UserReviewDTO">
+        SELECT
+            *
+        FROM
+            tbl_review
+        ORDER BY
+            review_code
+    </select>
+
+    <select id="searchUserReviewDetail" resultType="com.ohgiraffers.dosirak.user.review.model.dto.UserReviewDTO">
+        SELECT
+            *
+        FROM
+            tbl_review
+        WHERE
+        review_code = #{ reviewCode }
+    </select>
+
+</mapper>
