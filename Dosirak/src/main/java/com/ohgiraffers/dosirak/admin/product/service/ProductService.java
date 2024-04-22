@@ -25,9 +25,6 @@ public class ProductService {
     }
 
 
-    public List<productDTO> productSelectList(String key) {
-        return productMapper.productSelectList(key);
-    }
 
 
     public productDTO getProductByCode(int productCode) {
@@ -44,6 +41,10 @@ public class ProductService {
 
     public void deleteProduct(productDTO product) {
         productMapper.deleteProduct(product);
+    }
+
+    public List<productDTO> productSelectList(String productStatus, Integer productCategoryCode, String productName) {
+      return   productMapper.productSelectList(productStatus,productCategoryCode,productName);
     }
 }
 

@@ -13,7 +13,6 @@ public interface ProductMapper {
     void insertProduction(productDTO product);
 
 
-    List<productDTO> productSelectList(String key);
 
 
     productDTO getProductByCode(int productCode);
@@ -22,4 +21,6 @@ public interface ProductMapper {
     int productUpdate(productDTO product);
 
     void deleteProduct(productDTO product);
+
+    List<productDTO> productSelectList(String productStatus, Integer productCategoryCode, String productName);
 }

@@ -29,8 +29,11 @@ public class ProductController {
     }
 
     @GetMapping("/productSearch")
-    public String productSelectList(@RequestParam String key, Model model) {
-        List<productDTO> productList = productService.productSelectList(key);
+    public String productSelect(@RequestParam(required = false) String productStatus,
+                                    @RequestParam(required = false) Integer productCategoryCode,
+                                    @RequestParam(required = false) String productName,
+                                    Model model) {
+        List<productDTO> productList = productService.productSelectList(productStatus,productCategoryCode,productName);
         model.addAttribute("productList", productList);
         return "/admin/product/productList";
     }

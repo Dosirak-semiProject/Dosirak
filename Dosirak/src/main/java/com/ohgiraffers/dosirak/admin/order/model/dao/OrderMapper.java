@@ -21,10 +21,6 @@ public interface OrderMapper {
     RefundDTO allRefundView(String orderCode);
 
     DeliveryDTO allDeliveryView(String orderCode);
-<<<<<<< HEAD
 
     void updateOrderStatus(List<String> detailCode);
-
-=======
->>>>>>> 16c9787c8ea33cbe2b781e1023d38d93be61b4c1
 }
