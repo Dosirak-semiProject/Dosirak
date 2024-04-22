@@ -2,7 +2,6 @@ package com.ohgiraffers.dosirak.user.product.controller;
 
 
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
-import com.ohgiraffers.dosirak.admin.product.service.ProductService;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.service.ProductUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,15 +36,31 @@ public class ProductUserController {
     public String productView(@RequestParam int productCode, Model model) {
         ProductUserDTO productList = productUserService.viewProduct(productCode);
         model.addAttribute("productList", productList);
-        return "/user/product/productView";
+        return "/user/product/productUserView";
 
 
     }
-    @GetMapping("/productsList")
-    public String productsListView(@RequestParam int categoryCode, Model model) {
+    @GetMapping("/productListJungsung")
+    public String productListJungsung(@RequestParam List<Integer> categoryCode, Model model) {
         ProductUserDTO productList = productUserService.productsListView(categoryCode);
         model.addAttribute("productList", productList);
-        return "/user/product/productList";
+        return "/user/product/productListJungsung";
+
+
+    }
+    @GetMapping("/productListHel")
+    public String productListHel(@RequestParam List<Integer> categoryCode, Model model) {
+        ProductUserDTO productList = productUserService.productsListView(categoryCode);
+        model.addAttribute("productList", productList);
+        return "/user/product/productListHel";
+
+
+    }
+    @GetMapping("/productListComp")
+    public String productListComp(@RequestParam List<Integer> categoryCode, Model model) {
+        ProductUserDTO productList = productUserService.productsListView(categoryCode);
+        model.addAttribute("productList", productList);
+        return "/user/product/productListComp";
 
 
     }

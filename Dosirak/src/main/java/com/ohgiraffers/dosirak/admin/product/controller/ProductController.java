@@ -48,7 +48,7 @@ public class ProductController {
 //    html 링크에서 /admin 명시 안되어있음
 //    view페이지 오류 ex) 찾을수없는값 있을경우
     @GetMapping("/productView")
-    public String productView(@RequestParam int productCode, Model model) {
+    public String productView(@RequestParam("productCode") int productCode, Model model) {
         System.out.println(productCode);
         productDTO product = productService.getProductByCode(productCode);
         model.addAttribute("product", product);

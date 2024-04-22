@@ -12,5 +12,7 @@ public interface ProductUserMapper {
 
     ProductUserDTO viewProduct(int productCode);
 
-    ProductUserDTO productsListView(int categoryCode);
+    ProductUserDTO productsListView(List<Integer> categoryCode);
+
+    ProductUserDTO productsListViewNomal(int categoryCode);
 }

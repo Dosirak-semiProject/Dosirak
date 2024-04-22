@@ -20,7 +20,11 @@ public class ProductUserService {
         return productUserMapper.viewProduct(productCode);
     }
 
-    public ProductUserDTO productsListView(int categoryCode) {
+    public ProductUserDTO productsListView(List<Integer> categoryCode) {
         return productUserMapper.productsListView(categoryCode);
+    }
+
+    public ProductUserDTO productsListViewNomal(int categoryCode) {
+        return productUserMapper.productsListViewNomal(categoryCode);
     }
 }
