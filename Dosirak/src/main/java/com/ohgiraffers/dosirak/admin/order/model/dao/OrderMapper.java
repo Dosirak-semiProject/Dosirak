@@ -23,5 +23,4 @@ public interface OrderMapper {
     DeliveryDTO allDeliveryView(String orderCode);
 
     void updateOrderStatus(List<String> detailCode);
-
 }

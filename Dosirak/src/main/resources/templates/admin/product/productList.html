@@ -16,30 +16,30 @@
                 <div class="card mb-4 mt-4">
                     <div class="card-header">
                         <div class="justify-content-between d-flex align-items-center">
-                            <a class="btn btn-primary" href="/admin/product/productView">상품등록</a>
+                            <a class="btn btn-primary" href="/admin/product/nullProductView">상품등록</a>
                             <div class="text-end">
-                                <label>
-                                    <select id="select1" class="datatable-selector">
-                                        <option>판매상태 조회</option>
-                                        <option>판매준비중</option>
-                                        <option>판매중</option>
-                                        <option>절판</option>
-                                        <option>판매중단</option>
+                                <form action="/admin/product/productSearch" method="get" class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
+                                    <label>
+                                    <select name="productStatus" id="select1" class="datatable-selector">
+                                        <option value="">판매상태 조회</option>
+                                        <option value="판매준비중" >판매준비중</option>
+                                        <option value="판매중" >판매중</option>
+                                        <option value="절판" >절판</option>
+                                        <option value="판매중단" >판매중단</option>
                                     </select>
                                 </label>
                                 <label>
-                                    <select id="select2" class="datatable-selector">
-                                        <option>상품분류 조회</option>
-                                        <option>건강도시락</option>
-                                        <option>정성도시락</option>
-                                        <option>간편식</option>
+                                    <select name="productCategoryCode" id="select2" class="datatable-selector">
+                                        <option value="">상품분류 조회</option>
+                                        <option value="1" >건강도시락</option>
+                                        <option value="2" >정성도시락</option>
+                                        <option value="3" >간편식</option>
                                     </select>
                                 </label>
-                                <form class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
                                     <div class="input-group">
-                                        <input id="select" class="form-control" type="text" placeholder="Search for..."
+                                        <input name="productName"  id="select" class="form-control" type="text" placeholder="Search for..."
                                             aria-label="Search for..." aria-describedby="btnNavbarSearch"/>
-                                        <button class="btn btn-primary" id="btnNavbarSearch" type="button">
+                                        <button class="btn btn-primary" id="btnNavbarSearch" type="submit">
                                             <i class="fas fa-search"></i></button>
                                     </div>
                                 </form>

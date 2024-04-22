@@ -28,15 +28,18 @@ public class ProductController {
         return "/admin/product/productList";
     }
 
-    @PostMapping("/product/search")
-    public String productSelectList(@RequestParam String key, Model model) {
-        List<productDTO> productList = productService.productSelectList(key);
+    @GetMapping("/productSearch")
+    public String productSelect(@RequestParam(required = false) String productStatus,
+                                    @RequestParam(required = false) Integer productCategoryCode,
+                                    @RequestParam(required = false) String productName,
+                                    Model model) {
+        List<productDTO> productList = productService.productSelectList(productStatus,productCategoryCode,productName);
         model.addAttribute("productList", productList);
         return "/admin/product/productList";
     }
 
-    @PostMapping("/product/add")
-    public String addProduct(@ModelAttribute productDTO product) {
+    @PostMapping("/productAdd")
+    public String addProduct(productDTO product) {
         productService.insertProduction(product);
         return "redirect:/admin/product/productList";
     }
@@ -59,12 +62,22 @@ public class ProductController {
     }
 
     @PostMapping("/productUpdate")
-    public String productUpdate(productDTO product) {
+    public String productUpdate(productDTO product) throws ProductUpdateException {
+
         System.out.println(product);
-//        productService.productUpdate(product);
-//        System.out.println("리스트"+product);
+        productService.productUpdate(product);
         return "/admin/product/productList";
 
 
     }
+    @PostMapping("/productdelete")
+    public String deleteProduct(productDTO product) throws ProductUpdateException {
+
+        System.out.println(product);
+        productService.deleteProduct(product);
+        return "/admin/product/productList";
+
+
+    }
+
 }

@@ -18,12 +18,18 @@
     <select id="productSelectList" resultMap="product">
         SELECT PRODUCT_NAME, PRODUCT_CODE, PRODUCT_PRICE, PRODUCT_STATUS, PRODUCT_CATEGORY_CODE
         FROM tbl_product
-        WHERE PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%');
+        <where>
+            <if test="productName != null">
+                AND PRODUCT_NAME LIKE CONCAT('%', #{productName}, '%')
+            </if>
+            <if test="productStatus != null">
+                AND PRODUCT_STATUS = #{productStatus}
+            </if>
+            <if test="productCategoryCode != null">
+                AND PRODUCT_CATEGORY_CODE = #{productCategoryCode}
+            </if>
+        </where>
     </select>
-    <insert id="insertProduction" parameterType="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
-        INSERT INTO tbl_product (PRODUCT_NAME, PRODUCT_CODE, PRODUCT_PRICE, PRODUCT_STATUS, PRODUCT_CATEGORY_CODE)
-        VALUES (#{productName}, #{productCode}, #{productPrice}, #{productStatus}, #{productCategoryCode}, #{productSummary})
-    </insert>
     <select id="getProductByCode" resultType="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
         SELECT *
         FROM tbl_product
@@ -36,13 +42,26 @@
     <update id="productUpdate">
         UPDATE tbl_product
         SET
-        productName=#{productName},
-        productPrice=#{productPrice},
-        productStatus=#{productStatus},
-        productSummary=#{productSummary},
-        productCategoryCode=#{productCategoryCode}
+        PRODUCT_NAME=#{productName},
+        PRODUCT_PRICE=#{productPrice},
+        PRODUCT_STATUS=#{productStatus},
+        product_Summary=#{productSummary},
+        PRODUCT_CATEGORY_CODE=#{productCategoryCode}
         WHERE PRODUCT_CODE = #{productCode};
     </update>
+    <insert id="insertProduction">
+        INSERT tbl_product
+        SET
+        PRODUCT_NAME=#{productName},
+        PRODUCT_PRICE=#{productPrice},
+        PRODUCT_STATUS=#{productStatus},
+        product_Summary=#{productSummary},
+        PRODUCT_CATEGORY_CODE=#{productCategoryCode}
+    </insert>
+    <delete id="deleteProduct">
+        DELETE FROM tbl_product
+        WHERE PRODUCT_CODE = #{productCode};
+    </delete>
 
 
 

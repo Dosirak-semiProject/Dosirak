@@ -20,8 +20,6 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    /* 관리자 기능 일단 제외 */
-
     @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
@@ -41,10 +39,8 @@ public class OrderController {
     public String orderView(Model model, @RequestParam String orderCode) {
 
         OrderDTO orderView = orderService.allOrderView(orderCode);
-//        DetailDTO detailDTO = orderService.searchDetail(orderCode);
 
         model.addAttribute("orderView", orderView);
-//        model.addAttribute("detailDTO", detailDTO);
 
         return "admin/order/orderView";
     }
@@ -99,6 +95,8 @@ public class OrderController {
         mv.addObject("deliveryView", deliveryView);
 
         mv.setViewName("admin/order/deliveryView");
+
+        System.out.println("@@@@@@@@@@@@@@" + deliveryView.getOrder().getOrderCode());
 
         return mv;
     }
