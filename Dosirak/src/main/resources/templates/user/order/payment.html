@@ -4,20 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>주문결제</title>
-    <link rel="stylesheet" href="/user/css/common/reset.css"/>
-    <link rel="stylesheet" href="/user/css/common/base.css"/>
-    <link rel="stylesheet" href="/user/css/common/common.css"/>
+    <th:block th:replace="/user/common/head.html"></th:block>
     <link rel="stylesheet" href="/user/css/order.css"/>
-
-    <!-- 포트원 결제 -->
-    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-    <!-- jQuery -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-    <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <script type="text/javascript" src="/user/js/payment.js"></script>
 </head>
 <body>
 <div class="ly_all bl_all">
+    <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_maxWD ly_inner02">
         <h2 class="el_lv1Head">주문 결제</h2>
         <table class="bl_TBView hp_mt50">
@@ -43,21 +38,21 @@
             </tr>
             <tr>
                 <th scope="row"><label for="">배송받는 사람</label></th>
-                <td><input th:each="cart : ${ cartDTO }" th:value="${ cart.memberDTO.name }" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="배송받는 사람의 이름 입력해주세요" title="이름 입력"/></td>
+                <td><input th:value="${cartDTO[0].memberDTO.name}" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="배송받는 사람의 이름 입력해주세요" title="이름 입력"/></td>
             </tr>
             <tr>
                 <th scope="row"><label for="">휴대폰번호</label></th>
-                <td><input th:each="cart : ${ cartDTO }" th:value="${ cart.memberDTO.phone }" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="휴대폰번호를 입력해주세요" title="휴대폰번호 입력"/></td>
+                <td><input th:value="${cartDTO[0].memberDTO.phone}" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="휴대폰번호를 입력해주세요" title="휴대폰번호 입력"/></td>
             </tr>
             <tr th:each="cart : ${ cartDTO }">
                 <th scope="row"><label for="">배송지</label></th>
                 <td>
                     <div class="ly_flex">
-                        <input th:value="${ cart.memberDTO.address1 }" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="우편 주소" title="우편 주소 입력"/>
+                        <input th:value="${cartDTO[0].memberDTO.address1}" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="우편 주소" title="우편 주소 입력"/>
                         <input type="button" id="" class="el_btnM el_btnPointBack hp_ml10" name="" value="우편번호 검색"/>
                     </div>
-                    <input th:value="${ cart.memberDTO.address2 }" type="text" id="" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="" placeholder="기본 주소" title="기본 주소 입력"/>
-                    <input th:value="${ cart.memberDTO.address3 }" type="text" id="" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="" placeholder="상세 주소" title="상세 주소 입력"/>
+                    <input th:value="${cartDTO[0].memberDTO.address2}" type="text" id="" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="" placeholder="기본 주소" title="기본 주소 입력"/>
+                    <input th:value="${cartDTO[0].memberDTO.address3}" type="text" id="" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="" placeholder="상세 주소" title="상세 주소 입력"/>
                 </td>
             </tr>
             <tr>
@@ -110,54 +105,11 @@
             </tbody>
         </table>
         <ul class="ly_flexC hp_mt70">
-            <li><button id="payment" class="el_btnM hp_br5 el_btnPointBack" href="">결제</button></li>
+            <li><button class="el_btnM hp_br5 el_btnPointBack" onclick="payment()">결제</button></li>
             <li><a class="el_btnM hp_br5 el_btn8Bord hp_ml10">취소</a></li>
         </ul>
     </div>
 </div>
-<script>
-
-    const byButton = document.querySelector('#payment')
-    byButton.addEventListener('click', () => {
-        alert("결제 버튼 누름")
-        kakaoPay();
-    });
-
-
-        const today = new Date();
-        const hours = today.getHours(); // 시
-        const minutes = today.getMinutes(); // 분
-        const seconds = today.getSeconds(); // 초
-        const milliseconds = today.getMilliseconds();
-        const makeMerchantUid = `${hours}` + `${minutes}` + `${seconds}` + `${milliseconds}`;
-
-        let IMP = window.IMP;
-        IMP.init("imp87822476"); // 가맹점 식별코드
-
-        function kakaoPay() {
-            if (confirm("구매 하시겠습니까?")) {
-                IMP.request_pay(
-                    {
-                        pg: "kakaopay.TC0ONETIME.",
-                        pay_method: "card",
-                        merchant_uid: `${makeMerchantUid}`, // 주문번호
-                        name: "노르웨이 회전 의자",
-                        amount: 64900, // 숫자 타입
-                        buyer_email: "gildong@gmail.com",
-                        buyer_name: "홍길동",
-                        buyer_tel: "010-4242-4242",
-                        buyer_addr: "서울특별시 강남구 신사동",
-                        buyer_postcode: "01181",
-                    },
-                    function (rsp) {
-                        // callback
-                        //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
-                    },
-                );
-            }
-
-        }
-
-</script>
+<th:block th:replace="/user/common/footer.html"></th:block>
 </body>
 </html>
