@@ -9,6 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+
+//    @GetMapping("/main")
+//    public void main(){}
+
     @GetMapping("main")
     public ModelAndView main(ModelAndView mv, @RequestParam(required = false) String message){
         mv.addObject("message", message);

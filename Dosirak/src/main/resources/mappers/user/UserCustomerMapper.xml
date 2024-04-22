@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.dosirak.user.customer.model.dao.UserCustomerMapper">
+
+    <!-- 문의 대분류 -->
+
+    <resultMap type="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskCategoryDTO" id="askCategoryResultMap">
+        <id property="askCategoryCode" column="ask_category_code"/>
+        <result property="askCategoryName" column="ask_category_name"/>
+    </resultMap>
+
+    <!-- 공지사항 -->
+
+    <select id="findNoticeList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserNoticeDTO">
+        SELECT
+            notice_code,
+            notice_title,
+            DATE_FORMAT(notice_date, '%Y-%m-%d') as notice_date,
+            admin_id
+        FROM
+            notice
+        ORDER BY
+            notice_code desc
+    </select>
+
+    <select id="searchNoticeDetail" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserNoticeDTO">
+        SELECT
+            notice_code,
+            admin_id,
+            DATE_FORMAT(notice_date, '%Y-%m-%d') as notice_date,
+            notice_title,
+            notice_content
+        FROM
+            notice
+        WHERE
+            notice_code = #{ noticeCode }
+    </select>
+
+    <!-- 자주 묻는 질문 -->
+
+    <resultMap type="com.ohgiraffers.dosirak.user.customer.model.dto.UserQnaDTO" id="generalQnaResultMap">
+        <id property="qnaCode" column="qna_code"/>
+        <result property="qnaTitle" column="qna_title"/>
+        <result property="qnaAnswer" column="qna_answer"/>
+        <result property="adminId" column="admin_id"/>
+        <association property="askCategoryCode" resultMap="askCategoryResultMap"/>
+    </resultMap>
+
+
+    <select id="searchQnaDetail" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserQnaDTO">
+        SELECT
+            a.qna_code,
+            a.admin_Id,
+            b.ask_category_code,
+            b.ask_category_name,
+            a.qna_title,
+            a.qna_answer
+        FROM
+            qna a
+        JOIN
+            ask_category b ON (a.ask_category_code = b.ask_category_code)
+        WHERE
+            qna_code = #{ qnaCode }
+    </select>
+
+    <select id="findCategoryList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskCategoryDTO">
+        SELECT
+            *
+        FROM
+            ask_category
+    </select>
+
+    <select id="findQnaList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserQnaDTO">
+        SELECT
+            *
+        FROM
+            qna
+    </select>
+
+    <!-- 1대1 문의페이지  -->
+
+    <select id="findAskList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO">
+        SELECT
+            *
+        FROM
+            ask
+    </select>
+
+    <select id="searchAskDetail" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO">
+        SELECT
+            *
+        FROM
+            ask
+        WHERE
+            ask_code = #{ askCode }
+    </select>
+
+    <insert id="insertAttachment">
+        INSERT
+        INTO customer_img
+            (ref_ask_no, original_name, saved_name, save_path, file_type, thumbnail_path)
+        VALUES
+            (#{ refAskNo }, #{ originalName }, #{ savedName }, #{ savePath }, #{ fileType }, #{ thumbnailPath, jdbcType=VARCHAR })
+    </insert>
+
+    <insert id="insertAsk">
+        INSERT
+        INTO ask
+            (ask_title, ask_content, ask_date, user_id, ask_editDate, ask_delete, ask_category_code)
+        VALUES
+            (#{ askTitle }, #{ askContent }, #{ askDate }, "임시사용자", NOW(), '0', '1')
+    </insert>
+
+    <insert id="insertImage">
+        INSERT
+        INTO customer_img
+            (ref_ask_code, original_name, saved_name, save_path)
+        VALUES
+            (#{ ref_ask_code }, #{ originalName }, #{ savedName }, #{ savePath })
+    </insert>
+
+</mapper>

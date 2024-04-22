@@ -188,6 +188,7 @@
             r.order_code = #{ orderCode }
     </select>
 
+    <!-- DeliveryView Query -->
     <select id="allDeliveryView" resultMap="deliveryResultMap">
         SELECT
             o.order_code,

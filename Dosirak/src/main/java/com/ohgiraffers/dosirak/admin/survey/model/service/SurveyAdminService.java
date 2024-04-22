@@ -1,9 +1,7 @@
 package com.ohgiraffers.dosirak.admin.survey.model.service;
 
 import com.ohgiraffers.dosirak.admin.survey.model.dao.SurveyAdminMapping;
-import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyQuestionDTO;
 import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyResultDTO;
-import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyVersionDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,15 +22,4 @@ public class SurveyAdminService {
         return surveyMapper.allList();
     }
 
-    public SurveyVersionDTO getVersionByVersionId(int versionId) {
-        return surveyMapper.getVersionByVersionId(versionId);
-    }
-
-    public List<SurveyVersionDTO> getAllVersion() {
-        return surveyMapper.getAllVersion();
-    }
-
-    public List<SurveyQuestionDTO> getQuestionListByVersionId(int versionId) {
-        return surveyMapper.getQuestionListByVersionId(versionId);
-    }
 }

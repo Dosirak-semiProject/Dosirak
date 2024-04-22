@@ -24,7 +24,7 @@
                 <th scope="row">주문 상품</th>
                 <td>
                     <ul>
-                        <li class="ly_flex ly_fitemC" th:each="cart : ${ cartDTO }">
+                        <li class="ly_flex ly_fitemC"  th:each="cart : ${ cartDTO }">
                             <img class="bl_orderView__img" src="/user/img/main/main01.png" alt=""/>
                             <dl class="bl_orderView__info">
                                 <dt class="" th:text="${ cart.productDTO.productName }"></dt>
@@ -36,21 +36,21 @@
             </tr>
             <tr>
                 <th scope="row"><label for="">배송받는 사람</label></th>
-                <td><input th:value="${cartDTO[0].memberDTO.name }" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="배송받는 사람의 이름 입력해주세요" title="이름 입력"/></td>
+                <td><input th:each="cart : ${ cartDTO }" th:value="${ cart.memberDTO.name }" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="배송받는 사람의 이름 입력해주세요" title="이름 입력"/></td>
             </tr>
             <tr>
                 <th scope="row"><label for="">휴대폰번호</label></th>
-                <td><input th:value="${cartDTO[0].memberDTO.phone }" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="휴대폰번호를 입력해주세요" title="휴대폰번호 입력"/></td>
+                <td><input th:each="cart : ${ cartDTO }" th:value="${ cart.memberDTO.phone }" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="휴대폰번호를 입력해주세요" title="휴대폰번호 입력"/></td>
             </tr>
-            <tr>
+            <tr th:each="cart : ${ cartDTO }">
                 <th scope="row"><label for="">배송지</label></th>
                 <td>
                     <div class="ly_flex">
-                        <input th:value="${cartDTO[0].memberDTO.address1 }" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="우편 주소" title="우편 주소 입력"/>
+                        <input th:value="${ cart.memberDTO.address1 }" type="text" id="" class="el_btnM hp_inputBack hp_w100" name="" placeholder="우편 주소" title="우편 주소 입력"/>
                         <input type="button" id="" class="el_btnM el_btnPointBack hp_ml10" name="" value="우편번호 검색"/>
                     </div>
-                    <input th:value="${cartDTO[0].memberDTO.address2 }" type="text" id="" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="" placeholder="기본 주소" title="기본 주소 입력"/>
-                    <input th:value="${cartDTO[0].memberDTO.address3 }" type="text" id="" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="" placeholder="상세 주소" title="상세 주소 입력"/>
+                    <input th:value="${ cart.memberDTO.address2 }" type="text" id="" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="" placeholder="기본 주소" title="기본 주소 입력"/>
+                    <input th:value="${ cart.memberDTO.address3 }" type="text" id="" class="el_btnM hp_inputBack hp_w100 hp_mt10" name="" placeholder="상세 주소" title="상세 주소 입력"/>
                 </td>
             </tr>
             <tr>
