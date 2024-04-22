@@ -19,7 +19,9 @@ public class MainController {
         mv.setViewName("/loginFail");
         return mv;
     }
-
     @GetMapping("/logoutPage")
     public void logoutPage(){}
+
+    @GetMapping("/errorPage")
+    public void errorPage(){}
 }
