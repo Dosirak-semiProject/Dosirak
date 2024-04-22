@@ -55,8 +55,10 @@ public class SecurityConfig{
                 })
                 .sessionManagement(session -> {
                     session.maximumSessions(1);
-                    session.invalidSessionUrl("/logoutPage");
-                }).csrf(csrf -> csrf.disable());    // Cross-Site Request Forgery 개발단계에서만 disable() 설정해줌
+                    // 회원탈퇴시 세션 만료시키면 logoutPage로 redirect 되는걸 막기 위해 주석처리
+                    // session.invalidSessionUrl("/logoutPage");
+                })
+                .csrf(csrf -> csrf.disable());    // Cross-Site Request Forgery 개발단계에서만 disable() 설정해줌
 
         return http.build();
     }

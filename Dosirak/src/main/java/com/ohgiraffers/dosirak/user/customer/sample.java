@@ -1,4 +1,4 @@
 package com.ohgiraffers.dosirak.user.customer;
 
-public class Sample {
+public class sample {
 }

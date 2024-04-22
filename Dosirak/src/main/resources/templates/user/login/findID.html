@@ -62,7 +62,6 @@
         window.alert = function (){
             passAlert.apply(this, arguments);
             if(arguments[0] === "인증되었습니다."){
-                console.log(123);
                 $(".el_findIDbtn").removeAttr("disabled");
             }
         }

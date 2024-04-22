@@ -11,17 +11,21 @@ import lombok.ToString;
 public class DetailDTO {
     private String orderCode;
     private String detailCode;
+    private String detailStatus;
     private int detailItemCount;
-    private String detailItemCode;
+    private String detailItemProductCode;
+    private String detailItemSuitboxCode;
     private productDTO product;
 
     public DetailDTO() {}
 
-    public DetailDTO(String orderCode, String detailCode, int detailItemCount, String detailItemCode, productDTO product) {
+    public DetailDTO(String orderCode, String detailCode, String detailStatus, int detailItemCount, String detailItemProductCode, String detailItemSuitboxCode, productDTO product) {
         this.orderCode = orderCode;
         this.detailCode = detailCode;
+        this.detailStatus = detailStatus;
         this.detailItemCount = detailItemCount;
-        this.detailItemCode = detailItemCode;
+        this.detailItemProductCode = detailItemProductCode;
+        this.detailItemSuitboxCode = detailItemSuitboxCode;
         this.product = product;
     }
 }
