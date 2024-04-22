@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="/user/css/common/base.css"/>
     <link rel="stylesheet" href="/user/css/common/common.css"/>
     <link rel="stylesheet" href="/user/css/order.css"/>
+
+    <!-- 포트원 결제 -->
+    <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
 </head>
 <body>
 <div class="ly_all bl_all">
@@ -80,7 +87,7 @@
                             <label class="bl_radioCircle">
                                 <input class="bl_radioCircle__input" type="radio" name="orderCancel" value="">
                                 <span class="bl_radioCircle__check"></span>
-                                <span class="hp_dpInblock hp_ml5 hp_fs16">카카오페이</span>
+                                <span class="hp_dpInblock hp_ml5 hp_fs16 kakao_pay">카카오페이</span>
                             </label>
                         </li>
                         <li>
@@ -103,10 +110,54 @@
             </tbody>
         </table>
         <ul class="ly_flexC hp_mt70">
-            <li><a class="el_btnM hp_br5 el_btnPointBack" href="/user/orderDone">결제</a></li>
-            <li><a class="el_btnM hp_br5 el_btn8Bord hp_ml10" href="">취소</a></li>
+            <li><button id="payment" class="el_btnM hp_br5 el_btnPointBack" href="">결제</button></li>
+            <li><a class="el_btnM hp_br5 el_btn8Bord hp_ml10">취소</a></li>
         </ul>
     </div>
 </div>
+<script>
+
+    const byButton = document.querySelector('#payment')
+    byButton.addEventListener('click', () => {
+        alert("결제 버튼 누름")
+        kakaoPay();
+    });
+
+
+        const today = new Date();
+        const hours = today.getHours(); // 시
+        const minutes = today.getMinutes(); // 분
+        const seconds = today.getSeconds(); // 초
+        const milliseconds = today.getMilliseconds();
+        const makeMerchantUid = `${hours}` + `${minutes}` + `${seconds}` + `${milliseconds}`;
+
+        let IMP = window.IMP;
+        IMP.init("imp87822476"); // 가맹점 식별코드
+
+        function kakaoPay() {
+            if (confirm("구매 하시겠습니까?")) {
+                IMP.request_pay(
+                    {
+                        pg: "kakaopay.TC0ONETIME.",
+                        pay_method: "card",
+                        merchant_uid: `${makeMerchantUid}`, // 주문번호
+                        name: "노르웨이 회전 의자",
+                        amount: 64900, // 숫자 타입
+                        buyer_email: "gildong@gmail.com",
+                        buyer_name: "홍길동",
+                        buyer_tel: "010-4242-4242",
+                        buyer_addr: "서울특별시 강남구 신사동",
+                        buyer_postcode: "01181",
+                    },
+                    function (rsp) {
+                        // callback
+                        //rsp.imp_uid 값으로 결제 단건조회 API를 호출하여 결제결과를 판단합니다.
+                    },
+                );
+            }
+
+        }
+
+</script>
 </body>
 </html>
