@@ -1,5 +1,6 @@
 package com.ohgiraffers.dosirak.user.order.model.service;
 
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dao.CartMapper;
@@ -19,16 +20,16 @@ public class CartService {
         this.cartMapper = cartMapper;
     }
 
-    public List<CartDTO> userCartList() {
-        return cartMapper.userCartList();
+    public List<CartDTO> userCartList(String userID) {
+        return cartMapper.userCartList(userID);
     }
 
-    public List<OrderDTO> userOrderDone() {
-        return cartMapper.userOrderDone();
+    public List<OrderDTO> userOrderDone(String id) {
+        return cartMapper.userOrderDone(id);
     }
 
-    public List<CartDTO> userPayment() {
-        return cartMapper.userPayment();
+    public List<CartDTO> userPayment(String id) {
+        return cartMapper.userPayment(id);
     }
 
     public void cartUpdateQuantity(CartDTO cartDTO) {
@@ -43,4 +44,7 @@ public class CartService {
         }
     }
 
+    public List<MemberDTO> findSearchId() {
+        return cartMapper.findSearchId();
+    }
 }

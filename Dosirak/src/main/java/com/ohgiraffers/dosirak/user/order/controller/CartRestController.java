@@ -40,7 +40,4 @@ public class CartRestController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
-
-    @PostMapping("payment/kakao-pay")
-    public String paymentKakaoPay() {return null;}
 }
