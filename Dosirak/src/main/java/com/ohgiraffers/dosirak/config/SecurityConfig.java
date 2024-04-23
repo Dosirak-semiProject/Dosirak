@@ -1,14 +1,12 @@
 package com.ohgiraffers.dosirak.config;
 
 import com.ohgiraffers.dosirak.common.UserRole;
-import com.ohgiraffers.dosirak.config.handler.CustomAccessDeniedHandler;
 import com.ohgiraffers.dosirak.config.handler.LoginFailHandler;
 import com.ohgiraffers.dosirak.config.handler.LoginSuccessHandler;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,20 +14,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import java.nio.file.Path;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig{
 
     private final LoginFailHandler loginFailHandler;
     private final LoginSuccessHandler loginSuccessHandler;
-    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
-    public SecurityConfig(LoginFailHandler loginFailHandler, LoginSuccessHandler loginSuccessHandler, CustomAccessDeniedHandler customAccessDeniedHandler){
+    public SecurityConfig(LoginFailHandler loginFailHandler, LoginSuccessHandler loginSuccessHandler){
             this.loginFailHandler = loginFailHandler;
             this.loginSuccessHandler = loginSuccessHandler;
-            this.customAccessDeniedHandler = customAccessDeniedHandler;
     }
 
     @Bean
@@ -40,10 +34,7 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
 
-        http.exceptionHandling().accessDeniedHandler(customAccessDeniedHandler);
-
         http.authorizeHttpRequests(auth -> {
-//                    auth.requestMatchers("/","/user/main","/user/join/**","/login","/loginFail","/errorPage","/user/login/**","/admin/member/join", "/user/css/**", "/user/img/**", "/user/js/**", "/admin/css/**", "/admin/js/**").permitAll();
 //                    auth.requestMatchers("/admin/**").hasAnyAuthority(UserRole.ADMIN.getRole());
 //                    auth.requestMatchers("/user/myinfo/**").hasAnyAuthority(UserRole.USER.getRole());
                     auth.requestMatchers("**").permitAll();

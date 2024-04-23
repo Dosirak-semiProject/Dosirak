@@ -10,17 +10,14 @@ public interface ProductMapper {
     List<productDTO> findAllProduct();
     
 
-    void insertProduction(productDTO product);
+    List<productDTO> insertProduction(productDTO product);
 
 
+    List<productDTO> productSelectList(String key);
 
 
     productDTO getProductByCode(int productCode);
 
 
     int productUpdate(productDTO product);
-
-    void deleteProduct(productDTO product);
-
-    List<productDTO> productSelectList(String productStatus, Integer productCategoryCode, String productName);
 }

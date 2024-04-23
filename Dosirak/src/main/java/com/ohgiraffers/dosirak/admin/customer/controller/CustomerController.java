@@ -1,13 +1,13 @@
 package com.ohgiraffers.dosirak.admin.customer.controller;
 
-import com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO;
-import com.ohgiraffers.dosirak.admin.customer.model.dto.NoticeDTO;
+import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import com.ohgiraffers.dosirak.admin.customer.model.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -21,7 +21,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    /* 공지사항 관리페이지 */
+    /* ----- 공지사항 관리페이지 ----- */
 
     @GetMapping("/noticeList")
     public String noticeList(Model model) {
@@ -91,7 +91,96 @@ public class CustomerController {
         return "redirect:/admin/customer/noticeList";
     }
 
-    /* 1대1 관리페이지 */
+    /* ----- 자주 묻는 질문 관리페이지 ----- */
+
+    @GetMapping("/qnaList")
+    public String getQnaList(Model model) {
+
+        List<QnaDTO> qnaList = customerService.findQnaList();
+
+        model.addAttribute("qnaList", qnaList);
+
+        return "admin/customer/qnaList";
+    }
+
+    @GetMapping("/qnaDetail")
+    public String getQnaDetail(@RequestParam("qnaCode") int qnaCode, Model model) {
+
+        QnaDTO qnaDetail = customerService.selectQnaDetail(qnaCode);
+
+        model.addAttribute("qna", qnaDetail);
+
+        return "admin/customer/qnaDetail";
+    }
+
+    @GetMapping("/qnaWrite")
+    public String qnaWrite(Model model) {
+
+        List<AskCategoryDTO> categoryList = customerService.findCategoryList();
+        model.addAttribute("askCategory", categoryList);
+
+        return "admin/customer/qnaWrite";
+    }
+
+    @PostMapping("/qnaWrite")
+    public String qnaWritePro(@RequestParam("askCategoryCode") int askCategoryCode,
+                              String qnaTitle, String qnaAnswer, String adminID) {
+
+        // AskCategoryDTO 객체 생성 및 askCategoryCode 설정
+        AskCategoryDTO askCategory = new AskCategoryDTO();
+        askCategory.setAskCategoryCode(askCategoryCode);
+
+        // QnaDTO 객체 생성 및 필드 설정
+        QnaDTO newQna = new QnaDTO();
+        newQna.setAskCategoryCode(askCategory);
+        newQna.setQnaTitle(qnaTitle);
+        newQna.setQnaAnswer(qnaAnswer);
+        newQna.setAdminId(adminID);
+
+        // 서비스로 전달
+        customerService.writeQna(newQna);
+
+        return "redirect:qnaList";
+    }
+
+    @RequestMapping("/qnaDelete")
+    public String qnaDelete(QnaDTO qna) {
+
+        customerService.deleteQna(qna.getQnaCode());
+
+        return "redirect:qnaList";
+    }
+
+    /* 분류 수정되지 않는 점 수정 예정 */
+    @GetMapping("/qnaEdit/{qnaCode}")
+    public String qnaEdit(@PathVariable("qnaCode") int qnaCode, Model model) {
+
+        List<AskCategoryDTO> categoryList = customerService.findCategoryList();
+
+        model.addAttribute("qna", customerService.selectQnaDetail(qnaCode));
+        model.addAttribute("askCategory", categoryList);
+
+        return "admin/customer/qnaEdit";
+    }
+
+    @PostMapping("/qnaUpdate/{qnaCode}")
+    public String qnaUpdate(@PathVariable("qnaCode") int qnaCode, QnaDTO qna) {
+
+        //noticeTemp에 현재 공지사항 정보 담아 반환
+        QnaDTO qnaTemp = customerService.selectQnaDetail(qnaCode);
+
+        // 덮어쓰기
+        qnaTemp.setQnaTitle(qna.getQnaTitle());
+        qnaTemp.setQnaAnswer(qna.getQnaAnswer());
+
+        // 업데이트
+        customerService.updateQna(qnaTemp);
+
+        return "redirect:/admin/customer/qnaList";
+    }
+
+
+    /* ----- 1대1 관리페이지 ----- */
 
     @GetMapping("/askList")
     public String askList(Model model) {
@@ -101,6 +190,20 @@ public class CustomerController {
         model.addAttribute("askList", askList);
 
         return "/admin/customer/askList";
+    }
+
+    @GetMapping("/askDetail")
+    public String getAskDetail(@RequestParam("askCode") int askCode, Model model) {
+
+        AskDTO askDetail = customerService.selectAskDetail(askCode);
+        AnswerDTO answerDetail = customerService.selectAnswerDetail(askCode);
+        List<AskCategoryDTO> categoryList = customerService.findCategoryList();
+
+        model.addAttribute("ask", askDetail);
+        model.addAttribute("answer", answerDetail);
+        model.addAttribute("askCategory", categoryList);
+
+        return "admin/customer/askDetail";
     }
 
 }

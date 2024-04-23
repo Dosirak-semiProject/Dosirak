@@ -7,10 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MainController {
-    @GetMapping("/")
-    public String main(){return "/user/main";}
 
-    @GetMapping("/login")
+    @GetMapping(value = {"/", "/login"})
     public String login(){return "login";}
 
     @GetMapping("/loginFail")
@@ -19,9 +17,7 @@ public class MainController {
         mv.setViewName("/loginFail");
         return mv;
     }
+
     @GetMapping("/logoutPage")
     public void logoutPage(){}
-
-    @GetMapping("/errorPage")
-    public void errorPage(){}
 }

@@ -29,8 +29,8 @@
 .bl_paging{display:flex;justify-content:center;}
 .bl_paging a{border:1px solid #dedede;background-color:#fff;display:flex;width:35px;height:35px;justify-content:center;align-items:center;}
 .bl_paging a:hover,.bl_paging .hp_active{background-color:#dedede}
-.bl_pagingIcon__prev::after{content:"";display:block;width:100%;height:100%;background:url("static/user/img/icon/arrow.png")no-repeat center/20px;transform:rotate(180deg);}
-.bl_pagingIcon__next{background:url("static/user/img/icon/arrow.png")no-repeat center/20px #fff;}
+.bl_pagingIcon__prev::after{content:"";display:block;width:100%;height:100%;background:url("/img/icon/arrow.png")no-repeat center/20px;transform:rotate(180deg);}
+.bl_pagingIcon__next{background:url("/img/icon/arrow.png")no-repeat center/20px #fff;}
 /* 검색 */
 .ly_midWDside .bl_TBList .hp_ellipsis{width:430px;}
 .bl_TBsearch{background:#F9F9F9;border-top:1px solid #777;}
@@ -45,7 +45,7 @@
 .bl_TBList__ttl a{display:block;text-align:left;}
 .bl_TBList__ttl a:hover{color:#426B1F;}
 .bl_TBList .bl_TBList__empty{padding:50px 0;color:#aaa;}
-.bl_TBList__empty::before{content:"";display:block;width:70px;height:70px;background:url("static/user/img/icon/bento.png")no-repeat center/cover;margin:0 auto 20px;}
+.bl_TBList__empty::before{content:"";display:block;width:70px;height:70px;background:url("/img/icon/bento.png")no-repeat center/cover;margin:0 auto 20px;}
 
 .bl_TBList__qna{border:2px solid #426B1F}
 .bl_TBList__qnaNum{display:inline-flex;width:25px;height:25px;border-radius:50%;background:#426B1F;color:#fff;justify-content:center;align-items:center;}
@@ -70,7 +70,7 @@
 /* 완료페이지 */
 .bl_doneBox{border:1px solid #dedede;padding:50px;}
 .bl_doneBox__txt{display:flex;justify-content:center;align-items:center;margin:50px 0 70px;font-size:16px;}
-.bl_doneBox__txt::before{content:"";margin-right:20px;display:block;width:60px;height:60px;background:url("static/user/img/icon/check.png")no-repeat center/cover;}
+.bl_doneBox__txt::before{content:"";margin-right:20px;display:block;width:60px;height:60px;background:url("/user/img/icon/check.png")no-repeat center/cover;}
 /* Tab */
 .bl_tab{position:relative;padding-top:50px;}
 .bl_tabBtn{height:50px;position:absolute;top:0;left:0;background:#F9F9F9;border-radius:10px;border-bottom-left-radius:0;border-bottom-right-radius:0;font-size:14px;}

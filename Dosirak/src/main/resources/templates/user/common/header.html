@@ -6,11 +6,11 @@
             </a>
         </h1>
         <ul class="bl_head__menuC ly_flex">
-            <li><a class="bl_head__menuCitem hp_pointColor" href="/user/product/productList">전체보기</a></li>
-            <li><a class="bl_head__menuCitem hp_pointColor" href="/user/product/productList?category=1">정성도시락</a></li>
-            <li><a class="bl_head__menuCitem hp_pointColor" href="/user/product/productList?category=2">건강도시락</a></li>
+            <li><a class="bl_head__menuCitem hp_pointColor" href="">전체보기</a></li>
+            <li><a class="bl_head__menuCitem hp_pointColor" href="">정성도시락</a></li>
+            <li><a class="bl_head__menuCitem hp_pointColor" href="">건강도시락</a></li>
             <li><a class="bl_head__menuCitem hp_pointColor" href="/suit-box">맞춤도시락</a></li>
-            <li><a class="bl_head__menuCitem hp_pointColor" href="/user/product/productList?category=3">간편식</a></li>
+            <li><a class="bl_head__menuCitem hp_pointColor" href="">간편식</a></li>
         </ul>
         <ul class="bl_head__menuR ly_flex ly_fitemC">
             <li class="hp_relative">
@@ -31,7 +31,7 @@
                     </button>
                 </th:block>
             </li>
-            <li class=""><a class="cart_click bl_headIcon bl_headIcon__cart" href="" th:href="@{'/user/cart?userId=' + 'starry2'}"><img src="/user/img/icon/header_cart.png" alt="장바구니"></a></li>
+            <li class=""><a class="bl_headIcon bl_headIcon__cart" href=""><img src="/user/img/icon/header_cart.png" alt="장바구니"></a></li>
             <li class="hp_relative">
                 <button type="button" class="bl_headIcon bl_headIcon__customer">
                     <img src="/user/img/icon/header_customer.png" alt="고객센터">
@@ -57,20 +57,4 @@
             $(".bl_head__menuSub", this).css('display', 'none');
         })
     })
-
-    /* 메인페이지 장바구니 클릭 이벤트 */
-    // const cartIcon = document.querySelector('.cart_click')
-    // cartIcon.addEventListener('click', (e) => {
-    //     // const isLoggedIn = checkLoginStatus();
-    //
-    //     if (true) {
-    //         alert("로그인 이후 사용이 가능합니다.\n로그인 페이지로 이동합니다.")
-    //         e.preventDefault()
-    //         window.location.href = '/login'
-    //     }
-    //
-    //     // const cartUrl = "http://localhost:8080/user/cart?id=${userId}"
-    //     // window.location.href=cartUrl;
-    // })
-
 </script>

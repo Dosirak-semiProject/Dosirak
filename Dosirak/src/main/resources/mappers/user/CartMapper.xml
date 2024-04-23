@@ -54,15 +54,6 @@
         <result property="orderCode" column="order_code"/>
     </resultMap>
 
-    <!-- FindMemberList Query -->
-<!--    <select id="findMemberList" resultMap="MemberResultMap">-->
-<!--        SELECT-->
-<!--            u.name-->
-<!--        FROM-->
-<!--            USER U-->
-<!--        JOIN CART C ON U.ID = C.ID-->
-<!--    </select>-->
-
     <!-- UserCartListView Query -->
     <select id="userCartList" resultMap="CartResultMap">
         SELECT
@@ -73,7 +64,7 @@
         FROM
             cart c
         JOIN product p ON c.product_code = p.product_code
-        WHERE c.id = #{userId}
+        JOIN user u ON c.id = u.id
     </select>
 
     <!-- UserOrderDone Query -->
@@ -102,7 +93,6 @@
         JOIN user u ON c.id = u.id
         JOIN `order` o ON u.id = o.id
         JOIN product p ON c.product_code = p.product_code
-        WHERE c.id = #{userId}
     </select>
 
     <!-- CartUpdateQuantity Query -->
@@ -114,17 +104,4 @@
         WHERE
             product_code = #{productCode}
     </update>
-
-    <!-- CartTotalPrice Query -->
-    <select id="cartTotalPrice" parameterType="hashMap" resultType="int">
-        SELECT
-            #{cartitemCount} * product_price as totalPrice
-        FROM
-        PRODUCT
-        WHERE
-        PRODUCT_CODE = #{productCode}
-<!--            cart c-->
-<!--        JOIN product p ON c.product_code = p.product_code-->
-<!--        WHERE c.product_code = #{productCode} AND c.cartitem_count = #{itemQuantity}-->
-    </select>
 </mapper>

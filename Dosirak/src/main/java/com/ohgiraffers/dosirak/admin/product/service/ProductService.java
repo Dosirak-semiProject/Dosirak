@@ -2,6 +2,7 @@ package com.ohgiraffers.dosirak.admin.product.service;
 
 import com.ohgiraffers.dosirak.admin.product.dao.ProductMapper;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
+import com.ohgiraffers.dosirak.common.member.MemberModifyException;
 import com.ohgiraffers.dosirak.common.product.ProductUpdateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +20,15 @@ public class ProductService {
     }
 
 
-    public void insertProduction(productDTO product) {
+    public List<productDTO> insertProduction(productDTO product) {
 
-        productMapper.insertProduction(product);
+        return productMapper.insertProduction(product);
     }
 
 
+    public List<productDTO> productSelectList(String key) {
+        return productMapper.productSelectList(key);
+    }
 
 
     public productDTO getProductByCode(int productCode) {
@@ -37,14 +41,6 @@ public class ProductService {
         if(!(result > 0)) throw new ProductUpdateException("수정에 실패하였습니다.");
 
 
-    }
-
-    public void deleteProduct(productDTO product) {
-        productMapper.deleteProduct(product);
-    }
-
-    public List<productDTO> productSelectList(String productStatus, Integer productCategoryCode, String productName) {
-      return   productMapper.productSelectList(productStatus,productCategoryCode,productName);
     }
 }
 
