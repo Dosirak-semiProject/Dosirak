@@ -23,20 +23,27 @@
                         <tbody>
                         <tr>
                             <th scope="row">분류</th>
-                            <td></td>
+                            <td th:text="${ ask.askCategoryCode }"></td>
                         </tr>
                         <tr>
                             <th scope="row">제목</th>
-                            <td>물품이 잘못 배송됐습니다.</td>
+                            <td th:text="${ ask.askTitle }"></td>
                         </tr>
                         <tr>
                             <th scope="row">문의내용</th>
-                            <td>어드카죠..........저는 이제 거기 살지 않아요.............</td>
+                            <td th:text="${ ask.askContent }"></td>
                         </tr>
                         <tr>
                             <th scope="row">답변내용</th>
                             <td>
-                                <div>안녕하세요 고객님.^^ <br/><br/>반품 신청 후, 회원정보 변경을 통해 주소지를 변경하신 후 다시 주문 부탁드립니다. <br/><br/>관리자01 드림.</div>
+                                <!-- 답변 있을 시 -->
+                                <div th:if="${ answer != null }">
+                                    <span th:text="${ answer.answerContent }"></span>
+                                </div>
+                                <!-- 답변 없을 시 -->
+                                <div th:if="${ answer == null }">
+                                    <span>답변 등록 전입니다.</span>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -51,11 +58,19 @@
                         </tr>
                         </tbody>
                     </table>
-                    <ul class="ly_flexC hp_mt70">
-                        <li><a class="el_btnM hp_br5 el_btn8Back" href="">목록</a></li>
-                        <li><a class="el_btnM hp_br5 el_btnPointBord hp_ml10" href="">수정</a></li>
-                        <li><a class="el_btnM hp_br5 el_btn8Bord hp_ml10" href="">삭제</a></li>
-                    </ul>
+                    <!-- 답변 있을 경우 -->
+                    <div th:if="${ answer != null }">
+                        <ul class="ly_flexC hp_mt70">
+                            <li><a class="el_btnM hp_br5 el_btnPointBack" href="">목록</a></li>
+                        </ul>
+                    </div>
+                    <!-- 답변 없을 경우 -->
+                    <div th:if="${ answer == null }">
+                        <ul class="ly_flexC hp_mt70">
+                            <li><a class="el_btnM hp_br5 el_btnPointBack hp_ml10" href="">수정</a></li>
+                            <li><a class="el_btnM hp_br5 el_btn8Bord hp_ml10" href="">삭제</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
