@@ -12,20 +12,17 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/user")
 public class UserController {
 
-//    @GetMapping("/main")
-//    public void main(){}
-
     @Autowired
     private MyinfoService myinfoService;
 
-    @GetMapping("main")
+    @GetMapping(value = {"/", "/user/main"})
     public ModelAndView main(ModelAndView mv, @RequestParam(required = false) String message){
         mv.addObject("message", message);
         mv.setViewName("/user/main");
         return mv;
     }
 
-    @PostMapping("emailDupCheck")
+    @PostMapping("/user/emailDupCheck")
     public ResponseEntity<String> emailDupCheck(@RequestBody MemberDTO member){
         String result = "";
         if(member.getEmail() == null || member.getEmail() == ""){
