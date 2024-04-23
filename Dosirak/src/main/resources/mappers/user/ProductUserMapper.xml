@@ -23,7 +23,15 @@
     <select id="productsListView" resultMap="product">
         SELECT *
         FROM tbl_product
-        WHERE PRODUCT_CATEGORY_CODE = #{productCategoryCode};
+        WHERE PRODUCT_CATEGORY_CODE IN (2);
+    </select>
+
+    <select id="getProductListBySubCategoryCode">
+        SELECT *
+        FROM TBL_PRODUCT P
+        LEFT JOIN TBL_PRODUCT_CATEGORY C
+        ON P.product_category_code = c.product_main_category_code
+        WHERE c.product_sub_category_code = #{subCategoryCode}
     </select>
 
 

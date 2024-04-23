@@ -57,12 +57,12 @@
     <!-- UserCartListView Query -->
     <select id="userCartList" resultMap="CartResultMap">
         SELECT
-            p.product_code,
-            p.product_name,
-            p.product_price,
-            c.cartitem_count
+        p.product_code,
+        p.product_name,
+        p.product_price,
+        c.cartitem_count
         FROM
-            cart c
+        cart c
         JOIN product p ON c.product_code = p.product_code
         JOIN user u ON c.id = u.id
     </select>
@@ -70,26 +70,26 @@
     <!-- UserOrderDone Query -->
     <select id="userOrderDone" resultMap="orderResultMap">
         SELECT
-            o.order_code,
-            p.pay_date
+        o.order_code,
+        p.pay_date
         FROM
-            `order` o
+        `order` o
         JOIN pay p ON o.order_code = p.order_code
     </select>
 
     <!-- UserPayment Query-->
     <select id="userPayment" resultMap="CartResultMap">
         SELECT
-            p.product_name,
-            p.product_price,
-            c.cartitem_count,
-            u.name,
-            u.phone,
-            u.address1,
-            u.address2,
-            u.address3
+        p.product_name,
+        p.product_price,
+        c.cartitem_count,
+        u.name,
+        u.phone,
+        u.address1,
+        u.address2,
+        u.address3
         FROM
-            cart c
+        cart c
         JOIN user u ON c.id = u.id
         JOIN `order` o ON u.id = o.id
         JOIN product p ON c.product_code = p.product_code
@@ -98,10 +98,18 @@
     <!-- CartUpdateQuantity Query -->
     <update id="cartUpdateQuantity" parameterType="com.ohgiraffers.dosirak.user.order.model.dto.CartDTO">
         UPDATE
-            cart
+        cart
         SET
-            cartitem_count = #{updatedQuantity}
+        cartitem_count = #{updatedQuantity}
         WHERE
-            product_code = #{productCode}
+        product_code = #{productCode}
     </update>
+
+
+    <insert id="addCart">
+        INSERT INTO cart (CARTITEM_COUNT, PRODUCT_CODE,ID)
+        SELECT #{cartitemCount},#{productCode},#{id}
+        FROM cart c
+        JOIN user p ON c.id = p.id
+    </insert>
 </mapper>
