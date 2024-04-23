@@ -29,11 +29,11 @@ public class CartController {
         String userID = authentication.getName();
         System.out.println("아이디 조회 = " + userID);
         List<CartDTO> cartDTO = cartService.userCartList(userID);
-        for (CartDTO cart : cartDTO) {
-            System.out.println("장바구니 조회: " + cart.getCartitemCount());
-            System.out.println("장바구니 조회: " + cart.getProductDTO().getProductName());
-            System.out.println("장바구니 조회: " + cart.getProductDTO().getProductPrice());
-        }
+//        for (CartDTO cart : cartDTO) {
+//            System.out.println("장바구니 조회: " + cart.getCartitemCount());
+//            System.out.println("장바구니 조회: " + cart.getProductDTO().getProductName());
+//            System.out.println("장바구니 조회: " + cart.getProductDTO().getProductPrice());
+//        }
         model.addAttribute("cartDTO", cartDTO);
         return "/user/order/cart";
     }
