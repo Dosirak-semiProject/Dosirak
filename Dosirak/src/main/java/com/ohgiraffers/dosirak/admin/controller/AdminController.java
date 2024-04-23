@@ -10,13 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/admin")
 public class AdminController {
 
-//    @GetMapping("/main")
-//    public void main(){}
-
     @GetMapping("main")
     public ModelAndView main(ModelAndView mv, @RequestParam(required = false) String message){
         mv.addObject("message", message);
-        mv.setViewName("/admin/main");
+        mv.setViewName("/admin/member/memberList");
         return mv;
     }
 }

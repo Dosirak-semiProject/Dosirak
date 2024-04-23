@@ -31,4 +31,5 @@ public interface MemberMapper {
     int memberPwdReset(MemberDTO member);
 
     int managerPwdReset(ManagerDTO manager);
+
 }
