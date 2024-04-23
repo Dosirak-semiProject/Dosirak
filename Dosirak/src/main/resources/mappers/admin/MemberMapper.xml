@@ -21,7 +21,7 @@
     </resultMap>
     <select id="findAllMember" resultMap="member">
         SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, AGREE, JOINDATE
-        FROM USER WHERE WITHDRAWAL = FALSE ORDER BY JOINDATE DESC;
+        FROM USER WHERE WITHDRAWAL = FALSE;
     </select>
     <select id="selectMemberView" resultMap="member">
         SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, ADDRESS1, ADDRESS2, ADDRESS3, AGREE, JOINDATE
@@ -32,22 +32,32 @@
         SET PHONE = #{phone}, EMAIL = #{email}, AGREE = #{agree}, ADDRESS1 = #{address1}, ADDRESS2 = #{address2}, ADDRESS3 = #{address3}
         WHERE ID = #{id}
     </update>
-    <select id="memberListSearch" resultMap="member">
+    <select id="searchMember" resultMap="member">
         SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, AGREE, JOINDATE
         FROM USER WHERE WITHDRAWAL = FALSE
-        <if test="memberSearchCondition == 'id'">
-            AND ID LIKE CONCAT('%', #{memberSearchValue}, '%')
-        </if>
-        <if test="memberSearchCondition == 'name'">
-            AND NAME LIKE CONCAT('%', #{memberSearchValue}, '%')
-        </if>
-        <if test="memberSearchCondition == 'phone'">
-            AND PHONE LIKE CONCAT('%', #{memberSearchValue}, '%')
-        </if>
-        <if test="memberSearchCondition == 'email'">
-            AND EMAIL LIKE CONCAT('%', #{memberSearchValue}, '%')
-        </if>
+        <choose>
+            <when test="condition == 'id'">
+                AND ID LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <when test="condition == 'name'">
+                AND NAME LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <when test="condition == 'phone'">
+                AND PHONE LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <when test="condition == 'email'">
+                AND EMAIL LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <otherwise>
+                AND (ID LIKE CONCAT('%', #{value}, '%') OR NAME LIKE CONCAT('%', #{value}, '%')
+                OR PHONE LIKE CONCAT('%', #{value}, '%') OR EMAIL LIKE CONCAT('%', #{value}, '%'))
+            </otherwise>
+        </choose>
     </select>
+
+
+
+
     <update id="memberPwdReset">
         UPDATE USER SET PWD = #{pwd} WHERE ID = #{id}
     </update>
@@ -69,7 +79,7 @@
     </resultMap>
     <select id="findAllManager" resultMap="manager">
         SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, JOINDATE
-        FROM ADMIN WHERE WITHDRAWAL = FALSE ORDER BY JOINDATE DESC;
+        FROM ADMIN WHERE WITHDRAWAL = FALSE;
     </select>
     <select id="selectManagerView" resultMap="manager">
         SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, AUTHORITY, JOINDATE, WITHDRAWAL
@@ -90,5 +100,34 @@
     <update id="managerPwdReset">
         UPDATE ADMIN SET PWD = #{pwd} WHERE ID = #{id}
     </update>
+    <select id="searchManager" resultMap="manager">
+        SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, JOINDATE
+        FROM ADMIN WHERE WITHDRAWAL = FALSE
+        <choose>
+            <when test="condition == 'id'">
+                AND ID LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <when test="condition == 'name'">
+                AND NAME LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <when test="condition == 'contact'">
+                AND CONTACT LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <when test="condition == 'email'">
+                AND EMAIL LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <when test="condition == 'position'">
+                AND POSITION LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <when test="condition == 'department'">
+                AND DEPARTMENT LIKE CONCAT('%', #{value}, '%')
+            </when>
+            <otherwise>
+                AND (ID LIKE CONCAT('%', #{value}, '%') OR NAME LIKE CONCAT('%', #{value}, '%')
+                OR CONTACT LIKE CONCAT('%', #{value}, '%') OR EMAIL LIKE CONCAT('%', #{value}, '%')
+                OR POSITION LIKE CONCAT('%', #{value}, '%') OR DEPARTMENT LIKE CONCAT('%', #{value}, '%'))
+            </otherwise>
+        </choose>
+    </select>
 
 </mapper>

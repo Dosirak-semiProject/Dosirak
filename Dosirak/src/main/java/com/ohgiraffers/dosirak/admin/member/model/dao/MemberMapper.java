@@ -22,8 +22,6 @@ public interface MemberMapper {
 
     int modifyManager(ManagerDTO manager);
 
-    List<MemberDTO> memberListSearch(Map<String, String> searchMap);
-
     String checkDuplication(String id);
 
     int registManager(ManagerDTO manager);
@@ -32,4 +30,7 @@ public interface MemberMapper {
 
     int managerPwdReset(ManagerDTO manager);
 
+    List<ManagerDTO> searchManager(String condition, String value);
+
+    List<MemberDTO> searchMember(String condition, String value);
 }

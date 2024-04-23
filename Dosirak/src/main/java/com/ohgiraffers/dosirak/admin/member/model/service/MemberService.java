@@ -22,10 +22,6 @@ public class MemberService {
         return memberMapper.findAllMember();
     }
 
-    public List<MemberDTO> memberListSearch(Map<String, String> searchMap) {
-        return memberMapper.memberListSearch(searchMap);
-    }
-
     public MemberDTO selectMemberView(String id) {
         return memberMapper.selectMemberView(id);
     }
@@ -71,5 +67,13 @@ public class MemberService {
     public void managerPwdReset(ManagerDTO manager) throws MemberModifyException {
         int resetResult = memberMapper.managerPwdReset(manager);
         if(!(resetResult>0)) throw new MemberModifyException("비밀번호 초기화 실패");
+    }
+
+    public List<ManagerDTO> searchManager(String condition, String value) {
+        return memberMapper.searchManager(condition, value);
+    }
+
+    public List<MemberDTO> searchMember(String condition, String value) {
+        return memberMapper.searchMember(condition, value);
     }
 }

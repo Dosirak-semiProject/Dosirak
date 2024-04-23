@@ -10,11 +10,14 @@ import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.*;
@@ -39,17 +42,13 @@ public class MemberController {
 
         return "/admin/member/memberList";
     }
-    @PostMapping("/memberList")
-    public String memberListSearch(@RequestParam(required = false)String memberSearchCondition, @RequestParam(required = false)String memberSearchValue, Model model){
-        Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("memberSearchCondition", memberSearchCondition);
-        searchMap.put("memberSearchValue", memberSearchValue);
 
-        List<MemberDTO> memberList = memberService.memberListSearch(searchMap);
-        model.addAttribute("memberList", memberList);
-
-        return "/admin/member/memberList";
+    @PostMapping("/memberList")        // 검색
+    @ResponseBody
+    public List<MemberDTO> memberList(@RequestParam(required = false) String condition, @RequestParam String value){
+        return memberService.searchMember(condition, value);
     }
+
     @GetMapping("/memberView")
     public String getMemberView(@RequestParam String id, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -72,6 +71,7 @@ public class MemberController {
 
         return "/admin/member/memberView";
     }
+
     @PostMapping("/modifyMember")
     public String modifyMember(MemberDTO member, RedirectAttributes rttr) throws MemberModifyException {
         if(member.getAgree() == "") member.setAgree(null);
@@ -100,6 +100,13 @@ public class MemberController {
 
         return "/admin/member/managerList";
     }
+
+    @PostMapping("/managerList")        // 검색
+    @ResponseBody
+    public List<ManagerDTO> managerList(@RequestParam(required = false) String condition, @RequestParam String value){
+        return memberService.searchManager(condition, value);
+    }
+
     @GetMapping("/managerView")
     public String getManagerView(@RequestParam String id, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
