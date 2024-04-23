@@ -13,7 +13,7 @@ public class AdminController {
     @GetMapping("main")
     public ModelAndView main(ModelAndView mv, @RequestParam(required = false) String message){
         mv.addObject("message", message);
-        mv.setViewName("/admin/member/memberList");
+        mv.setViewName("/admin/main");
         return mv;
     }
 }
