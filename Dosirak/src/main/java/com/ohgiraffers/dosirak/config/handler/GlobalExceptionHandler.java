@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalExceptionHandler {
 
 
-    @ExceptionHandler(Exception.class)
-    public String defaultException(Exception exception, Model model){
-        String errorMessage = exception.getMessage();
-        model.addAttribute("errorMessage", errorMessage);
-
-        return "/errorPage";
-    }
+//    @ExceptionHandler(Exception.class)
+//    public String defaultException(Exception exception, Model model){
+//        String errorMessage = exception.getMessage();
+//        model.addAttribute("errorMessage", errorMessage);
+//
+//        return "/errorPage";
+//    }
 
 }
