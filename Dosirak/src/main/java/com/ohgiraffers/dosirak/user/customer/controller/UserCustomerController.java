@@ -133,13 +133,10 @@ public class UserCustomerController {
 
     @PostMapping("/askRegist")
     public String testFileUpload(@RequestParam List<MultipartFile> attachImage,
-                                 UserCustomerImgDTO imageDTO,
                                  UserAskDTO ask,
                                  Model model) {
 
         userCustomerService.askRegist(ask);
-
-        int askCode = ask.getAskCode();
 
         /* 경로 설정 */
         String fileUploadDir = IMAGE_DIR + "original";
@@ -174,11 +171,12 @@ public class UserCustomerController {
                     fileInfo.setOriginalName(originalFileName);
                     fileInfo.setSavedName(saveFileName);
                     fileInfo.setSavePath("/customerUpload/original");
+                    fileInfo.setRefAskCode(ask.getAskCode());
 
                     /* 리스트에 파일 정보 저장 */
                     imageList.add(fileInfo);
 
-                    userCustomerService.registImage(fileInfo, askCode);
+                    userCustomerService.registImage(fileInfo);
                 }
             }
             model.addAttribute("message", "파일 업로드에 성공하였습니다.");

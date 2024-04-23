@@ -8,6 +8,7 @@ import com.ohgiraffers.dosirak.user.customer.model.dao.UserCustomerMapper;
 import com.ohgiraffers.dosirak.user.customer.model.dto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -88,9 +89,10 @@ public class UserCustomerService {
         userCustomerMapper.insertAsk(ask);
     }
 
-    public void registImage(UserCustomerImgDTO fileInfo, int askCode) {
+    @Transactional
+    public void registImage(UserCustomerImgDTO fileInfo) {
 
-        userCustomerMapper.insertImage(fileInfo, askCode);
+        userCustomerMapper.insertImage(fileInfo);
     }
 
 

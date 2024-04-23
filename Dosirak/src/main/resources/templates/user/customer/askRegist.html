@@ -13,9 +13,9 @@
         <div class="ly_maxWD ly_flex">
             <th:block th:replace="/user/customer/sideMenu.html"></th:block>
             <div class="ly_inner02 ly_fgrow1 hp_fBack" style="">
-                    <div class="ly_midWDside hp_mt50" style="margin-left: 100px">
-                        <h2 class="el_lv1Head">1:1 문의하기</h2>
-                        <form id="imageRegistForm" action="/user/customer/askRegist" method="post" enctype="multipart/form-data" onsubmit="return handleSubmit()">
+                <div class="ly_midWDside hp_mt50" style="margin-left: 100px">
+                    <h2 class="el_lv1Head">1:1 문의하기</h2>
+                    <form id="imageRegistForm" action="/user/customer/askRegist" method="post" enctype="multipart/form-data" onsubmit="return handleSubmit()">
                         <table class="bl_TBWrite hp_mt50">
                             <caption class="WA">검색</caption>
                             <colgroup>
@@ -53,16 +53,25 @@
                             <tr>
                                 <th scope="row">첨부파일</th>
                                 <td>
-                                    <label for="">
+                                    <label for="" style="display: flex;">
                                         <div class="image-area">
                                             <img style="width: 80px; height: 80px; margin-right: 5px; background: white; border-radius: 2.5px;" alt="">
+                                        </div>
+                                        <div class="image-area">
                                             <img style="width: 80px; height: 80px; margin-right: 5px; background: white; border-radius: 2.5px;" alt="">
+                                        </div>
+                                        <div class="image-area">
                                             <img style="width: 80px; height: 80px; margin-right: 5px; background: white; border-radius: 2.5px;" alt="">
+                                        </div>
+                                        <div class="image-area">
                                             <img style="width: 80px; height: 80px; margin-right: 5px; background: white; border-radius: 2.5px;" alt="">
+                                        </div>
+                                        <div class="image-area">
                                             <img style="width: 80px; height: 80px; margin-right: 5px; background: white; border-radius: 2.5px;" alt="">
                                         </div>
                                     </label>
                                     <div style="display: none;">
+                                        <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
                                         <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
                                         <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
                                         <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
@@ -83,9 +92,9 @@
                             <li><button class="el_btnM hp_br5 el_btnPointBack" type="submit">등록</button></li>
                             <li><a class="el_btnM hp_br5 el_btn8Bord hp_ml10" href="">취소</a></li>
                         </ul>
-                        </form>
-                    </div>
+                    </form>
                 </div>
+            </div>
         </div>
     </div>
 </div>
@@ -117,31 +126,15 @@
                 reader.onload = function() {
                     console.log(reader.result);
                     if(index === 0) {
-                        imageArea[index].innerHTML = `<img src='${reader.result}' style='width:350px;height:200px'>`;
+                        imageArea[index].innerHTML = `<img src='${reader.result}' style='width:80px;height:80px; margin-right: 5px;'>`;
                     } else {
-                        imageArea[index].innerHTML = `<img src='${reader.result}' style='width:120px;height:100px'>`;
+                        imageArea[index].innerHTML = `<img src='${reader.result}' style='width:80px;height:80px; margin-right: 5px;'>`;
                     }
                 }
             }
         }
+
     })();
-</script>
-<script>
-    function handleSubmit() {
-
-        const isUploadSuccessful = true;
-
-        // 서버 응답에 따라 처리
-        if (isUploadSuccessful) {
-
-        } else {
-            // 업로드 실패 메시지 창 띄우기
-            alert("업로드에 실패하였습니다.");
-        }
-
-        // 폼 제출을 중지하지 않으면 폼이 정상적으로 제출됨
-        return true;
-    }
 </script>
 </body>
 </html>

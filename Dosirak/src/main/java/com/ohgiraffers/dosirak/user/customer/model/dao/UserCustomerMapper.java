@@ -28,7 +28,7 @@ public interface UserCustomerMapper {
     UserAnswerDTO searchAnswerDetail(int askCode);
     void insertAttachment(UserCustomerImgDTO userCustomerImgDTO);
     void insertAsk(UserAskDTO ask);
-    void insertImage(UserCustomerImgDTO fileInfo, int askCode);
+    void insertImage(UserCustomerImgDTO fileInfo);
 
     /* -- 추가 --- */
     int selectTotalCount(Map<String, String> searchMap);
