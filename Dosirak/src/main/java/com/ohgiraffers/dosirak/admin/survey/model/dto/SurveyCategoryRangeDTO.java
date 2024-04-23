@@ -14,4 +14,5 @@ public class SurveyCategoryRangeDTO {
     private int range2;
     private int range3;
     private int range4;
+    private int maxPoint;
 }

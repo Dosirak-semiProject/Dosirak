@@ -1,12 +1,10 @@
 package com.ohgiraffers.dosirak.admin.survey.model.dao;
 
-import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyCategoryRangeDTO;
-import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyQuestionDTO;
-import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyResultDTO;
-import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyVersionDTO;
+import com.ohgiraffers.dosirak.admin.survey.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface SurveyAdminDAO {
@@ -20,4 +18,12 @@ public interface SurveyAdminDAO {
     List<SurveyQuestionDTO> getQuestionListByVersionId(int versionId);
 
     List<SurveyCategoryRangeDTO> getRangeListByVersionId(int versionId);
+
+    int deleteVersionByVersionId(int versionId);
+
+    void deleteQuestionByVersionId(int versionId);
+
+    void getDeleteAnswerByVersionId(int versionId);
+
+    void deleteRangeByVersionId(int versionId);
 }

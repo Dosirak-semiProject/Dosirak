@@ -1,8 +1,6 @@
 package com.ohgiraffers.dosirak.admin.survey.controller;
 
-import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyCategoryRangeDTO;
-import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyQuestionDTO;
-import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyVersionDTO;
+import com.ohgiraffers.dosirak.admin.survey.model.dto.*;
 import com.ohgiraffers.dosirak.admin.survey.model.service.SurveyAdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/survey")
@@ -38,6 +38,14 @@ public class SurveyAdminController {
         List<SurveyCategoryRangeDTO> rangeList = surveyAdminService.getRangeListByVersionId(versionId);
         model.addAttribute("version", version);
         model.addAttribute("questionList", questionList);
+        model.addAttribute("rangeList", rangeList);
         return "admin/survey/surveyVersionView";
+    }
+
+    @GetMapping("version-delete")
+    public String versionDelete(Model model, @RequestParam int versionId){
+        int result = surveyAdminService.deleteVersionByVersionId(versionId);
+        model.addAttribute("deleteResult", result);
+        return "redirect:/admin/survey/version-list";
     }
 }

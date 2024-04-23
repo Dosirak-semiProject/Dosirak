@@ -39,7 +39,39 @@
         WHERE q.version_id = #{versionId}
     </select>
     <select id="getRangeListByVersionId">
-        SELECT * FROM SURVEY_RANGE
+        SELECT
+        category,
+        range1,
+        range2,
+        range3,
+        range4,
+        (SELECT SUM(answer_value)
+        FROM SURVEY_QUESTION q
+        LEFT JOIN SURVEY_ANSWER a ON q.QUESTION_ID = a.QUESTION_ID
+        WHERE q.version_id = #{versionId} AND q.question_category = category
+        GROUP BY q.question_category) AS max_point
+        FROM SURVEY_RANGE
         WHERE version_id = #{versionId}
+        ORDER BY category,
+        CASE
+        WHEN category = 'C' THEN 1
+        WHEN category = 'P' THEN 2
+        WHEN category = 'F' THEN 3
+        WHEN category = 'W' THEN 4
+        ELSE 5
+        END;
     </select>
+    <delete id="getDeleteAnswerByVersionId">
+        DELETE FROM SURVEY_ANSWER WHERE QUESTION_ID in
+        (SELECT QUESTION_ID FROM SURVEY_QUESTION WHERE VERSION_ID = #{versionId})
+    </delete>
+    <delete id="deleteQuestionByVersionId">
+        DELETE FROM SURVEY_QUESTION WHERE VERSION_ID = #{versionId}
+    </delete>
+    <delete id="deleteRangeByVersionId">
+        DELETE FROM SURVEY_RANGE WHERE VERSION_ID = #{versionId}
+    </delete>
+    <delete id="deleteVersionByVersionId">
+        DELETE FROM SURVEY_VERSION WHERE VERSION_ID = #{versionId}
+    </delete>
 </mapper>
