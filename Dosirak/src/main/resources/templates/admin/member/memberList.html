@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <th:block th:replace="/admin/common/head.html"></th:block>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script>
         const message = '[[${message}]]';
         message && alert(message);
@@ -12,66 +11,106 @@
                 location.href = "/admin/member/memberView?id="+txtId;
             })
         })
+
+        function searchMem(){
+            let condition = document.querySelector(".searchCondition").value;
+            let value = document.querySelector(".searchValue").value;
+
+            if(value == null || value == ""){
+                alert("검색어를 입력해주세요.");
+                return;
+            }else{
+                $.ajax({
+                    url: "/admin/member/memberList",
+                    type: "post",
+                    data: {
+                        condition: condition,
+                        value: value
+                    },
+                    success: function (data){
+                        let tbody = document.querySelector("#datatablesSimple tbody");
+                        tbody.innerHTML = '';
+
+                        data.forEach(function (member){
+                            let tr = document.createElement("tr");
+                            tr.innerHTML =  "<td>"+member.id+"</td>"+
+                                "<td>"+member.name+"</td>"+
+                                "<td>"+member.birth+"</td>"+
+                                "<td>"+member.gender+"</td>"+
+                                "<td>"+member.phone+"</td>"+
+                                "<td>"+member.email+"</td>"+
+                                "<td>"+member.agree+"</td>"+
+                                "<td>"+member.joindate+"</td>";
+                            tbody.appendChild(tr)
+                        })
+                    },
+                    error: function(){
+                        alert("에러발생");
+                    }
+                })
+            }
+        }
     </script>
 </head>
 <body>
 <body class="sb-nav-fixed">
-    <th:block th:replace="/admin/common/header.html"></th:block>
-    <div id="layoutSidenav">
-        <th:block th:replace="/admin/common/sideNav.html"></th:block>
-        <div id="layoutSidenav_content">
-            <main>
-                <div class="container-fluid px-4">
-                    <h1 class="mt-4">회원 목록</h1>
-                    <div class="card mb-4 mt-4">
-                        <div class="card-header justify-content-between d-flex align-items-center">
-                            <i class="fas fa-table me-1"></i>
-                            <form id="memberSearchForm" action="/admin/member/memberList" method="post" class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
-                                <div class="input-group">
-                                    <select class="datatable-selector" name="memberSearchCondition">
-                                        <option value="id">아이디</option>
-                                        <option value="name">이름</option>
-                                        <option value="phone">휴대폰번호</option>
-                                        <option value="email">이메일</option>
-                                    </select>
-                                    <input class="form-control" type="text" name="memberSearchValue" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card-body">
-                            <table id="datatablesSimple">
-                                <thead>
-                                    <tr>
-                                        <th>아이디</th>
-                                        <th>이름</th>
-                                        <th>생년월일</th>
-                                        <th>성별</th>
-                                        <th>휴대폰번호</th>
-                                        <th>이메일</th>
-                                        <th>마케팅동의</th>
-                                        <th>가입일자</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr th:each="member : ${memberList}">
-                                        <td th:text="${member.id}"></td>
-                                        <td th:text="${member.name}"></td>
-                                        <td th:text="${member.birth}"></td>
-                                        <td th:text="${member.gender}"></td>
-                                        <td th:text="${member.phone}"></td>
-                                        <td th:text="${member.email}"></td>
-                                        <td th:text="${member.agree}"></td>
-                                        <td th:text="${member.joindate}"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+<th:block th:replace="/admin/common/header.html"></th:block>
+<div id="layoutSidenav">
+    <th:block th:replace="/admin/common/sideNav.html"></th:block>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">회원 목록</h1>
+                <div class="card mb-4 mt-4">
+                    <div class="card-header justify-content-between d-flex align-items-center">
+                        <i class="fas fa-table me-1"></i>
+                        <div class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
+                            <div class="input-group">
+                                <select class="searchCondition datatable-selector" name="searchCondition">
+                                    <option value="">검색조건 선택</option>
+                                    <option value="id">아이디</option>
+                                    <option value="name">이름</option>
+                                    <option value="phone">휴대폰번호</option>
+                                    <option value="email">이메일</option>
+                                </select>
+                                <input class="searchValue form-control" type="text" name="memberSearchValue" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                <button type="button" class="btn btn-primary" onclick="searchMem()"><i class="fas fa-search"></i></button>
+                            </div>
                         </div>
                     </div>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                            <tr>
+                                <th>아이디</th>
+                                <th>이름</th>
+                                <th>생년월일</th>
+                                <th>성별</th>
+                                <th>휴대폰번호</th>
+                                <th>이메일</th>
+                                <th>마케팅동의</th>
+                                <th>가입일자</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="member : ${memberList}">
+                                <td th:text="${member.id}"></td>
+                                <td th:text="${member.name}"></td>
+                                <td th:text="${member.birth}"></td>
+                                <td th:text="${member.gender}"></td>
+                                <td th:text="${member.phone}"></td>
+                                <td th:text="${member.email}"></td>
+                                <td th:text="${member.agree}"></td>
+                                <td th:text="${member.joindate}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </main>
-        </div>
+            </div>
+        </main>
     </div>
-    <th:block th:replace="/admin/common/foot.html"></th:block>
+</div>
+<th:block th:replace="/admin/common/foot.html"></th:block>
 </body>
 </html>

@@ -14,6 +14,7 @@
             })
             // 주소삭제
             $(".deleteBtn").click(function(){
+                $(".editBtn").show();
                 $("#address1").val("");
                 $("#address2").val("");
                 $("#address3").val("");
@@ -36,6 +37,7 @@
                 case "2" :
                     $(".grade2Input").removeClass("none");
                     $(".grade2Input").attr("readonly", false);
+                    $("#address1, #address2").attr("readonly", true);
                     $(".grade2Btn").removeClass("hp_dpNone");
                     break;
                 case "3" :
@@ -96,11 +98,11 @@
                                     <button type="button" class="hp_dpNone grade2Btn deleteBtn btn btn-outline-dark btn-sm mt-1">주소삭제</button>
                                 </th>
                                 <td colspan="3">
-                                    <input class="none grade2Input" type="text" id="address1" name="address1" th:value="${member.address1}" size="20" placeholder="우편번호" readonly>
+                                    <input class="none grade2Input" type="text" id="address1" name="address1" th:value="${member.address1}" size="20" placeholder="우편번호" readonly/>
                                     <input type="button" id="searchZipCode" class="hp_dpNone grade2Btn btn btn-success btn-sm" value="우편번호 찾기">
                                     <div class="mt-1">
-                                        <input class="none grade2Input" type="text" id="address2" name="address2" th:value="${member.address2}" size="30" placeholder="주소" readonly>
-                                        <input class="none grade2Input" type="text" id="address3" name="address3" th:value="${member.address3}" size="30" placeholder="상세주소" readonly>
+                                        <input class="none grade2Input" type="text" id="address2" name="address2" th:value="${member.address2}" size="30" placeholder="주소" readonly/>
+                                        <input class="none grade2Input" type="text" id="address3" name="address3" th:value="${member.address3}" size="30" placeholder="상세주소" readonly/>
                                     </div>
                                 </td>
                             </tr>
