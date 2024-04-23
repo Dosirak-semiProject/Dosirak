@@ -21,7 +21,7 @@
     </resultMap>
     <select id="findAllMember" resultMap="member">
         SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, AGREE, JOINDATE
-        FROM USER WHERE WITHDRAWAL = FALSE;
+        FROM USER WHERE WITHDRAWAL = FALSE ORDER BY JOINDATE DESC;
     </select>
     <select id="selectMemberView" resultMap="member">
         SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, ADDRESS1, ADDRESS2, ADDRESS3, AGREE, JOINDATE
@@ -69,7 +69,7 @@
     </resultMap>
     <select id="findAllManager" resultMap="manager">
         SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, JOINDATE
-        FROM ADMIN WHERE WITHDRAWAL = FALSE;
+        FROM ADMIN WHERE WITHDRAWAL = FALSE ORDER BY JOINDATE DESC;
     </select>
     <select id="selectManagerView" resultMap="manager">
         SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, AUTHORITY, JOINDATE, WITHDRAWAL
