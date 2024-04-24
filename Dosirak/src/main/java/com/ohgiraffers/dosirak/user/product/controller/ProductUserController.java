@@ -1,11 +1,17 @@
 package com.ohgiraffers.dosirak.user.product.controller;
 
 
+import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
+import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
+import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.service.ProductUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -70,15 +76,27 @@ public class ProductUserController {
     }
 
     @PostMapping("/add-to-cart")
-    public String addToCart(@RequestParam Map<String, Object> requestData) {
-        int productCode = (int) requestData.get("productCode");
-        int cartitemCount = (int) requestData.get("cartitemCount");
-        int totalPrice = (int) requestData.get("totalPrice");
+    public @ResponseBody String addToCart(@RequestBody Map<String, String> productInfo) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String managerAuthor="";
+        String userId="";
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
 
-        String list = productUserService.addCart(productCode, cartitemCount, totalPrice);
-        System.out.println(list);
-        System.out.println("여기까진옴");
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                managerAuthor = login.getAuthority();
+                userId = login.getId();
+            }
+        }
+        productInfo.put("userId", userId);
+        System.out.println(productInfo);
+
+        int result=productUserService.addCart(productInfo);
+
 
         return "/user/order/cart";
     }
+
 }

@@ -33,6 +33,11 @@
         ON P.product_category_code = c.product_main_category_code
         WHERE c.product_sub_category_code = #{subCategoryCode}
     </select>
+    <insert id="addCart">
+        INSERT INTO cart
+        (CARTITEM_COUNT,ID,PRODUCT_CODE)
+        VALUE (#{cartitemCount}, #{userId}, #{productCode})
+    </insert>
 
 
 </mapper>
