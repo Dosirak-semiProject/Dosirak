@@ -1,6 +1,6 @@
 USE DOSIRAK;
-DROP TABLE IF EXISTS ADMIN CASCADE;
 
+DROP TABLE IF EXISTS survey_version CASCADE;
 CREATE TABLE survey_version (
     version_id INT PRIMARY KEY AUTO_INCREMENT COMMENT '버전 식별코드',
     version_name VARCHAR(255) NOT NULL COMMENT '버전 별칭',
@@ -9,6 +9,7 @@ CREATE TABLE survey_version (
     status BOOLEAN NOT NULL COMMENT '사용 상태'
 );
 -- survey_question 테이블 생성
+DROP TABLE IF EXISTS survey_question CASCADE;
 CREATE TABLE survey_question (
     question_id INT AUTO_INCREMENT PRIMARY KEY COMMENT '질문 코드',
     version_id INT COMMENT '설문 버전',
@@ -37,6 +38,25 @@ CREATE TABLE survey_range (
     FOREIGN KEY (version_id) REFERENCES survey_version(version_id),
     CHECK (range1 < range2 AND range2 < range3 AND range3 < range4)
 );
+-- survey_result 테이블 생성(더미데이터 X)
+CREATE TABLE IF NOT EXISTS SURVEY_RESULT (
+    user_id VARCHAR(20) NOT NULL,
+    survey_height DOUBLE NOT NULL,
+    survey_weight DOUBLE NOT NULL,
+    survey_bmi DOUBLE NOT NULL,
+    survey_diet VARCHAR(10) NOT NULL,
+    survey_exercise_score INT NOT NULL,
+    survey_carbo_score INT NOT NULL,
+    survey_protein_score INT NOT NULL,
+    survey_fat_score INT NOT NULL,
+    survey_diabetes BOOLEAN,
+    survey_cancer BOOLEAN,
+    survey_kidney BOOLEAN,
+    survey_blood BOOLEAN,
+    survey_date DATE,
+    PRIMARY KEY (user_id),
+    FOREIGN KEY (user_id) REFERENCES `USER` (id)
+    );
 
 INSERT INTO survey_version (version_name, version_explain, update_date, status) VALUES
     ('Version 1', '첫 번째 버전', '2024-04-23', true),

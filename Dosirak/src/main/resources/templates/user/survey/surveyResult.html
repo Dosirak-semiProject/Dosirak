@@ -2,16 +2,13 @@
 <html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../../../static/user/css/survey.css">
-    <link rel="stylesheet" href="../../../../static/user/css/common/base.css">
-    <link rel="stylesheet" href="../../../../static/user/css/common/reset.css">
-    <link rel="stylesheet" href="../../../../static/user/css/common/common.css">
+    <th:block th:replace="/user/common/head.html"></th:block>
+    <link rel="stylesheet" href="/user/css/survey.css">
 </head>
 
 <body>
+<div class="ly_all bl_all">
+    <th:block th:replace="/user/common/header.html"></th:block>
 <div class="ly_midWD ly_inner02"> <!-- 결과창 -->
     <div class="result-main-layout">
         <div class="name-block">
@@ -48,6 +45,8 @@
             </dl>
         </div>
     </div>
+</div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
 </body>
 
