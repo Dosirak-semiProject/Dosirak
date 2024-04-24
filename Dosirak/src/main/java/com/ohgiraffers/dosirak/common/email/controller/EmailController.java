@@ -19,7 +19,6 @@ public class EmailController {
     @Autowired
     private EmailService emailService;
 
-
     @PostMapping("/sendVerificationCode")
     public void sendVerificationCode(@RequestBody Map<String, String> request) throws MemberRegistException {
         String email = request.get("email");

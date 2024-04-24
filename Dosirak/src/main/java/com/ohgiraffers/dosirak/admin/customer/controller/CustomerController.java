@@ -2,7 +2,11 @@ package com.ohgiraffers.dosirak.admin.customer.controller;
 
 import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import com.ohgiraffers.dosirak.admin.customer.model.service.CustomerService;
+import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +28,7 @@ public class CustomerController {
     /* ----- 공지사항 관리페이지 ----- */
 
     @GetMapping("/noticeList")
+    @PreAuthorize("hasRole('ADMIN')") // ADMIN 역할만 접근 가능
     public String noticeList(Model model) {
 
         List<NoticeDTO> noticeList = customerService.findNoticeList();
@@ -34,7 +39,8 @@ public class CustomerController {
     }
 
     @GetMapping("/noticeDetail")
-    public String getNoticeDetail(@RequestParam("noticeCode") int noticeCode, Model model) {
+    public String getNoticeDetail(@RequestParam("noticeCode") int noticeCode,
+                                  Model model) {
 
         NoticeDTO noticeDetail = customerService.selectNoticeDetail(noticeCode);
 

@@ -4,15 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>장바구니</title>
-    <link rel="stylesheet" href="/user/css/common/reset.css" />
-    <link rel="stylesheet" href="/user/css/common/base.css" />
-    <link rel="stylesheet" href="/user/css/common/common.css" />
+    <th:block th:replace="/user/common/head.html"></th:block>
     <link rel="stylesheet" href="/user/css/cart.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        .none{width:100px;border:none;min-height:auto;}
+        .none:focus{background:none!important;}
+        .none:focus-visible{outline:none;}
+    </style>
+    <script>
+        $(function(){
+            // 첫 화면 로드시 실행
+            updateProductSum();
+            updateTotalAmountAndCharge();
+
+            // 수량 변경 할때마다
+            $('.decrease, .increase').click(function() {
+                updateProductSum();
+                updateTotalAmountAndCharge();
+            });
+
+            // 총 상품금액 계산 함수
+            function updateProductSum() {
+                let productSum = 0;
+                $('.js_productRow').each(function() {
+                    let price = parseInt($(this).find('.js_productPrice').val());
+                    let quantity = parseInt($(this).find('.js_productQuantity').val());
+                    let sum = price * quantity;
+
+                    productSum += parseInt(sum);
+                });
+                $('.js_productSum').val(productSum);
+            }
+
+            // 주문 예상금액 계산 함수
+            function updateTotalAmountAndCharge() {
+                let totalAmount = 0;
+                $('.js_productSum').each(function() { totalAmount += parseInt($(this).val()); });
+
+                let charge = totalAmount > 30000 ? 0 : 3000;
+
+                $('.js_total').val(totalAmount + charge);
+                $('.js_charge').val(charge);
+            }
+
+            // 선택 삭제
+            $('.deleteBtn').click(function(){
+                $('.bl_checkBx__input:checked').each(function (){
+                    $(this).closest('.js_productRow').remove();
+                })
+            })
+
+        })
+    </script>
 </head>
 <body>
 <div class="ly_all bl_all">
+    <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_maxWD ly_inner02">
         <h2 class="el_lv1Head">장바구니</h2>
         <div class="flex_box hp_relative hp_mt50">
@@ -39,7 +88,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="hidden_block" th:data-product-code="${ cart.productCode }" th:if="cart != null" th:each="cart : ${ cartDTO }">
+                    <tr class="hidden_block js_productRow" th:data-product-code="${ cart.productCode }" th:if="cart != null" th:each="cart : ${ cartDTO }">
                         <td>
                             <label class="bl_checkBx hp_w100">
                                 <input type="checkbox" class="bl_checkBx__input checkOne">
@@ -52,12 +101,13 @@
                                 <p class="hp_ellipsis hp_ellipsis3" th:text="${ cart.productDTO.productName }"></p>
                             </a>
                         </td>
-<!--                        <td class="priceNode" th:data-price="${ cart.productDTO.productPrice }" th:text="${ cart.productDTO.productPrice }"></td>-->
-                        <td class="price" th:text="${ cart.productDTO.productPrice * cart.cartitemCount }"></td>
+                        <td class="price">
+                            <input class="none js_productPrice hp_alignC" type="number" readonly th:value="${cart.productDTO.productPrice}" />
+                        </td>
                         <td>
                             <div class="di_btn">
                                 <div id="decrease" class="decrease"><img src="/user/img/icon/minus.png" alt="minus-btn"></div>
-                                <input type="text" id="cartitemCount" class="quantity" th:value="${ cart.cartitemCount }">
+                                <input type="text" id="cartitemCount" class="quantity js_productQuantity" th:value="${ cart.cartitemCount }">
                                 <div id="increase" class="increase"><img src="/user/img/icon/plus.png" alt="plus-btn"></div>
                             </div>
                         </td>
@@ -68,28 +118,29 @@
                     </tbody>
                 </table>
                 <div class="delete_btn">
-                    <button>선택 삭제</button>
+                    <button type="button" class="deleteBtn">선택 삭제</button>
                 </div>
             </div>
             <div class="sticky bl_cartBox hp_bordDE hp_padding30">
                 <ul class="bl_orderCancel">
                     <li class="ly_spaceBetween ly_fitemC">
                         <p class="bl_orderCancel__ttl">총 상품금액</p>
-                        <p class="bl_orderCancel__price">0원</p>
+                        <p class="bl_orderCancel__price"><input class="none js_productSum hp_alignR" type="number" value="0" readonly/> 원</p>
                     </li>
                     <li class="ly_spaceBetween ly_fitemC">
                         <p class="bl_orderCancel__ttl">배송비</p>
-                        <p class="bl_orderCancel__price">0원</p>
+                        <p class="bl_orderCancel__price"><input class="none js_charge hp_alignR" type="number" value="0" readonly/> 원</p>
                     </li>
                     <li class="ly_spaceBetween ly_fitemC bl_orderCancel__total hp_bordDashTDE2 hp_pt30 hp_mt30">
                         <p class="bl_orderCancel__ttl hp_fs18 hp_fw700 hp_0Color">주문 예상금액</p>
-                        <p class="bl_orderCancel__price hp_fs18 hp_fw700 hp_pointColor">0원</p>
+                        <p class="bl_orderCancel__price hp_fs18 hp_fw700 hp_pointColor"><input class="none js_total hp_alignR" type="number" value="0" readonly/> 원</p>
                     </li>
                 </ul>
-                <a class="el_btnM hp_br5 el_btnPointBack hp_w100 hp_mt30" href="">구매하기</a>
+                <a class="el_btnM hp_br5 el_btnPointBack hp_w100 hp_mt30" th:href="@{'/user/payment?id='}">구매하기</a>
             </div>
         </div>
     </div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
 <script src="/user/js/cart.js"></script>
 </body>

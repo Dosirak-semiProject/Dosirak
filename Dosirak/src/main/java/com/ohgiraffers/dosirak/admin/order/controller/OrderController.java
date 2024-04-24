@@ -41,10 +41,8 @@ public class OrderController {
     public String orderView(Model model, @RequestParam String orderCode) {
 
         OrderDTO orderView = orderService.allOrderView(orderCode);
-//        DetailDTO detailDTO = orderService.searchDetail(orderCode);
 
         model.addAttribute("orderView", orderView);
-//        model.addAttribute("detailDTO", detailDTO);
 
         return "admin/order/orderView";
     }

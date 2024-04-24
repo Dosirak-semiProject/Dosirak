@@ -31,15 +31,14 @@
                     </button>
                 </th:block>
             </li>
-            <li class=""><a class="bl_headIcon bl_headIcon__cart" href=""><img src="/user/img/icon/header_cart.png" alt="장바구니"></a></li>
+            <li class=""><a class="bl_headIcon bl_headIcon__cart" href="/user/cart"><img src="/user/img/icon/header_cart.png" alt="장바구니"></a></li>
             <li class="hp_relative">
                 <button type="button" class="bl_headIcon bl_headIcon__customer">
-                    <img src="/user/img/icon/header_customer.png" alt="고객센터">
-                    <ul class="bl_head__menuSub">
-                        <li class=""><a class="" href="">공지사항</a></li>
-                        <li class=""><a class="" href="">자주묻는질문</a></li>
-                        <li class=""><a class="" href="">1:1 문의하기</a></li>
-                        <li class=""><a class="" href="">1:1 문의내역</a></li>
+                    <img src="/user/img/icon/header_customer.png" alt="고객센터" onclick="window.location.href='/user/customer/main'" style="cursor: pointer;">                    <ul class="bl_head__menuSub">
+                        <li class=""><a class="" href="/user/customer/noticeList">공지사항</a></li>
+                        <li class=""><a class="" href="/user/customer/qnaList">자주묻는질문</a></li>
+                        <li class=""><a class="" href="/user/customer/askRegist">1:1 문의하기</a></li>
+                        <li class=""><a class="" href="/user/customer/askList">1:1 문의내역</a></li>
                     </ul>
                 </button>
             </li>

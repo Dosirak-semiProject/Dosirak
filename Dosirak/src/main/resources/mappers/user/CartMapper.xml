@@ -54,18 +54,37 @@
         <result property="orderCode" column="order_code"/>
     </resultMap>
 
-    <!-- UserCartListView Query -->
+    <!-- FindSearchId Query -->
+    <select id="findSearchId" resultMap="MemberResultMap">
+        SELECT
+        ID
+        FROM
+        USER
+    </select>
+
+    <!-- UserCartList Query -->
     <select id="userCartList" resultMap="CartResultMap">
         SELECT
+        c.cartitem_count,
         p.product_code,
         p.product_name,
-        p.product_price,
-        c.cartitem_count
-        FROM
-        cart c
-        JOIN product p ON c.product_code = p.product_code
-        JOIN user u ON c.id = u.id
+        p.product_price
+        FROM cart c
+        JOIN tbl_product p ON c.product_code = p.product_code
+        WHERE c.id = #{id}
     </select>
+    <!--    <select id="userCartList" resultMap="CartResultMap">-->
+    <!--        SELECT-->
+    <!--            p.product_code,-->
+    <!--            p.product_name,-->
+    <!--            p.product_price,-->
+    <!--            c.cartitem_count-->
+    <!--        FROM-->
+    <!--            cart c-->
+    <!--        JOIN product p ON c.product_code = p.product_code-->
+    <!--        JOIN user u ON c.id = u.id-->
+    <!--        WHERE c.id = #{id}-->
+    <!--    </select>-->
 
     <!-- UserOrderDone Query -->
     <select id="userOrderDone" resultMap="orderResultMap">
@@ -75,6 +94,7 @@
         FROM
         `order` o
         JOIN pay p ON o.order_code = p.order_code
+        WHERE c.id = #{id}
     </select>
 
     <!-- UserPayment Query-->
@@ -93,6 +113,7 @@
         JOIN user u ON c.id = u.id
         JOIN `order` o ON u.id = o.id
         JOIN product p ON c.product_code = p.product_code
+        WHERE c.id = #{id}
     </select>
 
     <!-- CartUpdateQuantity Query -->
@@ -104,12 +125,4 @@
         WHERE
         product_code = #{productCode}
     </update>
-
-
-    <insert id="addCart">
-        INSERT INTO cart (CARTITEM_COUNT, PRODUCT_CODE,ID)
-        SELECT #{cartitemCount},#{productCode},#{id}
-        FROM cart c
-        JOIN user p ON c.id = p.id
-    </insert>
 </mapper>

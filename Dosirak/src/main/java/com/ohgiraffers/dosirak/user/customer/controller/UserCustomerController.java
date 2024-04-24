@@ -15,9 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Slf4j
 @Controller
@@ -95,11 +93,22 @@ public class UserCustomerController {
     /* ----- 1대1 문의 ----- */
 
     @GetMapping("/askList")
-    public String getAskPage(Model model) {
+    public String getAskPage(@RequestParam(defaultValue = "1") int page,
+                             @RequestParam(required = false) String searchCondition,
+                             @RequestParam(required = false) String searchValue,
+                             Model model) {
 
-        List<UserAskDTO> askList = userCustomerService.findAskList();
+        log.info("boardList page : {}", page);
+        log.info("boardList searchCondition : {}", searchCondition);
+        log.info("boardList searchValue : {}", searchValue);
 
-        model.addAttribute("askList", askList);
+        Map<String, String> searchMap = new HashMap<>();
+        searchMap.put("searchCondition", searchCondition);
+        searchMap.put("searchValue", searchValue);
+
+        Map<String, Object> askListAndPaging = userCustomerService.selectAskList(searchMap, page);
+        model.addAttribute("paging", askListAndPaging.get("paging"));
+        model.addAttribute("askList", askListAndPaging.get("askList"));
 
         return "user/customer/askList";
     }
@@ -108,8 +117,10 @@ public class UserCustomerController {
     public String getAskDetail(@RequestParam("askCode") int askCode, Model model) {
 
         UserAskDTO askDetail = userCustomerService.selectAskDetail(askCode);
+        UserAnswerDTO answerDetail = userCustomerService.selectAnswerDetail(askCode);
 
         model.addAttribute("ask", askDetail);
+        model.addAttribute("answer", answerDetail);
 
         return "user/customer/askDetail";
     }
@@ -122,13 +133,10 @@ public class UserCustomerController {
 
     @PostMapping("/askRegist")
     public String testFileUpload(@RequestParam List<MultipartFile> attachImage,
-                                 UserCustomerImgDTO imageDTO,
                                  UserAskDTO ask,
                                  Model model) {
 
         userCustomerService.askRegist(ask);
-
-        int askCode = ask.getAskCode();
 
         /* 경로 설정 */
         String fileUploadDir = IMAGE_DIR + "original";
@@ -163,11 +171,12 @@ public class UserCustomerController {
                     fileInfo.setOriginalName(originalFileName);
                     fileInfo.setSavedName(saveFileName);
                     fileInfo.setSavePath("/customerUpload/original");
+                    fileInfo.setRefAskCode(ask.getAskCode());
 
                     /* 리스트에 파일 정보 저장 */
                     imageList.add(fileInfo);
 
-                    userCustomerService.registImage(fileInfo, askCode);
+                    userCustomerService.registImage(fileInfo);
                 }
             }
             model.addAttribute("message", "파일 업로드에 성공하였습니다.");
