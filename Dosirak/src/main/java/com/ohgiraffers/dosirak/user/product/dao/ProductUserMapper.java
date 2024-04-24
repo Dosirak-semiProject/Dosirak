@@ -6,6 +6,7 @@ import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ProductUserMapper {
@@ -22,5 +23,5 @@ public interface ProductUserMapper {
 
     List<ProductUserDTO> getProductListBySubCategoryCode(int subCategoryCode);
 
-    List<CartDTO> addCart();
+    int addCart(Map<String, String> productInfo);
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductUserService {
@@ -39,7 +40,8 @@ public class ProductUserService {
         return productUserMapper.getProductListBySubCategoryCode(subCategoryCode);
     }
 
-    public String addCart(int productCode, int cartitemCount, int totalPrice) {
-        return cartMapper.addCart(productCode,cartitemCount,totalPrice);
+
+    public int addCart(Map<String, String> productInfo) {
+        return productUserMapper.addCart(productInfo);
     }
 }

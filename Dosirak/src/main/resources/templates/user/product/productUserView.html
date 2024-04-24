@@ -29,7 +29,7 @@
             <img class="bl_pdView__img hp_mr40" src="/img/sample/img01.jpg" alt=""/>
             <div class="bl_pdView__wrap hp_ml40">
                 <h2 class="el_lv1Head hp_alignL" th:text="${productList.productName}"></h2>
-                <div id="productCode" class="productCode" hidden="hidden" th:value="${productList.productCode}" style="display: none"></div>
+                <input id="productCode" class="productCode" hidden="hidden" th:value="${productList.productCode}" style="display: none">
                 <p class="hp_mt20 hp_fs16 hp_7Color" th:text="${productList.productSummary}"></p>
                 <div class="ly_spaceBetween ly_fitemC hp_mt50">
                     <p class="hp_fs16">상품가격</p>
@@ -79,10 +79,10 @@
                 </script>
 
                 <div class="ly_flexC hp_mt50">
-                    <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBord" onclick="addToCart()">장바구니</button>
+                    <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBord" onclick="postProduct()">장바구니</button>
                     <script>
                         function addToCart() {
-                            var productCode = document.getElementById("productCode").innerText;
+                            var productCode = document.getElementById("productCode").value;
                             var count = document.getElementById("quantity").value;
 
                             var totalPriceElement = document.querySelector(".hp_fs28.hp_fw700.hp_pointColor");
@@ -97,19 +97,30 @@
                             console.log(count)
                             console.log(totalPrice)
 
-                            var xhr = new XMLHttpRequest();
-                            xhr.open("POST", "/user/product/add-to-cart", true);
-                            xhr.setRequestHeader("Content-Type", "application/json");
-                            xhr.onreadystatechange = function () {
-                                if (xhr.readyState === XMLHttpRequest.DONE) {
-                                    if (xhr.status === 200) {
-                                        console.log("제품을 장바구니에 추가했습니다.");
-                                    } else {
-                                        console.error("장바구니에 제품을 추가하는데 실패했습니다.");
-                                    }
-                                }
+                            }
+                        async function postProduct() {
+                            var productCode = document.getElementById("productCode").value;
+                            var count = document.getElementById("quantity").value;
+
+                            var totalPriceElement = document.querySelector(".hp_fs28.hp_fw700.hp_pointColor");
+                            var totalPrice = totalPriceElement.innerText.replace("원", "").replace(",", "");
+
+                            var data = {
+                                productCode: productCode,
+                                cartitemCount: count,
+                                totalPrice: totalPrice
                             };
-                            xhr.send(JSON.stringify(data));
+                            const productToCart = data
+                            const json = JSON.stringify(productToCart)
+                            const response = await fetch('/user/product/add-to-cart', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json; charset=UTF-8'
+                                },
+                                body: json
+                            });
+                            const result = await response.text();
+                            console.log(result);
                         }
                     </script>
                     <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBack hp_ml10">바로결제</button>
