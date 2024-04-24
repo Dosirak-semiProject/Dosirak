@@ -1,5 +1,6 @@
 package com.ohgiraffers.dosirak.admin.product.dao;
 
+import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,7 +11,7 @@ public interface ProductMapper {
     List<productDTO> findAllProduct();
     
 
-    List<productDTO> insertProduction(productDTO product);
+    int insertProduction(productDTO product);
 
 
     List<productDTO> productSelectList(String key);
@@ -20,4 +21,9 @@ public interface ProductMapper {
 
 
     int productUpdate(productDTO product);
+
+    void insertImage(ProductImageDTO fileInfo);
+
+
+    productDTO codePlz();
 }

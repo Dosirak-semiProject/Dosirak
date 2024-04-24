@@ -27,11 +27,13 @@ public interface UserCustomerMapper {
     UserAskDTO searchAskDetail(int askCode);
     UserAnswerDTO searchAnswerDetail(int askCode);
     void insertAttachment(UserCustomerImgDTO userCustomerImgDTO);
-    void insertAsk(UserAskDTO ask);
+    void insertAsk(UserAskDTO askCode);
     void insertImage(UserCustomerImgDTO fileInfo);
 
     /* -- 추가 --- */
     int selectTotalCount(Map<String, String> searchMap);
     List<UserAskDTO> selectAskList(SelectCriteria selectCriteria);
+
+    UserAskDTO searchLastAsk();
 }
 
