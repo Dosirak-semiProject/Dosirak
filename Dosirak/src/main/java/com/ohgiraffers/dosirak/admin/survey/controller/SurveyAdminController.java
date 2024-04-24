@@ -5,6 +5,7 @@ import com.ohgiraffers.dosirak.admin.survey.model.service.SurveyAdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,5 +48,18 @@ public class SurveyAdminController {
         int result = surveyAdminService.deleteVersionByVersionId(versionId);
         model.addAttribute("deleteResult", result);
         return "redirect:/admin/survey/version-list";
+    }
+
+    @GetMapping("version-set")
+    public String setNewSurvey(Model model, @RequestParam(required = false) Integer versionId){
+        if(versionId != null){
+        SurveyVersionDTO version = surveyAdminService.getVersionByVersionId(versionId);
+        List<SurveyQuestionDTO> questionList = surveyAdminService.getQuestionListByVersionId(versionId);
+        List<SurveyCategoryRangeDTO> rangeList = surveyAdminService.getRangeListByVersionId(versionId);
+        model.addAttribute("version", version);
+        model.addAttribute("questionList", questionList);
+        model.addAttribute("rangeList", rangeList);
+        }
+        return "admin/survey/surveyVersionSet";
     }
 }

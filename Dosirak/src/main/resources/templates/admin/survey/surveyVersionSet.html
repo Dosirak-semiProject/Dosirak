@@ -14,7 +14,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4" th:text="|version.${version.versionId}|"></h1>
+                    <h1 class="mt-4" th:text="|version.${version?.versionId}|"></h1>
                     <table class="datatable-table mt-4">
                         <colgroup>
                             <col style="width:200px" />
@@ -25,13 +25,20 @@
                         <tbody>
                             <tr>
                                 <th scope="row" style="width: 10%">버전 별칭</th>
-                                <td style="width: 15%"><input th:value="version.versionName"></td>
+                                <td style="width: 15%"><input th:value="${version?.versionName}"></td>
                                 <th scope="row" style="width: 10%">한줄 설명</th>
-                                <td th:text="${version.versionExplain}"></td>
+                                <td><input style="width: 70%" th:value="${version?.versionExplain}"></td>
                             </tr>
                         </tbody>
                     </table>
-
+                    <div style="background-color: #9F9F9F;margin-bottom: 16px">
+                        <table class="datatable">
+                            <th>
+                                <tr>질문 번호</tr>
+                                <tr>질문 내용</tr>
+                            </th>
+                        </table>
+                    </div>
                     <table class="datatable">
                         <tr>
                             <th style="width: 10%;">점수 분류</th>
@@ -41,25 +48,79 @@
                             <th style="width: 18%;">높음</th>
                             <th style="width: 18%;">매우 높음</th>
                         </tr>
-                        <tr th:each="range : ${rangeList}">
-                            <td th:if="${range.category} == 'C'" th:text="탄수화물"></td>
-                            <td th:if="${range.category} == 'P'" th:text="단백질"></td>
-                            <td th:if="${range.category} == 'F'" th:text="지방"></td>
-                            <td th:if="${range.category} == 'W'" th:text="운동점수"></td>
-                            <td th:text="|1~${range.range1-1}|"></td>
-                            <td th:text="|${range.range1}~${range.range2 - 2}|"></td>
-                            <td th:text="|${range.range2}~${range.range3 - 3}|"></td>
-                            <td th:text="|${range.range3}~${range.range4 - 4}|"></td>
-                            <td th:text="|${range.range4}~${range.maxPoint}|"></td>
+                        <tr>
+                            <td>탄수화물</td>
+                            <td>1 ~ <select>
+                                    <option value="3">3</option>
+                                </select></td>
+                            <td>3 ~ <select>
+                                    <option value="3">5</option>
+                                </select></td>
+                            <td>5 ~ <select>
+                                    <option value="3">7</option>
+                                </select></td>
+                            <td>7 ~ <select>
+                                    <option value="3">8</option>
+                                </select></td>
+                            <td>8 ~ 10</td>
+                        </tr>
+                        <tr>
+                            <td>단백질</td>
+                            <td>1 ~ <select>
+                                    <option value="3">3</option>
+                                </select></td>
+                            <td>3 ~ <select>
+                                    <option value="3">5</option>
+                                </select></td>
+                            <td>5 ~ <select>
+                                    <option value="3">7</option>
+                                </select></td>
+                            <td>7 ~ <select>
+                                    <option value="3">8</option>
+                                </select></td>
+                            <td>8 ~ 10</td>
+                        </tr>
+                        <tr>
+                            <td>지방</td>
+                            <td>1 ~ <select>
+                                    <option value="3">3</option>
+                                </select></td>
+                            <td>3 ~ <select>
+                                    <option value="3">5</option>
+                                </select></td>
+                            <td>5 ~ <select>
+                                    <option value="3">7</option>
+                                </select></td>
+                            <td>7 ~ <select>
+                                    <option value="3">8</option>
+                                </select></td>
+                            <td>8 ~ 10</td>
+                        </tr>
+                        <tr>
+                            <td>운동</td>
+                            <td style="text-align: center">1 ~ <select style="width: 50px;text-align: center">
+                                    <option value="3">3</option>
+                                </select></td>
+                            <td>3 ~ <select>
+                                    <option value="3">5</option>
+                                </select></td>
+                            <td>5 ~ <select>
+                                    <option value="3">7</option>
+                                </select></td>
+                            <td>7 ~ <select>
+                                    <option value="3">8</option>
+                                </select></td>
+                            <td>8 ~ 10</td>
                         </tr>
                     </table>
                     <div class="editBtn" style="text-align: right;">
-                            <span>
-                                <button type="submit" class="btn btn-primary">설문 수정</button>
-                                <button type="button" class="btn btn-primary" formaction="/admin/suit-box/menu/view"
-                                        formmethod="get">설문 삭제</button>
-                                <button type="button" class="btn btn-secondary" onclick="window.location.href='/admin/survey/version-list'">목록</button>
-                            </span>
+                        <span>
+                            <button type="submit" class="btn btn-primary">설문 수정</button>
+                            <button type="button" class="btn btn-primary" formaction="/admin/suit-box/menu/view"
+                                formmethod="get">설문 삭제</button>
+                            <button type="button" class="btn btn-secondary"
+                                onclick="window.location.href='/admin/survey/version-list'">목록</button>
+                        </span>
                     </div>
                 </div>
             </main>
