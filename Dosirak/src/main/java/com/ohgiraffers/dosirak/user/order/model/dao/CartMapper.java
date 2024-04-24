@@ -19,4 +19,6 @@ public interface CartMapper {
     void cartUpdateQuantity(int productCode, int updatedQuantity);
 
     List<MemberDTO> findSearchId();
+
+    String addCart(int productCode, int cartitemCount, int totalPrice);
 }
