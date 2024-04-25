@@ -1,10 +1,11 @@
 package com.ohgiraffers.dosirak.user.product.service;
 
+import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dao.CartMapper;
-import com.ohgiraffers.dosirak.user.order.model.dao.OrderUserMapper;
 import com.ohgiraffers.dosirak.user.product.dao.ProductUserMapper;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
+import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class ProductUserService {
     private ProductUserMapper productUserMapper;
     @Autowired
     private CartMapper cartMapper;
+
     public List<productDTO> findAllProduct() {
         return productUserMapper.findAllUserProduct();
     }
@@ -30,18 +32,53 @@ public class ProductUserService {
         return productUserMapper.productsListViewNomal(categoryCode);
     }
 
-    public ProductUserDTO productsListView(int categoryCode) {
-        return productUserMapper.productsListView(categoryCode);
+    public ProductUserDTO productsListView() {
+        return productUserMapper.productsListView();
     }
 
 
-
     public List<ProductUserDTO> getProductListBySubCategoryCode(int subCategoryCode) {
+        System.out.println(subCategoryCode);
         return productUserMapper.getProductListBySubCategoryCode(subCategoryCode);
     }
 
 
     public int addCart(Map<String, String> productInfo) {
         return productUserMapper.addCart(productInfo);
+    }
+
+    public List<ProductandImageDTO> comeImageList() {
+        return productUserMapper.comeImageList();
+    }
+
+    public List<ProductUserDTO> getProductsWithImages() {
+        List<ProductUserDTO> products = productUserMapper.findAllProducts();
+        for (ProductUserDTO product : products) {
+            // 상품 코드를 기반으로 이미지 리스트 가져오기
+            List<ProductImageDTO> images = productUserMapper.findImagesByProductCode(product.getProductCode());
+            // 이미지 리스트를 상품 DTO에 설정하기
+            product.setImageList(images);
+        }
+        return products;
+    }
+
+
+    public List<ProductUserDTO> getViewProductsWithImages(int productCode) {
+        List<ProductUserDTO> products = productUserMapper.viewProduct2(productCode);
+
+        for (ProductUserDTO product : products) {
+            // 상품 코드를 기반으로 이미지 리스트 가져오기
+            List<ProductImageDTO> images = productUserMapper.findImagesByProductCode(product.getProductCode());
+            // 이미지 리스트를 상품 DTO에 설정하기
+            product.setImageList(images);
+
+
+        }
+        return products;
+
+    }
+
+    public List<ProductImageDTO> searchImageForProduct(int productCode) {
+        return productUserMapper.searchImageForProduct(productCode);
     }
 }

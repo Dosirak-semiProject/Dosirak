@@ -20,7 +20,7 @@ spring:
   # file upload config
   servlet:
     multipart:
-      location: C:\dev\semi-project_dosirak\Dosirak
+      location: C:\dev\dosirak\Dosirak
       max-file-size: 10MB
       max-request-size: 10MB
 
@@ -31,7 +31,7 @@ mybatis:
 
 # image upload dir
 image:
-  image-dir: src\main\resources\customerUpload\
-  product-image-dir: src\main\resources\productUpload\
+  image-dir: src\main\resources\static\customerUpload\
+  product-image-dir: src\main\resources\static\productUpload\
 
 
