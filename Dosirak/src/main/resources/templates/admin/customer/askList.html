@@ -108,7 +108,7 @@
                                 <td th:text="${ ask.userId }"></td>
                                 <td th:text="${ ask.askDate }"></td>
                                 <td th:text="${ ask.askDelete == true ? 'Y' : 'N' }"></td>
-                                <td th:text="${ ask.answerDTO != null ? '답변완료' : '미답변' }"></td>
+                                <td th:text="${ ask.answerDTO.answerStatus == true ? '답변완료' : '미답변' }"></td>
                             </tr>
                             </tbody>
                         </table>

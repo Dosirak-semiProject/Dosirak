@@ -60,7 +60,7 @@
                             <tbody>
                             <tr th:each="qna : ${ qnaList }">
                                 <td th:text="${ qna.qnaCode }"></td>
-                                <td th:text="${ qna.askCategoryCode.askCategoryName }"></td>
+                                <td th:text="${ qna.askCategoryDTO.askCategoryName }"></td>
                                 <td><a th:href="|qnaDetail?qnaCode=${ qna.qnaCode }|" th:text="${ qna.qnaTitle }"></a></td>
                                 <td th:text="${ qna.adminId }"></td>
                                 <td>

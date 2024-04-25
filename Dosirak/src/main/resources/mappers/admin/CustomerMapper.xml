@@ -55,7 +55,7 @@
         INTO notice
             (notice_title, notice_content, notice_date, admin_id)
         VALUE
-            (#{ noticeTitle }, #{ noticeContent }, NOW(), "admin01")
+            (#{ noticeTitle }, #{ noticeContent }, NOW(), #{ adminId })
     </insert>
 
     <delete id="deleteNotice">
@@ -77,7 +77,7 @@
         <result property="qnaTitle" column="qna_title"/>
         <result property="qnaAnswer" column="qna_answer"/>
         <result property="adminId" column="admin_id"/>
-        <association property="askCategoryCode" resultMap="askCategoryResultMap"/>
+        <association property="askCategoryDTO" resultMap="askCategoryResultMap"/>
     </resultMap>
 
     <select id="findQnaList" resultMap="generalQnaResultMap">
@@ -110,7 +110,7 @@
     INSERT INTO qna
         (ask_category_code, qna_title, qna_answer, admin_id)
     VALUE
-        (#{ askCategoryCode.askCategoryCode }, #{ qnaTitle }, #{ qnaAnswer }, "choijihyun7")
+        (#{ askCategoryCode }, #{ qnaTitle }, #{ qnaAnswer }, #{ adminId })
     </insert>
 
     <delete id="deleteQna">
@@ -147,6 +147,14 @@
     <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.AnswerDTO" id="answerResultMap">
         <id property="answerCode" column="answer_code"/>
         <result property="answerStatus" column="answer_status"/>
+        <result property="adminId" column="admin_id"/>
+        <result property="answerDate" column="answer_date"/>
+        <result property="answerContent" column="answer_content"/>
+        <association property="askCategoryDTO" resultMap="askCategoryResultMap"/>
+    </resultMap>
+
+    <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO" id="askResultMap">
+        <id property="askCode" column="ask_code"/>
     </resultMap>
 
     <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.ImgDTO" id="imgResultMap">
@@ -200,10 +208,10 @@
 
     <insert id="insertAnswer">
         INSERT INTO
-        answer
-            (answer_status, answer_content, answer_date, admin_id, ask_code)
+            answer
+            (ask_code, admin_id, answer_status, answer_content, answer_date)
         VALUES
-         (1, #{answerContent}, NOW(), #{adminId}, #{askCode})
+            (#{ askCode }, #{ adminId }, 1, #{ answerContent }, NOW())
     </insert>
 
     <update id="updateAskCategory">
