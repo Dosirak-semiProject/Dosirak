@@ -165,7 +165,7 @@
 
     <insert id="insertAttachment">
         INSERT
-        INTO img
+        INTO CUSTOMER_IMG
             (ref_ask_no, original_name, saved_name, save_path, file_type, thumbnail_path)
         VALUES
             (#{ refAskNo }, #{ originalName }, #{ savedName }, #{ savePath }, #{ fileType }, #{ thumbnailPath, jdbcType=VARCHAR })
@@ -182,7 +182,7 @@
 
     <insert id="insertImage">
         INSERT INTO
-            img
+            CUSTOMER_IMG
             (ref_ask_code, original_name, saved_name, save_path)
         VALUES
             (#{ refAskCode }, #{ originalName }, #{ savedName }, #{ savePath })
@@ -210,11 +210,11 @@
     <!-- 이미지 리스트 조회 -->
     <select id="searchImageList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO">
         SELECT
-        *
+            *
         FROM
-        img
+            CUSTOMER_IMG
         WHERE
-        ref_ask_code = #{ ref_ask_code }
+            ref_ask_code = #{ ref_ask_code }
     </select>
 
 </mapper>

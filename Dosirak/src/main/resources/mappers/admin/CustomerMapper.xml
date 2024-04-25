@@ -227,7 +227,7 @@
         SELECT
             *
         FROM
-            img
+            CUSTOMER_IMG
         WHERE
             ref_ask_code = #{ ref_ask_code }
     </select>
