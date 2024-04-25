@@ -79,17 +79,19 @@ public class ProductController {
                 newproduct.setProductStatus(product.getProductStatus());
                 newproduct.setProductSummary(product.getProductSummary());
                 newproduct.setProductCategoryCode(product.getProductCategoryCode());
-                 productService.insertProduction(newproduct);
+                productService.insertProduction(newproduct);
 
                 /* 가장 최신 질문 조회 */
 //                UserAskDTO lastAsk = productService.findLastAsk();
 //                log.info("lastAsk : {}", lastAsk);
-                productDTO lastProduct=productService.codePlz();
-                log.info("lastProduct: {}",lastProduct);
+                productDTO lastProduct = productService.codePlz();
+                log.info("lastProduct: {}", lastProduct);
                 System.out.println(lastProduct);
 
                 /* 경로 설정 */
-                String fileUploadDir = IMAGE_DIR + "original";
+//                String fileUploadDir = IMAGE_DIR + "original";
+                String root = "src/main/resources/productUpload";
+                String fileUploadDir = root + "/original";
 
                 File dir1 = new File(fileUploadDir);
 
@@ -102,33 +104,35 @@ public class ProductController {
                 List<ProductImageDTO> imageList = new ArrayList<>();
 
                 try {
-                    for (int i = 0; i < productImage.size(); i++) {
+                    for (MultipartFile file : productImage) {
                         /* 첨부파일이 실제로 존재하는 경우 로직 수행 */
-                        if (productImage.get(i).getSize() > 0) {
 
-                            String originalFileName = productImage.get(i).getOriginalFilename();
-                            log.info("originalFileName : {}", originalFileName);
 
-                            String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
-                            String saveFileName = UUID.randomUUID() + ext;
-                            log.info("savedFileName : {}", saveFileName);
+                        String originalFileName = file.getOriginalFilename();
+                        log.info("originalFileName : {}", originalFileName);
+                        String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
+                        String saveFileName = UUID.randomUUID() + ext;
+                        log.info("savedFileName : {}", saveFileName);
 
-                            /* 서버의 설정 디렉토리에 파일 저장하기 */
-                            productImage.get(i).transferTo(new File(fileUploadDir + "/" + saveFileName));
 
-                            /* DB에 저장할 파일의 정보 처리 */
-                            ProductImageDTO fileInfo = new ProductImageDTO();
-                            fileInfo.setSavedName(saveFileName);
-                            fileInfo.setSavePath("/static/customerUpload/original");
 
-                            /* 이미지 DTO에 요청 코드 설정 */
-                            fileInfo.setProductCode(lastProduct.getProductCode());
+                        imageList.add(new ProductImageDTO(lastProduct,saveFileName, productImage));
+                        /* 서버의 설정 디렉토리에 파일 저장하기 */
+                        file.transferTo(new File(fileUploadDir + "/" + saveFileName));
 
-                            /* 리스트에 파일 정보 저장 */
-                            imageList.add(fileInfo);
-                            log.info("imageList : {}", imageList);
-                        }
+                        /* DB에 저장할 파일의 정보 처리 */
+                        ProductImageDTO fileInfo = new ProductImageDTO();
+                        fileInfo.setSavedName(saveFileName);
+                        fileInfo.setSavePath("/static/customerUpload/original");
+
+                        /* 이미지 DTO에 요청 코드 설정 */
+                        fileInfo.setProductCode(lastProduct.getProductCode());
+
+                        /* 리스트에 파일 정보 저장 */
+//                        imageList.add(fileInfo);
+                        log.info("imageList : {}", imageList);
                     }
+
                     /* 이미지 리스트를 한 번에 DB에 저장 */
                     productService.registImageList(imageList);
 
@@ -144,8 +148,9 @@ public class ProductController {
                 log.info("imageList : {}", imageList);
             }
 
-        }
-        return "redirect:/admin/product/productList";
+
+
+        }            return "redirect:/admin/product/productList";
 
     }
 
