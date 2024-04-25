@@ -2,22 +2,6 @@
 <html lang="en">
 <head>
     <th:block th:replace="/admin/common/head.html"></th:block>
-    <script src="/user/js/common/jquery-3.7.1.min.js"></script>
-    <script>
-        // 날짜별 회원가입자 수 db에서 받아서 char-area-demo.js로 넘겨줌
-        const joinDataString = '[[${joinCount}]]';
-        const joinDates = [];
-        const countDates = [];
-        const entries = joinDataString.slice(2, -2).split('}, {');
-        entries.forEach(entry => {
-            const parts = entry.split(', ');
-            parts.forEach(part => {
-                const [key, value] = part.split('=');
-                if(key === 'JOINDATE') joinDates.push(value);
-                if(key === 'COUNT') countDates.push(value);
-            })
-        })
-    </script>
 </head>
 <body class="sb-nav-fixed">
     <th:block th:replace="/admin/common/header.html"></th:block>
@@ -26,16 +10,16 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">현황</h1>
+                    <h1 class="mt-4">Dashboard</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                     <div class="row">
                         <div class="col-xl-3 col-md-6">
                             <div class="card bg-primary text-white mb-4">
-                                <div class="card-body">총 회원수 : <span th:text="${joinNum}"></span> 명</div>
+                                <div class="card-body">Primary Card</div>
                                 <div class="card-footer d-flex align-items-center justify-content-between">
-                                    <a class="small text-white stretched-link" href="/admin/member/memberList">View Details</a>
+                                    <a class="small text-white stretched-link" href="#">View Details</a>
                                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                 </div>
                             </div>
@@ -73,7 +57,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-area me-1"></i>
-                                    4월 회원가입자 수
+                                    Area Chart Example
                                 </div>
                                 <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                             </div>
@@ -82,7 +66,7 @@
                             <div class="card mb-4">
                                 <div class="card-header">
                                     <i class="fas fa-chart-bar me-1"></i>
-                                    4월 매출
+                                    Bar Chart Example
                                 </div>
                                 <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                             </div>

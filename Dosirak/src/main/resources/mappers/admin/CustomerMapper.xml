@@ -110,7 +110,7 @@
     INSERT INTO qna
         (ask_category_code, qna_title, qna_answer, admin_id)
     VALUE
-        (#{ askCategoryCode.askCategoryCode }, #{ qnaTitle }, #{ qnaAnswer }, "jh6805")
+        (#{ askCategoryCode.askCategoryCode }, #{ qnaTitle }, #{ qnaAnswer }, "choijihyun7")
     </insert>
 
     <delete id="deleteQna">
@@ -139,8 +139,9 @@
         <result property="askDate" column="ask_date"/>
         <result property="userId" column="user_id"/>
         <result property="askDelete" column="ask_delete"/>
-        <association property="askCategoryCode" resultMap="askCategoryResultMap"/>
+        <association property="askCategoryDTO" resultMap="askCategoryResultMap"/>
         <association property="answerDTO" resultMap="answerResultMap"/>
+        <association property="imgDTO" resultMap="imgResultMap"/>
     </resultMap>
 
     <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.AnswerDTO" id="answerResultMap">
@@ -148,24 +149,34 @@
         <result property="answerStatus" column="answer_status"/>
     </resultMap>
 
-    <select id="findAskList" resultMap="generalAskResultMap">
-        SELECT
+    <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.ImgDTO" id="imgResultMap">
+        <id property="imgCode" column="img_code"/>
+    </resultMap>
+
+    <select id="findAllAskList" resultMap="generalAskResultMap">
+        select
             *
-        FROM
+        from
             ask a
-        JOIN
-            ask_category b ON (a.ask_category_code = b.ask_category_code)
-        ORDER BY
+        join
+            ask_category b on (b.ask_category_code = a.ask_category_code)
+        left join
+            answer c on (c.ask_code = a.ask_code)
+        order by
             a.ask_code desc
     </select>
 
-    <select id="searchAskDetail" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO">
-        SELECT
+    <select id="searchAskDetail" resultMap="generalAskResultMap">
+        select
             *
-        FROM
-            ask
-        WHERE
-            ask_code = #{ askCode }
+        from
+            ask a
+        join
+            ask_category b on (b.ask_category_code = a.ask_category_code)
+        left join
+            answer c on (c.ask_code = a.ask_code)
+        where
+            a.ask_code = #{ askCode }
     </select>
 
     <select id="searchAnswerDetail" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.AnswerDTO">
@@ -186,5 +197,32 @@
         FROM
             ask_category
     </select>
+
+    <insert id="insertAnswer">
+        INSERT INTO
+        answer
+            (answer_status, answer_content, answer_date, admin_id, ask_code)
+        VALUES
+         (1, #{answerContent}, NOW(), #{adminId}, #{askCode})
+    </insert>
+
+    <update id="updateAskCategory">
+        UPDATE
+            ask
+        SET
+            ask_category_code = #{ askCategoryCode }
+        WHERE
+            ask_code = #{ askCode }
+    </update>
+
+    <select id="searchImageList" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.ImgDTO">
+        SELECT
+            *
+        FROM
+            img
+        WHERE
+            ref_ask_code = #{ ref_ask_code }
+    </select>
+
 
 </mapper>

@@ -54,8 +54,6 @@
                                 <td th:text="${ notice.noticeDate }"></td>
                                 <td th:text="${ notice.adminId }"></td>
                                 <td>
-<!--                                    <a th:href="|noticeDelete?noticeCode=${ notice.noticeCode }|">삭제</a>-->
-<!--                                    <button type="button" class="btn btn-secondary btn-sm" th:href="|noticeDelete?noticeCode=${ notice.noticeCode }|">삭제</button>-->
                                     <form action="noticeDelete" method="GET" onsubmit="return delete_event()">
                                         <input type="hidden" name="noticeCode" th:value="${ notice.noticeCode }" />
                                         <button type="submit" class="btn btn-secondary btn-sm">삭제</button>
@@ -69,7 +67,7 @@
                                             }
                                         </script>
                                     </form>
-<!--                                </td>-->
+                                </td>
                             </tr>
                             </tbody>
                         </table>

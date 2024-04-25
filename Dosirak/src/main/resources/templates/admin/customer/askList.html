@@ -102,13 +102,13 @@
                             <tbody>
                             <tr th:each="ask : ${ askList }">
                                 <td th:text="${ ask.askCode }"></td>
-                                <td th:text="${ ask.askCategoryCode.askCategoryName }"></td>
+                                <td th:text="${ ask.askCategoryDTO.askCategoryName }"></td>
                                 <td><a th:href="|askDetail?askCode=${ ask.askCode }|" th:text="${ ask.askTitle }"></a></td>
                                 <td th:text="${ ask.askDate }"></td>
                                 <td th:text="${ ask.userId }"></td>
-                                <td th:text="${ ask.askDate }"></td>  <!-- 추후 수정 -->
-                                <td th:text="${ ask.askDelete }"></td>
-                                <td>수정 중</td>
+                                <td th:text="${ ask.askDate }"></td>
+                                <td th:text="${ ask.askDelete == true ? 'Y' : 'N' }"></td>
+                                <td th:text="${ ask.answerDTO != null ? '답변완료' : '미답변' }"></td>
                             </tr>
                             </tbody>
                         </table>
