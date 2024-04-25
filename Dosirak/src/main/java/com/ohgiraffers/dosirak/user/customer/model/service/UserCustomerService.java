@@ -84,9 +84,9 @@ public class UserCustomerService {
         });
     }
 
-    public void askRegist(UserAskDTO ask) {
+    public void askRegist(UserAskDTO askCode) {
 
-        userCustomerMapper.insertAsk(ask);
+        userCustomerMapper.insertAsk(askCode);
     }
 
     @Transactional
@@ -121,4 +121,9 @@ public class UserCustomerService {
     }
 
 
+    public UserAskDTO findLastAsk() {
+
+        /* 가장 최신 1대1 문의 조회 후 반환 */
+        return userCustomerMapper.searchLastAsk();
+    }
 }

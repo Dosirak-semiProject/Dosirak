@@ -151,12 +151,20 @@
 <!--            (#{ refAskCode }, #{ originalName }, #{ savedName }, #{ savePath })-->
 <!--    </insert>-->
 
+<!--    <insert id="insertAsk">-->
+<!--        INSERT INTO ask-->
+<!--        (ask_title, ask_content, ask_date, user_id, ask_editDate, ask_delete, ask_category_code)-->
+<!--        VALUES-->
+<!--        (#{ask.askTitle}, #{ask.askContent}, #{ask.askDate}, "임시사용자", NOW(), '0', '1')-->
+<!--    </insert>-->
     <insert id="insertAsk">
-        INSERT INTO ask
+        INSERT
+        INTO ask
         (ask_title, ask_content, ask_date, user_id, ask_editDate, ask_delete, ask_category_code)
         VALUES
-        (#{ask.askTitle}, #{ask.askContent}, #{ask.askDate}, "임시사용자", NOW(), '0', '1')
+        (#{ askTitle }, #{ askContent }, #{ askDate }, "임시사용자", NOW(), '0', '1')
     </insert>
+
 
     <insert id="insertImage">
         INSERT INTO img
@@ -189,5 +197,6 @@
             a.ask_code DESC
         LIMIT #{offset}, #{limit}
     </select>
+
 
 </mapper>

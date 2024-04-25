@@ -32,5 +32,6 @@ mybatis:
 # image upload dir
 image:
   image-dir: src\main\resources\customerUpload\
+  product-image-dir: src\main\resources\productUpload\
 
 
