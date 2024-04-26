@@ -41,27 +41,29 @@
                         </td>
                         <th scope="row">연락처</th>
                         <td>
-                            <span th:if="${ deliveryView.order.orderConcat }" th:text="${ deliveryView.order.orderConcat }"></span>
-                            <span th:unless="${ deliveryView.order.orderConcat }" th:text="${ deliveryView.member.name }"></span>
+                            <span th:if="${ deliveryView.order.orderContact }" th:text="${ deliveryView.order.orderContact }"></span>
+                            <span th:unless="${ deliveryView.order.orderContact }" th:text="${ deliveryView.member.phone }"></span>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">배송지</th>
                         <td colspan="3">
-                            <span th:if="${ deliveryView.order.orderAddress }" th:text="${ deliveryView.order.orderAddress }"></span>
-                            <span th:unless="${ deliveryView.order.orderAddress }" th:text="|${ deliveryView.member.address1 }  /  ${ deliveryView.member.address2 }  /  ${ deliveryView.member.address3 }|">
-                            </span>
+                            <span th:if="${ deliveryView.order.orderAddress1 }" th:text="|${ deliveryView.order.orderAddress1 } / ${deliveryView.order.orderAddress2} / ${deliveryView.order.orderAddress3}|"></span>
+                            <span th:unless="${ deliveryView.order.orderAddress1 }" th:text="|${ deliveryView.member.address1 } / ${ deliveryView.member.address2 } / ${ deliveryView.member.address3 }|"></span>
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="editBtn" style="text-align: right;">
-                    <button type="button" class="btn btn-secondary">목록</button>
+                    <button type="button" class="btn btn-secondary" onclick="history.back()">목록</button>
                 </div>
             </div>
         </main>
     </div>
 </div>
 <th:block th:replace="admin/common/foot.html"></th:block>
+<script>
+
+</script>
 </body>
 </html>

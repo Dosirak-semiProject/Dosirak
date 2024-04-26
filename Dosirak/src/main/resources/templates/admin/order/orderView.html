@@ -26,36 +26,33 @@
                             <td colspan="2" th:text="${ orderView.orderCode }"></td>
 
                             <th scope="row">주문/환불상태</th>
-                            <td colspan="2" th:text="${ orderView.orderStatus + ' / ' + orderView.refund.refundStatus }"></td>
+                            <td colspan="2" th:text="|${ orderView.orderStatus }/${ orderView.refund.refundStatus }|"></td>
                         </tr>
                         <tr>
                             <th scope="row">회원이름(아이디)</th>
-                            <td colspan="3" th:text="|${ orderView.member.name }(${ orderView.member.id })|"></td>
-                            <td></td>
+                            <td colspan="5" th:text="|${ orderView.member.name }(${ orderView.member.id })|"></td>
                         </tr>
                         <tr>
                             <th scope="row">수령인</th>
                             <td colspan="2">
-                                <span th:if="${ orderView.orderRecipient }" th:text="${ orderView.orderRecipient }"></span>
-                                <span th:unless="${ orderView.orderRecipient }" th:text="${orderView.member.name}"></span>
+                                <span th:if="${orderView.orderRecipient}" th:text="${orderView.orderRecipient}"></span>
+                                <span th:unless="${orderView.orderRecipient}" th:text="${orderView.member.name}"></span>
                             </td>
                             <th scope="row">연락처</th>
                             <td colspan="2">
-                                <span th:if="${ orderView.orderConcat }" th:text="${ orderView.orderConcat }"></span>
-                                <span th:unless="${ orderView.orderConcat }" th:text="${ orderView.member.phone }"></span>
+                                <span th:if="${ orderView.orderContact }" th:text="${ orderView.orderContact }"></span>
+                                <span th:unless="${ orderView.orderContact }" th:text="${ orderView.member.phone }"></span>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">배송지</th>
                             <td colspan="5">
-                                <span th:if="${ orderView.orderRecipient }" th:text="${ orderView.orderRecipient }"></span>
-                                <span th:unless="${ orderView.orderRecipient }"
-                                      th:text="${orderView.member.address1 + ' / ' + orderView.member.address2 + ' / ' + orderView.member.address3 }"></span>
+                                <span th:if="${ orderView.orderAddress1 }" th:text="|${orderView.orderAddress1}/${orderView.orderAddress2}/${orderView.orderAddress3}|"></span>
+                                <span th:unless="${ orderView.orderAddress1 }" th:text="|${orderView.member.address1}/${orderView.member.address2}/${orderView.member.address3}|"></span>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">결제금액</th>
-                            <!--                        <td colspan="2" th:text="${ '￦' + ((orderView.pay.payPrice) - (detailDTO.detailStatus == 'X' ? detailDTO.detailItemCount * detailDTO.product.productPrice : 0)) }"></td>-->
                             <td colspan="2">
                                 <span th:text="${ '￦' + orderView.pay.payPrice }"></span>
                             </td>
@@ -73,7 +70,8 @@
                             <td colspan="5">
                                 <label>
                                     <input type="checkbox" th:attr="name='selected'" th:value="${detail.detailCode}" th:if="${ detail.detailStatus == 'O'}">
-                                    <span th:text="${detail.detailCode + ' / ' + detail.product.productName + ' / ' + detail.detailItemCount + '개' + ' / ' + (detail.detailItemCount * detail.product.productPrice) + ' 원'}"></span><span th:if="${detail.detailStatus == 'X'}"> (주문취소)</span>
+                                    <span th:text="${detail.detailCode} + '/' + ${detail.product.productName} + '/' + ${detail.detailItemCount} + '개/(' + (${detail.detailItemCount} * ${detail.product.productPrice}) + '원)'"></span>
+                                    <span th:if="${detail.detailStatus == 'X'}"> (주문취소)</span>
                                 </label>
                             </td>
                         </tr>
