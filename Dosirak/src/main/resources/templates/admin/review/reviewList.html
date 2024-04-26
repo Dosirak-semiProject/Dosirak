@@ -43,7 +43,7 @@
                                             <th>주문상세코드</th>
                                             <th>회원아이디</th>
                                             <th>리뷰날짜</th>
-                                            <th>수정일시</th>
+                                            <th>수정날짜</th>
                                             <th>삭제여부</th>
                                             <th>답변상태</th>
                                         </tr>
@@ -55,8 +55,14 @@
                                             <td th:text="${review.userId}"></td>
                                             <td th:text="${review.reviewDate}"></td>
                                             <td th:text="${review.reviewEditDate}"></td>
-                                            <td th:text="${review.reviewDelete}"></td>
-                                            <td></td>
+                                            <td>
+                                                <span th:if="${review.reviewDelete == 'Y'}">삭제됨</span>
+                                                <span th:if="${review.reviewDelete == 'N'}">삭제안됨</span>
+                                            </td>
+                                            <td>
+                                                <span th:if="${ review.answerDTO != null }">답변완료</span>
+                                                <span th:if="${ review.answerDTO == null }">답변전</span>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

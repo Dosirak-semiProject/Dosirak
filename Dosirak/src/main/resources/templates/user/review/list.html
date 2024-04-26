@@ -42,15 +42,7 @@
         <th:block th:replace="/user/common/header.html"></th:block>
         <div class="bl_sideMenuBack">
             <div class="ly_maxWD ly_flex">
-                <section class="bl_sideMenu">
-                    <h2 class="bl_sideMenu__head hp_pointColor">마이페이지</h2>
-                    <ul class="bl_sideMenu__cont hp_mt20">
-                        <li class=""><a class="" href="">나의정보</a></li>
-                        <li class=""><a class="" href="">주문내역</a></li>
-                        <li class=""><a class="" href="">리뷰내역</a></li>
-                        <li class=""><a class="" href="">나의설문</a></li>
-                    </ul>
-                </section>
+                <th:block th:replace="/user/common/sideMenu.html"></th:block>
                 <div class="ly_inner02 ly_fgrow1 hp_fBack">
                     <div class="ly_midWDside">
                         <h2 class="el_lv1Head">리뷰내역</h2>
@@ -100,16 +92,15 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr th:each="order : ${orderList}">
+                                                <tr th:each="order : ${orderList}" th:if="${order.deliveryStatus == 'C'}">
                                                     <form action="/user/review/userReviewWrite" method="post">
-                                                    <td th:text="${order.deliveryStatus}"></td>
-                                                    <td class="bl_TBList__ttl">
-
-                                                        <input type="text" class="none hp_w100 hp_pl20 hp_pr20" th:value="${order.productName}" name="productName" readonly/>
-                                                        <input type="hidden" th:value="${order.detailCode}" name="detailCode" readonly/>
-                                                    </td>
-                                                    <td th:text="${order.orderDate}"></td>
-                                                    <td><button type="submit" class="el_btnS hp_br5 el_btnPointBord">등록하기</button></td>
+                                                        <td>배송완료</td> <!-- 'C'인 경우에는 '배송완료'로 고정 표시 -->
+                                                        <td class="bl_TBList__ttl">
+                                                            <input type="text" class="none hp_w100 hp_pl20 hp_pr20" th:value="${order.productName}" name="productName" readonly/>
+                                                            <input type="hidden" th:value="${order.detailCode}" name="detailCode" readonly/>
+                                                        </td>
+                                                        <td th:text="${order.orderDate}"></td>
+                                                        <td><button type="submit" class="el_btnS hp_br5 el_btnPointBord">등록하기</button></td>
                                                     </form>
                                                 </tr>
                                                 <tr>
@@ -171,6 +162,7 @@
                                                 <td>
                                                     <a class="hp_dpBlock hp_w100 hp_alignL hp_pl30 hp_pr30" th:href="@{'/user/review/userReview?reviewCode=' + ${myReview.reviewCode}}" th:text="${myReview.reviewTitle}"></a>
                                                 </td>
+<!--                                                ${#temporals.format(dto.myDateTime, 'yyyy-MM-dd')}-->
                                                 <td th:text="${myReview.reviewDate}"></td>
                                                 <td>
                                                    <div th:if="${ myReview.answerStatus != null }">

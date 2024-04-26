@@ -72,7 +72,7 @@ public class OrderService {
             if (refund.getRefundStatus() != null) {
                 switch (refund.getRefundStatus()) {
                     case "R":
-                        refund.setRefundStatus("환불요청");
+                        refund.setRefundStatus("환불신청");
                         break;
                     case "P":
                         refund.setRefundStatus("환불처리중");
@@ -91,6 +91,30 @@ public class OrderService {
     }
 
     public List<DeliveryDTO> allDeliveryList() {
+
+        List<DeliveryDTO> deliveryDTOS = orderMapper.allDeliveryList();
+        for (DeliveryDTO delivery : deliveryDTOS) {
+            delivery.setDeliveryStatus(delivery.getDeliveryStatus());
+            if (delivery.getDeliveryStatus() != null) {
+                switch (delivery.getDeliveryStatus()) {
+                    case "P":
+                        delivery.setDeliveryStatus("배송준비중");
+                        break;
+                    case "I":
+                        delivery.setDeliveryStatus("배송중");
+                        break;
+                    case "C":
+                        delivery.setDeliveryStatus("배송완료");
+                        break;
+                    case "D":
+                        delivery.setDeliveryStatus("배송지연");
+                        break;
+                    default:
+                        delivery.setDeliveryStatus("DeliveryStatus Error");
+                }
+            }
+        }
+
         return orderMapper.allDeliveryList();
     }
 
@@ -105,7 +129,7 @@ public class OrderService {
         if (orderDTO.getRefund().getRefundStatus() != null || orderDTO.getRefund().getRefundStatus() == null) {
             switch (orderDTO.getRefund().getRefundStatus() + "") {
                 case "R":
-                    orderDTO.getRefund().setRefundStatus("환불요청");
+                    orderDTO.getRefund().setRefundStatus("환불신청");
                     break;
                 case "P":
                     orderDTO.getRefund().setRefundStatus("환불처리중");
@@ -147,7 +171,7 @@ public class OrderService {
         if (refundDTO.getRefundStatus() != null) {
             switch (refundDTO.getRefundStatus() + "") {
                 case "R":
-                    refundDTO.setRefundStatus("환불요청");
+                    refundDTO.setRefundStatus("환불신청");
                     break;
                 case "P":
                     refundDTO.setRefundStatus("환불처리중");
