@@ -34,7 +34,7 @@
                         <th scope="row"><label for="">질문유형</label></th>
                         <td colspan="3">
                             <label>
-                                <select>
+                                <select name="askCategoryCode">
                                     <option th:each="category : ${ askCategory }"
                                             th:text="${ category.askCategoryName }"
                                             th:value="${ category.askCategoryCode }"

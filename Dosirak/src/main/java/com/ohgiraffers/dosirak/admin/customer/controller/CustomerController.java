@@ -201,6 +201,7 @@ public class CustomerController {
         QnaDTO qnaTemp = customerService.selectQnaDetail(qnaCode);
 
         // 덮어쓰기
+        qnaTemp.setAskCategoryCode(qna.getAskCategoryCode());
         qnaTemp.setQnaTitle(qna.getQnaTitle());
         qnaTemp.setQnaAnswer(qna.getQnaAnswer());
 
@@ -259,7 +260,7 @@ public class CustomerController {
                 log.info("answer : {}", answer);
 
                 // 카테고리 분류 변경
-                customerService.updateCategory(askCode, askCategoryCode);
+                customerService.updateAskCategory(askCode, askCategoryCode);
 
                 // 답변 등록
                 customerService.writeAnswer(answer);

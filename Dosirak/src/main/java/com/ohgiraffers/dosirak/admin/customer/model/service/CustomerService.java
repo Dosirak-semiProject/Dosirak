@@ -1,7 +1,5 @@
 package com.ohgiraffers.dosirak.admin.customer.model.service;
 
-import com.ohgiraffers.dosirak.admin.customer.common.Pagenation;
-import com.ohgiraffers.dosirak.admin.customer.common.SelectCriteria;
 import com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
@@ -73,6 +71,11 @@ public class CustomerService {
         customerMapper.deleteQna(qnaCode);
     }
 
+    /* 자주 묻는 질문 수정 시, 관리자 필요에 따라 카테고리 변경 */
+    public void updateQnaCategory(int qnaCode, int askCategoryCode) {
+
+        customerMapper.updateQnaCategory(qnaCode, askCategoryCode);
+    }
     public void updateQna(QnaDTO qnaTemp) {
 
         customerMapper.updateQna(qnaTemp);
@@ -117,7 +120,7 @@ public class CustomerService {
     }
 
     /* 답변 등록 시, 관리자 필요에 따라 카테고리 변경 */
-    public void updateCategory(int askCode, int askCategoryCode) {
+    public void updateAskCategory(int askCode, int askCategoryCode) {
 
         customerMapper.updateAskCategory(askCode, askCategoryCode);
     }

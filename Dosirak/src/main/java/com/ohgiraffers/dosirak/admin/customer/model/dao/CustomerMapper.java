@@ -1,10 +1,7 @@
 package com.ohgiraffers.dosirak.admin.customer.model.dao;
 
-import com.ohgiraffers.dosirak.admin.customer.common.SelectCriteria;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.security.core.parameters.P;
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +24,8 @@ public interface CustomerMapper {
     void insertQna(QnaDTO qna);
     void deleteQna(int qnaCode);
     void updateQna(QnaDTO qnaTemp);
+    void updateQnaCategory(int qnaCode, int askCategoryCode);    // 카테고리 항목 변경
+
 
 
     /* ----- 1대1 문의 ----- */
