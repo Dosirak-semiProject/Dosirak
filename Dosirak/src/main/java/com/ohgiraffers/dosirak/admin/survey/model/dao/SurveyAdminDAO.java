@@ -4,7 +4,6 @@ import com.ohgiraffers.dosirak.admin.survey.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface SurveyAdminDAO {
@@ -32,9 +31,15 @@ public interface SurveyAdminDAO {
 
     int updateQuestionBySurveyQuestionDTO(SurveyQuestionDTO question);
 
-    int updateAnswerBySurveyAnswerDTO(SurveyAnswerDTO answer);
 
     int insertNetVersion();
 
     int getVersionId();
+
+    int getQuestionIdByQuestionDTO(SurveyQuestionDTO question);
+
+
+    void deleteAllAnswerByAnswer(SurveyAnswerDTO answer);
+
+    int insertAnswerBySurveyAnswerDTO(SurveyAnswerDTO answer);
 }
