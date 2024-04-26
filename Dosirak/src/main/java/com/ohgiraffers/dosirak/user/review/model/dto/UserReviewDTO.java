@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -12,12 +14,12 @@ import java.time.LocalDateTime;
 @ToString
 public class UserReviewDTO {
     private int reviewCode;
+    private String reviewTitle;
     private String reviewContent;
-    private String reviewRecommend;
     private String userId;
-//    private LocalDateTime reviewEditDate; // 추후 수정
+    private Date reviewEditdate; // 추후 수정
     private String reviewDelete;
     private int detailCode;
-    private LocalDateTime reviewDate;
-    private AdminDTO adminId;
+    private Date reviewDate;
+    private String answerStatus;
 }
