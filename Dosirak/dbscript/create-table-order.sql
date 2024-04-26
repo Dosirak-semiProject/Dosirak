@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS `ORDER` (
 )AUTO_INCREMENT = 30003001 COMMENT '주문';
 -- 완료 O: Completed
 -- 취소 X: Canceled
-
 -- 확정 C: Confirmed Purchase
 
 CREATE TABLE IF NOT EXISTS CART (

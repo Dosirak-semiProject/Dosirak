@@ -13,19 +13,19 @@ public class DetailDTO {
     private String detailCode;
     private String detailStatus;
     private int detailItemCount;
-    private String detailItemProductCode;
-    private String detailItemSuitboxCode;
+    private String ProductCode;
+    private String SuitboxCode;
     private productDTO product;
 
     public DetailDTO() {}
 
-    public DetailDTO(String orderCode, String detailCode, String detailStatus, int detailItemCount, String detailItemProductCode, String detailItemSuitboxCode, productDTO product) {
+    public DetailDTO(String orderCode, String detailCode, String detailStatus, int detailItemCount, String productCode, String suitboxCode, productDTO product) {
         this.orderCode = orderCode;
         this.detailCode = detailCode;
         this.detailStatus = detailStatus;
         this.detailItemCount = detailItemCount;
-        this.detailItemProductCode = detailItemProductCode;
-        this.detailItemSuitboxCode = detailItemSuitboxCode;
+        ProductCode = productCode;
+        SuitboxCode = suitboxCode;
         this.product = product;
     }
 }

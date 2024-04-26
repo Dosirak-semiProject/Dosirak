@@ -44,13 +44,9 @@ public class CartService {
         return cartMapper.findSearchId();
     }
 
-
-
     public String findOrderCode() {
         return cartMapper.findOrderCode();
     }
-
-
 
     public PayDTO findPayDate(String orderCode) {
         return cartMapper.findPayDate(orderCode);
@@ -76,7 +72,6 @@ public class CartService {
     public CartDTO getProductByCart(Map<String, String> productAndId) {
         return cartMapper.getProductByCart(productAndId);
     }
-
 
     public CartDTO getSuitboxCodeByCart(Map<String, String> suitboxCodeAndId) {
         return cartMapper.getSuitboxCodeByCart(suitboxCodeAndId);
@@ -162,7 +157,6 @@ public class CartService {
     public void cartDeleteSuitboxList(CartDTO suitboxCode) {
         cartMapper.cartDeleteSuitboxList(suitboxCode);
     }
-
 
     public int userOrderDone(String memberId, String name, String phone, String address1, String address2, String address3) {
         return cartMapper.userOrderDone(memberId, name, phone, address1, address2, address3);

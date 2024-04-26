@@ -3,6 +3,8 @@
 <head>
     <th:block th:replace="/admin/common/head.html"></th:block>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css">
+    <script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 <th:block th:replace="/admin/common/header.html"></th:block>
@@ -20,10 +22,10 @@
                         <div>
                             <label>
                                 <select class="datatable-selector">
-                                    <option>주문상태 선택</option>
-                                    <option>주문실패</option>
-                                    <option>주문완료</option>
-                                    <option>구매확정</option>
+                                    <option value="select">주문상태 선택</option>
+                                    <option value="O">주문완료</option>
+                                    <option value="X">주문취소</option>
+                                    <option value="C">구매확정</option>
                                 </select>
                             </label>
                             <form class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
@@ -85,26 +87,5 @@
     </div>
 </div>
 <th:block th:replace="/admin/common/foot.html"></th:block>
-<script>
-    const $selector = document.querySelector('.datatable-selector')     // 주문상태 변경 이벤트 감지
-    $selector.addEventListener('change', (e) => {
-        const selectedStatus = e.target.value       // 선택한 이벤트 값 가져오기
-        if (selectedStatus === '주문상태 선택') {     // 주문상태가 === '주문상택 선택' 일 때 리턴(무시)
-            return;
-        }
-        console.log(selectedStatus);
-
-        axios.post("/admin/order-list-selected", {
-            status: selectedStatus
-        })
-            .then(res => {
-                console.log(res.data)
-            })
-            .catch(err => {
-                console.log(err.error)
-            })
-
-    })
-</script>
 </body>
 </html>

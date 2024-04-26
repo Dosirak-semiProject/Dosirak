@@ -14,9 +14,8 @@ import java.util.Map;
 public class OrderRestController {
     Map<String, Object> response = new HashMap<>();
 
-    @PostMapping("order-list-selected")
+    @PostMapping("admin/orderStatus/updateStatus")
     public ResponseEntity<Map<String, Object>> orderListSelected(@RequestBody OrderDTO status) {
-//        비동기 구현 중
         try {
             response.put("message", "주문상태 변경 성공");
             response.put("success", true);
