@@ -33,15 +33,35 @@ public class SurveyAdminService {
         return surveyMapper.getQuestionListByVersionId(versionId);
     }
 
-    public List<SurveyCategoryRangeDTO> getRangeListByVersionId(int versionId) {
-        return surveyMapper.getRangeListByVersionId(versionId);
-    }
-
     public int deleteVersionByVersionId(int versionId) {
         surveyMapper.getDeleteAnswerByVersionId(versionId);
         surveyMapper.deleteQuestionByVersionId(versionId);
         surveyMapper.deleteRangeByVersionId(versionId);
         int result = surveyMapper.deleteVersionByVersionId(versionId);
         return result;
+    }
+
+    public List<SurveyScoreRangeDTO> getSurveyRangeByVersionId(Integer versionId) {
+        return surveyMapper.getSurveyRangeByVersionId(versionId);
+    }
+
+    public int updateVersionByVersionDTO(SurveyVersionDTO version) {
+        return surveyMapper.updateVersionByVersionDTO(version);
+    }
+
+    public int updateQuestionBySurveyQuestionDTO(SurveyQuestionDTO question) {
+        return surveyMapper.updateQuestionBySurveyQuestionDTO(question);
+    }
+
+    public int updateAnswerBySurveyAnswerDTO(SurveyAnswerDTO answer) {
+        return surveyMapper.updateAnswerBySurveyAnswerDTO(answer);
+    }
+
+    public int insertNetVersion() {
+        return surveyMapper.insertNetVersion();
+    }
+
+    public int getVersionId() {
+        return surveyMapper.getVersionId();
     }
 }
