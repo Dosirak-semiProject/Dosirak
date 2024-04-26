@@ -26,7 +26,6 @@ public class AdminSuitBoxService {
         return mapper.menuFindByMenuCode(menuCode);
     }
 
-
     public int modifyMenu(SuitBoxMenuDTO menu, int menuCode) {
         return mapper.modifyMenu(menu,menuCode);
     }

@@ -31,6 +31,8 @@ mybatis:
 
 # image upload dir
 image:
-  image-dir: src\main\resources\static\reviewUpload\
+  image-dir: src\main\resources\static\customerUpload\
+  reivew-image-dir: src\main\resources\static\reviewUpload\
+  product-image-dir: src\main\resources\static\productUpload\
 
 

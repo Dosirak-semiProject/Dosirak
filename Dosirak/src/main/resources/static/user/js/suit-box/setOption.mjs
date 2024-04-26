@@ -4,7 +4,7 @@ let sideSelect = document.querySelector('#side')
 let kimchiSelect = document.querySelector('#kimchi')
 
 let targetSelect
-import{insertOption} from '/admin/js/module/functions.mjs'
+import{insertOption} from '/user/js/module/functions.mjs'
 
 function isMenuStatus (menu){
     if(menu.menuStatus == 'S'){

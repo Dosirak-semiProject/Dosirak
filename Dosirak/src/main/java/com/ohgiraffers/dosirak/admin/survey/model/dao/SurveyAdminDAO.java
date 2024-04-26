@@ -17,7 +17,6 @@ public interface SurveyAdminDAO {
 
     List<SurveyQuestionDTO> getQuestionListByVersionId(int versionId);
 
-    List<SurveyCategoryRangeDTO> getRangeListByVersionId(int versionId);
 
     int deleteVersionByVersionId(int versionId);
 
@@ -26,4 +25,16 @@ public interface SurveyAdminDAO {
     void getDeleteAnswerByVersionId(int versionId);
 
     void deleteRangeByVersionId(int versionId);
+
+    List<SurveyScoreRangeDTO> getSurveyRangeByVersionId(Integer versionId);
+
+    int updateVersionByVersionDTO(SurveyVersionDTO version);
+
+    int updateQuestionBySurveyQuestionDTO(SurveyQuestionDTO question);
+
+    int updateAnswerBySurveyAnswerDTO(SurveyAnswerDTO answer);
+
+    int insertNetVersion();
+
+    int getVersionId();
 }

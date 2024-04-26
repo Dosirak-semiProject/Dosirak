@@ -87,16 +87,26 @@
                             <th style="width: 18%;">높음</th>
                             <th style="width: 18%;">매우 높음</th>
                         </tr>
-                        <tr th:each="range : ${rangeList}">
-                            <td th:if="${range.category} == 'C'" th:text="탄수화물"></td>
-                            <td th:if="${range.category} == 'P'" th:text="단백질"></td>
-                            <td th:if="${range.category} == 'F'" th:text="지방"></td>
-                            <td th:if="${range.category} == 'W'" th:text="운동점수"></td>
-                            <td th:text="|1~${range.range1-1}|"></td>
-                            <td th:text="|${range.range1}~${range.range2 - 1}|"></td>
-                            <td th:text="|${range.range2}~${range.range3 - 1}|"></td>
-                            <td th:text="|${range.range3}~${range.range4 - 1}|"></td>
-                            <td th:text="|${range.range4}~${range.maxPoint}|"></td>
+                        <tr th:each="range:${rangeList}">
+                            <th:block th:switch="${range.category}">
+                                <th:block th:case="C">
+                                    <td>탄수화물</td>
+                                </th:block>
+                                <th:block th:case="P">
+                                    <td>단백질</td>
+                                </th:block>
+                                <th:block th:case="F">
+                                    <td>지방</td>
+                                </th:block>
+                                <th:block th:case="W">
+                                    <td>운동</td>
+                                </th:block>
+                            </th:block>
+                            <td>1 ~ <a th:text="${range.range1 - 1}"></a></td>
+                            <td><a th:text="|${range.range1} ~ |"></a><a th:text="${range.range2 - 1}"></a></td>
+                            <td><a th:text="|${range.range2} ~ |"></a><a th:text="${range.range3 - 1}"></a></td>
+                            <td><a th:text="|${range.range3} ~ |"></a><a th:text="${range.range4 - 1}"></a></td>
+                            <td><a th:text="${range.range4}"></a> ~ 10</td>
                         </tr>
                     </table>
                     <div class="editBtn" style="text-align: right;">

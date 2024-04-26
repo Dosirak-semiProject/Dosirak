@@ -4,6 +4,7 @@ import com.ohgiraffers.dosirak.admin.customer.common.Pagenation;
 import com.ohgiraffers.dosirak.admin.customer.common.SelectCriteria;
 import com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
+import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -85,6 +86,13 @@ public class CustomerService {
         return customerMapper.findAskList();
     }
 
+    public List<AskDTO> findAllAskList() {
+
+        // 모든 1대1 문의내역 반환
+        return customerMapper.findAllAskList();
+    }
+
+
     public AskDTO selectAskDetail(int askCode) {
 
         /* 상담내역 상세 내용 조회 후 리턴 */
@@ -101,5 +109,23 @@ public class CustomerService {
 
         return customerMapper.findCategoryList();
     }
+
+    public void writeAnswer(AnswerDTO answer) {
+
+        /* 답변 등록 */
+        customerMapper.insertAnswer(answer);
+    }
+
+    /* 답변 등록 시, 관리자 필요에 따라 카테고리 변경 */
+    public void updateCategory(int askCode, int askCategoryCode) {
+
+        customerMapper.updateAskCategory(askCode, askCategoryCode);
+    }
+
+    @Transactional(readOnly = true)
+    public List<ImgDTO> searchImageList(int askCode) {
+        return customerMapper.searchImageList(askCode);
+    }
+
 
 }

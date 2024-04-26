@@ -55,3 +55,51 @@ CREATE TABLE IF NOT EXISTS tbl_order(
     user_id VARCHAR(20) not null ,
     FOREIGN KEY (user_id) REFERENCES USER (ID)
 ) ENGINE = INNODB;
+drop table product_img;
+CREATE TABLE IF NOT EXISTS PRODUCT_IMG (
+                                           IMG_CODE INT AUTO_INCREMENT PRIMARY KEY COMMENT '이미지 코드',
+                                           PRODUCT_CODE INT COMMENT '상품 코드',
+                                           SAVED_NAME VARCHAR(255) NOT NULL COMMENT '저장이름 코드',
+                                           SAVE_PATH VARCHAR(255) NOT NULL COMMENT '저장 경로',
+                                           FOREIGN KEY (PRODUCT_CODE) REFERENCES tbl_product(PRODUCT_CODE)
+)AUTO_INCREMENT = 70007001 COMMENT '이미지 파일';
+
+
+
+
+USE DOSIRAK;
+DROP TABLE IF EXISTS ASK CASCADE;
+
+CREATE TABLE IF NOT EXISTS ASK (
+                                   ASK_CODE INT AUTO_INCREMENT KEY COMMENT '문의코드',
+                                   ASK_TITLE VARCHAR(225) NOT NULL COMMENT '문의제목',
+                                   ASK_CONTENT TEXT(500) NOT NULL COMMENT '문의내용',
+                                   ASK_DATE DATE NOT NULL COMMENT '문의날짜',
+                                   USER_ID VARCHAR(20) NOT NULL COMMENT '회원아이디',
+                                   ASK_EDITDATE DATE COMMENT '수정일시',
+                                   ASK_DELETE BOOLEAN COMMENT '삭제여부',
+                                   ASK_CATEGORY_CODE INT(5) COMMENT '문의분류코드',
+                                   foreign key (USER_ID) references USER (ID),
+                                   foreign key (ASK_CATEGORY_CODE) references ask_category (ASK_CATEGORY_CODE)
+) ENGINE=INNODB COMMENT '1대1문의';
+
+INSERT INTO ASK (ASK_CODE, ASK_TITLE, ASK_CONTENT, ASK_DATE, USER_ID,ASK_EDITDATE, ASK_DELETE, ASK_CATEGORY_CODE) VALUES
+                                                                                                         (1,'문의합니다.','문의합니다.','2024-01-01','starry2','2024-01-02',0,1);
+
+
+
+USE DOSIRAK;
+DROP TABLE IF EXISTS ASK_CATEGORY CASCADE;
+
+CREATE TABLE IF NOT EXISTS ASK_CATEGORY (
+                                            ASK_CATEGORY_CODE INT(20) PRIMARY KEY COMMENT '문의분류코드',
+                                            ASK_CATEGORY_NAME VARCHAR(50) NOT NULL COMMENT '문의분류이름'
+) ENGINE=INNODB COMMENT '문의분류';
+
+insert into ask_category (ask_category_code, ask_category_name) values
+                                                                    (1, '회원'),
+                                                                    (2, '주문/결제'),
+                                                                    (3, '배송/반품'),
+                                                                    (4, '교환/취소/환불'),
+                                                                    (5, '서비스/기타');
+

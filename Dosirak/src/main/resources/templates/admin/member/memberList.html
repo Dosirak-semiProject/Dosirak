@@ -5,51 +5,37 @@
     <script>
         const message = '[[${message}]]';
         message && alert(message);
+
         $(function(){
             $("#datatablesSimple tbody tr").click(function(){
                 let txtId = $("td:nth-of-type(1)", this).text();
                 location.href = "/admin/member/memberView?id="+txtId;
             })
+
+            $(".searchMemBtn").click(function(){
+                let condition = $(".searchCondition").val();
+                let value = $(".searchValue").val();
+
+                let searchUrl = "";
+
+                if (condition != null && condition != "" && value != null && value != "") {
+                    searchUrl = "?searchCondition=" + condition + "&searchValue=" + value;
+                } else if (condition != null && condition != "") {
+                    searchUrl = "?searchCondition=" + condition;
+                } else if (value != null && value != "") {
+                    searchUrl = "?searchValue=" + value;
+                }
+
+                location.href = "/admin/member/memberList" + searchUrl;
+            })
+
+            // url 가져와서 다시 검색조건 넣기
+            const urlCondition = new URL(location.href).searchParams.get("searchCondition");
+            const urlValue = new URL(location.href).searchParams.get("searchValue");
+
+            if(urlCondition != null) $(".searchCondition").val(urlCondition);
+            if(urlValue != null) $(".searchValue").val(urlValue);
         })
-
-        function searchMem(){
-            let condition = document.querySelector(".searchCondition").value;
-            let value = document.querySelector(".searchValue").value;
-
-            if(value == null || value == ""){
-                alert("검색어를 입력해주세요.");
-                return;
-            }else{
-                $.ajax({
-                    url: "/admin/member/memberList",
-                    type: "post",
-                    data: {
-                        condition: condition,
-                        value: value
-                    },
-                    success: function (data){
-                        let tbody = document.querySelector("#datatablesSimple tbody");
-                        tbody.innerHTML = '';
-
-                        data.forEach(function (member){
-                            let tr = document.createElement("tr");
-                            tr.innerHTML =  "<td>"+member.id+"</td>"+
-                                "<td>"+member.name+"</td>"+
-                                "<td>"+member.birth+"</td>"+
-                                "<td>"+member.gender+"</td>"+
-                                "<td>"+member.phone+"</td>"+
-                                "<td>"+member.email+"</td>"+
-                                "<td>"+member.agree+"</td>"+
-                                "<td>"+member.joindate+"</td>";
-                            tbody.appendChild(tr)
-                        })
-                    },
-                    error: function(){
-                        alert("에러발생");
-                    }
-                })
-            }
-        }
     </script>
 </head>
 <body>
@@ -73,8 +59,8 @@
                                     <option value="phone">휴대폰번호</option>
                                     <option value="email">이메일</option>
                                 </select>
-                                <input class="searchValue form-control" type="text" name="memberSearchValue" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                <button type="button" class="btn btn-primary" onclick="searchMem()"><i class="fas fa-search"></i></button>
+                                <input class="searchValue form-control" type="text" name="searchValue" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                <button type="button" class="btn btn-primary searchMemBtn"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </div>

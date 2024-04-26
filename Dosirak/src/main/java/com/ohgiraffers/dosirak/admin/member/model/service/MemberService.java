@@ -73,7 +73,11 @@ public class MemberService {
         return memberMapper.searchManager(condition, value);
     }
 
-    public List<MemberDTO> searchMember(String condition, String value) {
-        return memberMapper.searchMember(condition, value);
+    public List<MemberDTO> searchMemberForm(String condition, String value) {
+        return memberMapper.searchMemberForm(condition, value);
+    }
+
+    public List<ManagerDTO> searchManagerForm(String condition, String value) {
+        return memberMapper.searchManagerForm(condition, value);
     }
 }
