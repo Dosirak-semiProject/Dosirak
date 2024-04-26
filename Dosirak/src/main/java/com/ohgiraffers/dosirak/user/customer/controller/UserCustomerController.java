@@ -49,11 +49,27 @@ public class UserCustomerController {
     /* ----- 공지사항 ----- */
 
     @GetMapping("/noticeList")
-    public String getNoticePage(Model model) {
+    public String getNoticePage(@RequestParam(defaultValue = "1") int page,
+                                @RequestParam(required = false) String searchCondition,
+                                @RequestParam(required = false) String searchValue,
+                                Model model) {
 
-        List<UserNoticeDTO> noticeList = userCustomerService.findNoticeList();
+        log.info("boardList page : {}", page);
+        log.info("boardList searchCondition : {}", searchCondition);
+        log.info("boardList searchValue : {}", searchValue);
 
-        model.addAttribute("noticeList", noticeList);
+        // 페이징 시작
+
+        Map<String, String> searchMap = new HashMap<>();
+        searchMap.put("searchCondition", searchCondition);
+        searchMap.put("searchValue", searchValue);
+
+        Map<String, Object> askListAndPaging = userCustomerService.selectNoticeList(searchMap, page);
+        model.addAttribute("paging", askListAndPaging.get("paging"));
+        model.addAttribute("noticeList", askListAndPaging.get("noticeList"));
+
+        UserAskDTO userAskDTO = new UserAskDTO();
+        model.addAttribute("userAskDTO", userAskDTO);
 
         return "user/customer/noticeList";
     }
@@ -130,6 +146,7 @@ public class UserCustomerController {
 
         List<UserCustomerImgDTO> imageList = userCustomerService.searchImageList(askCode);
         model.addAttribute("imageList", imageList);
+        log.info("imageList : {}", imageList);
 
         return "user/customer/askDetail";
     }
@@ -214,7 +231,7 @@ public class UserCustomerController {
                 log.info("lastAsk : {}", lastAsk);
 
                 /* 경로 설정 */
-                String fileUploadDir = IMAGE_DIR + "original";
+                String fileUploadDir = IMAGE_DIR;
 
                 File dir1 = new File(fileUploadDir);
 
@@ -245,7 +262,7 @@ public class UserCustomerController {
                             UserCustomerImgDTO fileInfo = new UserCustomerImgDTO();
                             fileInfo.setOriginalName(originalFileName);
                             fileInfo.setSavedName(saveFileName);
-                            fileInfo.setSavePath("/static/customerUpload/original");
+                            fileInfo.setSavePath(fileUploadDir);
 
                             /* 이미지 DTO에 요청 코드 설정 */
                             fileInfo.setRefAskCode(lastAsk.getAskCode());
@@ -258,14 +275,14 @@ public class UserCustomerController {
                     /* 이미지 리스트를 한 번에 DB에 저장 */
                     userCustomerService.registImageList(imageList);
 
-                    model.addAttribute("message", "파일 업로드에 성공하였습니다.");
+                    model.addAttribute("message", "문의글이 등록되었습니다");
 
                 } catch (IOException e) {
                     /* 파일 저장 중간에 실패 시, 이전에 저장된 파일 삭제 */
                     for (UserCustomerImgDTO image : imageList) {
                         new File(fileUploadDir + "/" + image.getSavedName()).delete();
                     }
-                    model.addAttribute("message", "파일 업로드에 실패하였습니다.");
+                    model.addAttribute("message", "문의 등록에 실패하였습니다.");
                 }
                 log.info("imageList : {}", imageList);
             }

@@ -16,7 +16,7 @@ public class NoticeDTO {
     private int noticeCode;
     private String noticeTitle;
     private String noticeContent;
-    private LocalDateTime noticeDate;
+    private String noticeDate;
     private String adminId;
 
 }

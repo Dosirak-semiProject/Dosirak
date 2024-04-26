@@ -17,7 +17,7 @@
                     <table class="bl_TBView hp_mt50">
                         <caption class="WA">검색</caption>
                         <colgroup>
-                            <col style="width:150px"/>
+                            <col style="width:*"/>
                             <col style="width:*"/>
                         </colgroup>
                         <tbody>
@@ -32,13 +32,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row">질문</th>
+                            <th scope="row" style="width: 30%">질문</th>
                             <td th:text="${ qna.qnaTitle }"></td>
                         </tr>
                         <tr>
                             <th scope="row">답변</th>
                             <td>
-                                <span th:utext="${#strings.replace(qna.qnaAnswer, '\n', '<br>')}"></span>
+                                <pre th:utext="${#strings.replace(qna.qnaAnswer, '\n', '<br>')}"></pre>
                             </td>
                         </tr>
                         </tbody>
@@ -52,6 +52,7 @@
             </div>
         </div>
     </div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
 </body>
 </html>git st

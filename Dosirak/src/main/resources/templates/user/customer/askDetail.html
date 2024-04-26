@@ -11,7 +11,7 @@
     <div class="bl_sideMenuBack">
         <div class="ly_maxWD ly_flex">
             <th:block th:replace="~{/user/customer/sideMenu.html}"></th:block>
-            <div class="ly_inner02 ly_fgrow1 hp_fBack">
+            <div class="ly_inner02 ly_fgrow1 hp_fBack ly_midWDside">
                 <div class="ly_midWDside">
                     <h2 class="el_lv1Head">1:1 문의내역</h2>
                     <table class="bl_TBView hp_mt50">
@@ -31,14 +31,16 @@
                         </tr>
                         <tr>
                             <th scope="row" style="height: 200px;">문의내용</th>
-                            <td th:text="${ ask.askContent }"></td>
+                            <td>
+                                <pre th:text="${ ask.askContent }"></pre>
+                            </td>
                         </tr>
                         <tr>
                             <th scope="row" style="height: 200px;">답변내용</th>
                             <td>
                                 <!-- 답변 있을 시 -->
                                 <div th:if="${ ask.answerDTO != null }">
-                                    <span th:text="${ ask.answerDTO.answerContent }"></span>
+                                    <pre th:text="${ ask.answerDTO.answerContent }"></pre>
                                 </div>
                                 <!-- 답변 없을 시 -->
                                 <div th:if="${ ask.answerDTO == null }">
@@ -51,9 +53,7 @@
                             <td colspan="3">
                                 <div style="display: flex;">
                                     <div th:each="image : ${imageList}" style="margin-right: 20px;">
-                                        <img th:src="@{/customerUpload/original/{fileName}(fileName=${image.savedName})}"
-                                             alt="이미지 파일 이름: [[${image.savedName}]]"
-                                             style="max-width: 100px; max-height: 100px;">
+                                        <img th:src="@{|/file/${image.savedName}|}" th:alt="${image.savedName}" style="max-width: 100px; max-height: 100px;">
                                     </div>
                                 </div>
                             </td>
@@ -61,13 +61,13 @@
                         </tbody>
                     </table>
                     <!-- 답변 있을 경우 -->
-                    <div th:if="${ answer != null }">
+                    <div th:if="${ askList.answerDTO != null }">
                         <ul class="ly_flexC hp_mt70">
                             <li><a class="el_btnM hp_br5 el_btnPointBack" href="/user/customer/askList">목록</a></li>
                         </ul>
                     </div>
                     <!-- 답변 없을 경우 -->
-                    <div th:if="${ answer == null }">
+                    <div th:if="${ askList.answerDTO == null }">
                         <ul class="ly_flexC hp_mt70">
                             <li><a class="el_btnM hp_br5 el_btnPointBack" href="/user/customer/askList">목록</a></li>
                             <li><a class="el_btnM hp_br5 el_btnPointBack hp_ml10" th:onclick="'location.href=\'/user/customer/askEdit/' + ${askList.askCode} + '\''">수정</a></li>
@@ -91,7 +91,7 @@
                 </div>
             </div>
         </div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
     </div>
-</div>
 </body>
 </html>

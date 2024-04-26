@@ -16,9 +16,9 @@ public class AskDTO {
     private int askCode;
     private String askTitle;
     private String askContent;
-    private LocalDateTime askDate;
+    private String askDate;
     private String userId;
-    private LocalDateTime editDate;
+    private String editDate;
     private Boolean askDelete;
 
     private AskCategoryDTO askCategoryDTO; //추후 수정
