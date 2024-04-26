@@ -3,10 +3,9 @@ package com.ohgiraffers.dosirak.admin.product.service;
 import com.ohgiraffers.dosirak.admin.product.dao.ProductMapper;
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
-import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
+import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -52,6 +51,10 @@ public class ProductService {
 
     public productDTO codePlz() {
         return productMapper.codePlz();
+    }
+
+    public void deleteProductById(Long productId) {
+        productMapper.deleteById(productId);
     }
 }
 

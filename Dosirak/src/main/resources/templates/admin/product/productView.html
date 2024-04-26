@@ -75,7 +75,7 @@
                                 <script th:inline="javascript">
                                     /*<![CDATA[*/
                                     const $category = document.querySelector('#category')
-                                    const $categoryDetail = document.querySelector('#categoryDetail')
+                                    co  nst $categoryDetail = document.querySelector('#categoryDetail')
 
                                     /*]]>*/
                                     function insertOption(select, text, value, isAbleFunction = true) {
@@ -122,10 +122,10 @@
                         <tr>
                             <th scope="row">파일첨부</th>
                             <td colspan="3">
-                                <input type="file" accept="image/gif,image/jpeg,image/png" name="productImage"/>
-                                <input type="file" accept="image/gif,image/jpeg,image/png" name="productImage"/>
-                                <input type="file" accept="image/gif,image/jpeg,image/png" name="productImage"/>
-                                <input type="file" accept="image/gif,image/jpeg,image/png" name="productImage"/></td>
+                                <input type="file" accept="image/gif,image/jpeg,image/png" name="attachImage"/>
+                                <input type="file" accept="image/gif,image/jpeg,image/png" name="attachImage"/>
+                                <input type="file" accept="image/gif,image/jpeg,image/png" name="attachImage"/>
+                                <input type="file" accept="image/gif,image/jpeg,image/png" name="attachImage"/></td>
                         </tr>
                         </tbody>
                     </table>
@@ -136,7 +136,7 @@
                         <span th:if="${setCondition} == 'addProduct'">
                         <button type="submit" class="btn btn-primary" formaction="/admin/product/add" formmethod="post">등록</button>
                         </span>
-                        <button type="button" class="btn btn-secondary">삭제</button>
+                        <button type="button" class="btn btn-secondary" formaction="/admin/product/delete" formmethod="post">삭제</button>
                     </div>
                 </form>
             </div>

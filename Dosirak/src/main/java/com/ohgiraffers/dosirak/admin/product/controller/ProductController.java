@@ -10,6 +10,7 @@ import com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO;
 import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
 import com.ohgiraffers.dosirak.user.customer.model.service.UserCustomerService;
 import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
+import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -55,12 +56,15 @@ public class ProductController {
     @PostMapping("/product/search")
     public String productSelectList(@RequestParam String key, Model model) {
         List<productDTO> productList = productService.productSelectList(key);
+
         model.addAttribute("productList", productList);
+
         return "/admin/product/productList";
     }
 
     @PostMapping("/add")
-    public String addProduct(productDTO product, @RequestParam List<MultipartFile> productImage, Model model) {
+    public String addProduct(@RequestParam List<MultipartFile> attachImage,
+                             productDTO product, Model model) {
         // 상품 정보 저장
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -72,21 +76,16 @@ public class ProductController {
                 LoginDTO login = adminLoginDetails.getLoginDTO();
                 String userId = login.getId();
 
-                /* 질문 등록하기 */
+                /* 상품 등록하기 */
                 productDTO newproduct = new productDTO();
                 newproduct.setProductName(product.getProductName());
                 newproduct.setProductPrice(product.getProductPrice());
                 newproduct.setProductStatus(product.getProductStatus());
                 newproduct.setProductSummary(product.getProductSummary());
                 newproduct.setProductCategoryCode(product.getProductCategoryCode());
-                 productService.insertProduction(newproduct);
 
-                /* 가장 최신 질문 조회 */
-//                UserAskDTO lastAsk = productService.findLastAsk();
-//                log.info("lastAsk : {}", lastAsk);
-                productDTO lastProduct=productService.codePlz();
-                log.info("lastProduct: {}",lastProduct);
-                System.out.println(lastProduct);
+                productService.insertProduction(newproduct);
+
 
                 /* 경로 설정 */
                 String fileUploadDir = IMAGE_DIR + "original";
@@ -102,11 +101,11 @@ public class ProductController {
                 List<ProductImageDTO> imageList = new ArrayList<>();
 
                 try {
-                    for (int i = 0; i < productImage.size(); i++) {
+                    for (int i = 0; i < attachImage.size(); i++) {
                         /* 첨부파일이 실제로 존재하는 경우 로직 수행 */
-                        if (productImage.get(i).getSize() > 0) {
+                        if (attachImage.get(i).getSize() > 0) {
 
-                            String originalFileName = productImage.get(i).getOriginalFilename();
+                            String originalFileName = attachImage.get(i).getOriginalFilename();
                             log.info("originalFileName : {}", originalFileName);
 
                             String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
@@ -114,14 +113,16 @@ public class ProductController {
                             log.info("savedFileName : {}", saveFileName);
 
                             /* 서버의 설정 디렉토리에 파일 저장하기 */
-                            productImage.get(i).transferTo(new File(fileUploadDir + "/" + saveFileName));
+                            attachImage.get(i).transferTo(new File(fileUploadDir + "/" + saveFileName));
+
+                            /* 가장 최신 상품 조회 */
+                            productDTO lastProduct = productService.codePlz();
+                            log.info("lastProduct: {}", lastProduct);
 
                             /* DB에 저장할 파일의 정보 처리 */
                             ProductImageDTO fileInfo = new ProductImageDTO();
                             fileInfo.setSavedName(saveFileName);
-                            fileInfo.setSavePath("/static/customerUpload/original");
-
-                            /* 이미지 DTO에 요청 코드 설정 */
+                            fileInfo.setSavePath("/static/productUpload/original");
                             fileInfo.setProductCode(lastProduct.getProductCode());
 
                             /* 리스트에 파일 정보 저장 */
@@ -136,16 +137,15 @@ public class ProductController {
 
                 } catch (IOException e) {
                     /* 파일 저장 중간에 실패 시, 이전에 저장된 파일 삭제 */
-                    for (ProductImageDTO image : imageList) {
-                        new File(fileUploadDir + "/" + image.getSavedName()).delete();
-                    }
+
                     model.addAttribute("message", "파일 업로드에 실패하였습니다.");
                 }
                 log.info("imageList : {}", imageList);
             }
 
-        }
-        return "redirect:/admin/product/productList";
+
+
+        }            return "redirect:/admin/product/productList";
 
     }
 
@@ -233,6 +233,12 @@ public class ProductController {
 
         return "redirect:/admin/product/productList";
     }
+    @PostMapping("/admin/product/delete")
+    public String deleteProduct(@RequestParam("productId") Long productId) {
+        productService.deleteProductById(productId);
+        return "redirect:/admin/products";
+    }
+
 
 }
 

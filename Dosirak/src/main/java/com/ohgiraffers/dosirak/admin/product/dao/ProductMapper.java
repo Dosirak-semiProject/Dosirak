@@ -2,6 +2,7 @@ package com.ohgiraffers.dosirak.admin.product.dao;
 
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
+import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -26,4 +27,6 @@ public interface ProductMapper {
 
 
     productDTO codePlz();
+
+    void deleteById(Long productId);
 }
