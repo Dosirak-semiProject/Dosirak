@@ -16,6 +16,7 @@ public class OrderRestController {
 
     @PostMapping("admin/orderStatus/updateStatus")
     public ResponseEntity<Map<String, Object>> orderListSelected(@RequestBody OrderDTO status) {
+        System.out.println("@@@@@@@@@@@@@@@@@@@status = " + status);
         try {
             response.put("message", "주문상태 변경 성공");
             response.put("success", true);
