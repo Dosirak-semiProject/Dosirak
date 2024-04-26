@@ -12,6 +12,7 @@ import java.util.Map;
 @Mapper
 public interface CustomerMapper {
 
+
     /* ----- 공지사항 ----- */
     List<NoticeDTO> findNoticeList();
     NoticeDTO searchNoticeDetail(int noticeCode);
@@ -29,10 +30,18 @@ public interface CustomerMapper {
 
 
     /* ----- 1대1 문의 ----- */
-    List<AskDTO> findAskList();
+    List<AskDTO> findAskList();     // 특정 문의
+    List<AskDTO> findAllAskList();  // 모든 문의
     AskDTO searchAskDetail(int askCode);
     AnswerDTO searchAnswerDetail(int askCode);
     List<AskCategoryDTO> findCategoryList();
+
+    /* ----- 답변 등록 ----- */
+    void updateAskCategory(int askCode, int askCategoryCode);    // 카테고리 항목 변경
+    void insertAnswer(AnswerDTO answer);            // 답변 등록
+
+    /* --- 이미지 추가 --- */
+    List<ImgDTO> searchImageList(int askCode);
 
 
 

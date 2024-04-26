@@ -36,17 +36,22 @@ public class MemberController {
     }
 
     @GetMapping("/memberList")
-    public String findMemberList(Model model){
-        List<MemberDTO> memberList = memberService.findAllMember();
+    public String findMemberList(@RequestParam(required = false) String searchCondition,
+                                 @RequestParam(required = false) String searchValue,
+                                 Model model) {
+        List<MemberDTO> memberList;
+
+        if (searchValue != null && !searchValue.isEmpty()) {
+            memberList = memberService.searchMemberForm(searchCondition, searchValue);
+        } else {
+            memberList = memberService.findAllMember();
+        }
+
         model.addAttribute("memberList", memberList);
+        model.addAttribute("searchCondition", searchCondition);
+        model.addAttribute("searchValue", searchValue);
 
         return "/admin/member/memberList";
-    }
-
-    @PostMapping("/memberList")        // 검색
-    @ResponseBody
-    public List<MemberDTO> memberList(@RequestParam(required = false) String condition, @RequestParam String value){
-        return memberService.searchMember(condition, value);
     }
 
     @GetMapping("/memberView")
@@ -94,17 +99,22 @@ public class MemberController {
     }
 
     @GetMapping("/managerList")
-    public String findManagerList(Model model){
-        List<ManagerDTO> managerList = memberService.findAllManager();
+    public String findManagerList(@RequestParam(required = false) String searchCondition,
+                                 @RequestParam(required = false) String searchValue,
+                                 Model model) {
+        List<ManagerDTO> managerList;
+
+        if (searchValue != null && !searchValue.isEmpty()) {
+            managerList = memberService.searchManagerForm(searchCondition, searchValue);
+        } else {
+            managerList = memberService.findAllManager();
+        }
+
         model.addAttribute("managerList", managerList);
+        model.addAttribute("searchCondition", searchCondition);
+        model.addAttribute("searchValue", searchValue);
 
         return "/admin/member/managerList";
-    }
-
-    @PostMapping("/managerList")        // 검색
-    @ResponseBody
-    public List<ManagerDTO> managerList(@RequestParam(required = false) String condition, @RequestParam String value){
-        return memberService.searchManager(condition, value);
     }
 
     @GetMapping("/managerView")

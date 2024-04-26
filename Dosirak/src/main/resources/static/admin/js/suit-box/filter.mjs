@@ -2,7 +2,7 @@
 const $menuRows = document.querySelector('#menuRows')   // 메뉴가 담긴 테이블
 const $criteria = document.querySelector('#criteria')   // 분류
 const $value = document.querySelector('#value')         // 값
-import { insertOption } from '/admin/js/module/functions.mjs';
+import { insertOption } from '/user/js/module/functions.mjs';
 
 function createTableRow(menu) { //innerHtml 을 통해 추가할 tableRow 태그
     return `<tr class="menuTable" id="${menu.menuCode}">

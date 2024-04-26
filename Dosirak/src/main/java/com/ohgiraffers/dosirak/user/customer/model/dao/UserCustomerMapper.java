@@ -23,15 +23,37 @@ public interface UserCustomerMapper {
 
 
     /* ----- 1대1 문의 ----- */
-    List<UserAskDTO> findAskList();
+
+    /* -- 모든 문의 목록 조회(only view) -- */
+    UserAskDTO findAskList(int askCode);
+
+    /* -- 모든 문의 글 목록/정보 조회 및 반환 --*/
+    List<UserAskDTO> selectAskList(SelectCriteria selectCriteria);
+
+    /* -- 특정 문의 조회 (detail) -- */
     UserAskDTO searchAskDetail(int askCode);
     UserAnswerDTO searchAnswerDetail(int askCode);
     void insertAttachment(UserCustomerImgDTO userCustomerImgDTO);
-    void insertAsk(UserAskDTO ask);
+    void insertAsk(UserAskDTO newAsk);
     void insertImage(UserCustomerImgDTO fileInfo);
 
-    /* -- 추가 --- */
+    /* -- 페이징 추가 --- */
     int selectTotalCount(Map<String, String> searchMap);
-    List<UserAskDTO> selectAskList(SelectCriteria selectCriteria);
+
+
+    /* -- 가장 최신 문의 조회 -- */
+    UserAskDTO searchLastAsk();
+
+    /* -- 이미지 리스트 조회 -- */
+    List<UserCustomerImgDTO> searchImageList(int askCode);
+
+    /* -- 문의 수정 -- */
+    void updateAsk(UserAskDTO askTemp);
+
+    /* -- 이미지 삭제 -- */
+    void deleteImg(int askCode);
+
+    /* -- 문의 삭제 (이미지 삭제 후 실행) -- */
+    void deleteAsk(int askCode);
 }
 

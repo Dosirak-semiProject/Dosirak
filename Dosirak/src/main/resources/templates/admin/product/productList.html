@@ -16,7 +16,7 @@
                 <div class="card mb-4 mt-4">
                     <div class="card-header">
                         <div class="justify-content-between d-flex align-items-center">
-                            <a class="btn btn-primary" href="/admin/product/productView">상품등록</a>
+                            <a class="btn btn-primary" href="/admin/product/nullProductView">상품등록</a>
                             <div class="text-end">
                                 <label>
                                     <select id="select1" class="datatable-selector">
@@ -73,12 +73,12 @@
                                         editButtons.forEach(function(button) {
                                             button.addEventListener('click', function() {
                                                 const productCode = button.getAttribute('data-product-code');
-                                                fetch('/productView?productCode=' + productCode, {
+                                                fetch('/admin/product/productView?productCode=' + productCode, {
                                                     method: 'POST'
                                                 }).then(function(response) {
                                                     if (response.ok) {
                                                         // 성공적으로 처리된 경우
-                                                        window.location.href = '/productView?productCode=' + productCode;
+                                                        window.location.href = '/admin/product/productView?productCode=' + productCode;
                                                     } else {
                                                         // 오류가 발생한 경우
                                                         console.error('오류 발생: ' + response.status);

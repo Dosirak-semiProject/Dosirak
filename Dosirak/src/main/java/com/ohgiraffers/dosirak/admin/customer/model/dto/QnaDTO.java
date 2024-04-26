@@ -13,10 +13,10 @@ public class QnaDTO {
     private String qnaTitle;
     private String qnaAnswer;
     private String adminId;
-    private AskCategoryDTO askCategoryCode;
+    private int askCategoryCode;
+    private int askCode;
+    private AskCategoryDTO askCategoryDTO;
 
     public QnaDTO() {};
 
-    public QnaDTO(int askCategoryCode, String qnaTitle, String qnaAnswer, String adminID) {
-    }
 }

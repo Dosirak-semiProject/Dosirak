@@ -2,6 +2,7 @@ package com.ohgiraffers.dosirak.user.customer.model.service;
 
 
 import com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO;
+import com.ohgiraffers.dosirak.admin.customer.model.dto.ImgDTO;
 import com.ohgiraffers.dosirak.user.customer.common.Pagenation;
 import com.ohgiraffers.dosirak.user.customer.common.SelectCriteria;
 import com.ohgiraffers.dosirak.user.customer.model.dao.UserCustomerMapper;
@@ -17,6 +18,7 @@ import java.util.Map;
 @Slf4j
 @Service
 public class UserCustomerService {
+
 
     private final UserCustomerMapper userCustomerMapper;
 
@@ -59,14 +61,23 @@ public class UserCustomerService {
 
     /* ----- 1대1 문의 ----- */
 
-    public List<UserAskDTO> findAskList() {
+    public UserAskDTO findAskList(int askCode) {
 
-        /* 1대1 문의 조회 후 반환 */
-        return userCustomerMapper.findAskList();
+        /* 특정 1대1 문의 조회 후 반환 */
+        return userCustomerMapper.findAskList(askCode);
     }
 
+    /* 최신 질문 조회 */
+    public UserAskDTO findLastAsk() {
+
+        /* 가장 최신 1대1 문의 조회 후 반환 */
+        return userCustomerMapper.searchLastAsk();
+    }
+
+    /* 특정 질문 조회 */
     public UserAskDTO selectAskDetail(int askCode) {
 
+        /* 특정 질문 조회 후 반환 */
         return userCustomerMapper.searchAskDetail(askCode);
     }
 
@@ -84,17 +95,17 @@ public class UserCustomerService {
         });
     }
 
+    /* 새 질문 등록 */
     public void askRegist(UserAskDTO ask) {
-
         userCustomerMapper.insertAsk(ask);
     }
 
     @Transactional
-    public void registImage(UserCustomerImgDTO fileInfo) {
-
-        userCustomerMapper.insertImage(fileInfo);
+    public void registImageList(List<UserCustomerImgDTO> imageList) {
+        for(UserCustomerImgDTO fileInfo : imageList) {
+            userCustomerMapper.insertImage(fileInfo);
+        }
     }
-
 
     public Map<String, Object> selectAskList(Map<String, String> searchMap, int page) {
 
@@ -108,6 +119,8 @@ public class UserCustomerService {
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount, searchMap);
         log.info("askList selectCriteria : {}", selectCriteria);
 
+        log.info("selectCriteria.getLimit : {}", selectCriteria.getLimit());
+        log.info("selectCriteria.getOffset : {}", selectCriteria.getOffset());
 
         /* 3. 요청 페이지와 검색 기준에 맞는 게시글을 조회해온다. */
         List<UserAskDTO> askList = userCustomerMapper.selectAskList(selectCriteria);
@@ -120,5 +133,22 @@ public class UserCustomerService {
         return askListAndPaging;
     }
 
+    /* 이미지 조회 */
+    @Transactional(readOnly = true)
+    public List<UserCustomerImgDTO> searchImageList(int askCode) {
+        return userCustomerMapper.searchImageList(askCode);
+    }
 
+    /* 문의 수정 */
+    public void updateAsk(UserAskDTO askTemp) {
+
+        userCustomerMapper.updateAsk(askTemp);
+    }
+
+    /* 문의 삭제 */
+    public void deleteQna(int askCode) {
+
+        /* 질문 삭제 */
+        userCustomerMapper.deleteAsk(askCode);
+    }
 }

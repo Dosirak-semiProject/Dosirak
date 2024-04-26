@@ -18,6 +18,8 @@ public class UserAnswerDTO {
     private String adminId;
     private int AnswerCategory;
     private int reviewCode;
-    private UserAskDTO askCode;
+    private int askCode;
+
+    private UserAskDTO askDTO;
 
 }

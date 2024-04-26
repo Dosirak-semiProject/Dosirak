@@ -11,9 +11,14 @@ import java.util.List;
 public interface ReviewMapper {
     List<ReviewDTO> allReview();
 
-    ReviewDTO searchReviewDetail(int reviewCode);
 
     void insertAnswer(AnswerDTO registAnswer);
 
     AnswerDTO searchAnswerDetail(int answerCode);
+
+    ReviewDTO getReviewInfo(int reviewCode);
+
+    int reviewDelete(int reviewCode);
+
+    int reviewAnswerRegist(ReviewDTO reviewDTO);
 }

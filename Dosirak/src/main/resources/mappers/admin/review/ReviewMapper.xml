@@ -8,19 +8,11 @@
         SELECT
         *
         FROM
-        tbl_review
+        review
         ORDER BY
         review_code
     </select>
 
-    <select id="searchReviewDetail" resultType="com.ohgiraffers.dosirak.admin.review.model.dto.ReviewDTO">
-        SELECT
-        *
-        FROM
-            tbl_review
-        WHERE
-            review_code = #{reviewCode}
-    </select>
 
     <select id="searchAnswerDetail" resultType="com.ohgiraffers.dosirak.admin.review.model.dto.AnswerDTO">
         SELECT
@@ -39,4 +31,30 @@
         (#{ reviewCode }, #{ answerContent }, #{ adminId })
     </insert>
 
+    <select id="getReviewInfo" resultType="com.ohgiraffers.dosirak.admin.review.model.dto.ReviewDTO">
+        SELECT
+        R.review_delete, R.review_code, R.review_content, R.user_id, R.detail_code, D.PRODUCT_CODE, P.PRODUCT_NAME, R.review_date , R.review_title,
+        A.answer_content, A.answer_date, A.answer_code, A.admin_id, A.answer_status
+        FROM
+        review R
+        JOIN
+        detail D USING (detail_code)
+        JOIN
+        tbl_product P USING (PRODUCT_CODE)
+        LEFT JOIN
+        answer A USING (review_code)
+        WHERE
+        review_code = #{ reviewCode }
+    </select>
+
+    <update id="reviewDelete">
+        UPDATE REVIEW
+        SET REVIEW_DELETE = 'Y'
+        WHERE review_code = #{ reviewCode }
+    </update>
+
+    <insert id="reviewAnswerRegist">
+        INSERT INTO ANSWER (ANSWER_STATUS, ANSWER_CONTENT, ANSWER_DATE, ADMIN_ID, REVIEW_CODE)
+        VALUE ( true , #{answerContent}, NOW(), #{adminId}, #{reviewCode})
+    </insert>
 </mapper>

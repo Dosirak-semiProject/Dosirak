@@ -6,6 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="/admin/css/datatable.css" rel="stylesheet" />
 </head>
 
 <body class="sb-nav-fixed">
@@ -37,7 +38,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table id="datatablesSimple">
+                            <table class="datatable">
                                 <thead>
                                     <tr>
                                         <th>회원아이디</th>
@@ -45,7 +46,6 @@
                                         <th>몸무게</th>
                                         <th>BMI</th>
                                         <th>희망식단코드</th>
-                                        <th>운동량 점수</th>
                                         <th>당뇨</th>
                                         <th>암</th>
                                         <th>신장</th>
@@ -53,21 +53,6 @@
                                         <th>설문날짜</th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                <tr>
-                                    <th>회원아이디</th>
-                                    <th>키</th>
-                                    <th>몸무게</th>
-                                    <th>BMI</th>
-                                    <th>희망식단코드</th>
-                                    <th>운동량 점수</th>
-                                    <th>당뇨</th>
-                                    <th>암</th>
-                                    <th>신장</th>
-                                    <th>혈압</th>
-                                    <th>설문날짜</th>
-                                </tr>
-                                </tfoot>
                                 <tbody>
                                 <tr th:each="survey : ${surveyList}">
                                     <td th:text="${survey.userId}"></td>
@@ -75,7 +60,6 @@
                                     <td th:text="${survey.surveyWeight}"></td>
                                     <td th:text="${survey.surveyBmi}"></td>
                                     <td th:text="${survey.surveyDiet}"></td>
-                                    <td th:text="${survey.surveyExscore}"></td>
                                     <td th:text="${survey.surveyDiabetes}"></td>
                                     <td th:text="${survey.surveyCancer}"></td>
                                     <td th:text="${survey.surveyKidney}"></td>
@@ -91,12 +75,6 @@
         </div>
     </div>
     <th:block th:replace="/admin/common/foot.html"></th:block>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script src="/admin/js/scripts.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
-        crossorigin="anonymous"></script>
-    <script src="/admin/js/datatables-simple-demo.js"></script>
 </body>
 
 </html>

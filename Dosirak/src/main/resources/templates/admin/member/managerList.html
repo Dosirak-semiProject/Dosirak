@@ -10,47 +10,31 @@
                 let txtId = $("td:nth-of-type(1)", this).text();
                 location.href = "/admin/member/managerView?id="+txtId;
             })
+
+            $(".searchMemBtn").click(function(){
+                let condition = $(".searchCondition").val();
+                let value = $(".searchValue").val();
+
+                let searchUrl = "";
+
+                if (condition != null && condition != "" && value != null && value != "") {
+                    searchUrl = "?searchCondition=" + condition + "&searchValue=" + value;
+                } else if (condition != null && condition != "") {
+                    searchUrl = "?searchCondition=" + condition;
+                } else if (value != null && value != "") {
+                    searchUrl = "?searchValue=" + value;
+                }
+
+                location.href = "/admin/member/managerList" + searchUrl;
+            })
+
+            // url 가져와서 다시 검색조건 넣기
+            const urlCondition = new URL(location.href).searchParams.get("searchCondition");
+            const urlValue = new URL(location.href).searchParams.get("searchValue");
+
+            if(urlCondition != null) $(".searchCondition").val(urlCondition);
+            if(urlValue != null) $(".searchValue").val(urlValue);
         })
-
-        function searchMem(){
-            let condition = document.querySelector(".searchCondition").value;
-            let value = document.querySelector(".searchValue").value;
-
-            if(value == null || value == ""){
-                alert("검색어를 입력해주세요.");
-                return;
-            }else{
-                $.ajax({
-                    url: "/admin/member/managerList",
-                    type: "post",
-                    data: {
-                        condition: condition,
-                        value: value
-                    },
-                    success: function (data){
-                        let tbody = document.querySelector("#datatablesSimple tbody");
-                        tbody.innerHTML = '';
-
-                        data.forEach(function (manager){
-                            let tr = document.createElement("tr");
-                            tr.innerHTML =  "<td>"+manager.id+"</td>"+
-                                "<td>"+manager.name+"</td>"+
-                                "<td>"+manager.birth+"</td>"+
-                                "<td>"+manager.gender+"</td>"+
-                                "<td>"+manager.contact+"</td>"+
-                                "<td>"+manager.email+"</td>"+
-                                "<td>"+manager.position+"</td>"+
-                                "<td>"+manager.department+"</td>"+
-                                "<td>"+manager.joindate+"</td>";
-                            tbody.appendChild(tr)
-                        })
-                    },
-                    error: function(){
-                        alert("에러발생");
-                    }
-                })
-            }
-        }
     </script>
 </head>
 <body>
@@ -77,7 +61,7 @@
                                     <option value="department">부서</option>
                                 </select>
                                 <input class="searchValue form-control" type="text" name="memberSearchValue" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                <button type="button" class="btn btn-primary" onclick="searchMem()"><i class="fas fa-search"></i></button>
+                                <button type="button" class="btn btn-primary searchMemBtn"><i class="fas fa-search"></i></button>
                             </div>
                         </div>
                     </div>

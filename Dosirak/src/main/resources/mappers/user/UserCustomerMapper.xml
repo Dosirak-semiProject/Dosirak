@@ -4,13 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.dosirak.user.customer.model.dao.UserCustomerMapper">
 
-    <!-- 문의 대분류 -->
-
-    <resultMap type="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskCategoryDTO" id="askCategoryResultMap">
-        <id property="askCategoryCode" column="ask_category_code"/>
-        <result property="askCategoryName" column="ask_category_name"/>
-    </resultMap>
-
     <!-- 공지사항 -->
 
     <select id="findNoticeList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserNoticeDTO">
@@ -80,7 +73,6 @@
     </select>
 
     <!-- 1대1 문의페이지  -->
-
     <resultMap type="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO" id="generalUserAskResultMap">
         <id property="askCode" column="ask_code"/>
         <result property="askTitle" column="ask_title"/>
@@ -88,32 +80,76 @@
         <result property="askDate" column="ask_date"/>
         <result property="userId" column="user_id"/>
         <result property="askDelete" column="ask_delete"/>
-        <association property="askCategoryCode" resultMap="askCategoryResultMap"/>
         <association property="answerDTO" resultMap="answerResultMap"/>
+        <association property="askCategoryDTO" resultMap="askCategoryResultMap"/>
     </resultMap>
 
+    <!-- 문의 대분류 -->
+    <resultMap type="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskCategoryDTO" id="askCategoryResultMap">
+        <id property="askCategoryCode" column="ask_category_code"/>
+        <result property="askCategoryName" column="ask_category_name"/>
+    </resultMap>
+
+    <!-- 답변 -->
     <resultMap type="com.ohgiraffers.dosirak.user.customer.model.dto.UserAnswerDTO" id="answerResultMap">
         <id property="answerCode" column="answer_code"/>
         <result property="answerStatus" column="answer_status"/>
+        <result property="answerContent" column="answer_content"/>
     </resultMap>
 
-    <select id="findAskList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO">
-        SELECT
+    <!-- 질문 목록 조회 -->
+    <select id="selectAskList" resultMap="generalUserAskResultMap">
+        select
             *
-        FROM
-            ask
-        ORDER BY
-            ask_code desc
+        from
+            ask a
+        join
+            ask_category b on (b.ask_category_code = a.ask_category_code)
+        left join
+            answer c on (c.ask_code = a.ask_code)
+        WHERE
+            ask_delete = 0
+        order by
+            a.ask_code desc
+        LIMIT
+            #{offset}, #{limit}
     </select>
 
-    <select id="searchAskDetail" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO">
-        SELECT
+    <!-- 질문 목록 조회 // view, detail update 등에서 사용 -->
+    <select id="findAskList" resultMap="generalUserAskResultMap">
+        select
             *
-        FROM
+        from
+            ask a
+        join
+            ask_category b on (b.ask_category_code = a.ask_category_code)
+        left join
+            answer c on (c.ask_code = a.ask_code)
+        where
+            a.ask_code = #{ askCode }
+    </select>
+
+    <!-- 질문 수정 -->
+    <update id="updateAsk">
+        UPDATE
             ask
+        SET
+            ask_category_code = #{ askCategoryCode },
+            ask_title = #{ askTitle },
+            ask_content = #{ askContent }
         WHERE
             ask_code = #{ askCode }
-    </select>
+    </update>
+
+    <!-- 질문 삭제 -->
+    <update id="deleteAsk">
+        UPDATE
+            ask
+        SET
+            ask_delete = 1
+        WHERE
+            ask_code = #{ askCode }
+    </update>
 
     <select id="searchAnswerDetail" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAnswerDTO">
         SELECT
@@ -129,43 +165,40 @@
 
     <insert id="insertAttachment">
         INSERT
-        INTO img
+        INTO CUSTOMER_IMG
             (ref_ask_no, original_name, saved_name, save_path, file_type, thumbnail_path)
         VALUES
             (#{ refAskNo }, #{ originalName }, #{ savedName }, #{ savePath }, #{ fileType }, #{ thumbnailPath, jdbcType=VARCHAR })
     </insert>
 
-<!--    <insert id="insertAsk">-->
-<!--        INSERT-->
-<!--        INTO ask-->
-<!--            (ask_title, ask_content, ask_date, user_id, ask_editDate, ask_delete, ask_category_code)-->
-<!--        VALUES-->
-<!--            (#{ askTitle }, #{ askContent }, #{ askDate }, "임시사용자", NOW(), '0', '1')-->
-<!--    </insert>-->
-
-<!--    <insert id="insertImage">-->
-<!--        INSERT INTO-->
-<!--            img-->
-<!--            (ref_ask_code, original_name, saved_name, save_path)-->
-<!--        VALUES-->
-<!--            (#{ refAskCode }, #{ originalName }, #{ savedName }, #{ savePath })-->
-<!--    </insert>-->
+    <!-- 질문 삽입 -->
 
     <insert id="insertAsk">
         INSERT INTO ask
-        (ask_title, ask_content, ask_date, user_id, ask_editDate, ask_delete, ask_category_code)
+            (ask_title, ask_content, ask_date, user_id, ask_editDate, ask_delete, ask_category_code)
         VALUES
-        (#{ask.askTitle}, #{ask.askContent}, #{ask.askDate}, "임시사용자", NOW(), '0', '1')
+            (#{ askTitle }, #{ askContent }, NOW(), #{ userId }, NOW(), '0', #{ askCategoryCode })
     </insert>
 
     <insert id="insertImage">
-        INSERT INTO img
-        (ref_ask_code, original_name, saved_name, save_path)
+        INSERT INTO
+            CUSTOMER_IMG
+            (ref_ask_code, original_name, saved_name, save_path)
         VALUES
-        (#{image.refAskCode}, #{image.originalName}, #{image.savedName}, #{image.savePath})
+            (#{ refAskCode }, #{ originalName }, #{ savedName }, #{ savePath })
     </insert>
 
-    <!-- 추가 -->
+    <select id="searchLastAsk" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserAskDTO">
+        SELECT
+            *
+        FROM
+            ask
+        ORDER BY
+            ask_code DESC
+        LIMIT 1
+    </select>
+
+    <!-- 페이징 추가 -->
 
     <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
         SELECT
@@ -174,20 +207,14 @@
             ask
     </select>
 
-    <select id="selectAskList" resultMap="generalUserAskResultMap">
+    <!-- 이미지 리스트 조회 -->
+    <select id="searchImageList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO">
         SELECT
-            a.ask_code,
-            a.ask_title,
-            b.ask_category_code,
-            b.ask_category_name,
-            a.ask_date
+            *
         FROM
-            ask a
-        JOIN
-            ask_category b ON (a.ask_category_code = b.ask_category_code)
-        ORDER BY
-            a.ask_code DESC
-        LIMIT #{offset}, #{limit}
+            CUSTOMER_IMG
+        WHERE
+            ref_ask_code = #{ ref_ask_code }
     </select>
 
 </mapper>
