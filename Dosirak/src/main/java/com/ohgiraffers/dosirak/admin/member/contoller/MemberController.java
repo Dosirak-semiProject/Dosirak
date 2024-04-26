@@ -65,7 +65,6 @@ public class MemberController {
                 AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
                 LoginDTO login = adminLoginDetails.getLoginDTO();
                 String managerAuthor = login.getAuthority();
-                System.out.println("관리자 권한 등급 : " + managerAuthor);
 
                 model.addAttribute("managerAuthor", managerAuthor);
             }
@@ -87,7 +86,7 @@ public class MemberController {
         memberService.modifyMember(member);
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("member.modify"));
 
-        return "redirect:/admin/member/memberView?id="+member.getId();
+        return "redirect:/admin/member/memberList";
     }
     @GetMapping("/memberPwdReset")
     public String memberPwdReset(@RequestParam String id, MemberDTO member, RedirectAttributes rttr) throws MemberModifyException {
@@ -147,7 +146,7 @@ public class MemberController {
         memberService.modifyManager(manager);
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("manager.modify"));
 
-        return "redirect:/admin/member/managerView?id="+manager.getId();
+        return "redirect:/admin/member/managerList";
     }
     @GetMapping("/managerPwdReset")
     public String managerPwdReset(@RequestParam String id, ManagerDTO manager, RedirectAttributes rttr) throws MemberModifyException {
