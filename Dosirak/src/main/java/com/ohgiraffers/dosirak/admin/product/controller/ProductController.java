@@ -233,10 +233,10 @@ public class ProductController {
 
         return "redirect:/admin/product/productList";
     }
-    @PostMapping("/admin/product/delete")
-    public String deleteProduct(@RequestParam("productId") Long productId) {
-        productService.deleteProductById(productId);
-        return "redirect:/admin/products";
+    @PostMapping("/delete")
+    public String deleteProduct(@RequestParam("productCode") int productCode) {
+        productService.deleteProductById(productCode);
+        return "redirect:/admin/product/productList";
     }
 
 

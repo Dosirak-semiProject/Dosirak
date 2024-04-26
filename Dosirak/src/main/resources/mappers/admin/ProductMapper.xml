@@ -62,7 +62,7 @@
 
     </select>
     <delete id="deleteProductById" >
-        DELETE FROM tbl_product WHERE id = #{productId}
+        DELETE FROM tbl_product WHERE PRODUCT_CODE = #{productCode}
     </delete>
 
 

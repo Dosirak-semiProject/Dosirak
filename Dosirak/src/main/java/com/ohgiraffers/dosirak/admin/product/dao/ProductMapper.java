@@ -28,5 +28,5 @@ public interface ProductMapper {
 
     productDTO codePlz();
 
-    void deleteById(Long productId);
+    void deleteProductById(int productCode);
 }

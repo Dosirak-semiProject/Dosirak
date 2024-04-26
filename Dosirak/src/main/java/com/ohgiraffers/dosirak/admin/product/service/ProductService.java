@@ -53,8 +53,8 @@ public class ProductService {
         return productMapper.codePlz();
     }
 
-    public void deleteProductById(Long productId) {
-        productMapper.deleteById(productId);
+    public void deleteProductById(int productCode) {
+        productMapper.deleteProductById(productCode);
     }
 }
 
