@@ -214,7 +214,7 @@ public class UserCustomerController {
                 log.info("lastAsk : {}", lastAsk);
 
                 /* 경로 설정 */
-                String fileUploadDir = IMAGE_DIR + "original";
+                String fileUploadDir = IMAGE_DIR + "/original";
 
                 File dir1 = new File(fileUploadDir);
 
@@ -245,7 +245,7 @@ public class UserCustomerController {
                             UserCustomerImgDTO fileInfo = new UserCustomerImgDTO();
                             fileInfo.setOriginalName(originalFileName);
                             fileInfo.setSavedName(saveFileName);
-                            fileInfo.setSavePath("/static/customerUpload/original");
+                            fileInfo.setSavePath(fileUploadDir);
 
                             /* 이미지 DTO에 요청 코드 설정 */
                             fileInfo.setRefAskCode(lastAsk.getAskCode());
