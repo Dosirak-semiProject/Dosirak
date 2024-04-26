@@ -20,9 +20,11 @@ public class AskDTO {
     private String userId;
     private LocalDateTime editDate;
     private Boolean askDelete;
-    private AskCategoryDTO askCategoryCode; //추후 수정
-    private AnswerDTO answerDTO;
 
+    private AskCategoryDTO askCategoryDTO; //추후 수정
+    private AnswerDTO answerDTO;
+    private ImgDTO imgDTO;
+    
     private List<UserCustomerImgDTO> imageList;
 
 }

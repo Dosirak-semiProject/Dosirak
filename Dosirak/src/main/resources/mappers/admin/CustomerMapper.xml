@@ -55,7 +55,7 @@
         INTO notice
             (notice_title, notice_content, notice_date, admin_id)
         VALUE
-            (#{ noticeTitle }, #{ noticeContent }, NOW(), "admin01")
+            (#{ noticeTitle }, #{ noticeContent }, NOW(), #{ adminId })
     </insert>
 
     <delete id="deleteNotice">
@@ -77,7 +77,7 @@
         <result property="qnaTitle" column="qna_title"/>
         <result property="qnaAnswer" column="qna_answer"/>
         <result property="adminId" column="admin_id"/>
-        <association property="askCategoryCode" resultMap="askCategoryResultMap"/>
+        <association property="askCategoryDTO" resultMap="askCategoryResultMap"/>
     </resultMap>
 
     <select id="findQnaList" resultMap="generalQnaResultMap">
@@ -110,7 +110,7 @@
     INSERT INTO qna
         (ask_category_code, qna_title, qna_answer, admin_id)
     VALUE
-        (#{ askCategoryCode.askCategoryCode }, #{ qnaTitle }, #{ qnaAnswer }, "jh6805")
+        (#{ askCategoryCode }, #{ qnaTitle }, #{ qnaAnswer }, #{ adminId })
     </insert>
 
     <delete id="deleteQna">
@@ -139,33 +139,52 @@
         <result property="askDate" column="ask_date"/>
         <result property="userId" column="user_id"/>
         <result property="askDelete" column="ask_delete"/>
-        <association property="askCategoryCode" resultMap="askCategoryResultMap"/>
+        <association property="askCategoryDTO" resultMap="askCategoryResultMap"/>
         <association property="answerDTO" resultMap="answerResultMap"/>
+        <association property="imgDTO" resultMap="imgResultMap"/>
     </resultMap>
 
     <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.AnswerDTO" id="answerResultMap">
         <id property="answerCode" column="answer_code"/>
         <result property="answerStatus" column="answer_status"/>
+        <result property="adminId" column="admin_id"/>
+        <result property="answerDate" column="answer_date"/>
+        <result property="answerContent" column="answer_content"/>
+        <association property="askCategoryDTO" resultMap="askCategoryResultMap"/>
     </resultMap>
 
-    <select id="findAskList" resultMap="generalAskResultMap">
-        SELECT
+    <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO" id="askResultMap">
+        <id property="askCode" column="ask_code"/>
+    </resultMap>
+
+    <resultMap type="com.ohgiraffers.dosirak.admin.customer.model.dto.ImgDTO" id="imgResultMap">
+        <id property="imgCode" column="img_code"/>
+    </resultMap>
+
+    <select id="findAllAskList" resultMap="generalAskResultMap">
+        select
             *
-        FROM
+        from
             ask a
-        JOIN
-            ask_category b ON (a.ask_category_code = b.ask_category_code)
-        ORDER BY
+        join
+            ask_category b on (b.ask_category_code = a.ask_category_code)
+        left join
+            answer c on (c.ask_code = a.ask_code)
+        order by
             a.ask_code desc
     </select>
 
-    <select id="searchAskDetail" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.AskDTO">
-        SELECT
+    <select id="searchAskDetail" resultMap="generalAskResultMap">
+        select
             *
-        FROM
-            ask
-        WHERE
-            ask_code = #{ askCode }
+        from
+            ask a
+        join
+            ask_category b on (b.ask_category_code = a.ask_category_code)
+        left join
+            answer c on (c.ask_code = a.ask_code)
+        where
+            a.ask_code = #{ askCode }
     </select>
 
     <select id="searchAnswerDetail" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.AnswerDTO">
@@ -186,5 +205,32 @@
         FROM
             ask_category
     </select>
+
+    <insert id="insertAnswer">
+        INSERT INTO
+            answer
+            (ask_code, admin_id, answer_status, answer_content, answer_date)
+        VALUES
+            (#{ askCode }, #{ adminId }, 1, #{ answerContent }, NOW())
+    </insert>
+
+    <update id="updateAskCategory">
+        UPDATE
+            ask
+        SET
+            ask_category_code = #{ askCategoryCode }
+        WHERE
+            ask_code = #{ askCode }
+    </update>
+
+    <select id="searchImageList" resultType="com.ohgiraffers.dosirak.admin.customer.model.dto.ImgDTO">
+        SELECT
+            *
+        FROM
+            CUSTOMER_IMG
+        WHERE
+            ref_ask_code = #{ ref_ask_code }
+    </select>
+
 
 </mapper>

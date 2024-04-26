@@ -18,11 +18,6 @@ public class ReviewService {
         return reviewMapper.allReview();
     }
 
-    public ReviewDTO selectReviewDetail(int reviewCode) {
-
-        /* 게시글 상세 내용 조회 후 리턴 */
-        return reviewMapper.searchReviewDetail(reviewCode);
-    }
 
     public void registAnswer(AnswerDTO registAnswer) {
 
@@ -32,5 +27,18 @@ public class ReviewService {
     public AnswerDTO selectAnswerDetail(int answerCode) {
 
         return reviewMapper.searchAnswerDetail(answerCode);
+    }
+
+    public ReviewDTO getReviewInfo(int reviewCode) {
+
+        return reviewMapper.getReviewInfo(reviewCode);
+    }
+
+    public int reviewDelete(int reviewCode) {
+        return reviewMapper.reviewDelete(reviewCode);
+    }
+
+    public int reviewAnswerRegist(ReviewDTO reviewDTO) {
+        return reviewMapper.reviewAnswerRegist(reviewDTO);
     }
 }

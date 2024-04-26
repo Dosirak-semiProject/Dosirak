@@ -10,7 +10,7 @@
     <select id="verificationService" resultType="int">
         SELECT COUNT(*)
         FROM (SELECT VERIFYPAGE, VERIFYCODE, VERIFYTIME FROM VERIFY ORDER BY VERIFYTIME DESC LIMIT 1) TB
-        WHERE VERIFYPAGE = #{hiddenCode} AND VERIFYCODE = #{inputCode}
-        <!--        WHERE VERIFYTIME >= NOW() - INTERVAL 30 MINUTE-->
+        WHERE VERIFYTIME >= NOW() - INTERVAL 30 MINUTE
+        AND VERIFYPAGE = #{hiddenCode} AND VERIFYCODE = #{inputCode}
     </select>
 </mapper>
