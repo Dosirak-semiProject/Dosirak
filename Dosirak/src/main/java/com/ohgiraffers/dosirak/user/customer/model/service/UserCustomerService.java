@@ -32,7 +32,7 @@ public class UserCustomerService {
     public Map<String, Object> selectNoticeList(Map<String, String> searchMap, int page) {
 
         /* 1. 전체 게시글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
-        int totalCount = userCustomerMapper.selectTotalCount(searchMap);
+        int totalCount = userCustomerMapper.selectTotalCountNotice(searchMap);
         log.info("noticeList totalCount : {}", totalCount);
 
         /* 2. 페이징 처리와 연관 된 값을 계산하여 SelectCriteria 타입의 객체에 담는다. */
@@ -131,7 +131,7 @@ public class UserCustomerService {
     public Map<String, Object> selectAskList(Map<String, String> searchMap, int page) {
 
         /* 1. 전체 게시글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
-        int totalCount = userCustomerMapper.selectTotalCount(searchMap);
+        int totalCount = userCustomerMapper.selectTotalCountAsk(searchMap);
         log.info("askList totalCount : {}", totalCount);
 
         /* 2. 페이징 처리와 연관 된 값을 계산하여 SelectCriteria 타입의 객체에 담는다. */
