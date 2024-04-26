@@ -9,11 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmailService {
-
     private JavaMailSender emailSender;
-
     private EmailMapper emailMapper;
-
     public EmailService(JavaMailSender emailSender, EmailMapper emailMapper){
         this.emailSender = emailSender;
         this.emailMapper = emailMapper;

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +26,17 @@ public class ProductUserService {
     }
 
     public ProductUserDTO viewProduct(int productCode) {
-        return productUserMapper.viewProduct(productCode);
+        ProductUserDTO product= productUserMapper.viewProduct(productCode);
+            // 상품 코드를 기반으로 이미지 리스트 가져오기
+        if (product != null) {
+            // 상품 코드를 기반으로 이미지 리스트 가져오기
+            List<ProductImageDTO> images = productUserMapper.findImagesByProductCode(productCode);
+            // 이미지 리스트를 상품 DTO에 설정하기
+
+            product.setImageList(images);
+        }
+        return product;
+
     }
 
 
@@ -80,8 +91,17 @@ public class ProductUserService {
     }
 
     @Transactional(readOnly = true)
-    public List<ProductImageDTO> searchImageForProduct(int productCode) {
+    public List<String> searchImageForProduct(int productCode) {
+        List<String> imageList = new ArrayList<>();
 
-        return productUserMapper.searchImageForProduct(productCode);
+        List<ProductImageDTO> productImages = productUserMapper.searchImageForProduct(productCode);
+        System.out.println("out:"+productImages);
+        // 조회된 이미지 정보에서 저장 이름만 추출하여 imageList에 추가
+        for (ProductImageDTO productImage : productImages) {
+            imageList.add(productImage.getSavedName());
+
+
+    }            return imageList;
+
     }
 }

@@ -3,13 +3,7 @@
 <head>
     <title>회원가입</title>
     <th:block th:replace="/user/common/head.html"></th:block>
-    <link rel="stylesheet" href="/user/css/join.css"/><script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<!--    <script>-->
-<!--        const message = '[[${message}]]';-->
-<!--        $(function (){-->
-<!--            $(".bl_doneBox__txt").text(message);-->
-<!--        })-->
-<!--    </script>-->
+    <link rel="stylesheet" href="/user/css/join.css"/>
 </head>
 <body>
     <div class="ly_all bl_all">
@@ -25,7 +19,7 @@
                 <div class="bl_doneBox__wrap">
                     <div class="bl_doneBox__txt">회원가입이 완료되었습니다.<br/>도시락 회원이 되신 것을 환영합니다.</div>
                 </div>
-                <a class="el_btnM hp_br5 el_btnPointBack hp_w100" href="/">로그인</a>
+                <a class="el_btnM hp_br5 el_btnPointBack hp_w100" href="/login">로그인</a>
             </div>
         </div>
         <th:block th:replace="/user/common/footer.html"></th:block>

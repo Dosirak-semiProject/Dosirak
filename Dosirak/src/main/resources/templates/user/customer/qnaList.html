@@ -9,7 +9,7 @@
         $(function () {
             // tab
             let tabLength = $(".bl_tabBtn").length;
-            let tabWD = 100 / tabLength;
+            let tabWD = 104 / tabLength;
             $(".bl_tabBtn").css("width", tabWD + "%");
             for (let i = 0; i < tabLength; i++) $(".bl_tabWrap:nth-of-type(" + (i + 1) + ") .bl_tabBtn").css("margin-left", (tabWD * i) + "%");
 
@@ -27,7 +27,7 @@
         <div class="ly_maxWD ly_flex">
             <th:block th:replace="/user/customer/sideMenu.html"></th:block>
             <div class="ly_inner02 ly_fgrow1 hp_fBack">
-                <h2 class="el_lv1Head hp_mt50">자주 묻는 질문</h2>
+                <h2 class="el_lv1Head">자주 묻는 질문</h2>
                 <ul class="bl_tab hp_mt50 ly_midWD">
                     <li class="bl_tabWrap">
                         <button type="button" class="bl_tabBtn hp_active">회원</button>
@@ -138,6 +138,7 @@
             </div>
         </div>
     </div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
 </body>
 <script>
@@ -166,5 +167,4 @@
         assignNumbersByCategory();
     });
 </script>
-
 </html>
