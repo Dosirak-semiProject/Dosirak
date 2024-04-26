@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -57,21 +58,28 @@ public class ProductUserController {
         ProductUserDTO productList = productUserService.viewProduct(productCode);
         if (productList != null && productList.getImageList() != null) {
             List<ProductImageDTO> imageList = productList.getImageList();
-            for (ProductImageDTO image : imageList) {
-                String savedName = image.getSavedName();
-                // savedName 값을 사용하는 로직 추가
-                System.out.println(savedName);
 
-                System.out.println(productList);
-                List<ProductImageDTO> imageDTO = productList.getImageList();
+            // 첫 번째 이미지 처리
+            if (!imageList.isEmpty()) {
+                ProductImageDTO firstImage = imageList.get(0);
+                String firstSavedName = firstImage.getSavedName();
+                model.addAttribute("firstSavedName", firstSavedName);
+                System.out.println("f"+firstSavedName);
+            }
 
-                model.addAttribute("productList", productList);
-        model.addAttribute("savedName", savedName);
+            // 나머지 이미지 처리
+            List<ProductImageDTO> remainingImages = new ArrayList<>();
+            if (imageList.size() > 1) {
+                remainingImages.addAll(imageList.subList(1, imageList.size()));
+                System.out.println("r"+remainingImages);
 
             }
+
+            model.addAttribute("remainingImages", remainingImages);
+            model.addAttribute("productList",productList);
+
         }
         return "/user/product/productUserView";
-
     }
 //
     @GetMapping("/productListJungsung")

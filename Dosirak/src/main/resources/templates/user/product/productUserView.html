@@ -26,18 +26,13 @@
     <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_maxWD ly_inner02 bl_pdView">
         <div class="ly_flexC ly_fitemC">
-            <th:block th:each="productList : ${productList}">
-                <th:block th:each="image : ${productList.imageList}">
-
-                    <img class="bl_pdView__img hp_mr40"
-                         th:if="${#lists.size(image) > 0}" th:src="@{/productUpload/original/{fileName}(fileName=${savedName})}"
-                         alt="Product Image"
-                         >
-                    <!-- 이미지가 없으면 "No Image Available" 메시지를 표시합니다 -->
-                    <span th:unless="${#lists.size(image) > 0}">No Image Available</span>
-
-                </th:block>
-
+            <th:block th:if="${productList != null && !productList.imageList.isEmpty()}">
+                <img class="bl_pdView__img hp_mr40"
+                     th:src="@{/productUpload/original/{fileName}(fileName=${productList.imageList[0].savedName})}"
+                     alt="Product Image">
+            </th:block>
+            <th:block th:unless="${productList != null && !productList.imageList.isEmpty()}">
+                <span>No Image Available</span>
             </th:block>
             <div class="bl_pdView__wrap hp_ml40">
                 <h2 class="el_lv1Head hp_alignL" th:text="${productList.productName}"></h2>
@@ -147,11 +142,13 @@
             <li class="bl_tabWrap">
                 <button type="button" class="bl_tabBtn hp_br0 hp_active">상품상세내용</button>
                 <div class="bl_tabCont hp_padding70">
-                    <img class="bl_pdView__img hp_mr40"
-                          th:src="@{/productUpload/original/{fileName}(fileName=${savedName})}"
-                         alt="Product Image"
-                         >
-<!--                    &lt;!&ndash; 이미지가 없으면 "No Image Available" 메시지를 표시합니다 &ndash;&gt;-->
+                    <th:block th:each="remainingImages : ${productList.imageList}">
+                        <!-- 만약 이미지가 존재하면 이미지를 표시합니다 -->
+                        <img  class="bl_pdView__img hp_mr40" th:if="${#lists.size(remainingImages) > 0}" th:src="@{/productUpload/original/{fileName}(fileName=${remainingImages.savedName})}"
+                             alt="Product Image">
+                    </th:block>
+
+                        <!--                    &lt;!&ndash; 이미지가 없으면 "No Image Available" 메시지를 표시합니다 &ndash;&gt;-->
 <!--                    <span th:unless="${#lists.size(image) > 0}">No Image Available</span>-->
                 </div>
             </li>
