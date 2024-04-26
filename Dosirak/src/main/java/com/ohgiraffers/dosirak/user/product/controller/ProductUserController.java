@@ -78,6 +78,7 @@ public class ProductUserController {
             model.addAttribute("remainingImages", remainingImages);
             model.addAttribute("productList",productList);
 
+
         }
         return "/user/product/productUserView";
     }
