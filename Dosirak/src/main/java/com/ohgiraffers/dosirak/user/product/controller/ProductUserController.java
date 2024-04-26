@@ -52,18 +52,26 @@ public class ProductUserController {
 
     @GetMapping("/productView")
     public String productView(@RequestParam int productCode, Model model) {
-//        ProductUserDTO productList = productUserService.viewProduct(productCode);
-//        model.addAttribute("productList", productList);
+        System.out.println(productCode);
 
         ProductUserDTO productList = productUserService.viewProduct(productCode);
-        List<ProductImageDTO> imageList = productUserService.searchImageForProduct(productCode);
-        log.info("imageList : {}", imageList);
+        if (productList != null && productList.getImageList() != null) {
+            List<ProductImageDTO> imageList = productList.getImageList();
+            for (ProductImageDTO image : imageList) {
+                String savedName = image.getSavedName();
+                // savedName 값을 사용하는 로직 추가
+                System.out.println(savedName);
 
-        model.addAttribute("productList", productList);
-        model.addAttribute("imageList", imageList);
+                System.out.println(productList);
+                List<ProductImageDTO> imageDTO = productList.getImageList();
 
+                model.addAttribute("productList", productList);
+        model.addAttribute("savedName", savedName);
 
+            }
+        }
         return "/user/product/productUserView";
+
     }
 //
     @GetMapping("/productListJungsung")

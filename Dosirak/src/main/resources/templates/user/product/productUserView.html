@@ -26,10 +26,19 @@
     <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_maxWD ly_inner02 bl_pdView">
         <div class="ly_flexC ly_fitemC">
-            <img class="bl_pdView__img hp_mr40"
-                 th:src="@{/customerUpload/original/{fileName}(fileName=${imageList.savedName})}"
-                 alt="이미지 파일 이름: [[${image.savedName}]]"
-                 style="max-width: 100px; max-height: 100px;">
+            <th:block th:each="productList : ${productList}">
+                <th:block th:each="image : ${productList.imageList}">
+
+                    <img class="bl_pdView__img hp_mr40"
+                         th:if="${#lists.size(image) > 0}" th:src="@{/productUpload/original/{fileName}(fileName=${savedName})}"
+                         alt="Product Image"
+                         >
+                    <!-- 이미지가 없으면 "No Image Available" 메시지를 표시합니다 -->
+                    <span th:unless="${#lists.size(image) > 0}">No Image Available</span>
+
+                </th:block>
+
+            </th:block>
             <div class="bl_pdView__wrap hp_ml40">
                 <h2 class="el_lv1Head hp_alignL" th:text="${productList.productName}"></h2>
                 <input id="productCode" class="productCode" hidden="hidden" th:value="${productList.productCode}"
@@ -138,9 +147,12 @@
             <li class="bl_tabWrap">
                 <button type="button" class="bl_tabBtn hp_br0 hp_active">상품상세내용</button>
                 <div class="bl_tabCont hp_padding70">
-<!--                    <img th:src="@{/customerUpload/original/{fileName}(fileName=${imageList.savedName})}"-->
-<!--                         alt="이미지 파일 이름: [[${image.savedName}]]"-->
-<!--                         style="max-width: 100px; max-height: 100px;">-->
+                    <img class="bl_pdView__img hp_mr40"
+                          th:src="@{/productUpload/original/{fileName}(fileName=${savedName})}"
+                         alt="Product Image"
+                         >
+<!--                    &lt;!&ndash; 이미지가 없으면 "No Image Available" 메시지를 표시합니다 &ndash;&gt;-->
+<!--                    <span th:unless="${#lists.size(image) > 0}">No Image Available</span>-->
                 </div>
             </li>
             <li class="bl_tabWrap">

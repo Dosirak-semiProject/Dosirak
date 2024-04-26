@@ -65,9 +65,9 @@
         WHERE PRODUCT_CODE = #{productCode}
     </select>
 
-    <select id="searchImageForProduct" resultType="com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO">
+    <select id="searchImageForProduct" resultType="com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO">
         SELECT
-            SAVED_NAME
+            *
         FROM
             product_img
         WHERE
