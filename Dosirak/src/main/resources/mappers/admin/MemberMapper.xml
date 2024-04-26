@@ -21,7 +21,8 @@
     </resultMap>
     <select id="findAllMember" resultMap="member">
         SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, AGREE, JOINDATE
-        FROM USER WHERE WITHDRAWAL = FALSE;
+        FROM USER WHERE WITHDRAWAL = FALSE
+        ORDER BY JOINDATE DESC
     </select>
     <select id="selectMemberView" resultMap="member">
         SELECT ID, NAME, BIRTH, GENDER, PHONE, EMAIL, ADDRESS1, ADDRESS2, ADDRESS3, AGREE, JOINDATE
@@ -75,7 +76,8 @@
     </resultMap>
     <select id="findAllManager" resultMap="manager">
         SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, JOINDATE
-        FROM ADMIN WHERE WITHDRAWAL = FALSE;
+        FROM ADMIN WHERE WITHDRAWAL = FALSE
+        ORDER BY JOINDATE DESC
     </select>
     <select id="selectManagerView" resultMap="manager">
         SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, AUTHORITY, JOINDATE, WITHDRAWAL
@@ -83,7 +85,7 @@
     </select>
     <update id="modifyManager">
         UPDATE ADMIN
-        SET DEPARTMENT = #{department}, POSITION = #{position}, CONTACT = #{contact}, AUTHORITY = #{authority}, EMAIL = #{email}
+        SET DEPARTMENT = #{department}, POSITION = #{position}, CONTACT = #{contact}, AUTHORITY = #{authority}, EMAIL = #{email}, WITHDRAWAL = #{withdrawal}
         WHERE ID = #{id}
     </update>
     <insert id="registManager">
@@ -96,35 +98,6 @@
     <update id="managerPwdReset">
         UPDATE ADMIN SET PWD = #{pwd} WHERE ID = #{id}
     </update>
-<!--    <select id="searchManager" resultMap="manager">-->
-<!--        SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, JOINDATE-->
-<!--        FROM ADMIN WHERE WITHDRAWAL = FALSE-->
-<!--        <choose>-->
-<!--            <when test="condition == 'id'">-->
-<!--                AND ID LIKE CONCAT('%', #{value}, '%')-->
-<!--            </when>-->
-<!--            <when test="condition == 'name'">-->
-<!--                AND NAME LIKE CONCAT('%', #{value}, '%')-->
-<!--            </when>-->
-<!--            <when test="condition == 'contact'">-->
-<!--                AND CONTACT LIKE CONCAT('%', #{value}, '%')-->
-<!--            </when>-->
-<!--            <when test="condition == 'email'">-->
-<!--                AND EMAIL LIKE CONCAT('%', #{value}, '%')-->
-<!--            </when>-->
-<!--            <when test="condition == 'position'">-->
-<!--                AND POSITION LIKE CONCAT('%', #{value}, '%')-->
-<!--            </when>-->
-<!--            <when test="condition == 'department'">-->
-<!--                AND DEPARTMENT LIKE CONCAT('%', #{value}, '%')-->
-<!--            </when>-->
-<!--            <otherwise>-->
-<!--                AND (ID LIKE CONCAT('%', #{value}, '%') OR NAME LIKE CONCAT('%', #{value}, '%')-->
-<!--                OR CONTACT LIKE CONCAT('%', #{value}, '%') OR EMAIL LIKE CONCAT('%', #{value}, '%')-->
-<!--                OR POSITION LIKE CONCAT('%', #{value}, '%') OR DEPARTMENT LIKE CONCAT('%', #{value}, '%'))-->
-<!--            </otherwise>-->
-<!--        </choose>-->
-<!--    </select>-->
     <select id="searchManagerForm" resultMap="manager">
         SELECT ID, NAME, BIRTH, GENDER, CONTACT, EMAIL, POSITION, DEPARTMENT, JOINDATE
         FROM ADMIN WHERE WITHDRAWAL = FALSE

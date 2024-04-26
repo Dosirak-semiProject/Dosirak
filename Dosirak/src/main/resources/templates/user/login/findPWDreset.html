@@ -39,12 +39,19 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
 <script>
     $(function(){
-        $("input").change(function (){
+        $("input").on("propertychange change keyup paste input", function (){
+            let pwdMsg = $(".pwdMessage").text();
+            if(pwdMsg.trim() == "적합") $(".pwdHidden").val(true);
+
+            let pwdCheckMessage = $(".pwdCheckMessage").text();
+            if(pwdCheckMessage.trim() == "일치") $(".pwdCheckHidden").val(true);
+
             let isTrue = true;
             for(let i=0; i<$("input[type=hidden]").length; i++){
                 let thisVal = $("input[type=hidden]").eq(i).val();
                 if(thisVal == "false") isTrue = false;
             }
+            console.log("isTrue : " + isTrue);
 
             if(isTrue) $(".el_pwdResetBtn").removeAttr("disabled");
         })

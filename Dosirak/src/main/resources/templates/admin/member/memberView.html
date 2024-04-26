@@ -14,14 +14,18 @@
             })
             // 주소삭제
             $(".deleteBtn").click(function(){
+                $(".editBtn").show();
                 $("#address1").val("");
                 $("#address2").val("");
                 $("#address3").val("");
             })
             // 마케팅동의
             let agree = $(".agree").data('agree');
-            if(agree.includes("문자")) $("#agreeSms").prop("checked", true);
-            if(agree.includes("이메일")) $("#agreeEmail").prop("checked", true);
+            if (agree !== undefined) {
+                if(agree.includes("문자")) $("#agreeSms").prop("checked", true);
+                if(agree.includes("이메일")) $("#agreeEmail").prop("checked", true);
+            }
+
 
             // 비밀번호 초기화
             $(".el_resetPwdBtn").click(function (){
@@ -30,10 +34,13 @@
             })
 
             // 관리자 권한등급
-            // const managerAuthor = '[[${managerAuthor}]]';
-            const managerAuthor = '1';
+            const managerAuthor = '[[${managerAuthor}]]';
             switch (managerAuthor){
                 case "1" :
+                    $(".grade2Input").removeClass("none");
+                    $(".grade2Input").attr("readonly", false);
+                    $(".grade2Btn").removeClass("hp_dpNone");
+                    break;
                 case "2" :
                     $(".grade2Input").removeClass("none");
                     $(".grade2Input").attr("readonly", false);
