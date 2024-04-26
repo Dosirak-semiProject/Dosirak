@@ -17,10 +17,4 @@ public class OrderUserController {
         this.orderService=orderService;
     }
 
-    @GetMapping("/orderCall")
-    public String OrderCall(Model model){
-        OrderDTO orderDTO=orderService.orderCall();
-        model.addAttribute("orderDTO",orderDTO);
-        return "/user/order/OrderList";
-    }
 }
