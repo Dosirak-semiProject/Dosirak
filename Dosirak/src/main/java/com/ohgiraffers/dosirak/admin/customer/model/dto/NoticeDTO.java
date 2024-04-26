@@ -19,8 +19,4 @@ public class NoticeDTO {
     private LocalDateTime noticeDate;
     private String adminId;
 
-    public void setAdminId(String adminId) {
-        this.adminId = "admin01";
-    }
-
 }

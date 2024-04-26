@@ -20,40 +20,42 @@
                             <col style="width:150px"/>
                             <col style="width:*"/>
                         </colgroup>
-                        <tbody>
+                        <tbody th:each="ask : ${ askList }">
                         <tr>
                             <th scope="row">분류</th>
-                            <td th:text="${ ask.askCategoryCode }"></td>
+                            <td th:text="${ ask.askCategoryDTO.askCategoryName }"></td>
                         </tr>
                         <tr>
                             <th scope="row">제목</th>
                             <td th:text="${ ask.askTitle }"></td>
                         </tr>
                         <tr>
-                            <th scope="row">문의내용</th>
+                            <th scope="row" style="height: 200px;">문의내용</th>
                             <td th:text="${ ask.askContent }"></td>
                         </tr>
                         <tr>
-                            <th scope="row">답변내용</th>
+                            <th scope="row" style="height: 200px;">답변내용</th>
                             <td>
                                 <!-- 답변 있을 시 -->
-                                <div th:if="${ answer != null }">
-                                    <span th:text="${ answer.answerContent }"></span>
+                                <div th:if="${ ask.answerDTO != null }">
+                                    <span th:text="${ ask.answerDTO.answerContent }"></span>
                                 </div>
                                 <!-- 답변 없을 시 -->
-                                <div th:if="${ answer == null }">
+                                <div th:if="${ ask.answerDTO == null }">
                                     <span>답변 등록 전입니다.</span>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">첨부파일</th>
-                            <td>
-                                <ul class="bl_TBViewImg">
-                                    <li class="bl_TBViewImg__cont"><img src="/img/sample/img01.jpg" alt=""/></li>
-                                    <li class="bl_TBViewImg__cont"><img src="/img/sample/img02.jpg" alt=""/></li>
-                                    <li class="bl_TBViewImg__cont"><img src="/img/sample/img03.jpg" alt=""/></li>
-                                </ul>
+                            <td colspan="3">
+                                <div style="display: flex;">
+                                    <div th:each="image : ${imageList}" style="margin-right: 20px;">
+                                        <img th:src="@{/customerUpload/original/{fileName}(fileName=${image.savedName})}"
+                                             alt="이미지 파일 이름: [[${image.savedName}]]"
+                                             style="max-width: 100px; max-height: 100px;">
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         </tbody>
@@ -61,14 +63,29 @@
                     <!-- 답변 있을 경우 -->
                     <div th:if="${ answer != null }">
                         <ul class="ly_flexC hp_mt70">
-                            <li><a class="el_btnM hp_br5 el_btnPointBack" href="">목록</a></li>
+                            <li><a class="el_btnM hp_br5 el_btnPointBack" href="/user/customer/askList">목록</a></li>
                         </ul>
                     </div>
                     <!-- 답변 없을 경우 -->
                     <div th:if="${ answer == null }">
                         <ul class="ly_flexC hp_mt70">
-                            <li><a class="el_btnM hp_br5 el_btnPointBack hp_ml10" href="">수정</a></li>
-                            <li><a class="el_btnM hp_br5 el_btn8Bord hp_ml10" href="">삭제</a></li>
+                            <li><a class="el_btnM hp_br5 el_btnPointBack" href="/user/customer/askList">목록</a></li>
+                            <li><a class="el_btnM hp_br5 el_btnPointBack hp_ml10" th:onclick="'location.href=\'/user/customer/askEdit/' + ${askList.askCode} + '\''">수정</a></li>
+                            <li>
+                                <form action="askDelete" method="GET" onsubmit="return delete_event()" class="el_btnM hp_br5 el_btn8Bord hp_ml10">
+                                    <input type="hidden" name="askCode" th:value="${ askList.askCode }" />
+                                    <button type="submit" class="btn btn-secondary btn-sm">삭제</button>
+                                    <script type="text/javascript">
+                                        function delete_event() {
+                                            if(confirm("정말 삭제하시겠습니까?") === true) {
+                                                return true;
+                                            } else {
+                                                return false;
+                                            }
+                                        }
+                                    </script>
+                                </form>
+                            </li>
                         </ul>
                     </div>
                 </div>

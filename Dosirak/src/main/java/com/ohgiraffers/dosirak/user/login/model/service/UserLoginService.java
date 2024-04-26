@@ -43,4 +43,6 @@ public class UserLoginService {
         int result = userLoginMapper.pwdResetUser(encodePwd, id);
         return (result > 0)? true : false;
     }
+
+
 }

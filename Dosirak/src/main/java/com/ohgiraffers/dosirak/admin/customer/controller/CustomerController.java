@@ -2,15 +2,21 @@ package com.ohgiraffers.dosirak.admin.customer.controller;
 
 import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import com.ohgiraffers.dosirak.admin.customer.model.service.CustomerService;
+import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
 import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
+import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
+import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -59,8 +65,17 @@ public class CustomerController {
     @PostMapping("/noticeWrite")
     public String noticeWritePro(NoticeDTO notice) {
 
-        customerService.writeNotice(notice);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+
+            if(principal instanceof AdminLoginDetails adminLoginDetails){
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                notice.setAdminId(login.getId());
+                customerService.writeNotice(notice);
+            }
+        }
         return "redirect:noticeList";
     }
 
@@ -97,6 +112,7 @@ public class CustomerController {
         return "redirect:/admin/customer/noticeList";
     }
 
+
     /* ----- 자주 묻는 질문 관리페이지 ----- */
 
     @GetMapping("/qnaList")
@@ -130,22 +146,31 @@ public class CustomerController {
 
     @PostMapping("/qnaWrite")
     public String qnaWritePro(@RequestParam("askCategoryCode") int askCategoryCode,
-                              String qnaTitle, String qnaAnswer, String adminID) {
+                              String qnaTitle, String qnaAnswer) {
 
-        // AskCategoryDTO 객체 생성 및 askCategoryCode 설정
-        AskCategoryDTO askCategory = new AskCategoryDTO();
-        askCategory.setAskCategoryCode(askCategoryCode);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        // QnaDTO 객체 생성 및 필드 설정
-        QnaDTO newQna = new QnaDTO();
-        newQna.setAskCategoryCode(askCategory);
-        newQna.setQnaTitle(qnaTitle);
-        newQna.setQnaAnswer(qnaAnswer);
-        newQna.setAdminId(adminID);
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
 
-        // 서비스로 전달
-        customerService.writeQna(newQna);
+            if(principal instanceof AdminLoginDetails adminLoginDetails){
+                LoginDTO login = adminLoginDetails.getLoginDTO();
 
+                // AskCategoryDTO 객체 생성 및 askCategoryCode 설정
+                AskCategoryDTO askCategory = new AskCategoryDTO();
+                askCategory.setAskCategoryCode(askCategoryCode);
+
+                // QnaDTO 객체 생성 및 필드 설정
+                QnaDTO newQna = new QnaDTO();
+                newQna.setAskCategoryCode(askCategory.getAskCategoryCode());
+                newQna.setQnaTitle(qnaTitle);
+                newQna.setQnaAnswer(qnaAnswer);
+                newQna.setAdminId(login.getId());
+
+                // 서비스로 전달
+                customerService.writeQna(newQna);
+            }
+        }
         return "redirect:qnaList";
     }
 
@@ -191,7 +216,7 @@ public class CustomerController {
     @GetMapping("/askList")
     public String askList(Model model) {
 
-        List<AskDTO> askList = customerService.findAskList();
+        List<AskDTO> askList = customerService.findAllAskList();
 
         model.addAttribute("askList", askList);
 
@@ -202,14 +227,47 @@ public class CustomerController {
     public String getAskDetail(@RequestParam("askCode") int askCode, Model model) {
 
         AskDTO askDetail = customerService.selectAskDetail(askCode);
-        AnswerDTO answerDetail = customerService.selectAnswerDetail(askCode);
-        List<AskCategoryDTO> categoryList = customerService.findCategoryList();
+        int askCategory = askDetail.getAskCategoryDTO().getAskCategoryCode();
 
         model.addAttribute("ask", askDetail);
-        model.addAttribute("answer", answerDetail);
-        model.addAttribute("askCategory", categoryList);
+        model.addAttribute("askCategory", askCategory);
+
+        List<ImgDTO> imageList = customerService.searchImageList(askCode);
+        model.addAttribute("imageList", imageList);
+
+        log.info("imageList : {}", imageList);
 
         return "admin/customer/askDetail";
     }
+
+    @PostMapping("/answerWrite")
+    public String answerWritePro(@RequestParam("askCode") int askCode,
+                                 @RequestParam("askCategoryCode") int askCategoryCode,
+                                 @RequestParam("answerContent") String answerContent,
+                                 AskDTO ask, AnswerDTO answer) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+
+            if (principal instanceof AdminLoginDetails adminLoginDetails) {
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                answer.setAdminId(login.getId());
+                answer.setAnswerCode(askCode);
+                answer.setAnswerContent(answerContent);
+                log.info("answer : {}", answer);
+
+                // 카테고리 분류 변경
+                customerService.updateCategory(askCode, askCategoryCode);
+
+                // 답변 등록
+                customerService.writeAnswer(answer);
+
+            }
+        }
+        return "redirect:askList";
+    }
+
 
 }

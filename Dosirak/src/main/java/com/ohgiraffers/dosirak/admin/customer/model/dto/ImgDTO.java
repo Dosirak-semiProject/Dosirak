@@ -1,15 +1,15 @@
-package com.ohgiraffers.dosirak.user.customer.model.dto;
+package com.ohgiraffers.dosirak.admin.customer.model.dto;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
-public class UserCustomerImgDTO {
+public class ImgDTO {
 
     private int imgCode;
     private int refAskCode;
@@ -20,9 +20,9 @@ public class UserCustomerImgDTO {
     private String thumbNailPath;
     private String attachmentStatus;
 
-    public UserCustomerImgDTO() {}
+    public ImgDTO() {};
 
-    public UserCustomerImgDTO(int imgCode, int refAskCode, String originalName, String savedName, String savePath, String fileType, String thumbNailPath, String attachmentStatus) {
+    public ImgDTO(int imgCode, int refAskCode, String originalName, String savedName, String savePath, String fileType, String thumbNailPath, String attachmentStatus) {
         this.imgCode = imgCode;
         this.refAskCode = refAskCode;
         this.originalName = originalName;
@@ -33,4 +33,3 @@ public class UserCustomerImgDTO {
         this.attachmentStatus = attachmentStatus;
     }
 }
-
