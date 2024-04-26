@@ -40,8 +40,8 @@ public interface UserCustomerMapper {
     void insertImage(UserCustomerImgDTO fileInfo);
 
     /* -- 페이징 추가 --- */
-    int selectTotalCount(Map<String, String> searchMap);
-
+    int selectTotalCountNotice(Map<String, String> searchMap);
+    int selectTotalCountAsk(Map<String, String> searchMap);
 
     /* -- 가장 최신 문의 조회 -- */
     UserAskDTO searchLastAsk();

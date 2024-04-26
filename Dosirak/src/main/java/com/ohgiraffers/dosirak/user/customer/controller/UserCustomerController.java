@@ -5,9 +5,11 @@ import com.ohgiraffers.dosirak.admin.customer.model.dto.ImgDTO;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.QnaDTO;
 import com.ohgiraffers.dosirak.admin.customer.model.service.CustomerService;
 import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.user.customer.model.dto.*;
 import com.ohgiraffers.dosirak.user.customer.model.service.UserCustomerService;
 import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
+import com.ohgiraffers.dosirak.user.myInfo.model.service.MyinfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -31,9 +33,11 @@ public class UserCustomerController {
     private String IMAGE_DIR;
 
     private final UserCustomerService userCustomerService;
+    private final MyinfoService myinfoService;
 
-    public UserCustomerController(UserCustomerService userCustomerService, CustomerService customerService) {
+    public UserCustomerController(UserCustomerService userCustomerService, CustomerService customerService, MyinfoService myinfoService) {
         this.userCustomerService = userCustomerService;
+        this.myinfoService = myinfoService;
     }
 
 
@@ -54,9 +58,9 @@ public class UserCustomerController {
                                 @RequestParam(required = false) String searchValue,
                                 Model model) {
 
-        log.info("boardList page : {}", page);
-        log.info("boardList searchCondition : {}", searchCondition);
-        log.info("boardList searchValue : {}", searchValue);
+        log.info("noticeList page : {}", page);
+        log.info("noticeList searchCondition : {}", searchCondition);
+        log.info("noticeList searchValue : {}", searchValue);
 
         // 페이징 시작
 
@@ -156,6 +160,7 @@ public class UserCustomerController {
 
         UserAskDTO askList = userCustomerService.findAskList(askCode);
         model.addAttribute("askList", askList);
+        log.info("askList : {}", askList);
 
         List<UserAskCategoryDTO> categoryList = userCustomerService.findCategoryList();
         model.addAttribute("categoryList", categoryList);
@@ -195,11 +200,27 @@ public class UserCustomerController {
     @GetMapping("/askRegist")
     public String getRegistPage(Model model) {
 
-        /* 카테고리 리스트 조회 및 주입 */
-        List<UserAskCategoryDTO> categoryList = userCustomerService.findCategoryList();
-        model.addAttribute("askCategory", categoryList);
-        log.info("askCategoryList : {}", categoryList);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+
+            if (principal instanceof AdminLoginDetails adminLoginDetails) {
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                String id = login.getId();
+
+                MemberDTO member = myinfoService.myinfoSelect(id);
+                String memberEmail = member.getEmail();
+                model.addAttribute("memberEmail", memberEmail);
+
+                /* 카테고리 리스트 조회 및 주입 */
+                List<UserAskCategoryDTO> categoryList = userCustomerService.findCategoryList();
+                model.addAttribute("askCategory", categoryList);
+                log.info("askCategoryList : {}", categoryList);
+
+                model.addAttribute("login", login);
+            }
+        }
         return "user/customer/askRegist";
     }
 
