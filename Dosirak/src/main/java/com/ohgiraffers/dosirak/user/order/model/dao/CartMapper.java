@@ -22,8 +22,6 @@ public interface CartMapper {
 
     List<MemberDTO> findSearchId();
 
-    int userOrderDone(MemberDTO memberDTO);
-
     String findOrderCode();
 
     PayDTO findPayDate(String orderCode);
@@ -54,4 +52,6 @@ public interface CartMapper {
     void cartDeleteProductList(CartDTO productCode);
 
     void cartDeleteSuitboxList(CartDTO suitboxCode);
+
+    int userOrderDone(String memberId, String name, String phone, String address1, String address2, String address3);
 }

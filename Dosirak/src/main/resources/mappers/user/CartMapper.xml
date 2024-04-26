@@ -37,7 +37,7 @@
         <result property="productCode" column="product_code"/>
         <result property="productName" column="product_name"/>
         <result property="productPrice" column="product_price"/>
-        <result property="imgUrl" column="save_path"/>
+        <result property="savePath" column="save_path"/>
         <association property="suitbox" resultMap="SuitBoxResultMap"/>
     </resultMap>
 
@@ -77,8 +77,8 @@
         FROM
             cart c
         LEFT JOIN tbl_product p ON c.product_code = p.product_code
+        LEFT JOIN product_img i ON c.product_code = i.product_code
         LEFT JOIN SUIT_BOX s ON c.suitbox_code = s.SUITBOX_CODE
-        LEFT JOIN product_img i ON p.product_code = i.product_code
         WHERE c.id = #{userId}
     </select>
 
@@ -140,9 +140,8 @@
     <insert id="userOrderDone">
         INSERT INTO `ORDER` (ID, ORDER_RECIPIENT, ORDER_CONTACT, ORDER_ADDRESS1, ORDER_ADDRESS2, ORDER_ADDRESS3)
         VALUES
-        (#{id}, #{name}, #{phone}, #{address1},#{address2},#{address3})
+        (#{memberId}, #{name}, #{phone}, #{address1},#{address2},#{address3})
     </insert>
-
 
     <select id="findOrderCode" resultType="string">
         SELECT
@@ -166,6 +165,7 @@
         VALUES
             (#{cartitemCount}, #{suitboxCode}, #{orderCode})
     </insert>
+
     <insert id="insertDetailProduct">
         INSERT INTO DETAIL (DETAILITEM_COUNT, PRODUCT_CODE, ORDER_CODE)
         VALUES

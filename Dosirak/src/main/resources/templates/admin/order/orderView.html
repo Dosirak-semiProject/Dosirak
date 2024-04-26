@@ -26,12 +26,11 @@
                             <td colspan="2" th:text="${ orderView.orderCode }"></td>
 
                             <th scope="row">주문/환불상태</th>
-                            <td colspan="2" th:text="${ orderView.orderStatus + ' / ' + orderView.refund.refundStatus }"></td>
+                            <td colspan="2" th:text="|${ orderView.orderStatus }/${ orderView.refund.refundStatus }|"></td>
                         </tr>
                         <tr>
                             <th scope="row">회원이름(아이디)</th>
                             <td colspan="3" th:text="|${ orderView.member.name }(${ orderView.member.id })|"></td>
-                            <td></td>
                         </tr>
                         <tr>
                             <th scope="row">수령인</th>
@@ -48,9 +47,8 @@
                         <tr>
                             <th scope="row">배송지</th>
                             <td colspan="5">
-                                <span th:if="${ orderView.orderRecipient }" th:text="${ orderView.orderRecipient }"></span>
-                                <span th:unless="${ orderView.orderRecipient }"
-                                      th:text="${orderView.member.address1 + ' / ' + orderView.member.address2 + ' / ' + orderView.member.address3 }"></span>
+                                <span th:if="${ orderView.orderAddress1 }" th:text="|${orderView.orderAddress1}/${orderView.orderAddress2}/${orderView.orderAddress3}|"></span>
+                                <span th:unless="${ orderView.orderAddress1 }" th:text="|${orderView.member.address1}/${orderView.member.address2}/${orderView.member.address3}|"></span>
                             </td>
                         </tr>
                         <tr>
@@ -73,7 +71,8 @@
                             <td colspan="5">
                                 <label>
                                     <input type="checkbox" th:attr="name='selected'" th:value="${detail.detailCode}" th:if="${ detail.detailStatus == 'O'}">
-                                    <span th:text="${detail.detailCode + ' / ' + detail.product.productName + ' / ' + detail.detailItemCount + '개' + ' / ' + (detail.detailItemCount * detail.product.productPrice) + ' 원'}"></span><span th:if="${detail.detailStatus == 'X'}"> (주문취소)</span>
+                                    <span th:text="${detail.detailCode} + '/' + ${detail.product.productName} + '/' + ${detail.detailItemCount} + '개/(' + (${detail.detailItemCount} * ${detail.product.productPrice}) + '원)'"></span>
+                                    <span th:if="${detail.detailStatus == 'X'}"> (주문취소)</span>
                                 </label>
                             </td>
                         </tr>

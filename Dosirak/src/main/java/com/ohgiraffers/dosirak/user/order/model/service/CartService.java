@@ -44,9 +44,7 @@ public class CartService {
         return cartMapper.findSearchId();
     }
 
-    public int userOrderDone(MemberDTO memberDTO) {
-        return cartMapper.userOrderDone(memberDTO);
-    }
+
 
     public String findOrderCode() {
         return cartMapper.findOrderCode();
@@ -108,7 +106,6 @@ public class CartService {
                         detailMenu.getKimchi().getMenuExtracash());
             }
 
-            System.out.println(cart);
         }
 
         return cartList;
@@ -122,7 +119,6 @@ public class CartService {
                 Map<String, String> productAndId = new HashMap<>();
                 productAndId.put("userId", memberId);
                 productAndId.put("productCode", productCode);
-                System.out.println("카트 서비스 @@@@@@@@@@@@@@@@@@" + productAndId);
                 cartList.add(getProductByCart(productAndId));
             } else if (key.contains("suitbox")) {
                 String suitboxCode = productAndQuantity.get(key);
@@ -165,5 +161,10 @@ public class CartService {
 
     public void cartDeleteSuitboxList(CartDTO suitboxCode) {
         cartMapper.cartDeleteSuitboxList(suitboxCode);
+    }
+
+
+    public int userOrderDone(String memberId, String name, String phone, String address1, String address2, String address3) {
+        return cartMapper.userOrderDone(memberId, name, phone, address1, address2, address3);
     }
 }

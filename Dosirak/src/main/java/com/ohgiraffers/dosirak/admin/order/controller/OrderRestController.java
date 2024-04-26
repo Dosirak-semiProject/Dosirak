@@ -17,7 +17,6 @@ public class OrderRestController {
     @PostMapping("order-list-selected")
     public ResponseEntity<Map<String, Object>> orderListSelected(@RequestBody OrderDTO status) {
 //        비동기 구현 중
-        System.out.println("@@@@selected = " + status);
         try {
             response.put("message", "주문상태 변경 성공");
             response.put("success", true);

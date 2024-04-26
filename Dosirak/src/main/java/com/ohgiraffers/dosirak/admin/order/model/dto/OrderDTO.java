@@ -16,7 +16,9 @@ public class OrderDTO {
     private String orderStatus;
     private String orderRecipient;
     private String orderConcat;
-    private String orderAddress;
+    private String orderAddress1;
+    private String orderAddress2;
+    private String orderAddress3;
     private PayDTO pay;
     private MemberDTO member;
     private RefundDTO refund;
@@ -25,16 +27,18 @@ public class OrderDTO {
 
     public OrderDTO() {}
 
-    public OrderDTO(String orderCode, String orderStatus, String orderRecipient, String orderConcat, String orderAddress, PayDTO pay, MemberDTO member, RefundDTO refund, DeliveryDTO shipping, List<DetailDTO> detail) {
+    public OrderDTO(String orderCode, String orderStatus, String orderRecipient, String orderConcat, String orderAddress1, String orderAddress2, String orderAddress3, PayDTO pay, MemberDTO member, RefundDTO refund, DeliveryDTO delivery, List<DetailDTO> detail) {
         this.orderCode = orderCode;
         this.orderStatus = orderStatus;
         this.orderRecipient = orderRecipient;
         this.orderConcat = orderConcat;
-        this.orderAddress = orderAddress;
+        this.orderAddress1 = orderAddress1;
+        this.orderAddress2 = orderAddress2;
+        this.orderAddress3 = orderAddress3;
         this.pay = pay;
         this.member = member;
         this.refund = refund;
-        this.delivery = shipping;
+        this.delivery = delivery;
         this.detail = detail;
     }
 }

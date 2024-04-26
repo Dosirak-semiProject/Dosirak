@@ -36,7 +36,8 @@
                         <li class="ly_flex ly_fitemC getProductCode hp_mb15" th:each="cart : ${ cartList }">
                             <input style="display: none" th:if="${cart.productCode != 0}"  th:name="|product${cart.productCode}|" th:value="${cart.productCode}">
                             <input style="display: none" th:if="${cart.suitbox != null}" th:name="|suitbox${cart.suitbox.suitboxCode}|" th:value="${cart.suitbox.suitboxCode}">
-                            <img class="bl_orderView__img" src="/user/img/main/main01.png" alt=""/>
+                            <img class="bl_orderView__img" th:if="${cart.productCode != 0}" th:src="${cart.savePath}" alt=""/>
+                            <img class="bl_orderView__img" th:if="${cart.suitbox != null}" src="/suitboxUpload/original/product01.jpg" alt=""/>
                             <dl class="bl_orderView__info">
                                 <dt class="pay_productName" th:if="${cart.productCode != 0}" th:text="${cart.productName}"></dt>
                                 <dt class="pay_productName" th:if="${cart.suitbox != null}">맞춤 도시락 <span style="color: gray; margin-left: 20px"
@@ -130,8 +131,8 @@
         </ul>
         </form>
     </div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
-<th:block th:replace="/user/common/footer.html"></th:block>
 <script type="text/javascript" src="/user/js/payment.js"></script>
 </body>
 </html>

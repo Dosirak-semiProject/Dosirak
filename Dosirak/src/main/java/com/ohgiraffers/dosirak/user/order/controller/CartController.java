@@ -36,22 +36,17 @@ public class CartController {
     @GetMapping("cart")
     public String cart(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
 //        if (authentication == null || !authentication.isAuthenticated()) {      // 비로그인 장바구니 이동 시 리디렉션
 //            response.sendRedirect("/login");
 //            return null;
 //        }
-
         String memberId = "";
-
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
-
             if (principal instanceof AdminLoginDetails) {
                 AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
                 LoginDTO login = adminLoginDetails.getLoginDTO();
                 memberId = login.getId();
-
                 model.addAttribute("memberId", memberId);
             }
         }
@@ -77,11 +72,9 @@ public class CartController {
 
                 model.addAttribute("memberId", memberId);
                 productAndQuantity.put("memberId", memberId);
-//                System.out.println("상품 수량 @@@@@@@@@@@@@@@@@@" + productAndQuantity);
 
                 MemberDTO user = cartService.getPaymentByUserId(memberId);
                 model.addAttribute("user", user);
-
             }
         }
 //        key 에 contain(suitbox) 되면 맞춤도시락 (product) 면 일반상품
@@ -89,7 +82,6 @@ public class CartController {
         List<CartDTO> cartList = new ArrayList<>();
 
         cartList = cartService.setCartDTO(productAndQuantity, memberId);
-//        System.out.println("@@@@@@@@@@@@@@@@@@" + cartList);
 
         cartList = cartService.divisionProduct(cartList);
 
@@ -98,32 +90,10 @@ public class CartController {
         return "/user/order/payment";
     }
 
-//    @PostMapping("orderDone")
-//    public String orderDone(Model model) {
-//
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//
-//        if(authentication != null && authentication.isAuthenticated()){
-//            Object principal = authentication.getPrincipal();
-//
-//            if(principal instanceof AdminLoginDetails){
-//                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
-//                LoginDTO login = adminLoginDetails.getLoginDTO();
-//                String memberId = login.getId();
-//
-//                model.addAttribute("memberId", memberId);
-//
-//                List<OrderDTO> orderDTO = cartService.userOrderDone(memberId);
-//
-//                model.addAttribute("orderDTO", orderDTO);
-//
-//            }
-//        }
-//        return "/user/order/orderDone";
-//    }
-
     @PostMapping("orderDone")
-    public String orderDone(Model model, @RequestParam Map<String, String> codeMap, MemberDTO memberDTO, @RequestParam String payMethod) {
+    public String orderDone(Model model, @RequestParam Map<String, String> codeMap,
+                            MemberDTO memberDTO,
+                            @RequestParam String payMethod) {
 
         String resultUrl = "/user/order/orderFail";
 
@@ -141,7 +111,13 @@ public class CartController {
             }
         }
 
-        int createOrderTb = cartService.userOrderDone(memberDTO);
+        String name = codeMap.get("name");
+        String phone = codeMap.get("phone");
+        String address1 = codeMap.get("address1");
+        String address2 = codeMap.get("address2");
+        String address3 = codeMap.get("address3");
+
+        int createOrderTb = cartService.userOrderDone(memberId, name, phone, address1, address2, address3);
 
         if (createOrderTb > 0) {
             String orderCode = cartService.findOrderCode();
@@ -166,7 +142,6 @@ public class CartController {
                 payPrice += 3000;
             }
 
-            System.out.println(payPrice);
             Map<String, String> pay = new HashMap<>();
             pay.put("orderCode", orderCode);
             pay.put("payPrice", String.valueOf(payPrice));
@@ -190,6 +165,9 @@ public class CartController {
             model.addAttribute("payDTO", payDTO);
 
         }
+
+
+
         return "/user/order/orderDone";
     }
 }

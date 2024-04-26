@@ -39,6 +39,9 @@
     <resultMap id="orderResultMap" type="com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO">
         <id property="orderCode" column="order_code"/>
         <result property="orderStatus" column="order_status"/>
+        <result property="orderAddress1" column="order_address1"/>
+        <result property="orderAddress2" column="order_address2"/>
+        <result property="orderAddress3" column="order_address3"/>
         <association property="member" resultMap="memberResultMap"/>
         <association property="refund" resultMap="refundResultMap"/>
         <association property="pay" resultMap="payResultMap"/>
@@ -139,6 +142,9 @@
         u.address1,
         u.address2,
         u.address3,
+        o.order_address1,
+        o.order_address2,
+        o.order_address3,
         p.pay_price,
         p.pay_date,
         p.pay_method

@@ -30,7 +30,6 @@ public class CartRestController {
 
     @PostMapping("cart/update-quantity")
     public ResponseEntity<Map<String, Object>> cartUpdateQuantity(@RequestBody CartDTO cartDTO) {
-        System.out.println(cartDTO);
         try {
             cartService.cartUpdateQuantity(cartDTO);
             response.put("success", true);
