@@ -4,13 +4,33 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ohgiraffers.dosirak.admin.review.model.dao.ReviewMapper">
 
-    <select id="allReview" resultType="com.ohgiraffers.dosirak.admin.review.model.dto.ReviewDTO">
+    <resultMap id="generalReview" type="com.ohgiraffers.dosirak.admin.review.model.dto.ReviewDTO">
+        <id property="reviewCode" column="review_code"/>
+        <result property="reviewTitle" column="review_title"/>
+        <result property="reviewContent" column="review_content"/>
+        <result property="userId" column="user_id"/>
+        <result property="reviewEditDate" column="review_editdate"/>
+        <result property="reviewDelete" column="review_delete"/>
+        <result property="detailCode" column="detail_code"/>
+        <result property="reviewDate" column="review_date"/>
+        <association property="answerDTO" resultMap="generalAnswer"/>
+    </resultMap>
+
+    <resultMap id="generalAnswer" type="com.ohgiraffers.dosirak.admin.review.model.dto.AnswerDTO">
+        <id property="answerCode" column="answer_code"/>
+        <result property="answerStatus" column="answer_status"/>
+    </resultMap>
+
+    <select id="allReview" resultMap="generalReview">
         SELECT
-        *
+            *,
+            b.answer_status
         FROM
-        review
+            review a
+        LEFT JOIN
+            answer b ON (a.review_code = b.review_code)
         ORDER BY
-        review_code
+            a.review_code DESC
     </select>
 
 
