@@ -120,10 +120,22 @@
             qna_code = #{ qnaCode }
     </delete>
 
+    <!-- 자주 묻는 질문 수정 (카테고리 변경 후, 내용 업데이트) -->
+
+    <update id="updateQnaCategory">
+        UPDATE
+            qna
+        SET
+            ask_category_code = #{ askCategoryCode }
+        WHERE
+            qna_code = #{ qnaCode }
+    </update>
+
     <update id="updateQna">
         UPDATE
             qna
         SET
+            ask_category_code = #{ askCategoryCode },
             qna_title = #{ qnaTitle },
             qna_answer = #{ qnaAnswer }
         WHERE

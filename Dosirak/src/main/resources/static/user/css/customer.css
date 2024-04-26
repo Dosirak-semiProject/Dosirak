@@ -64,3 +64,27 @@
         color: #dedede;
     }
 }
+
+.image-area{
+    width: 80px;
+    height: 80px;
+    margin-right: 5px;
+    background:url("/user/img/icon/attach.png")no-repeat;
+    background-color: white;
+    background-size: 50% 50%;
+    background-position: center;
+    border: 1px solid #E1E1E1;
+    border-radius: 2.5px;
+}
+
+.image-area_A{
+    width: 80px;
+    height: 80px;
+    margin-right: 5px;
+    background-color: white;
+    background-size: 50% 50%;
+    background-position: center;
+    border: 1px solid #E1E1E1;
+    border-radius: 2.5px;
+}
+

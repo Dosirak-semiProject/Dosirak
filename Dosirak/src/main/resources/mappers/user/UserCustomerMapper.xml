@@ -32,7 +32,8 @@
         <result property="qnaTitle" column="qna_title"/>
         <result property="qnaAnswer" column="qna_answer"/>
         <result property="adminId" column="admin_id"/>
-        <association property="askCategoryCode" resultMap="askCategoryResultMap"/>
+        <association property="
+" resultMap="askCategoryResultMap"/>
     </resultMap>
 
 
@@ -128,7 +129,7 @@
         UPDATE
             ask
         SET
-            ask_category_code = #{ askCategoryCode },
+            askCategoryDTO.ask_category_code = #{ askCategoryCode },
             ask_title = #{ askTitle },
             ask_content = #{ askContent }
         WHERE
@@ -192,9 +193,18 @@
         LIMIT 1
     </select>
 
-    <!-- 페이징 추가 -->
+    <!-- 공지사항 페이징 -->
 
-    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+    <select id="selectTotalCountNotice" resultType="_int" parameterType="hashmap">
+        SELECT
+            COUNT(*)
+        FROM
+            notice
+    </select>
+
+    <!-- 문의 페이징 -->
+
+    <select id="selectTotalCountAsk" resultType="_int" parameterType="hashmap">
         SELECT
             COUNT(*)
         FROM
