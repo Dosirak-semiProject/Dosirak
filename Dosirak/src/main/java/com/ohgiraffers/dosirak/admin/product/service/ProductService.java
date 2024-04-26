@@ -7,6 +7,7 @@ import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -53,8 +54,31 @@ public class ProductService {
         return productMapper.codePlz();
     }
 
-    public void deleteProductById(Long productId) {
-        productMapper.deleteById(productId);
+    public void deleteProductById(int productCode) {
+        productMapper.deleteProductById(productCode);
+    }
+    public List<productDTO> findProductsByStatusAndName(String status, String name) {
+        return productMapper.findByProductStatusAndProductNameContaining(status, name);
+    }
+
+    // 상태로 제품 검색
+    public List<productDTO> findProductsByStatus(String status) {
+        return productMapper.findByProductStatus(status);
+    }
+
+    // 이름으로 제품 검색
+    public List<productDTO> findProductsByName(String name) {
+        return productMapper.findByProductNameContaining(name);
+    }
+
+    // 모든 제품 반환
+    public List<productDTO> getAllProducts() {
+        return productMapper.findAllProduct();
+    }
+
+
+    public List<productDTO> searchProducts(String productName, int productCategoryCode, String productStatus) {
+        return productMapper.findByCriteria(productName, productCategoryCode, productStatus);
     }
 }
 

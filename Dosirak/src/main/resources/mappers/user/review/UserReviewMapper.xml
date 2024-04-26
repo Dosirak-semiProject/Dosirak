@@ -124,6 +124,8 @@
             REVIEW R USING (detail_code)
         WHERE
             O.ID = #{ userId } AND R.REVIEW_CODE IS NULL
+        ORDER BY
+            O.order_code DESC
 
     </select>
 
@@ -174,6 +176,8 @@
         WHERE
         user_id = #{ userId }
         and review_delete = 'N'
+        ORDER BY
+        R.review_code DESC
 
     </select>
 

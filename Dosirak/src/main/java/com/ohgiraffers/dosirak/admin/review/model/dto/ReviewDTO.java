@@ -18,6 +18,8 @@ public class ReviewDTO {
     private String reviewDelete;
     private int detailCode;
     private String reviewDate;
+    private AnswerDTO answerDTO;
+
     String reviewTitle;
 
     String productName;

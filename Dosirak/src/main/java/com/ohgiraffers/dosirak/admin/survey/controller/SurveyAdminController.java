@@ -6,9 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/survey")
@@ -56,39 +54,38 @@ public class SurveyAdminController {
     }
 
     @GetMapping("version-set")
-    public String setNewSurvey(Model model, @RequestParam(required = false) Integer versionId){
-        if(versionId != null){
+    public String setNewSurvey(Model model, @RequestParam int versionId){
         SurveyVersionDTO version = surveyAdminService.getVersionByVersionId(versionId);
         List<SurveyQuestionDTO> questionList = surveyAdminService.getQuestionListByVersionId(versionId);
+        List<SurveyScoreRangeDTO> rangeLIst = surveyAdminService.getSurveyRangeByVersionId(versionId);
         model.addAttribute("version", version);
         model.addAttribute("questionList", questionList);
-        List<SurveyScoreRangeDTO> rangeLIst = surveyAdminService.getSurveyRangeByVersionId(versionId);
         model.addAttribute("rangeList", rangeLIst);
-        }
         return "admin/survey/surveyVersionSet";
     }
 
-    @PostMapping("async/version-update")
+    @PostMapping("fetch/version")
     public @ResponseBody int versionSet(@ModelAttribute SurveyVersionDTO version){
         int result = 0;
         result = surveyAdminService.updateVersionByVersionDTO(version);
-        return result;
+        return 1;
     }
-    @PostMapping("async/question-update")
+    @PostMapping("fetch/question")
     public @ResponseBody int questionSet(@ModelAttribute SurveyQuestionDTO question){
+        System.out.println(question);
         int result = 0;
-        result = surveyAdminService.updateQuestionBySurveyQuestionDTO(question);
+        int result2= surveyAdminService.updateQuestionBySurveyQuestionDTO(question);
+        System.out.println(result2);
+        result = surveyAdminService.getQuestionIdByQuestionDTO(question);
         return result;
     }
-    @PostMapping("async/answer-update")
+    @PostMapping("fetch/answer")
     public @ResponseBody int answerSet(@ModelAttribute SurveyAnswerDTO answer){
+        surveyAdminService.deleteAllAnswerByAnswer(answer);
         int result = 0;
-        result = surveyAdminService.updateAnswerBySurveyAnswerDTO(answer);
+        result = surveyAdminService.insertAnswerBySurveyAnswerDTO(answer);
         return result;
     }
 
-    @GetMapping("survey-set")
-    public String setSurvey(Model model){
-        return "admin/survey/surveySet";
-    }
+
 }

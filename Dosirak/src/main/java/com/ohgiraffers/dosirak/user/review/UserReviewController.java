@@ -32,7 +32,7 @@ import java.util.*;
 @RequestMapping("/user/review")
 public class UserReviewController {
 
-    @Value("${image.image-dir}")
+    @Value("${image.reivew-image-dir}")
     private String IMAGE_DIR;
 
     private final UserReviewService userReviewService;
@@ -85,6 +85,8 @@ public class UserReviewController {
 
                 ReviewDTO reveiwDTO = new ReviewDTO();
                 model.addAttribute("reveiwDTO", reveiwDTO);
+
+                System.out.println(myReviewList);
             }
         }
         return "user/review/list";

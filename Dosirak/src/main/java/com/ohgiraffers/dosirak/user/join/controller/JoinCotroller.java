@@ -26,6 +26,15 @@ public class JoinCotroller {
         this.messageSourceAccessor = messageSourceAccessor;
     }
 
+    @GetMapping("/agreeUse")
+    public void agreeUse(){}
+
+    @GetMapping("/agreeInfo")
+    public void agreeInfo(){}
+
+    @GetMapping("/agreeMarketing")
+    public void agreeMarketing(){}
+
     @GetMapping("/join01")
     public void join01(){}
 

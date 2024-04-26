@@ -14,7 +14,7 @@ public class UserAnswerDTO {
     private int answerCode;
     private Boolean answerStatus;
     private String answerContent;
-    private LocalDateTime answerDate;
+    private String answerDate;
     private String adminId;
     private int AnswerCategory;
     private int reviewCode;

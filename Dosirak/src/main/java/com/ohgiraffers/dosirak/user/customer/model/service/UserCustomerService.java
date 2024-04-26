@@ -29,9 +29,30 @@ public class UserCustomerService {
 
     /* ----- 공지사항 ----- */
 
-    public List<UserNoticeDTO> findNoticeList() {
+    public Map<String, Object> selectNoticeList(Map<String, String> searchMap, int page) {
 
-        return userCustomerMapper.findNoticeList();
+        /* 1. 전체 게시글 수 확인 (검색어가 있는 경우 포함) => 페이징 처리를 위해 */
+        int totalCount = userCustomerMapper.selectTotalCount(searchMap);
+        log.info("noticeList totalCount : {}", totalCount);
+
+        /* 2. 페이징 처리와 연관 된 값을 계산하여 SelectCriteria 타입의 객체에 담는다. */
+        int limit = 10;         // 한 페이지에 보여줄 게시물의 수
+        int buttonAmount = 5;   // 한 번에 보여질 페이징 버튼의 수
+        SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount, searchMap);
+        log.info("noticeList selectCriteria : {}", selectCriteria);
+
+        log.info("selectCriteria.getLimit : {}", selectCriteria.getLimit());
+        log.info("selectCriteria.getOffset : {}", selectCriteria.getOffset());
+
+        /* 3. 요청 페이지와 검색 기준에 맞는 게시글을 조회해온다. */
+        List<UserNoticeDTO> noticeList = userCustomerMapper.selectNoticeList(selectCriteria);
+        log.info("noticeList : {}", noticeList);
+
+        Map<String, Object> noticeListAndPaging = new HashMap<>();
+        noticeListAndPaging.put("paging", selectCriteria);
+        noticeListAndPaging.put("noticeList", noticeList);
+
+        return noticeListAndPaging;
     }
 
     public UserNoticeDTO selectNoticeDetail(int noticeCode) {
@@ -151,4 +172,6 @@ public class UserCustomerService {
         /* 질문 삭제 */
         userCustomerMapper.deleteAsk(askCode);
     }
+
+
 }

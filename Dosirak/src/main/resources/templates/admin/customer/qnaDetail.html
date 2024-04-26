@@ -39,7 +39,9 @@
                     </tr>
                     <tr>
                         <th scope="row"><label for="">답변내용</label></th>
-                        <td colspan="3" th:text="${ qna.qnaAnswer }"></td>
+                        <td colspan="3">
+                                <pre th:text="${ qna.qnaAnswer }"></pre>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

@@ -53,9 +53,7 @@ public class SurveyAdminService {
         return surveyMapper.updateQuestionBySurveyQuestionDTO(question);
     }
 
-    public int updateAnswerBySurveyAnswerDTO(SurveyAnswerDTO answer) {
-        return surveyMapper.updateAnswerBySurveyAnswerDTO(answer);
-    }
+
 
     public int insertNetVersion() {
         return surveyMapper.insertNetVersion();
@@ -63,5 +61,19 @@ public class SurveyAdminService {
 
     public int getVersionId() {
         return surveyMapper.getVersionId();
+    }
+
+    public int getQuestionIdByQuestionDTO(SurveyQuestionDTO question) {
+        return surveyMapper.getQuestionIdByQuestionDTO(question);
+    }
+
+
+
+    public void deleteAllAnswerByAnswer(SurveyAnswerDTO answer) {
+        surveyMapper.deleteAllAnswerByAnswer(answer);
+    }
+
+    public int insertAnswerBySurveyAnswerDTO(SurveyAnswerDTO answer) {
+        return surveyMapper.insertAnswerBySurveyAnswerDTO(answer);
     }
 }
