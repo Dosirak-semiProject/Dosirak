@@ -77,6 +77,7 @@ public class CartController {
 
                 model.addAttribute("memberId", memberId);
                 productAndQuantity.put("memberId", memberId);
+//                System.out.println("상품 수량 @@@@@@@@@@@@@@@@@@" + productAndQuantity);
 
                 MemberDTO user = cartService.getPaymentByUserId(memberId);
                 model.addAttribute("user", user);
@@ -88,6 +89,7 @@ public class CartController {
         List<CartDTO> cartList = new ArrayList<>();
 
         cartList = cartService.setCartDTO(productAndQuantity, memberId);
+//        System.out.println("@@@@@@@@@@@@@@@@@@" + cartList);
 
         cartList = cartService.divisionProduct(cartList);
 
