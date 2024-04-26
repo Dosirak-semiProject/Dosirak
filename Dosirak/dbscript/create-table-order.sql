@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `ORDER` (
 -- 취소 X: Canceled
 -- 확정 C: Confirmed Purchase
 
+drop table cart;
 CREATE TABLE IF NOT EXISTS CART (
     CARTITEM_COUNT INT NOT NULL COMMENT '장바구니에 담긴 상품의 수량',
     ID VARCHAR(20) NOT NULL COMMENT '사용자 ID',
