@@ -11,22 +11,6 @@ checkAll.addEventListener('click', () => {
     }
 });
 
-// 구매하기 블록 스티키
-window.addEventListener('scroll', () => {
-    const element = document.querySelector('.sticky');
-    const offset = window.pageYOffset;
-
-    if(offset >= 200) {
-        element.style.position = 'fixed';
-        element.style.top = '35px';
-        element.style.right = '110px';
-    } else {
-        element.style.position = 'absolute';
-        element.style.top = '0';
-        element.style.right = '0';
-    }
-});
-
 // 수량 조절 버튼
 const buttons = document.querySelectorAll('.decrease, .increase')
 Array.from(buttons).forEach(function(button) {
@@ -48,13 +32,14 @@ function ButtonClick(e) {
         newValue = value + 1;
         input.value = newValue;
     }
+
     console.log(input.value);
 
     const productCode = button.closest('tr').getAttribute('data-product-code');
 
     axios.post('/user/cart/update-quantity', {
         productCode: productCode,
-        cartitemCount: newValue
+        cartitemCount: newValue,
     }, {
         headers: {
             'Content-Type': 'application/json'
@@ -68,6 +53,22 @@ function ButtonClick(e) {
         })
 }
 
+// 구매하기 블록 스티키
+window.addEventListener('scroll', () => {
+    const element = document.querySelector('.sticky');
+    const offset = window.pageYOffset;
+
+    if(offset >= 200) {
+        element.style.position = 'fixed';
+        element.style.top = '35px';
+        element.style.right = '110px';
+    } else {
+        element.style.position = 'absolute';
+        element.style.top = '0';
+        element.style.right = '0';
+    }
+});
+
 // 이미지 드래그 방지
 document.querySelectorAll('.di_btn img').forEach(function(img) {
     img.addEventListener('dragstart', function() {
@@ -76,12 +77,12 @@ document.querySelectorAll('.di_btn img').forEach(function(img) {
 });
 
 // 장바구니 상품 여부 표시
-document.addEventListener('DOMContentLoaded', () => {
-    const cartItems = document.querySelectorAll('.hidden_block');
-    const cartEmptyMessage = document.querySelector('.bl_TBList__empty');
-
-    if (cartItems.length === 0) {
-        cartEmptyMessage.parentNode.classList.add('hide-empty-row');
-        cartEmptyMessage.classList.add('show_empty_message');
-    }
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     const cartItems = document.querySelectorAll('.hidden_block');
+//     const cartEmptyMessage = document.querySelector('.bl_TBList__empty');
+//
+//     if (cartItems.length === 0) {
+//         cartEmptyMessage.parentNode.classList.add('hide-empty-row');
+//         cartEmptyMessage.classList.add('show_empty_message');
+//     }
+// });

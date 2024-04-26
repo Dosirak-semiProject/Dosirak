@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.*;
@@ -35,23 +36,24 @@ public class MemberController {
     }
 
     @GetMapping("/memberList")
-    public String findMemberList(Model model){
-        List<MemberDTO> memberList = memberService.findAllMember();
+    public String findMemberList(@RequestParam(required = false) String searchCondition,
+                                 @RequestParam(required = false) String searchValue,
+                                 Model model) {
+        List<MemberDTO> memberList;
+
+        if (searchValue != null && !searchValue.isEmpty()) {
+            memberList = memberService.searchMemberForm(searchCondition, searchValue);
+        } else {
+            memberList = memberService.findAllMember();
+        }
+
         model.addAttribute("memberList", memberList);
+        model.addAttribute("searchCondition", searchCondition);
+        model.addAttribute("searchValue", searchValue);
 
         return "/admin/member/memberList";
     }
-    @PostMapping("/memberList")
-    public String memberListSearch(@RequestParam(required = false)String memberSearchCondition, @RequestParam(required = false)String memberSearchValue, Model model){
-        Map<String, String> searchMap = new HashMap<>();
-        searchMap.put("memberSearchCondition", memberSearchCondition);
-        searchMap.put("memberSearchValue", memberSearchValue);
 
-        List<MemberDTO> memberList = memberService.memberListSearch(searchMap);
-        model.addAttribute("memberList", memberList);
-
-        return "/admin/member/memberList";
-    }
     @GetMapping("/memberView")
     public String getMemberView(@RequestParam String id, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -74,6 +76,7 @@ public class MemberController {
 
         return "/admin/member/memberView";
     }
+
     @PostMapping("/modifyMember")
     public String modifyMember(MemberDTO member, RedirectAttributes rttr) throws MemberModifyException {
         if(member.getAgree() == "") member.setAgree(null);
@@ -96,12 +99,24 @@ public class MemberController {
     }
 
     @GetMapping("/managerList")
-    public String findManagerList(Model model){
-        List<ManagerDTO> managerList = memberService.findAllManager();
+    public String findManagerList(@RequestParam(required = false) String searchCondition,
+                                 @RequestParam(required = false) String searchValue,
+                                 Model model) {
+        List<ManagerDTO> managerList;
+
+        if (searchValue != null && !searchValue.isEmpty()) {
+            managerList = memberService.searchManagerForm(searchCondition, searchValue);
+        } else {
+            managerList = memberService.findAllManager();
+        }
+
         model.addAttribute("managerList", managerList);
+        model.addAttribute("searchCondition", searchCondition);
+        model.addAttribute("searchValue", searchValue);
 
         return "/admin/member/managerList";
     }
+
     @GetMapping("/managerView")
     public String getManagerView(@RequestParam String id, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -1,10 +1,12 @@
 package com.ohgiraffers.dosirak.user.product.dao;
 
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
+import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ProductUserMapper {
@@ -12,5 +14,14 @@ public interface ProductUserMapper {
 
     ProductUserDTO viewProduct(int productCode);
 
+    ProductUserDTO productsListViewNomal(int categoryCode);
+
     ProductUserDTO productsListView(int categoryCode);
+
+    ProductUserDTO productsListView3();
+
+
+    List<ProductUserDTO> getProductListBySubCategoryCode(int subCategoryCode);
+
+    int addCart(Map<String, String> productInfo);
 }

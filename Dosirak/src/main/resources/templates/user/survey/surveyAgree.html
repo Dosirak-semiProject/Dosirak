@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../../../static/user/css/survey.css">
-    <link rel="stylesheet" href="../../../../static/user/css/common/base.css">
-    <link rel="stylesheet" href="../../../../static/user/css/common/reset.css">
-    <link rel="stylesheet" href="../../../../static/user/css/common/common.css">
+    <th:block th:replace="/user/common/head.html"></th:block>
+    <link rel="stylesheet" href="/user/css/survey.css">
 </head>
 <body>
 <div class="ly_all bl_all">
+    <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_inner02 ly_midWD">
-        <img src="../../../../static/user/img/main/main03.png"> <!-- DB 이미지 끌어오기 or 이미지 삽입 -->
+        <img src="../../../static/user/img/main/main03.png"> <!-- DB 이미지 끌어오기 or 이미지 삽입 -->
+                <form action="info" method="post">
         <div class="ly_inner01 hp_bordDE hp_br5 hp_margin10 ">
             <ul>
                 <li class="">
@@ -42,10 +39,13 @@
                             </span>
                     </label>
                 </li>
+
             </ul>
         </div>
-        <button type="button" class="el_btnM el_btnPointBack hp_w50 hp_br5 hp_mt30 hp_marginAuto" disabled>설문 시작하기</button>
+        <button type="submit" class="el_btnM el_btnPointBack hp_w50 hp_br5 hp_mt30 hp_marginAuto">설문 시작하기</button>
+        </form>
     </div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
 </body>
 </html>

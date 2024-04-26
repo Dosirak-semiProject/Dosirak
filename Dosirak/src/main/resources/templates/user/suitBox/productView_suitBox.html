@@ -18,6 +18,7 @@
 </head>
 <body>
 <div class="ly_all bl_all">
+    <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_maxWD ly_inner02 bl_pdView">
         <div class="ly_flexC ly_fitemEnd">
             <img class="bl_pdView__img hp_mr40" src="/user/img/main/main01.png" alt=""/>    <!--DB에서 이미지 끌어올것-->
@@ -126,7 +127,7 @@
                     </tbody>
                 </table>
                 <div class="el_btnM hp_w100 hp_mt30 hp_relative">
-                    <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBord el_surveyBtn">설문 참여하기</button>
+                    <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBord el_surveyBtn" th:onclick="|location.href='survey/agree'|">설문 참여하기</button>
                     <div class="bl_suitBox__balloon">영양 상태 설문을 진행하고 <br/>자신의 일일 권장량과 비교해보세요!</div>
                 </div>
             </div>
@@ -292,6 +293,7 @@
             </li>
         </ul>
     </div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
 </body>
 </html>

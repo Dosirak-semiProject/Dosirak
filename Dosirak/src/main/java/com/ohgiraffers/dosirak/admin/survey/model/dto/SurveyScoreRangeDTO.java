@@ -7,12 +7,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class SurveyCategoryRangeDTO {
+public class SurveyScoreRangeDTO {
     private int versionId;
-    private char category;
+    private String category;
     private int range1;
     private int range2;
     private int range3;
     private int range4;
-    private int maxPoint;
 }

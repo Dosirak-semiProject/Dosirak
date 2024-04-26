@@ -33,16 +33,16 @@
         <h2 class="el_lv1Head">전체보기</h2>
         <ul class="bl_pdCategory ly_midWD ly_spaceBetween">
             <li class="bl_pdCategory__cont">
-                <a class="bl_pdCategory__btn" href="/user/product/productLists?category=1" >정성도시락</a>
+                <a class="bl_pdCategory__btn" href="/user/product/productListJungsung?categoryCode=2" >정성도시락</a>
             </li>
             <li class="bl_pdCategory__cont">
-                <a class="bl_pdCategory__btn" href="/user/product/productLists?category=2">건강도시락</a>
+                <a class="bl_pdCategory__btn" href="/user/product/productListHel">건강도시락</a>
             </li>
             <li class="bl_pdCategory__cont">
                 <a class="bl_pdCategory__btn" href="">맞춤도시락</a>
             </li>
             <li class="bl_pdCategory__cont">
-                <a class="bl_pdCategory__btn" href="/user/product/productLists?category=3">간편식</a>
+                <a class="bl_pdCategory__btn" href="/user/product/productListComp">간편식</a>
             </li>
         </ul>
         <form action="/user/product/productView" method="get">
@@ -59,6 +59,7 @@
                     </li>
                 </th:block>
             </ul>
+
         </form>
         <ul class="bl_paging hp_mt70">
             <li><a class="bl_pagingIcon__prev" href=""><p class="WA">이전 페이지로</p></a></li>
@@ -70,7 +71,7 @@
             <li><a class="bl_pagingIcon__next" href=""><p class="WA">다음 페이지로</p></a></li>
         </ul>
     </div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
-<th:block th:replace="/user/common/footer.html"></th:block>
 </body>
 </html>

@@ -118,8 +118,12 @@
         $("input").on("propertychange change keyup paste input", function() {
             $(".el_editBtn").css("display", "block");
         })
+        $("#searchZipCode").click(function(){
+            $(".el_editBtn").css("display", "block");
+        })
         // 주소삭제
         $(".el_deleteBtn").click(function(){
+            $(".el_editBtn").css("display", "block");
             $("#address1").val("");
             $("#address2").val("");
             $("#address3").val("");
@@ -148,7 +152,7 @@
 
 
         let originVal = $("#inputEmail").val();
-        let modifiedVal;
+        let modifiedVal = $("#inputEmail").val();
 
         // 이메일 수정했을 때
         $("#inputEmail").on("propertychange change keyup paste input", function(){
@@ -181,42 +185,6 @@
             }
 
         })
-
-
-
-        // 수정 버튼 클릭시
-        // $(".el_editBtn").click(function(){
-        //     let originVal = $("#inputEmail").val();
-        //     let modifiedVal = "";
-        //
-        //     let newVal = prompt("new value", originVal);
-        //
-        //     if(newVal !== null && newVal !== originVal){
-        //         originVal.val(newVal);
-        //         alert("값 변경");
-        //     }
-        //
-        //     $("#inputEmail").on("propertychange change keyup paste input", function(){
-        //         modifiedVal = $(this).val();
-        //     })
-        //     console.log(originVal);
-        //     console.log(modifiedVal);
-        //
-        //     if(modifiedVal == null && modifiedVal == ""){
-        //         if(originVal != modifiedVal){
-        //             if($("#duplCheck").val() != "pass"){
-        //                 alert("수정한 이메일의 중복확인을 진행해 주세요.");
-        //                 return false;
-        //             }
-        //             if($("#verifyVerificationCode").val() != "pass"){
-        //                 alert("인증코드를 발송하여 인증확인을 진행해 주세요.");
-        //                 return false;
-        //             }
-        //         }
-        //     }
-        //
-        //     alert('수정한 나의정보를 저장하시겠습니까?')
-        // })
 
     })
 </script>
