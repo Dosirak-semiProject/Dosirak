@@ -2,6 +2,7 @@ package com.ohgiraffers.dosirak.user.customer.model.dao;
 
 import com.ohgiraffers.dosirak.user.customer.common.SelectCriteria;
 import com.ohgiraffers.dosirak.user.customer.model.dto.*;
+import com.ohgiraffers.dosirak.user.review.model.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,7 +13,8 @@ public interface UserCustomerMapper {
 
 
     /* ----- 공지사항 ----- */
-    List<UserNoticeDTO> findNoticeList();
+//    List<UserNoticeDTO> findNoticeList();
+    List<UserNoticeDTO> selectNoticeList(SelectCriteria selectCriteria);
     UserNoticeDTO searchNoticeDetail(int noticeCode);
 
 
@@ -55,5 +57,7 @@ public interface UserCustomerMapper {
 
     /* -- 문의 삭제 (이미지 삭제 후 실행) -- */
     void deleteAsk(int askCode);
+
+
 }
 

@@ -5,26 +5,20 @@
 <mapper namespace="com.ohgiraffers.dosirak.user.customer.model.dao.UserCustomerMapper">
 
     <!-- 공지사항 -->
-
-    <select id="findNoticeList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserNoticeDTO">
-        SELECT
-            notice_code,
-            notice_title,
-            DATE_FORMAT(notice_date, '%Y-%m-%d') as notice_date,
-            admin_id
-        FROM
+    <select id="selectNoticeList" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserNoticeDTO">
+        select
+            *
+        from
             notice
-        ORDER BY
+        order by
             notice_code desc
+        LIMIT
+            #{offset}, #{limit}
     </select>
 
     <select id="searchNoticeDetail" resultType="com.ohgiraffers.dosirak.user.customer.model.dto.UserNoticeDTO">
         SELECT
-            notice_code,
-            admin_id,
-            DATE_FORMAT(notice_date, '%Y-%m-%d') as notice_date,
-            notice_title,
-            notice_content
+            *
         FROM
             notice
         WHERE

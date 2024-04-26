@@ -27,8 +27,8 @@
 .bl_sideMenu__cont{line-height:3;font-size:16px;}
 /* paging */
 .bl_paging{display:flex;justify-content:center;}
-.bl_paging a{border:1px solid #dedede;background-color:#fff;display:flex;width:35px;height:35px;justify-content:center;align-items:center;}
-.bl_paging a:hover,.bl_paging .hp_active{background-color:#dedede}
+.bl_paging button{border:1px solid #dedede;background-color:#fff;display:flex;width:35px;height:35px;justify-content:center;align-items:center;}
+.bl_paging button:hover,.bl_paging .hp_active{background-color:#dedede}
 .bl_pagingIcon__prev::after{content:"";display:block;width:100%;height:100%;background:url("/user/img/icon/arrow.png")no-repeat center/20px;transform:rotate(180deg);}
 .bl_pagingIcon__next{background:url("/user/img/icon/arrow.png")no-repeat center/20px #fff;}
 /* 검색 */
