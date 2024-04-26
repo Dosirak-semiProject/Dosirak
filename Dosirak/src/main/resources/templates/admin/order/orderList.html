@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <th:block th:replace="/admin/common/head.html"></th:block>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body class="sb-nav-fixed">
 <th:block th:replace="/admin/common/header.html"></th:block>
@@ -84,5 +85,26 @@
     </div>
 </div>
 <th:block th:replace="/admin/common/foot.html"></th:block>
+<script>
+    const $selector = document.querySelector('.datatable-selector')     // 주문상태 변경 이벤트 감지
+    $selector.addEventListener('change', (e) => {
+        const selectedStatus = e.target.value       // 선택한 이벤트 값 가져오기
+        if (selectedStatus === '주문상태 선택') {     // 주문상태가 === '주문상택 선택' 일 때 리턴(무시)
+            return;
+        }
+        console.log(selectedStatus);
+
+        axios.post("/admin/order-list-selected", {
+            status: selectedStatus
+        })
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.log(err.error)
+            })
+
+    })
+</script>
 </body>
 </html>

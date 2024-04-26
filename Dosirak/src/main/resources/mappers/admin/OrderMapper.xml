@@ -30,8 +30,8 @@
         <result property="detailCode" column="detail_code"/>
         <result property="detailStatus" column="detail_status"/>
         <result property="detailItemCount" column="detailitem_count"/>
-        <result property="detailItemProductCode" column="detailitem_product_code"/>
-        <result property="detailItemSuitboxCode" column="detailitem_suitbox_code"/>
+        <result property="detailItemProductCode" column="product_code"/>
+        <result property="detailItemSuitboxCode" column="suitbox_code"/>
         <association property="product" resultMap="productResultMap"/>
     </resultMap>
 
@@ -149,7 +149,7 @@
         JOIN delivery d ON o.order_code = d.order_code
         JOIN user u ON o.ID = u.ID
         JOIN pay p ON o.order_code = p.order_code
-        JOIN product pd ON dt.detailitem_product_code = pd.product_code
+        JOIN tbl_product pd ON dt.product_code = pd.product_code
         WHERE
         dt.order_code = #{ orderCode }
     </select>

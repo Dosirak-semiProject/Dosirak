@@ -1,9 +1,11 @@
 USE DOSIRAK;
-DROP TABLE IF EXISTS ADMIN CASCADE;
+DROP TABLE IF EXISTS suit_box CASCADE;
+DROP TABLE IF EXISTS menu CASCADE;
+
 
 CREATE TABLE IF NOT EXISTS MENU(
-                                   menu_code INT PRIMARY KEY AUTO_INCREMENT,
-                                   menu_name VARCHAR(20) NOT NULL,
+    menu_code INT PRIMARY KEY AUTO_INCREMENT,
+    menu_name VARCHAR(20) NOT NULL,
     menu_category ENUM('rice','main','side','kimchi') NOT NULL,
     menu_extracash INT NOT NULL,
     menu_status ENUM('Y', 'S', 'N') NOT NULL,

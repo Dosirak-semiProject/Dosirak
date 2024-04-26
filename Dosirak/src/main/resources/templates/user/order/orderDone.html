@@ -16,8 +16,8 @@
             <div class="hp_alignC hp_fs16">
                 고객님의 주문이 정상적으로 완료되었습니다.
                 <ul class="" >
-                    <li class="hp_mt30">주문 번호 : <span class="hp_fw700 hp_pointColor" th:test="${ orderDTO.get(0).orderCode }" ></span></li>
-                    <li class="hp_fs13 hp_7Color hp_mt5">주문일 : <span th:text="${ orderDTO.get(0).pay.payDate }"></span></li>
+                    <li class="hp_mt30">주문 번호 : <span class="hp_fw700 hp_pointColor" th:text="${ orderCode }" ></span></li>
+                    <li class="hp_fs13 hp_7Color hp_mt5">주문일 : <span th:text="${ payDTO.payDate }"></span></li>
                 </ul>
             </div>
             <div class="ly_flex hp_mt50">

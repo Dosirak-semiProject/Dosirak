@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>장바구니</title>
     <th:block th:replace="/user/common/head.html"></th:block>
-    <link rel="stylesheet" href="/user/css/cart.css" />
+    <link rel="stylesheet" href="/user/css/cart.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <style>
-        .none{width:100px;border:none;min-height:auto;}
-        .none:focus{background:none!important;}
-        .none:focus-visible{outline:none;}
+        .none {
+            width: 100px;
+            border: none;
+            min-height: auto;
+        }
+
+        .none:focus {
+            background: none !important;
+        }
+
+        .none:focus-visible {
+            outline: none;
+        }
     </style>
     <script>
-        $(function(){
+        $(function () {
             // 첫 화면 로드시 실행
             updateProductSum();
             updateTotalAmountAndCharge();
 
             // 수량 변경 할때마다
-            $('.decrease, .increase').click(function() {
+            $('.decrease, .increase').click(function () {
                 updateProductSum();
                 updateTotalAmountAndCharge();
             });
 
             // 총 상품금액 계산 함수
+
             function updateProductSum() {
                 let productSum = 0;
-                $('.js_productRow').each(function() {
+                $('.js_productRow').each(function () {
                     let price = parseInt($(this).find('.js_productPrice').val());
                     let quantity = parseInt($(this).find('.js_productQuantity').val());
                     let sum = price * quantity;
@@ -38,10 +50,26 @@
                 $('.js_productSum').val(productSum);
             }
 
+            // function isChecked() {
+            //     // 체크박스 전체 선택/해제
+            //     const checkAll = document.querySelector('.checkAll');
+            //     const checkboxes = document.querySelectorAll('.checkOne');
+            //
+            //     checkAll.addEventListener('click', () => {
+            //         const isChecked = checkAll.checked;
+            //
+            //         for (const checkbox of checkboxes) {
+            //             checkbox.checked = isChecked;
+            //         }
+            //     });
+            // }
+
             // 주문 예상금액 계산 함수
             function updateTotalAmountAndCharge() {
                 let totalAmount = 0;
-                $('.js_productSum').each(function() { totalAmount += parseInt($(this).val()); });
+                $('.js_productSum').each(function () {
+                    totalAmount += parseInt($(this).val());
+                });
 
                 let charge = totalAmount > 30000 ? 0 : 3000;
 
@@ -50,98 +78,189 @@
             }
 
             // 선택 삭제
-            $('.deleteBtn').click(function(){
-                $('.bl_checkBx__input:checked').each(function (){
-                    $(this).closest('.js_productRow').remove();
-                })
-            })
+            $('.deleteBtn').click(function () {
+                $('.bl_checkBx__input:checked').each(function () {
+                    const button = $(this).closest('.js_productRow');
+                    const productCode = button.data('product-code');
+                    const suitboxCode = button.data('suitbox-code');
 
+                    // 행 삭제
+                    $(button).remove();
+
+                    if (productCode != null) {
+                        console.log('도시락 상품' + productCode)
+                        axios.post('/user/cart/delete-product', {
+                            productCode: productCode
+                        }, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then(res => {
+                                console.log('성공:', res.status.message);
+                            })
+                            .catch(err => {
+                                console.log('오류:', err.response.message);
+                            });
+                    } else if (suitboxCode != null) {
+                        console.log('맞춤 도시락 상품' + suitboxCode)
+                        axios.post('/user/cart/delete-suitbox', {
+                            suitboxCode: suitboxCode
+                        }, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then(res => {
+                                console.log('성공:', res.status.message);
+                            })
+                            .catch(err => {
+                                console.log('오류:', err.response.message);
+                            });
+                    }
+                });
+                updateProductSum();
+                updateTotalAmountAndCharge();
+            })
         })
     </script>
 </head>
+
 <body>
 <div class="ly_all bl_all">
     <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_maxWD ly_inner02">
         <h2 class="el_lv1Head">장바구니</h2>
         <div class="flex_box hp_relative hp_mt50">
-            <div class="bl_cartList">
-                <table class="bl_TBList">
-                    <caption class="WA">검색</caption>
-                    <colgroup>
-                        <col style="width:150px" />
-                        <col style="width:*" />
-                        <col style="width:150px" />
-                        <col style="width:150px" />
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th scope="col">
-                            <label class="bl_checkBx hp_w100">
-                                <input type="checkbox" class="bl_checkBx__input checkAll">
-                                <span class="bl_checkBx__check"></span>
-                            </label>
-                        </th>
-                        <th scope="col">상품명</th>
-                        <th scope="col">상품가격</th>
-                        <th scope="col">상품개수</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr class="hidden_block js_productRow" th:data-product-code="${ cart.productCode }" th:if="cart != null" th:each="cart : ${ cartDTO }">
-                        <td>
-                            <label class="bl_checkBx hp_w100">
-                                <input type="checkbox" class="bl_checkBx__input checkOne">
-                                <span class="bl_checkBx__check"></span>
-                            </label>
-                        </td>
-                        <td class="bl_TBList__ttl">
-                            <a class="ly_flexC ly_fitemC" href="">
-                                <img class="bl_TBList__orderImg" src="/user/img/main/main01.png" alt="food" />
-                                <p class="hp_ellipsis hp_ellipsis3" th:text="${ cart.productDTO.productName }"></p>
-                            </a>
-                        </td>
-                        <td class="price">
-                            <input class="none js_productPrice hp_alignC" type="number" readonly th:value="${cart.productDTO.productPrice}" />
-                        </td>
-                        <td>
-                            <div class="di_btn">
-                                <div id="decrease" class="decrease"><img src="/user/img/icon/minus.png" alt="minus-btn"></div>
-                                <input type="text" id="cartitemCount" class="quantity js_productQuantity" th:value="${ cart.cartitemCount }">
-                                <div id="increase" class="increase"><img src="/user/img/icon/plus.png" alt="plus-btn"></div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="bl_TBList__empty" colspan="4" th:if="cartDTO == null">주문내역이 없습니다.</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="delete_btn">
-                    <button type="button" class="deleteBtn">선택 삭제</button>
+            <form action="/user/payment" method="post">
+                <div class="bl_cartList">
+                    <table class="bl_TBList">
+                        <caption class="WA">검색</caption>
+                        <colgroup>
+                            <col style="width:150px"/>
+                            <col style="width:*"/>
+                            <col style="width:150px"/>
+                            <col style="width:150px"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                <label class="bl_checkBx hp_w100">
+                                    <input type="checkbox" class="bl_checkBx__input checkAll">
+                                    <span class="bl_checkBx__check"></span>
+                                </label>
+                            </th>
+                            <th scope="col" colspan="2" style="padding-right: 80px">상품명</th>
+                            <th scope="col">상품가격</th>
+                            <th scope="col">상품개수</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <span th:each="cart : ${ cartDTO }">
+                                    <span th:if="${cartDTO.size() != 0}">
+                                        <span th:if="${cart.productCode != 0}">
+                                            <tr class="hidden_block js_productRow productRow" th:id="|p${cart.productCode}|"
+                                                th:data-product-code="${cart.productCode}">
+                                        </span>
+                                        <span th:if="${cart.suitbox != null}">
+                                            <tr class="hidden_block js_productRow suitboxRow"
+                                                th:id="|s${cart.suitbox.suitboxCode}|"
+                                                th:data-suitbox-code="${ cart.suitbox.suitboxCode }">
+                                        </span>
+                                        <td>
+                                            <input th:if="${cart.productCode != 0}" type="hidden">
+                                            <input th:if="${cart.suitbox != null}" type="hidden">
+                                            <label class="bl_checkBx hp_w100">
+                                                <input th:if="${cart.productCode != 0}" type="checkbox"
+                                                       class="bl_checkBx__input checkOne"
+                                                       th:value="${cart.productCode}"
+                                                       th:name="|product${cart.productCode}|">
+                                                <input th:if="${cart.suitbox != null}" type="checkbox"
+                                                       class="bl_checkBx__input checkOne"
+                                                       th:value="${cart.suitbox.suitboxCode}"
+                                                       th:name="|suitbox${cart.suitbox.suitboxCode}|">
+                                                <span class="bl_checkBx__check"></span>
+                                            </label>
+                                        </td>
+                                        <td class="bl_TBList__ttl">
+                                            <a class="ly_flexC ly_fitemC" href="">
+                                                <img th:if="${cart.productCode != 0}" class="bl_TBList__orderImg"
+                                                     th:src="${cart.imgUrl}" alt="food"/>
+                                                <img th:if="${cart.suitbox != null}" class="bl_TBList__orderImg"
+                                                     src="/product-Img/product01.jpg" alt="food"/>
+                                                <p th:if="${cart.productCode != 0}" class="hp_ellipsis hp_ellipsis3"
+                                                   th:text="${ cart.productName }"></p>
+                                                <p th:if="${cart.suitbox != null}" class="hp_ellipsis hp_ellipsis3">맞춤 도시락</p>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <span th:if="${cart.suitbox != null}" style="color: gray;">
+                                                <p th:text="|${cart.detailSuitBox.rice.getMenuName()}/${cart.detailSuitBox.main.getMenuName()}|"></p>
+                                                <p th:text="|${cart.detailSuitBox.side.getMenuName()}/${cart.detailSuitBox.kimchi.getMenuName()}|"></p>
+                                            </span>
+                                        </td>
+
+                                        <td class="price">
+                                            <input th:if="${cart.productCode != 0}"
+                                                   class="none js_productPrice hp_alignC" type="number"
+                                                   readonly th:value="${cart.productPrice}"/>
+                                            <input th:if="${cart.suitbox != null}"
+                                                   class="none js_productPrice hp_alignC" type="number"
+                                                   readonly
+                                                   th:value="${cart.detailSuitBox.rice.getMenuExtracash() +
+                                                        cart.detailSuitBox.main.getMenuExtracash() + cart.detailSuitBox.side.getMenuExtracash() + cart.detailSuitBox.kimchi.getMenuExtracash() + 7000}"/>
+                                        </td>
+                                        <td>
+                                            <div class="di_btn">
+                                                <div id="decrease" class="decrease"><img src="/user/img/icon/minus.png"
+                                                                                         alt="minus-btn"></div>
+                                                <input type="text" id="cartitemCount"
+                                                       class="quantity js_productQuantity"
+                                                       th:value="${ cart.cartitemCount }">
+                                                <div id="increase" class="increase"><img src="/user/img/icon/plus.png"
+                                                                                         alt="plus-btn"></div>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                    </span>
+                                </span>
+
+                        <tr>
+                            <td class="bl_TBList__empty" colspan="5" th:if="${cartDTO.size() == 0}">주문내역이 없습니다.
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="delete_btn">
+                        <button type="button" class="deleteBtn">선택 삭제</button>
+                    </div>
                 </div>
-            </div>
-            <div class="sticky bl_cartBox hp_bordDE hp_padding30">
-                <ul class="bl_orderCancel">
-                    <li class="ly_spaceBetween ly_fitemC">
-                        <p class="bl_orderCancel__ttl">총 상품금액</p>
-                        <p class="bl_orderCancel__price"><input class="none js_productSum hp_alignR" type="number" value="0" readonly/> 원</p>
-                    </li>
-                    <li class="ly_spaceBetween ly_fitemC">
-                        <p class="bl_orderCancel__ttl">배송비</p>
-                        <p class="bl_orderCancel__price"><input class="none js_charge hp_alignR" type="number" value="0" readonly/> 원</p>
-                    </li>
-                    <li class="ly_spaceBetween ly_fitemC bl_orderCancel__total hp_bordDashTDE2 hp_pt30 hp_mt30">
-                        <p class="bl_orderCancel__ttl hp_fs18 hp_fw700 hp_0Color">주문 예상금액</p>
-                        <p class="bl_orderCancel__price hp_fs18 hp_fw700 hp_pointColor"><input class="none js_total hp_alignR" type="number" value="0" readonly/> 원</p>
-                    </li>
-                </ul>
-                <a class="el_btnM hp_br5 el_btnPointBack hp_w100 hp_mt30" th:href="@{'/user/payment?id='}">구매하기</a>
-            </div>
+                <div class="sticky bl_cartBox hp_bordDE hp_padding30">
+                    <ul class="bl_orderCancel">
+                        <li class="ly_spaceBetween ly_fitemC">
+                            <p class="bl_orderCancel__ttl">총 상품금액</p>
+                            <p class="bl_orderCancel__price"><input class="none js_productSum hp_alignR"
+                                                                    type="number" value="0" readonly/> 원</p>
+                        </li>
+                        <li class="ly_spaceBetween ly_fitemC">
+                            <p class="bl_orderCancel__ttl">배송비</p>
+                            <p class="bl_orderCancel__price"><input class="none js_charge hp_alignR" type="number"
+                                                                    value="0" readonly/> 원</p>
+                        </li>
+                        <li class="ly_spaceBetween ly_fitemC bl_orderCancel__total hp_bordDashTDE2 hp_pt30 hp_mt30">
+                            <p class="bl_orderCancel__ttl hp_fs18 hp_fw700 hp_0Color">주문 예상금액</p>
+                            <p class="bl_orderCancel__price hp_fs18 hp_fw700 hp_pointColor"><input
+                                    class="none js_total hp_alignR hp_fs18 hp_fw700 hp_pointColor" type="number" value="0" readonly/> 원</p>
+                        </li>
+                    </ul>
+                    <button class="el_btnM hp_br5 el_btnPointBack hp_w100 hp_mt30" type="submit">구매하기</button>
+            </form>
         </div>
     </div>
-    <th:block th:replace="/user/common/footer.html"></th:block>
+</div>
+<th:block th:replace="/user/common/footer.html"></th:block>
 </div>
 <script src="/user/js/cart.js"></script>
 </body>
+
 </html>
