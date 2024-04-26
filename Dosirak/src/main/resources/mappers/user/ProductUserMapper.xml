@@ -65,14 +65,14 @@
         WHERE PRODUCT_CODE = #{productCode}
     </select>
 
-<!--    <select id="searchImageForProduct" resultType="com.ohgiraffers.dosirak.user.product.dto.ProductImageDTO">-->
-<!--        SELECT-->
-<!--            *-->
-<!--        FROM-->
-<!--            product_img-->
-<!--        WHERE-->
-<!--        PRODUCT_CODE = #{productCode}-->
-<!--    </select>-->
+    <select id="searchImageForProduct" resultType="com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO">
+        SELECT
+            SAVED_NAME
+        FROM
+            product_img
+        WHERE
+        PRODUCT_CODE = #{productCode}
+    </select>
 
 
 

@@ -64,7 +64,34 @@
     <delete id="deleteProductById" >
         DELETE FROM tbl_product WHERE PRODUCT_CODE = #{productCode}
     </delete>
+    <!-- 상태와 이름으로 제품 검색 -->
+    <select id="findByProductStatusAndProductNameContaining" resultType="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
+        SELECT * FROM tbl_product
+        WHERE PRODUCT_STATUS = #{status}
+        AND productName LIKE CONCAT('%', #{name}, '%')
+    </select>
 
+    <!-- 상태로 제품 검색 -->
+    <select id="findByProductStatus" resultType="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
+        SELECT * FROM tbl_product
+        WHERE PRODUCT_STATUS = #{status}
+    </select>
+
+    <!-- 이름으로 제품 검색 -->
+    <select id="findByProductNameContaining" resultType="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
+        SELECT * FROM tbl_product
+        WHERE PRODUCT_NAME LIKE CONCAT('%', #{name}, '%')
+    </select>
+    <select id="findByCriteria" resultType="com.ohgiraffers.dosirak.admin.product.dto.productDTO">
+        SELECT *
+        FROM tbl_product
+        WHERE
+        (#{productName} IS NULL OR PRODUCT_NAME LIKE CONCAT('%', #{productName}, '%'))
+        AND
+        (#{productCategoryCode} IS NULL OR PRODUCT_CATEGORY_CODE = #{productCategoryCode})
+        AND
+        (#{productStatus} IS NULL OR PRODUCT_STATUS = #{productStatus})
+    </select>
 
 
 </mapper>

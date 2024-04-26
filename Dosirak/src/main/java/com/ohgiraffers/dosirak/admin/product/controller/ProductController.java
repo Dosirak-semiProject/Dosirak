@@ -14,6 +14,7 @@ import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -171,7 +173,7 @@ public class ProductController {
 
     @PostMapping("/productUpdate")
     public String productUpdate(productDTO product, int productCode,
-                                @RequestParam List<MultipartFile> productImage,
+                                @RequestParam List<MultipartFile> attachImage,
                                 Model model) throws ProductUpdateException {
         productService.productUpdate(product);
 
@@ -189,11 +191,11 @@ public class ProductController {
         List<ProductImageDTO> imageList = new ArrayList<>();
 
         try {
-            for (int i = 0; i < productImage.size(); i++) {
+            for (int i = 0; i < attachImage.size(); i++) {
                 /* 첨부파일이 실제로 존재하는 경우 로직 수행 */
-                if (productImage.get(i).getSize() > 0) {
-                    System.out.println(productImage.get(i));
-                    String originalFileName = productImage.get(i).getOriginalFilename();
+                if (attachImage.get(i).getSize() > 0) {
+                    System.out.println(attachImage.get(i));
+                    String originalFileName = attachImage.get(i).getOriginalFilename();
                     log.info("originalFileName : {}", originalFileName);
 
                     String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
@@ -201,7 +203,7 @@ public class ProductController {
                     log.info("savedFileName : {}", saveFileName);
 
                     /* 서버의 설정 디렉토리에 파일 저장하기 */
-                    productImage.get(i).transferTo(new File(fileUploadDir + "/" + saveFileName));
+                    attachImage.get(i).transferTo(new File(fileUploadDir + "/" + saveFileName));
 
                     /* DB에 저장할 파일의 정보 처리 */
                     ProductImageDTO fileInfo = new ProductImageDTO();
@@ -238,6 +240,27 @@ public class ProductController {
         productService.deleteProductById(productCode);
         return "redirect:/admin/product/productList";
     }
+    @GetMapping("/admin/product/search")
+    public String searchProductsView(Model model,
+                                     @RequestParam(required = false, defaultValue = "") String productName,
+                                     @RequestParam(required = false, defaultValue = "0") String productCategoryCodeStr,
+                                     @RequestParam(required = false, defaultValue = "") String productStatus) {
+        int productCategoryCode;
+        try {
+            productCategoryCode = Integer.parseInt(productCategoryCodeStr);
+        } catch (NumberFormatException e) {
+            // 잘못된 값이 들어온 경우 기본값으로 설정하거나 예외 처리
+            productCategoryCode = 0;
+        }
+
+        List<productDTO> products = productService.searchProducts(productName, productCategoryCode, productStatus);
+        model.addAttribute("products", products);
+
+        return "admin/product/productList";
+    }
+
+
+
 
 
 }
