@@ -32,6 +32,8 @@
         <result property="productPrice" column="product_price"/>
         <result property="firstImageName" column="FIRST_IMAGE_NAME"/>
         <result property="firstImagePath" column="FIRST_IMAGE_PATH"/>
+        <result property="name" column="NAME"/>
+        <result property="phone" column="PHONE"/>
     </resultMap>
 
     <select id="orderCall" resultMap="productOrder">
@@ -40,6 +42,8 @@
     </select>
     <select id="findOrderHistoryByUserId" resultMap="orderHistoryResultMap">
         SELECT
+        u.NAME,
+        u.PHONE,
         o.ORDER_CODE,
         o.ORDER_STATUS,
         o.ORDER_RECIPIENT,
@@ -77,6 +81,7 @@
         JOIN PAY p ON o.ORDER_CODE = p.ORDER_CODE
         JOIN DELIVERY d ON o.ORDER_CODE = d.ORDER_CODE
         JOIN DETAIL dt ON o.ORDER_CODE = dt.ORDER_CODE
+        JOIN USER U ON u.ID = o.ID
         LEFT JOIN tbl_product tp ON dt.DETAILITEM_PRODUCT_CODE = tp.PRODUCT_CODE
         WHERE
         o.ID = #{userId}

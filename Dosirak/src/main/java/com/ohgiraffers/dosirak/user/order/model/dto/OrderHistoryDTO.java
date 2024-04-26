@@ -29,11 +29,13 @@ public class OrderHistoryDTO {
     private int productPrice;
     private String firstImageName;
     private String firstImagePath;
+    private String name;
+    private String phone;
 
     public OrderHistoryDTO() {
     }
 
-    public OrderHistoryDTO(int orderCode, String orderStatus, String orderRecipient, String orderContact, String orderAddress1, String orderAddress2, String orderAddress3, int payPrice, Date payDate, String payStatus, String payMethod, int deliveryCode, String deliveryStatus, int detailCode, String detailStatus, int detailItemCount, String productName, int productPrice, String firstImageName, String firstImagePath) {
+    public OrderHistoryDTO(int orderCode, String orderStatus, String orderRecipient, String orderContact, String orderAddress1, String orderAddress2, String orderAddress3, int payPrice, Date payDate, String payStatus, String payMethod, int deliveryCode, String deliveryStatus, int detailCode, String detailStatus, int detailItemCount, String productName, int productPrice, String firstImageName, String firstImagePath, String name, String phone) {
         this.orderCode = orderCode;
         this.orderStatus = orderStatus;
         this.orderRecipient = orderRecipient;
@@ -54,6 +56,8 @@ public class OrderHistoryDTO {
         this.productPrice = productPrice;
         this.firstImageName = firstImageName;
         this.firstImagePath = firstImagePath;
+        this.name = name;
+        this.phone = phone;
     }
 }
 

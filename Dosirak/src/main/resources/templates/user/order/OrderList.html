@@ -101,16 +101,16 @@
                     <tbody>
                     <tr>
                         <td th:each="order : ${orderHistory}" th:text="${order.payDate}"></td>
-                        <td class="bl_TBList__ttl" th:each="order : ${orderHistory}">
+                        <td class="bl_TBList__ttl"   th:each="order : ${orderHistory}">
                             <a class="ly_flexC ly_fitemC" href="">
-                                <img class="bl_TBList__orderImg" th:src="@{/productUpload/original/{fileName}(fileName=${order.firstImageName})}"
+                                <img class="bl_TBList__orderImg" th:each="order : ${orderHistory}" th:src="@{/productUpload/original/{fileName}(fileName=${order.firstImageName})}"
                                      alt=""/>
-                                <p class="hp_ellipsis hp_ellipsis3" th:text="${order.productName}"></p>
+                                <p class="hp_ellipsis hp_ellipsis3" th:each="order : ${orderHistory}" th:text="${order.productName}"></p>
                             </a>
                         </td>
                         <td th:each="order : ${orderHistory}" th:text="${order.deliveryStatus}"></td>
                         <td>
-                            <button type="button" class="el_btnS hp_br5 el_btnPointBord" th:if="${order.productName != null}">등록하기</button>
+                            <button type="button" class="el_btnS hp_br5 el_btnPointBord" th:each="order : ${orderHistory}" th:if="${order != null and order.productName != null}">등록하기</button>
                         </td>
                     </tr>
                     <tr>

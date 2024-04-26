@@ -51,4 +51,28 @@ public class OrderListController {
         return "user/order/OrderList";
 
         }
+    @GetMapping("/OrderView")
+    public String getOrderView(@RequestParam Map<String, String> productInfo, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String managerAuthor="";
+        String userId="";
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                managerAuthor = login.getAuthority();
+                userId = login.getId();
+                System.out.println(userId);
+            }
+        }
+        productInfo.put("userId", userId);
+        System.out.println(productInfo);
+
+        List<OrderHistoryDTO> orderHistory = orderUserService.findOrderHistoryByUserId(userId);
+        model.addAttribute("orderHistory", orderHistory);
+        return "user/order/OrderView";
+
+        }
 }
