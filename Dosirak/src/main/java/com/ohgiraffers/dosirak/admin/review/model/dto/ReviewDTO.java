@@ -13,13 +13,21 @@ import java.util.List;
 public class ReviewDTO {
     private int reviewCode;
     private String reviewContent;
-    private String reviewRecommend;
     private String userId;
-    private LocalDateTime reviewEditDate;
+    private String  reviewEditDate;
     private String reviewDelete;
     private int detailCode;
-    private LocalDateTime reviewDate;
-    private AdminDTO adminId;
+    private String reviewDate;
+    String reviewTitle;
+
+    String productName;
+    String answerContent;
+    String answerDate;
+    int answerCode;
+    String adminId;
+    boolean answerStatus;
+
+
 
     public ReviewDTO() {
     }
