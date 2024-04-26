@@ -17,6 +17,7 @@
                         <input style="display: none" th:value="${infoResult.surveyHeight}" th:name="surveyHeight">
                         <input style="display: none" th:value="${infoResult.surveyWeight}" th:name="surveyWeight">
                         <input style="display: none" th:value="${infoResult.surveyBmi}" th:name="surveyBmi">
+                        <input style="display: none" th:value="${infoResult.surveyDiet}" th:name="surveyDiet">
                         <input style="display: none" th:value="${infoResult.surveyDiabetes}" th:name="surveyDiabetes">
                         <input style="display: none" th:value="${infoResult.surveyCancer}" th:name="surveyCancer">
                         <input style="display: none" th:value="${infoResult.surveyKidney}" th:name="surveyKidney">
@@ -35,7 +36,7 @@
                                     <table class="selectTable">
                                     <tr th:each="answer: ${question.answerList}">
                                         <td><input type="radio"
-                                                   th:name="|${question.questionCategory}'score'${question.questionId}|"
+                                                   th:name="|${question.questionCategory}score${question.questionId}|"
                                                    th:value="${answer.answerValue}"
                                                    th:id="${answer.answerId}">
                                             <label th:text="${answer.answerText}" th:for="${answer.answerId}"></label>

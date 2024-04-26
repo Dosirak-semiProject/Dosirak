@@ -16,7 +16,10 @@ public class AnswerDTO {
     private String answerContent;
     private Date answerDate;
     private String adminId;
-    private int answerCategory;
-    private AskDTO askDTO; //askCode
+    private int askCategoryCode;
+    private int askCode; //askCode
+
+    private AskCategoryDTO askCategoryDTO;
+    private AskDTO askDTO;
 
 }

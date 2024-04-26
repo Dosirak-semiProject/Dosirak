@@ -48,14 +48,14 @@
                             </div>
                             <div class="text-end">
                                 <label>
-                                    <select class="datatable-selector">
+                                    <select class="datatable-selector" id="search-Answer">
                                         <option>답변상태 선택</option>
                                         <option>미답변</option>
                                         <option>답변</option>
                                     </select>
                                 </label>
                                 <label>
-                                    <select class="datatable-selector">
+                                    <select class="datatable-selector" id="search-Category">
                                         <option>문의분류 선택</option>
                                         <option>회원</option>
                                         <option>주문/결제</option>
@@ -102,13 +102,13 @@
                             <tbody>
                             <tr th:each="ask : ${ askList }">
                                 <td th:text="${ ask.askCode }"></td>
-                                <td th:text="${ ask.askCategoryCode.askCategoryName }"></td>
+                                <td th:text="${ ask.askCategoryDTO.askCategoryName }"></td>
                                 <td><a th:href="|askDetail?askCode=${ ask.askCode }|" th:text="${ ask.askTitle }"></a></td>
                                 <td th:text="${ ask.askDate }"></td>
                                 <td th:text="${ ask.userId }"></td>
-                                <td th:text="${ ask.askDate }"></td>  <!-- 추후 수정 -->
-                                <td th:text="${ ask.askDelete }"></td>
-                                <td>수정 중</td>
+                                <td th:text="${ ask.askDate }"></td>
+                                <td th:text="${ ask.askDelete == true ? 'Y' : 'N' }"></td>
+                                <td th:text="${ ask.answerDTO.answerStatus == true ? '답변완료' : '미답변' }"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -123,5 +123,105 @@
 <script src="/js/scripts.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
 <script src="/js/datatables-simple-demo.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', event => {
+        // 데이터 테이블 초기화
+        const datatablesSimple = document.getElementById('datatablesSimple');
+        let dataTable;
+        if (datatablesSimple) {
+            // 검색 기능을 활성화하여 테이블을 초기화합니다.
+            dataTable = new simpleDatatables.DataTable(datatablesSimple, {
+                searchable: true,
+            });
+        }
+
+        // 검색 입력 필드, 돋보기 버튼, 카테고리 설정
+        const searchInput = document.querySelector('.form-control');
+        const searchButton = document.getElementById('btnNavbarSearch');
+        const searchCondition = document.getElementById('search-Category');
+        const searchStatus = document.getElementById('search-Answer');
+
+        // 검색 입력 필드에서 엔터 키 이벤트를 감지합니다.
+        if (searchInput) {
+            searchInput.addEventListener('keydown', function(event) {
+                // 엔터 키를 누르면
+                if (event.key === 'Enter') {
+                    // 기본 동작(폼 제출)을 막습니다.
+                    event.preventDefault();
+
+                    // 입력된 검색어를 가져와 데이터 테이블에 적용합니다.
+                    const searchValue = searchInput.value;
+                    const categoryValue = searchCondition.value;
+
+                    if (dataTable && (searchValue || categoryValue === '전체')) {
+                        dataTable.search(searchValue);
+                    } else if (dataTable && categoryValue !== '전체') {
+                        dataTable.search(categoryValue);
+                    }
+                }
+            });
+        }
+
+        // 돋보기 버튼 클릭 이벤트를 추가합니다.
+        if (searchButton) {
+            searchButton.addEventListener('click', function() {
+                // 입력된 검색어와 선택된 카테고리를 가져와 데이터 테이블에 적용합니다.
+                const searchValue = searchInput.value;
+                const categoryValue = searchCondition.value;
+
+                if (dataTable && (searchValue || categoryValue === '전체')) {
+                    dataTable.search(searchValue);
+                } else if (dataTable && categoryValue !== '전체') {
+                    dataTable.search(categoryValue);
+                }
+            });
+        }
+
+        // 답변 선택 이벤트를 추가합니다.
+        if (searchStatus) {
+            searchStatus.addEventListener('change', function() {
+                // 카테고리가 선택된 후, 검색어가 입력되어 있다면 검색어를 가져와 데이터 테이블에 적용합니다.
+                const searchValue = searchInput.value;
+                const statusValue = searchStatus.value;
+                const categoryValue = searchCondition.value;
+
+                if (dataTable) {
+                    if (searchValue) {
+                        dataTable.search(searchValue).draw();
+                    } else {
+                        // 두가지가 모두 해당되는 행을 검색
+                        if (statusValue && categoryValue ) {
+                            dataTable.column(7).search(statusValue ).draw();
+                            dataTable.column(1).search(categoryValue ).draw();
+                        } else {
+                            // 다른 경우에는 각각의 조건에 맞게 검색을 수행합니다.
+                            if (statusValue !== '전체') {
+                                dataTable.column(7).search(statusValue).draw();
+                            }
+                            if (categoryValue !== '문의분류 선택') {
+                                dataTable.column(1).search(categoryValue).draw();
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // // 카테고리 선택 이벤트를 추가합니다.
+        // if (searchCondition) {
+        //     searchCondition.addEventListener('change', function() {
+        //         // 카테고리가 선택된 후, 검색어가 입력되어 있다면 검색어를 가져와 데이터 테이블에 적용합니다.
+        //         const searchValue = searchInput.value;
+        //         const categoryValue = searchCondition.value;
+        //
+        //         if (dataTable && (searchValue || categoryValue === '전체')) {
+        //             dataTable.search(searchValue);
+        //         } else if (dataTable && categoryValue !== '전체') {
+        //             dataTable.search(categoryValue);
+        //         }
+        //     });
+        // }
+    });
+</script>
 </body>
 </html>

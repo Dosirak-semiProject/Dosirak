@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
-    @GetMapping("/login")
+    @GetMapping(value = {"/", "/login"})
     public String login(){return "login";}
 
     @GetMapping("/loginFail")

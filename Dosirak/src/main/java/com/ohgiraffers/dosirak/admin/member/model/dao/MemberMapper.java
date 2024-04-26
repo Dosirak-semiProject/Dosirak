@@ -32,5 +32,7 @@ public interface MemberMapper {
 
     List<ManagerDTO> searchManager(String condition, String value);
 
-    List<MemberDTO> searchMember(String condition, String value);
+    List<MemberDTO> searchMemberForm(String condition, String value);
+
+    List<ManagerDTO> searchManagerForm(String condition, String value);
 }

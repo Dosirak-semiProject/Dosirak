@@ -24,5 +24,23 @@
         LEFT JOIN SURVEY_QUESTION question ON version.version_id = question.version_id
         LEFT JOIN SURVEY_ANSWER answer ON question.question_id = answer.question_id
         WHERE version.STATUS = 1
+        ORDER BY question.question_order
     </select>
+    <select id="getCurrentRange">
+        SELECT R.version_id, R.category, R.range1,
+        R.range2, R.range3, R.range4
+        FROM SURVEY_RANGE R
+        JOIN SURVEY_VERSION V ON R.version_id = V.version_id
+        WHERE V.status = 1
+    </select>
+    <insert id="setResult">
+        INSERT INTO SURVEY_RESULT
+        (user_id, survey_height, survey_weight, survey_bmi, survey_diet,
+        survey_exercise_score, survey_carbo_score, survey_protein_score, survey_fat_score,
+        survey_diabetes, survey_cancer, survey_kidney, survey_blood, survey_date)
+        VALUES
+        (#{userId}, #{surveyHeight}, #{surveyWeight}, #{surveyBmi}, #{surveyDiet},
+        #{surveyExerciseScore}, #{surveyCarboScore}, #{surveyProteinScore}, #{surveyFatScore},
+        #{surveyDiabetes}, #{surveyCancer}, #{surveyKidney}, #{surveyBlood}, NOW())
+    </insert>
 </mapper>

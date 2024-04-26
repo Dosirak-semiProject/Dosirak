@@ -5,7 +5,8 @@ import java.util.Map;
 
 public class Pagenation {
 
-    public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount, Map<String, String> searchMap) {
+    public static SelectCriteria
+    getSelectCriteria(int page, int totalCount, int limit, int buttonAmount, Map<String, String> searchMap) {
 
         /* 총 페이지 수 계산 */
         int maxPage = (int) Math.ceil((double) totalCount / limit);

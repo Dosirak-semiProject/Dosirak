@@ -5,8 +5,9 @@
     <th:block th:replace="~{/admin/common/head.html}"></th:block>
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
         integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-    <script async src="/admin/js/suit-box/suitBox.mjs"></script>
-    <script type="module" defer src="/admin/js/suit-box/filter.mjs"></script>
+    <script defer src="/admin/js/suit-box/suitBox.mjs"></script>
+    <script defer type="module" src="/admin/js/suit-box/filter.mjs"></script>
+    <link href="/admin/css/datatable.css" rel="stylesheet">
 </head>
 
 <body class="sb-nav-fixed">
@@ -36,7 +37,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <table id="datatablesSimple">
+                            <table class="datatable">
                                 <thead>
                                     <tr>
                                         <th>코드</th>
