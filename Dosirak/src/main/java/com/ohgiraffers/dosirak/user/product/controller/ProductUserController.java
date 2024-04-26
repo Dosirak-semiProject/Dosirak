@@ -10,6 +10,7 @@ import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import com.ohgiraffers.dosirak.user.product.service.ProductUserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @Controller
 @RequestMapping("/user/product/*")
 
@@ -52,16 +54,16 @@ public class ProductUserController {
     public String productView(@RequestParam int productCode, Model model) {
 //        ProductUserDTO productList = productUserService.viewProduct(productCode);
 //        model.addAttribute("productList", productList);
-ProductUserDTO productList=productUserService.viewProduct(productCode);
-List<ProductImageDTO> imageList=productUserService.searchImageForProduct(productCode);
+
+        ProductUserDTO productList = productUserService.viewProduct(productCode);
+        List<ProductImageDTO> imageList = productUserService.searchImageForProduct(productCode);
+        log.info("imageList : {}", imageList);
+
         model.addAttribute("productList", productList);
         model.addAttribute("imageList", imageList);
 
 
-
         return "/user/product/productUserView";
-
-
     }
 //
     @GetMapping("/productListJungsung")

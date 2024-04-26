@@ -8,6 +8,7 @@ import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -78,7 +79,9 @@ public class ProductUserService {
 
     }
 
+    @Transactional(readOnly = true)
     public List<ProductImageDTO> searchImageForProduct(int productCode) {
+
         return productUserMapper.searchImageForProduct(productCode);
     }
 }
