@@ -73,6 +73,20 @@
         WHERE
         PRODUCT_CODE = #{productCode}
     </select>
+    <select id="plzComeReview" resultType="com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO">
+        SELECT
+        R.detail_code, D.PRODUCT_CODE, R.review_code, R.review_title, R.review_content, R.review_date
+        FROM
+        review R
+        LEFT JOIN
+        detail D ON (R.detail_code = D.DETAIL_CODE)
+        LEFT JOIN
+        tbl_product P ON (P.PRODUCT_CODE = D.PRODUCT_CODE)
+        WHERE
+        D.PRODUCT_CODE = #{productCode}
+        ORDER BY
+        review_code
+    </select>
 
 
 

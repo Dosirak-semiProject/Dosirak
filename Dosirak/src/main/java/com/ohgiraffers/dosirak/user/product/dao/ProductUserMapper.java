@@ -5,6 +5,7 @@ import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
+import com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -35,4 +36,6 @@ public interface ProductUserMapper {
     List<ProductUserDTO> viewProduct2(int productCode);
 
     List<ProductImageDTO> searchImageForProduct(int productCode);
+
+    List<ReviewDTO> plzComeReview(int productCode);
 }

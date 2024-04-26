@@ -10,6 +10,7 @@ import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import com.ohgiraffers.dosirak.user.product.service.ProductUserService;
+import com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -74,9 +75,11 @@ public class ProductUserController {
                 System.out.println("r"+remainingImages);
 
             }
+            List<ReviewDTO> comeReview=productUserService.plzComeReview(productCode);
 
             model.addAttribute("remainingImages", remainingImages);
             model.addAttribute("productList",productList);
+            model.addAttribute("comeReview",comeReview);
 
 
         }
