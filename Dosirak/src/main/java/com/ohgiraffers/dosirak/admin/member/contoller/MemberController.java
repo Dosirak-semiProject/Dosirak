@@ -199,7 +199,7 @@ public class MemberController {
         memberService.registManager(manager);
         rttr.addFlashAttribute("message", messageSourceAccessor.getMessage("manager.regist"));
 
-        return "redirect:/";
+        return "redirect:/login";
     }
 
 }
