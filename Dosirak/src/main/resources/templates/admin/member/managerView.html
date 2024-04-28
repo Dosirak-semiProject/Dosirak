@@ -34,14 +34,12 @@
 
             // 관리자 권한등급
             const managerAuthor = '[[${managerAuthor}]]';
-            switch (managerAuthor){
-                case "1" :
-                    $(".grade2Input").removeClass("none");
-                    $(".grade2Input").attr("readonly", false);
-                    $(".grade2Btn").removeClass("hp_dpNone");
-                    $("select").attr("disabled", false);
-                    $(".tr_withdrawal").show();
-                    break;
+            if(managerAuthor == 1){
+                $(".grade1Input").removeClass("none");
+                $(".grade1Input").attr("readonly", false);
+                $(".grade1Btn").removeClass("hp_dpNone");
+                $("select").attr("disabled", false);
+                $(".tr_withdrawal").show();
             }
 
             // 관리자 본인페이지인 경우 : 내선번호, 이메일 수정가능
@@ -108,7 +106,7 @@
                         </tr>
                         <tr>
                             <th scope="row">내선번호</th>
-                            <td><input class="none grade2Input contactInput" maxlength="5" type="number" name="contact" th:value="${manager.contact}" oninput="handleOnInput(this, 5)" readonly/></td>
+                            <td><input class="none grade1Input contactInput" maxlength="5" type="number" name="contact" th:value="${manager.contact}" oninput="handleOnInput(this, 5)" readonly/></td>
                             <th scope="row">권한등급</th>
                             <td>
                                 <select class="authority datatable-selector" name="authority" th:data-authority="${manager.authority}" disabled>
@@ -120,23 +118,23 @@
                         </tr>
                         <tr>
                             <th scope="row">이메일</th>
-                            <td><input class="none grade1Input emailInput" type="email" name="email" size="30" th:value="${manager.email}" required readonly/></td>
+                            <td><input class="none emailInput" type="email" name="email" size="30" th:value="${manager.email}" required readonly/></td>
                             <th scope="row">입사날짜</th>
                             <td th:text="${manager.joindate}"></td>
                         </tr>
                         <tr class="hp_dpNone tr_withdrawal">
                             <th scope="row">퇴직여부</th>
                             <td colspan="3" class="withdrawal" th:data-withdrawal="${manager.withdrawal}">
-                                <label class="me-3 hp_dpNone grade2Btn"><input id="withdrawalT" type="radio" name="withdrawal" value="true"> 퇴직</label>
-                                <label class="hp_dpNone grade2Btn"><input id="withdrawalF" type="radio" name="withdrawal" value="false"> 재직중</label>
+                                <label class="me-3 hp_dpNone grade1Btn"><input id="withdrawalT" type="radio" name="withdrawal" value="true"> 퇴직</label>
+                                <label class="hp_dpNone grade1Btn"><input id="withdrawalF" type="radio" name="withdrawal" value="false"> 재직중</label>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="text-end">
-                        <input type="submit" class="hp_dpNone grade2Btn editBtn btn btn-primary" value="수정"/>
+                        <input type="submit" class="hp_dpNone grade1Btn editBtn btn btn-primary" value="수정"/>
                         <a class="btn btn-secondary" href="/admin/member/managerList">목록</a>
-                        <button type="button" class="hp_dpNone grade2Btn el_resetPwdBtn btn btn-dark">비밀번호 초기화</button>
+                        <button type="button" class="hp_dpNone grade1Btn el_resetPwdBtn btn btn-dark">비밀번호 초기화</button>
                     </div>
                 </form>
             </div>
