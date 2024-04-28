@@ -2,16 +2,13 @@ package com.ohgiraffers.dosirak.user.order.controller;
 
 import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
-import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO;
-import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.order.model.service.CartService;
-import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
-import com.ohgiraffers.dosirak.user.suitBox.model.dto.SuitBoxDTO;
-import com.ohgiraffers.dosirak.user.suitBox.model.dto.SuitBoxMenuDTO;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -27,6 +24,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user/*")
 public class CartController {
+    private static final Logger log = LoggerFactory.getLogger(CartController.class);
     private final CartService cartService;
 
     public CartController(CartService cartService) {
@@ -34,26 +32,28 @@ public class CartController {
     }
 
     @GetMapping("cart")
-    public String cart(Model model) {
+    public String cart(Model model, HttpServletResponse response) throws IOException {
+        /* 사용자 인증 정보 가져오기 */
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if (authentication == null || !authentication.isAuthenticated()) {      // 비로그인 장바구니 이동 시 리디렉션
-//            response.sendRedirect("/login");
-//            return null;
-//        }
         String memberId = "";
         if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
             if (principal instanceof AdminLoginDetails) {
                 AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                /* ID 가져오기 */
                 LoginDTO login = adminLoginDetails.getLoginDTO();
                 memberId = login.getId();
                 model.addAttribute("memberId", memberId);
             }
         }
+        /* ID를 매개변수로 넘겨 사용자의 장바구니 상품 출력 */
         List<CartDTO> cartDTO = cartService.userCartList(memberId);
         cartDTO = cartService.divisionProduct(cartDTO);
-        model.addAttribute("cartDTO", cartDTO);
-
+        if (cartDTO != null) {
+            model.addAttribute("cartDTO", cartDTO);
+        } else {
+            log.info("Empty cart list");
+        }
         return "/user/order/cart";
     }
 
@@ -80,12 +80,10 @@ public class CartController {
 //        key 에 contain(suitbox) 되면 맞춤도시락 (product) 면 일반상품
 //        value = 일반 또는 맞춤도시락 코드
         List<CartDTO> cartList = new ArrayList<>();
-
         cartList = cartService.setCartDTO(productAndQuantity, memberId);
-
         cartList = cartService.divisionProduct(cartList);
 
-        model.addAttribute("cartList", cartList);
+        model.addAttribute("cartDTO", cartList);
 
         return "/user/order/payment";
     }
@@ -125,7 +123,6 @@ public class CartController {
             List<CartDTO> cartList = new ArrayList<>();
 
             cartList = cartService.setCartDTO(codeMap, memberId);   //codeMap = 상품, 맞춤도시락 코드
-
             cartList = cartService.divisionProduct(cartList);   // 맞춤도시락 상세 정보, 가격 가져오기
 
             for(CartDTO cart : cartList){
@@ -165,8 +162,6 @@ public class CartController {
             model.addAttribute("payDTO", payDTO);
 
         }
-
-
 
         return "/user/order/orderDone";
     }

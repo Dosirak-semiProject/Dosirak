@@ -69,7 +69,7 @@
                         <tr th:each="detail : ${orderView.detail}" th:id="${detail.detailCode}">
                             <td colspan="5">
                                 <label>
-                                    <input type="checkbox" th:attr="name='selected'" th:value="${detail.detailCode}" th:if="${ detail.detailStatus == 'O'}">
+<!--                                    <input type="checkbox" th:attr="name='selected'" th:value="${detail.detailCode}" th:if="${ detail.detailStatus == 'O'}">-->
                                     <span th:text="${detail.detailCode} + '/' + ${detail.product.productName} + '/' + ${detail.detailItemCount} + '개/(' + (${detail.detailItemCount} * ${detail.product.productPrice}) + '원)'"></span>
                                     <span th:if="${detail.detailStatus == 'X'}"> (주문취소)</span>
                                 </label>
@@ -78,7 +78,7 @@
                         </tbody>
                     </table>
                     <div class="editBtn" style="text-align: right;">
-                        <button type="submit" class="btn btn-secondary">주문취소</button>
+<!--                        <button type="submit" class="btn btn-secondary">주문취소</button>-->
                         <button type="button" class="btn btn-secondary" onclick="history.back()">목록</button>
                     </div>
                 </form>

@@ -100,9 +100,7 @@ public class CartService {
                         detailMenu.getSide().getMenuExtracash() +
                         detailMenu.getKimchi().getMenuExtracash());
             }
-
         }
-
         return cartList;
     }
 
@@ -160,5 +158,13 @@ public class CartService {
 
     public int userOrderDone(String memberId, String name, String phone, String address1, String address2, String address3) {
         return cartMapper.userOrderDone(memberId, name, phone, address1, address2, address3);
+    }
+
+    public List<CartDTO> getProductFileImg(List<CartDTO> cartList, String memberId) {
+        return cartMapper.getProductFileImg(cartList, memberId);
+    }
+
+    public List<CartDTO> userPayment(List<CartDTO> cartList) {
+        return cartMapper.userPayment(cartList);
     }
 }

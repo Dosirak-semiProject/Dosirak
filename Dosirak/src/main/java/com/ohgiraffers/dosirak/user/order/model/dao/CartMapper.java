@@ -16,8 +16,6 @@ import java.util.Map;
 public interface CartMapper {
     List<CartDTO> userCartList(String userId);
 
-
-
     void cartUpdateQuantity(int productCode, int updatedQuantity);
 
     List<MemberDTO> findSearchId();
@@ -44,7 +42,6 @@ public interface CartMapper {
 
     int insertDelivery(String orderCode);
 
-
     void deleteCartSuitbox(String itemCode, String memberId);
 
     void deleteCartProduct(String itemCode, String memberId);
@@ -54,4 +51,8 @@ public interface CartMapper {
     void cartDeleteSuitboxList(CartDTO suitboxCode);
 
     int userOrderDone(String memberId, String name, String phone, String address1, String address2, String address3);
+
+    List<CartDTO> getProductFileImg(List<CartDTO> cartList, String memberId);
+
+    List<CartDTO> userPayment(List<CartDTO> cartList);
 }
