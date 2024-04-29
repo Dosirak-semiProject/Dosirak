@@ -74,7 +74,7 @@
                                     <td>
                                         <label th:each="image : ${ imageList }" for="" style="display: flex;">
                                             <div class="image-area_A">
-                                                <img th:src="@{|/file/${image.savedName}|}" th:alt="${image.savedName}" style="max-width:80px; max-height:80px; margin-top: 3px;">
+                                                <img th:src="@{|/customer/${image.savedName}|}" th:alt="${image.savedName}" style="max-width:80px; max-height:80px; margin-top: 3px;">
                                             </div>
                                         </label>
                                         <div style="display: none;">

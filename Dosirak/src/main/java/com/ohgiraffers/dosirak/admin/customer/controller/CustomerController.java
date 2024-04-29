@@ -7,6 +7,7 @@ import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
 import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
+import com.ohgiraffers.dosirak.user.myInfo.model.service.MyinfoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -15,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,9 +28,11 @@ import java.util.List;
 public class CustomerController {
 
     private final CustomerService customerService;
+    private final MyinfoService myinfoService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerService customerService, MyinfoService myinfoService) {
         this.customerService = customerService;
+        this.myinfoService = myinfoService;
     }
 
     /* ----- 공지사항 관리페이지 ----- */
@@ -225,18 +229,28 @@ public class CustomerController {
     }
 
     @GetMapping("/askDetail")
-    public String getAskDetail(@RequestParam("askCode") int askCode, Model model) {
+    public String getAskDetail(@RequestParam("askCode") int askCode,
+                               Model model) {
 
         AskDTO askDetail = customerService.selectAskDetail(askCode);
         int askCategory = askDetail.getAskCategoryDTO().getAskCategoryCode();
+        String userId = askDetail.getUserId();
 
         model.addAttribute("ask", askDetail);
         model.addAttribute("askCategory", askCategory);
+        model.addAttribute("userId", userId);
 
+        /* 첨부파일 로드 */
         List<ImgDTO> imageList = customerService.searchImageList(askCode);
         model.addAttribute("imageList", imageList);
-
         log.info("imageList : {}", imageList);
+
+        /* 알람 발송을 위한 이메일 세팅 */
+        MemberDTO member = myinfoService.myinfoSelect(userId);
+        log.info("member : {}", member);
+
+        String userEmail = member.getEmail();
+        model.addAttribute("userEmail", userEmail);
 
         return "admin/customer/askDetail";
     }
@@ -245,7 +259,7 @@ public class CustomerController {
     public String answerWritePro(@RequestParam("askCode") int askCode,
                                  @RequestParam("askCategoryCode") int askCategoryCode,
                                  @RequestParam("answerContent") String answerContent,
-                                 AskDTO ask, AnswerDTO answer) {
+                                 AskDTO ask, AnswerDTO answer, RedirectAttributes redirectAttributes) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -265,6 +279,8 @@ public class CustomerController {
                 // 답변 등록
                 customerService.writeAnswer(answer);
 
+                // 리디렉션을 위해 FlashAttribute를 사용하여 success 메시지를 전달합니다.
+                redirectAttributes.addFlashAttribute("successMessage", "답변이 등록되었습니다.");
             }
         }
         return "redirect:askList";
