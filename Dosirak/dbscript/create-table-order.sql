@@ -284,12 +284,8 @@ INSERT INTO `ORDER` (ORDER_STATUS, ID, ORDER_RECIPIENT, ORDER_CONTACT, ORDER_ADD
     ('C', 'young876', '조영호', '01098765432', '41235', '경기도 고양시 일산동구 호수로 567', '205호'),
     ('C', 'yujin56', '손유진', '01098765432', '03083', '서울특별시 종로구 창경궁로 666', '201호'),
     ('X', 'seohyun3', '정서현', '01043218765', '30276', '대전광역시 서구 둔산로 222', '101호'),
-
     ('X', 'seoyun90', '박서연', '01098765432', '40876', '인천광역시 부평구 부평대로 999', '202호'),
     ('X', 'jiwon98', '한지원', '01065432187', '12156', '경기도 안산시 상록구 반월로 555', '102호');
-
-
-
 
 INSERT INTO TBL_PRODUCT_CATEGORY VALUES
     ('1','건강 도시락',null),
@@ -315,6 +311,13 @@ INSERT INTO PRODUCT_IMG (PRODUCT_CODE, SAVED_NAME, SAVE_PATH) VALUES
     (3, '29955198-782f-490e-b3de-bdb67d2d7232.png', '/productUpload/original'),
     (4, '29955198-782f-490e-b3de-bdb67d2d7232.png', '/productUpload/original'),
     (5, '29955198-782f-490e-b3de-bdb67d2d7232.png', '/productUpload/original');
+
+# INSERT INTO PRODUCT_IMG (PRODUCT_CODE, SAVED_NAME, SAVE_PATH) VALUES
+# (1, '29955198-782f-490e-b3de-bdb67d2d7232.png', 'C:/Dosirak/original/productUpload/'),
+# (2, '29955198-782f-490e-b3de-bdb67d2d7232.png', 'C:/Dosirak/original/productUpload/'),
+# (3, '29955198-782f-490e-b3de-bdb67d2d7232.png', 'C:/Dosirak/original/productUpload/'),
+# (4, '29955198-782f-490e-b3de-bdb67d2d7232.png', 'C:/Dosirak/original/productUpload/'),
+# (5, '29955198-782f-490e-b3de-bdb67d2d7232.png', 'C:/Dosirak/original/productUpload/');
 
 INSERT INTO MENU (MENU_NAME, MENU_CATEGORY, MENU_EXTRACASH, MENU_STATUS, MENU_CARBO, MENU_SUGAR, MENU_PROTEIN, MENU_FAT,
                   MENU_SATURATEDFAT, MENU_TRANSFAT, MENU_CHOLESTEROL, MENU_NATRIUM, MENU_CALORY) VALUES

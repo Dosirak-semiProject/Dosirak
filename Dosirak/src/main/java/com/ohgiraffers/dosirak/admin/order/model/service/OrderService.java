@@ -217,4 +217,8 @@ public class OrderService {
     public void updateOrderStatus(List<String> detailCode) {
         orderMapper.updateOrderStatus(detailCode);
     }
+
+//    public List<OrderDTO> searchOrderForm(String searchCondition, String searchValue) {
+//        return orderMapper.searchOrderForm(searchCondition, searchValue);
+//    }
 }

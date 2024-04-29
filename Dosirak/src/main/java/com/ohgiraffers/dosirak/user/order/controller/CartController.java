@@ -14,7 +14,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,6 +44,9 @@ public class CartController {
                 memberId = login.getId();
                 model.addAttribute("memberId", memberId);
             }
+        } else {
+            response.sendRedirect("/login");
+            return null;
         }
         /* ID를 매개변수로 넘겨 사용자의 장바구니 상품 출력 */
         List<CartDTO> cartDTO = cartService.userCartList(memberId);
@@ -99,9 +101,9 @@ public class CartController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        if(authentication != null && authentication.isAuthenticated()){
+        if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
-            if(principal instanceof AdminLoginDetails){
+            if (principal instanceof AdminLoginDetails) {
                 AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
                 LoginDTO login = adminLoginDetails.getLoginDTO();
                 memberId = login.getId();
@@ -125,9 +127,9 @@ public class CartController {
             cartList = cartService.setCartDTO(codeMap, memberId);   //codeMap = 상품, 맞춤도시락 코드
             cartList = cartService.divisionProduct(cartList);   // 맞춤도시락 상세 정보, 가격 가져오기
 
-            for(CartDTO cart : cartList){
+            for (CartDTO cart : cartList) {
                 cart.setOrderCode(orderCode);
-                if (cart.getProductCode() == 0){
+                if (cart.getProductCode() == 0) {
                     cartService.insertDetailSuitbox(cart);  // 맞춤도시락 INSERT
                 } else {
                     cartService.insertDetailProduct(cart);  // 일반상품 INSERT
@@ -146,8 +148,8 @@ public class CartController {
             pay.put("payMethod", payMethod);
             int payInputResult = cartService.insertPay(pay);
             int deliveryResult = cartService.insertDelivery(orderCode);
-            for(CartDTO cart : cartList){
-                if (cart.getProductCode() == 0){
+            for (CartDTO cart : cartList) {
+                if (cart.getProductCode() == 0) {
                     String itemCode = String.valueOf(cart.getSuitboxCode());
                     cartService.deleteCartSuitbox(itemCode, memberId);  // 맞춤도시락 INSERT
                 } else {

@@ -5,6 +5,7 @@ import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
@@ -16,13 +17,11 @@ public interface OrderMapper {
 
     OrderDTO allOrderView(String orderCode);
 
-    DetailDTO searchDetail(String orderCode);
-
     RefundDTO allRefundView(String orderCode);
 
     DeliveryDTO allDeliveryView(String orderCode);
 
     void updateOrderStatus(List<String> detailCode);
 
-    OrderDTO changeOrderStatus(String status);
+//    List<OrderDTO> searchOrderForm(String searchCondition, String searchValue);
 }

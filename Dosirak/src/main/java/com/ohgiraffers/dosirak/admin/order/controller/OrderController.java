@@ -24,8 +24,6 @@ public class OrderController {
 
     private final OrderService orderService;
 
-    /* 관리자 기능 일단 제외 */
-
     @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
@@ -42,7 +40,6 @@ public class OrderController {
 
     @GetMapping("orderView")
     public String orderView(Model model, @RequestParam String orderCode) {
-
         OrderDTO orderView = orderService.allOrderView(orderCode);
 
         model.addAttribute("orderView", orderView);
@@ -103,4 +100,23 @@ public class OrderController {
 
         return mv;
     }
+
+//    @GetMapping("/memberList")
+//    public String findMemberList(@RequestParam(required = false) String searchCondition,
+//                                 @RequestParam(required = false) String searchValue,
+//                                 Model model) {
+//        List<OrderDTO> orderList;
+//
+//        if (searchValue != null && !searchValue.isEmpty()) {
+//            orderList = orderService.searchOrderForm(searchCondition, searchValue);
+//        } else {
+//            orderList = orderService.findAllMember();
+//        }
+//
+//        model.addAttribute("orderList", orderList);
+//        model.addAttribute("searchCondition", searchCondition);
+//        model.addAttribute("searchValue", searchValue);
+//
+//        return "/admin/member/memberList";
+//    }
 }
