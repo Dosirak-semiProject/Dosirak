@@ -6,4 +6,42 @@
     <select id="selectSaleMenu" resultType="com.ohgiraffers.dosirak.admin.suitBox.model.dto.SuitBoxMenuDTO">
         SELECT * FROM MENU WHERE menu_status = 'Y' or menu_status = 'S' ORDER BY menu_status, menu_name
     </select>
+    <select id="checkSuitBoxBySuitBox">
+        SELECT SUITBOX_CODE
+        FROM SUIT_BOX
+        WHERE RICE_CODE = #{riceCode}
+        AND MAIN_CODE = #{mainCode}
+        AND SIDE_CODE = #{sideCode}
+        AND KIMCHI_CODE = #{kimchiCode}
+    </select>
+    <insert id="insertSuitBoxBySuitBox">
+        INSERT INTO SUIT_BOX (RICE_CODE, MAIN_CODE, SIDE_CODE, KIMCHI_CODE)
+        VALUES (#{riceCode}, #{mainCode}, #{sideCode}, #{kimchiCode})
+    </insert>
+    <select id="checkSuitBoxCode">
+        SELECT SUITBOX_CODE
+        FROM SUIT_BOX
+        WHERE RICE_CODE = #{riceCode}
+        AND MAIN_CODE = #{mainCode}
+        AND SIDE_CODE = #{sideCode}
+        AND KIMCHI_CODE = #{kimchiCode}
+    </select>
+    <select id="checkCartBySuitBox">
+        SELECT CARTITEM_COUNT
+        FROM CART
+        WHERE id = #{userId}
+        AND suitbox_code = #{suitboxCode}
+    </select>
+    <insert id="insertCartBySuitBox">
+        INSERT INTO CART
+        (CARTITEM_COUNT, ID, SUITBOX_CODE)
+        VALUES
+        (#{quantity}, #{userId}, #{suitboxCode})
+    </insert>
+    <update id="updateCartBySuitBox">
+        UPDATE CART
+        SET CARTITEM_COUNT = #{quantity}
+        WHERE ID = #{userId}
+        AND SUITBOX_CODE = #{suitboxCode}
+    </update>
 </mapper>

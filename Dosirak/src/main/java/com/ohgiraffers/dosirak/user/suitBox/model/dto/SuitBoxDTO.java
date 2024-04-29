@@ -1,5 +1,6 @@
 package com.ohgiraffers.dosirak.user.suitBox.model.dto;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,11 +14,13 @@ public class SuitBoxDTO {
     private int mainCode;
     private int sideCode;
     private int kimchiCode;
+    private int quantity;
+    private String userId;
 
     public SuitBoxDTO() {
     }
 
-    public SuitBoxDTO(int suitboxCode, int riceCode, int mainCode, int sideCode, int kimchiCode) {
+    public SuitBoxDTO(Integer suitboxCode, int riceCode, int mainCode, int sideCode, int kimchiCode) {
         this.suitboxCode = suitboxCode;
         this.riceCode = riceCode;
         this.mainCode = mainCode;

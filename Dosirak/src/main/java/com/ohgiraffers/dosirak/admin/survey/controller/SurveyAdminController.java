@@ -68,24 +68,25 @@ public class SurveyAdminController {
     public @ResponseBody int versionSet(@ModelAttribute SurveyVersionDTO version){
         int result = 0;
         result = surveyAdminService.updateVersionByVersionDTO(version);
+        surveyAdminService.deleteAllAnswerByVersionId(version.getVersionId());
+        surveyAdminService.deleteQuestionByVersionId(version.getVersionId());
         return 1;
     }
     @PostMapping("fetch/question")
     public @ResponseBody int questionSet(@ModelAttribute SurveyQuestionDTO question){
-        System.out.println(question);
         int result = 0;
-        int result2= surveyAdminService.updateQuestionBySurveyQuestionDTO(question);
-        System.out.println(result2);
-        result = surveyAdminService.getQuestionIdByQuestionDTO(question);
+        if(question.getQuestionId() != 0){
+            surveyAdminService.insertQuestionByQuestionId(question);
+        } else {
+            surveyAdminService.insertQuestionByQuestionByNonId(question);
+            result = surveyAdminService.getQuestionId();
+        }
         return result;
     }
     @PostMapping("fetch/answer")
     public @ResponseBody int answerSet(@ModelAttribute SurveyAnswerDTO answer){
-        surveyAdminService.deleteAllAnswerByAnswer(answer);
-        int result = 0;
-        result = surveyAdminService.insertAnswerBySurveyAnswerDTO(answer);
-        return result;
+        System.out.println(answer);
+        surveyAdminService.insertAnswerByAnswer(answer);
+        return 1;
     }
-
-
 }
