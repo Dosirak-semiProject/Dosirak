@@ -24,3 +24,4 @@ for(const menu of menuList){
     const text = (menu.menuStatus == 'S'?' (품절)':'') + menu.menuName + (menu.menuExtracash?` (+${menu.menuExtracash})`:'')
     insertOption(targetSelect, text, JSON.stringify(menu), isMenuStatus(menu))
 }
+

@@ -93,19 +93,6 @@
             VERSION_EXPLAIN = #{versionExplain}
         WHERE VERSION_ID = #{versionId}
     </update>
-    <update id="updateQuestionBySurveyQuestionDTO">
-        UPDATE SURVEY_QUESTION
-        SET QUESTION_TEXT = #{questionText},
-            QUESTION_CATEGORY = #{questionCategory}
-        WHERE VERSION_ID = #{versionId}
-            AND QUESTION_ORDER = #{questionOrder}
-    </update>
-    <select id="getQuestionIdByQuestionDTO" resultType="int">
-    SELECT question_id
-    FROM SURVEY_QUESTION
-    WHERE QUESTION_ORDER = #{questionOrder}
-    AND VERSION_ID = #{versionId}
-    </select>
     <insert id="insertQuestion">
         INSERT INTO
     </insert>
@@ -115,9 +102,6 @@
             ANSWER_VALUE = #{answerValue}
         WHERE ANSWER_ID = #{answerId}
     </update>
-    <delete id="deleteAllAnswerByAnswer">
-        DELETE SURVEY_ANSWER FROM QUESTION_ID = #{questionId}
-    </delete>
     <insert id="insertNetVersion">
         INSERT INTO SURVEY_VERSION
         (VERSION_NAME, VERSION_EXPLAIN, UPDATE_DATE, STATUS)
@@ -130,8 +114,43 @@
         ORDER BY VERSION_ID DESC
         LIMIT 1
     </select>
-    <insert id="insertAnswerBySurveyAnswerDTO">
-        INSERT INTO SURVEY_ANSWER (QUESTION_ID, ANSWER_TEXT, ANSWER_VALUE)
-        VALUES (#{questionId}, #{answerText} #{answerValue})
+    <delete id="deleteAllAnswerByVersionId">
+        DELETE A
+        FROM SURVEY_QUESTION Q
+        LEFT JOIN SURVEY_ANSWER A ON Q.question_id = A.question_id
+        WHERE Q.version_id = #{version_id}
+    </delete>
+    <insert id="insertQuestionByQuestionId">
+        INSERT INTO SURVEY_QUESTION
+        VALUES (#{questionId}, #{versionId}, #{questionOrder}, #{questionText}, #{questionCategory})
+    </insert>
+    <insert id="insertQuestionByQuestionByNonId">
+
+        INSERT INTO SURVEY_QUESTION
+        VALUES (null , #{versionId}, #{questionOrder}, #{questionText}, #{questionCategory})
+    </insert>
+    <insert id="insertAnswerByAnswerId">
+        INSERT INTO SURVEY_ANSWER
+        VALUES (#{answerId}, #{questionId}, #{answerText}, #{answerValue})
+    </insert>
+    <insert id="insertAnswerByNonAnswerId">
+        INSERT INTO SURVEY_ANSWER
+        VALUES (null , #{questionId}, #{answerText}, #{answerValue})
+    </insert>
+    <select id="getQuestionId">
+        SELECT QUESTION_ID
+        FROM SURVEY_QUESTION
+        ORDER BY QUESTION_ID DESC
+        LIMIT 1
+    </select>
+    <insert id="insertAnswerByAnswer">
+        <if test="answerId != 0">
+            INSERT INTO SURVEY_ANSWER (QUESTION_ID, ANSWER_ID, ANSWER_TEXT, ANSWER_VALUE)
+            VALUES (#{questionId}, #{answerId}, #{answerText}, #{answerValue})
+        </if>
+        <if test="answerId == 0">
+            INSERT INTO SURVEY_ANSWER (QUESTION_ID, ANSWER_TEXT, ANSWER_VALUE)
+            VALUES (#{questionId}, #{answerText}, #{answerValue})
+        </if>
     </insert>
 </mapper>
