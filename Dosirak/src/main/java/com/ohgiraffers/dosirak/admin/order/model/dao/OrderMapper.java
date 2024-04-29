@@ -24,4 +24,5 @@ public interface OrderMapper {
 
     void updateOrderStatus(List<String> detailCode);
 
+    OrderDTO changeOrderStatus(String status);
 }

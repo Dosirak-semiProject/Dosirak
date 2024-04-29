@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.dataTables.min.css">
     <script src="https://cdn.datatables.net/2.0.5/js/dataTables.min.js"></script>
+    <script src="/admin/js/order.js"></script>
 </head>
 <body class="sb-nav-fixed">
 <th:block th:replace="/admin/common/header.html"></th:block>
@@ -20,20 +21,20 @@
                     <div class="card-header justify-content-between d-flex align-items-center">
                         <i class="fas fa-table me-1"></i>
                         <div>
-                            <label>
-                                <select class="datatable-selector">
-                                    <option value="select">주문상태 선택</option>
-                                    <option value="O">주문완료</option>
-                                    <option value="X">주문취소</option>
-                                    <option value="C">구매확정</option>
-                                </select>
-                            </label>
-                            <form class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">
-                                <div class="input-group">
-                                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                                </div>
-                            </form>
+<!--                            <label>-->
+<!--                                <select id="order-datatable-selector" class="datatable-selector">-->
+<!--                                    <option value="select">주문상태 선택</option>-->
+<!--                                    <option value="O">주문완료</option>-->
+<!--                                    <option value="X">주문취소</option>-->
+<!--                                    <option value="C">구매확정</option>-->
+<!--                                </select>-->
+<!--                            </label>-->
+<!--                            <form class="d-none d-md-inline-block form-inline ms-auto me-0 my-2 my-md-0">-->
+<!--                                <div class="input-group">-->
+<!--                                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />-->
+<!--                                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>-->
+<!--                                </div>-->
+<!--                            </form>-->
                         </div>
                     </div>
                     <div class="card-body">
