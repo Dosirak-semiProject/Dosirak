@@ -71,6 +71,8 @@ public class ProductUserService {
             List<ProductImageDTO> images = productUserMapper.findImagesByProductCode(product.getProductCode());
             // 이미지 리스트를 상품 DTO에 설정하기
             product.setImageList(images);
+            System.out.println("image:"+images);
+            System.out.println("product"+product);
         }
         return products;
     }

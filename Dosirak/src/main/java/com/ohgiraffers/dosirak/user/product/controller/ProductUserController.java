@@ -45,6 +45,7 @@ public class ProductUserController {
         List<ProductUserDTO> productList = productUserService.getProductsWithImages();
         model.addAttribute("productList", productList);
 
+
 //        List<ProductandImageDTO> imageList=productUserService.comeImageList();
 //        model.addAttribute("imageList", imageList);
 
@@ -130,5 +131,6 @@ public class ProductUserController {
 
         return "/user/order/cart";
     }
+
 
 }

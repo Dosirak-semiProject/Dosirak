@@ -90,7 +90,7 @@ public class ProductController {
 
 
                 /* 경로 설정 */
-                String fileUploadDir = IMAGE_DIR + "original";
+                String fileUploadDir = IMAGE_DIR;
 
                 File dir1 = new File(fileUploadDir);
 
@@ -101,46 +101,56 @@ public class ProductController {
 
                 /* 업로드 파일에 대한 정보를 담을 리스트 */
                 List<ProductImageDTO> imageList = new ArrayList<>();
+                System.out.println(imageList);
 
                 try {
                     for (int i = 0; i < attachImage.size(); i++) {
+                        System.out.println("size:"+attachImage.size());
                         /* 첨부파일이 실제로 존재하는 경우 로직 수행 */
                         if (attachImage.get(i).getSize() > 0) {
 
                             String originalFileName = attachImage.get(i).getOriginalFilename();
                             log.info("originalFileName : {}", originalFileName);
 
+                            productDTO lastProduct = productService.codePlz();
+                            System.out.println("number:"+lastProduct);
+                            log.info("lastProduct: {}", lastProduct);
+
                             String ext = originalFileName.substring(originalFileName.lastIndexOf("."));
                             String saveFileName = UUID.randomUUID() + ext;
                             log.info("savedFileName : {}", saveFileName);
 
+
                             /* 서버의 설정 디렉토리에 파일 저장하기 */
-                            attachImage.get(i).transferTo(new File(fileUploadDir + "/" + saveFileName));
+                            attachImage.get(i).transferTo(new File(fileUploadDir+"/"+saveFileName));
 
                             /* 가장 최신 상품 조회 */
-                            productDTO lastProduct = productService.codePlz();
-                            log.info("lastProduct: {}", lastProduct);
 
                             /* DB에 저장할 파일의 정보 처리 */
                             ProductImageDTO fileInfo = new ProductImageDTO();
                             fileInfo.setSavedName(saveFileName);
-                            fileInfo.setSavePath("/static/productUpload/original");
+                            fileInfo.setSavePath(fileUploadDir);
                             fileInfo.setProductCode(lastProduct.getProductCode());
+
 
                             /* 리스트에 파일 정보 저장 */
                             imageList.add(fileInfo);
                             log.info("imageList : {}", imageList);
+
+
                         }
                     }
                     /* 이미지 리스트를 한 번에 DB에 저장 */
                     productService.registImageList(imageList);
 
                     model.addAttribute("message", "파일 업로드에 성공하였습니다.");
+                    System.out.println("성공");
 
                 } catch (IOException e) {
                     /* 파일 저장 중간에 실패 시, 이전에 저장된 파일 삭제 */
 
                     model.addAttribute("message", "파일 업로드에 실패하였습니다.");
+                    System.out.println("실패");
                 }
                 log.info("imageList : {}", imageList);
             }

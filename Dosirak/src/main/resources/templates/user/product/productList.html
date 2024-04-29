@@ -65,13 +65,13 @@
                         <a class="bl_pdList__cont" th:href="@{'/user/product/productView?productCode=' + ${product.productCode}}">
                             <th:block th:each="image : ${product.imageList}">
                                 <!-- 만약 이미지가 존재하면 이미지를 표시합니다 -->
-                                <img th:if="${#lists.size(image) > 0}" th:src="@{/productUpload/original/{fileName}(fileName=${image.savedName})}"
-                                     alt="Product Image"
+                                <img th:if="${#lists.size(image) > 0}" th:src="@{|/file/${image.savedName}|}" th:alt="${image.savedName}"
                                      style="max-width: 100px; max-height: 100px;">
                                 <!-- 이미지가 없으면 "No Image Available" 메시지를 표시합니다 -->
                                 <span th:unless="${#lists.size(image) > 0}">No Image Available</span>
                             </th:block>
-                            <p class="bl_pdList__txt hp_ellipsis hp_ellipsis2" th:text="${product.productSummary}"></p>
+                            <h3 class="bl_pdList__ttl hp_ellipsis" th:text="${product.productName}"></h3>
+                            <h3 class="bl_pdList__txt hp_ellipsis hp_ellipsis2" th:text="${product.productSummary}"></h3>
                             <p class="bl_pdList__price" th:text="${product.productPrice} + '원'"></p>
                             <input type="hidden" name="productCode" th:value="${product.productCode}"/>
                         </a>

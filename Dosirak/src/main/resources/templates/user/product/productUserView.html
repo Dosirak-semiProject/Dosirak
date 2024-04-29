@@ -50,7 +50,7 @@
                         <div class="decrease">
                             <img src="/user/img/icon/minus.png" alt="minus-btn" onclick="decreaseQuantity()">
                         </div>
-                        <input type="number" class="quantity" value="1" min="1" id="quantity">
+                        <input type="number" class="quantity" value="1" min="1" id="quantity" name="quantity">
                         <div class="increase">
                             <img src="/user/img/icon/plus.png" alt="plus-btn" onclick="increaseQuantity()">
                         </div>
@@ -134,7 +134,52 @@
                             console.log(result);
                         }
                     </script>
-                    <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBack hp_ml10">바로결제</button>
+                    <button type="submit" class="el_btnM hp_br5 hp_w100 el_btnPointBack hp_ml10" onclick="postProduct2()">바로결제</button>
+                    <script>
+                        function addToCart() {
+                            var productCode = document.getElementById("productCode").value;
+                            var count = document.getElementById("quantity").value;
+
+                            var totalPriceElement = document.querySelector(".hp_fs28.hp_fw700.hp_pointColor");
+                            var totalPrice = totalPriceElement.innerText.replace("원", "").replace(",", "");
+
+                            var data = {
+                                productCode: productCode,
+                                cartitemCount: count,
+                                totalPrice: totalPrice
+                            };
+                            console.log(productCode)
+                            console.log(count)
+                            console.log(totalPrice)
+
+                        }
+
+                        async function postProduct2() {
+                            var productCode = document.getElementById("productCode").value;
+                            var count = document.getElementById("quantity").value;
+
+                            var totalPriceElement = document.querySelector(".hp_fs28.hp_fw700.hp_pointColor");
+                            var totalPrice = totalPriceElement.innerText.replace("원", "").replace(",", "");
+
+                            var data = {
+                                productCode: productCode,
+                                cartitemCount: count,
+                                totalPrice: totalPrice
+                            };
+                            const productToCart = data
+                            const json = JSON.stringify(productToCart)
+                            const response = await fetch('/user/order/payment', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json; charset=UTF-8'
+                                },
+                                body: json
+                            });
+                            const result = await response.text();
+                            console.log(result);
+                        }
+                    </script>
+
                 </div>
             </div>
         </div>
