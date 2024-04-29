@@ -7,6 +7,7 @@ import com.ohgiraffers.dosirak.user.product.dao.ProductUserMapper;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO;
+import com.ohgiraffers.dosirak.user.review.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -110,5 +111,10 @@ public class ProductUserService {
 
     public List<ReviewDTO> plzComeReview(int productCode) {
         return productUserMapper.plzComeReview(productCode);
+    }
+
+
+    public List<UserDTO> nowPay(String productInfo) {
+        return productUserMapper.nowPay(productInfo);
     }
 }

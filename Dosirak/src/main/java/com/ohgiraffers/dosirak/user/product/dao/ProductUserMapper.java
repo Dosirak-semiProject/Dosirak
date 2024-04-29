@@ -2,10 +2,10 @@ package com.ohgiraffers.dosirak.user.product.dao;
 
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
-import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO;
+import com.ohgiraffers.dosirak.user.review.model.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -38,4 +38,7 @@ public interface ProductUserMapper {
     List<ProductImageDTO> searchImageForProduct(int productCode);
 
     List<ReviewDTO> plzComeReview(int productCode);
+
+
+    List<UserDTO> nowPay(String productInfo);
 }

@@ -34,8 +34,7 @@ mybatis:
 # image upload dir
 image:
   image-dir: C:/Dosirak/original/customer
-  reivew-image-dir: src\main\resources\static\reviewUpload\
-  product-image-dir: C:/Dosirak/original/customer/productUpload
-
+  reivew-image-dir: C:/Dosirak/original/review
+  product-image-dir: C:/Dosirak/original/productUpload
 
 

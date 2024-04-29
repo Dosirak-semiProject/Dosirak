@@ -3,14 +3,18 @@ package com.ohgiraffers.dosirak.user.product.controller;
 
 import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
 import com.ohgiraffers.dosirak.admin.member.model.dto.ManagerDTO;
+import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
+import com.ohgiraffers.dosirak.user.order.model.service.CartService;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import com.ohgiraffers.dosirak.user.product.service.ProductUserService;
 import com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO;
+import com.ohgiraffers.dosirak.user.review.model.dto.UserDTO;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -32,11 +36,13 @@ import java.util.Map;
 public class ProductUserController {
 
     private final ProductUserService productUserService;
+    private final CartService cartService;
 
 
     @Autowired
-    public ProductUserController(ProductUserService productUserService) {
+    public ProductUserController(ProductUserService productUserService,CartService cartService) {
         this.productUserService = productUserService;
+        this.cartService=cartService;
     }
 
     @GetMapping("/productList")
@@ -66,34 +72,36 @@ public class ProductUserController {
                 ProductImageDTO firstImage = imageList.get(0);
                 String firstSavedName = firstImage.getSavedName();
                 model.addAttribute("firstSavedName", firstSavedName);
-                System.out.println("f"+firstSavedName);
+                System.out.println("f" + firstSavedName);
             }
 
             // 나머지 이미지 처리
             List<ProductImageDTO> remainingImages = new ArrayList<>();
             if (imageList.size() > 1) {
                 remainingImages.addAll(imageList.subList(1, imageList.size()));
-                System.out.println("r"+remainingImages);
+                System.out.println("r" + remainingImages);
 
             }
-            List<ReviewDTO> comeReview=productUserService.plzComeReview(productCode);
+            List<ReviewDTO> comeReview = productUserService.plzComeReview(productCode);
 
             model.addAttribute("remainingImages", remainingImages);
-            model.addAttribute("productList",productList);
-            model.addAttribute("comeReview",comeReview);
+            model.addAttribute("productList", productList);
+            model.addAttribute("comeReview", comeReview);
 
 
         }
         return "/user/product/productUserView";
     }
-//
+
+    //
     @GetMapping("/productListJungsung")
     public String productListJungsung(Model model) {
         List<ProductUserDTO> productList = productUserService.getProductListBySubCategoryCode(2);
         model.addAttribute("productList", productList);
         return "/user/product/productList";
     }
-//
+
+    //
     @GetMapping("/productListHel")
     public String productListHel(Model model) {
         List<ProductUserDTO> productList = productUserService.getProductListBySubCategoryCode(1);
@@ -111,12 +119,12 @@ public class ProductUserController {
     @PostMapping("/add-to-cart")
     public @ResponseBody String addToCart(@RequestBody Map<String, String> productInfo) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String managerAuthor="";
-        String userId="";
-        if(authentication != null && authentication.isAuthenticated()){
+        String managerAuthor = "";
+        String userId = "";
+        if (authentication != null && authentication.isAuthenticated()) {
             Object principal = authentication.getPrincipal();
 
-            if(principal instanceof AdminLoginDetails){
+            if (principal instanceof AdminLoginDetails) {
                 AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
                 LoginDTO login = adminLoginDetails.getLoginDTO();
                 managerAuthor = login.getAuthority();
@@ -126,11 +134,42 @@ public class ProductUserController {
         productInfo.put("userId", userId);
         System.out.println(productInfo);
 
-        int result=productUserService.addCart(productInfo);
+        int result = productUserService.addCart(productInfo);
 
 
         return "/user/order/cart";
     }
 
+    @PostMapping("/nowPay")
+    public String nowPay(@RequestBody Map<String, String> productInfo, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String managerAuthor = "";
+        String userId = "";
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
+
+            if (principal instanceof AdminLoginDetails) {
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                managerAuthor = login.getAuthority();
+                userId = login.getId();
+                System.out.println(userId);
+            }
+            MemberDTO user = cartService.getPaymentByUserId(userId);
+            System.out.println("member:"+user);
+            model.addAttribute("user", user);
+            model.addAttribute("cart", productInfo);
+            System.out.println(productInfo);
+
+        }
+        // 결제 페이지로 바로 이동
+        return  "redirect:/user/order/payment";
+    }
+    @GetMapping("/user/order/payment")
+    public String showPaymentPage(Model model) {
+        // 여기에는 추가할 로직이 없습니다. 단순히 결제 페이지를 보여줍니다.
+        return "/user/order/payment"; // 결제 페이지의 경로 반환
+    }
 
 }

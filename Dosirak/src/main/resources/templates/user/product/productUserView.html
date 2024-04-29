@@ -28,8 +28,7 @@
         <div class="ly_flexC ly_fitemC">
             <th:block th:if="${productList != null && !productList.imageList.isEmpty()}">
                 <img class="bl_pdView__img hp_mr40"
-                     th:src="@{/productUpload/original/{fileName}(fileName=${productList.imageList[0].savedName})}"
-                     alt="Product Image">
+                     th:src="@{|/file/${productList.imageList[0].savedName}|}" th:alt="${productList.imageList[0].savedName}">
             </th:block>
             <th:block th:unless="${productList != null && !productList.imageList.isEmpty()}">
                 <span>No Image Available</span>
@@ -91,23 +90,23 @@
                     <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBord" onclick="postProduct()">장바구니
                     </button>
                     <script>
-                        function addToCart() {
-                            var productCode = document.getElementById("productCode").value;
-                            var count = document.getElementById("quantity").value;
-
-                            var totalPriceElement = document.querySelector(".hp_fs28.hp_fw700.hp_pointColor");
-                            var totalPrice = totalPriceElement.innerText.replace("원", "").replace(",", "");
-
-                            var data = {
-                                productCode: productCode,
-                                cartitemCount: count,
-                                totalPrice: totalPrice
-                            };
-                            console.log(productCode)
-                            console.log(count)
-                            console.log(totalPrice)
-
-                        }
+                        // function addToCart() {
+                        //     var productCode = document.getElementById("productCode").value;
+                        //     var count = document.getElementById("quantity").value;
+                        //
+                        //     var totalPriceElement = document.querySelector(".hp_fs28.hp_fw700.hp_pointColor");
+                        //     var totalPrice = totalPriceElement.innerText.replace("원", "").replace(",", "");
+                        //
+                        //     var data = {
+                        //         productCode: productCode,
+                        //         cartitemCount: count,
+                        //         totalPrice: totalPrice
+                        //     };
+                        //     console.log(productCode)
+                        //     console.log(count)
+                        //     console.log(totalPrice)
+                        //
+                        // }
 
                         async function postProduct() {
                             var productCode = document.getElementById("productCode").value;
@@ -129,54 +128,50 @@
                                     'Content-Type': 'application/json; charset=UTF-8'
                                 },
                                 body: json
+
+
                             });
                             const result = await response.text();
                             console.log(result);
+
                         }
                     </script>
-                    <button type="submit" class="el_btnM hp_br5 hp_w100 el_btnPointBack hp_ml10" onclick="postProduct2()">바로결제</button>
+
+                    <button type="submit" class="el_btnM hp_br5 hp_w100 el_btnPointBack hp_ml10" onclick="payment()">바로결제</button>
                     <script>
-                        function addToCart() {
+                        function payment() {
                             var productCode = document.getElementById("productCode").value;
                             var count = document.getElementById("quantity").value;
-
                             var totalPriceElement = document.querySelector(".hp_fs28.hp_fw700.hp_pointColor");
                             var totalPrice = totalPriceElement.innerText.replace("원", "").replace(",", "");
 
-                            var data = {
-                                productCode: productCode,
-                                cartitemCount: count,
-                                totalPrice: totalPrice
+                            // JSON 객체 생성
+                            var requestData = {
+                                "productCode": productCode,
+                                "count": count,
+                                "totalPrice": totalPrice
                             };
-                            console.log(productCode)
-                            console.log(count)
-                            console.log(totalPrice)
 
-                        }
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("POST", "/user/product/nowPay", true);
+                            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-                        async function postProduct2() {
-                            var productCode = document.getElementById("productCode").value;
-                            var count = document.getElementById("quantity").value;
-
-                            var totalPriceElement = document.querySelector(".hp_fs28.hp_fw700.hp_pointColor");
-                            var totalPrice = totalPriceElement.innerText.replace("원", "").replace(",", "");
-
-                            var data = {
-                                productCode: productCode,
-                                cartitemCount: count,
-                                totalPrice: totalPrice
+                            xhr.onload = function() {
+                                if (xhr.status === 200) {
+                                    // 서버로부터 응답을 받은 후 처리할 내용을 여기에 작성합니다.
+                                    console.log("결제가 성공적으로 완료되었습니다.");
+                                } else {
+                                    // 오류 처리
+                                    console.error("결제 중 오류가 발생했습니다.");
+                                }
                             };
-                            const productToCart = data
-                            const json = JSON.stringify(productToCart)
-                            const response = await fetch('/user/order/payment', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json; charset=UTF-8'
-                                },
-                                body: json
-                            });
-                            const result = await response.text();
-                            console.log(result);
+
+                            xhr.onerror = function() {
+                                console.error("서버와의 통신 중 오류가 발생했습니다.");
+                            };
+
+                            // JSON 데이터를 문자열로 변환하여 전송
+                            xhr.send(JSON.stringify(requestData));
                         }
                     </script>
 
@@ -189,7 +184,7 @@
                 <div class="bl_tabCont hp_padding70">
                     <th:block th:each="remainingImages : ${productList.imageList}">
                         <!-- 만약 이미지가 존재하면 이미지를 표시합니다 -->
-                        <img  class="bl_pdView__img hp_mr40" th:if="${#lists.size(remainingImages) > 0}" th:src="@{/productUpload/original/{fileName}(fileName=${remainingImages.savedName})}"
+                        <img  class="bl_pdView__img hp_mr40" th:if="${#lists.size(remainingImages) > 0}" th:src="@{|/file/${remainingImages}|}" th:alt="${remainingImages}"
                              alt="Product Image">
                     </th:block>
 
