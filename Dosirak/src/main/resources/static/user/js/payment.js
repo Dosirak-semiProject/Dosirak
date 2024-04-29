@@ -1,6 +1,11 @@
 function orderCancel() {
     if (confirm("주문을 취소하시겠습니까?")) {
-        window.history.back();
+        setTimeout(() => {
+            window.history.back();
+        }, 500)
+        return false;
+    } else {
+        return false;
     }
 }
 
@@ -30,18 +35,12 @@ function updateProductSum() {
 
 updateProductSum();
 
-const IMP = window.IMP
-IMP.init("imp87822476")
-
 const today = new Date();
 const hours = today.getHours();
 const minutes = today.getMinutes();
 const second = today.getSeconds();
 const milliseconds = today.getMilliseconds();
 const makeMerchantUid = `${hours}` + `${minutes}` + `${second}` + `${milliseconds}`;
-
-
-const $postCode = document.querySelector('.buyerAddr1');
 
 function payment() {
     const $kakaoPayMethod = document.querySelector('.kakaoPayCheck');
@@ -51,48 +50,40 @@ function payment() {
     }
     return false;
 }
-const $totalAmount = document.querySelector('.js_amount').value;
+const totalAmount = document.querySelector('.js_amount').value;
+const buyName = document.querySelector('.pay_buyerName').value
+const buyTel = document.querySelector('.pay_buyerTel').value
+const addr1 = document.querySelector('#address1').value
+const addr2 = document.querySelector('#address2').value
+const addr3 = document.querySelector('#address3').value
+const addr4 = addr2 + addr3
+const names = document.querySelectorAll('.pay_productName')[0].textContent;
 
-const $buyName = document.querySelector('.pay_buyerName').value
-
-const $buyTel = document.querySelector('.pay_buyerTel').value
-
-const $addr1 = document.querySelector('#address1').value
-const $addr2 = document.querySelector('#address2').value
-const $addr3 = document.querySelector('#address3').value
-
-const productCodeElements = document.querySelectorAll('.getProductCode');
-let productArr = [];
-productCodeElements.forEach(element => {
-    const productCode = element.dataset.productCode;
-    console.log('Product Code:', productCode);
-
-    productArr += productCode;
-    console.log(productArr)
-});
+const IMP = window.IMP
+IMP.init("imp87822476")
 
 function kakaoPayment() {
 
-    const addr = $addr2 + $addr3
-
-
-    IMP.request_pay({
-        pg : 'kakaopay',
-        merchant_uid : "IMP" + makeMerchantUid,
-        name : 'Dosirak',
-        amount : $totalAmount,
-        buyer_name : $buyName,
-        buyer_tel : `${$buyTel}`,
-        buyer_addr : `${addr}`,
-        buyer_postcode : `${$addr1}`,
-    }, (rsp) => {
-        if (rsp.success) {
-            alert("결제 성공");
-            document.forms['finish'].submit();
-        } else {
-            alert("결제 실패");
-        }
-    })
+    if (confirm("주문하신 상품을 결제하시겠습니까?")) {
+        IMP.request_pay({
+            pg : 'kakaopay',
+            merchant_uid : "IMP" + makeMerchantUid,
+            name : names,
+            amount : totalAmount,
+            buyer_name : buyName,
+            buyer_tel : buyTel,
+            buyer_addr : addr4,
+            buyer_postcode : addr1,
+        }, (rsp) => {
+            if (rsp.success) {
+                alert("결제에 성공하셨습니다.");
+                document.forms['finish'].submit();
+            } else {
+                alert("결제에 실패하셨습니다.");
+            }
+        })
+    }
+    return false;
 }
 
 const postCodeButton = document.querySelector('#postCode')
@@ -105,3 +96,12 @@ postCodeButton.addEventListener('click', () => {
         }
     }).open();
 })
+
+const productCodeElements = document.querySelectorAll('.getProductCode');
+let productArr = [];
+productCodeElements.forEach(element => {
+    const productCode = element.dataset.productCode;
+    console.log('Product Code:', productCode);
+
+    productArr += productCode;
+});

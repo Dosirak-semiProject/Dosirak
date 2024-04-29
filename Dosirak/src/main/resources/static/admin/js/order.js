@@ -1,38 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    const selectElement = document.querySelector('.datatable-selector');
+    const selectElement = document.getElementById('order-datatable-selector');
     if (selectElement) {
-        selectElement.addEventListener('change', function handleStatusChange(e){
-            const selectedOption = e.target.value
-            alert('선택된 옵션 값:'+ selectedOption)
-        });
-    }
-
-    function handleStatusChange(e) {
-        const selectedOption = e.target.value
-        if (selectedOption === 'select') {
-            return;
-        }
-
-        let orderStatus;
-        if (selectedOption === 'O') {
-            orderStatus = 'O';
-        } else if (selectedOption === 'X') {
-            orderStatus = 'X'
-        } else if (selectedOption === 'C') {
-            orderStatus = 'C'
-        }
-
-        if (orderStatus) {
-            axios.post("/admin/orderStatus/updateStatus", {
-                status: orderStatus
-            })
-                .then(res => {
-                    console.log('요청 성공:', res.data)
+        selectElement.addEventListener('change',  (e) => {
+            const selectedValue = e.target.value
+            console.log('선택 된 옵션: ' + selectedValue)
+            if (selectedValue !== 'select') {
+                axios.post(`orderList/update-Status`, {
+                    status: selectedValue
                 })
-                .catch(err => {
-                    console.log('요청 실패:', err)
-                })
-        }
+                    .then(res => {
+                        console.log("성공: " + res.data)
+                    })
+                    .catch(err => {
+                        console.log("에러: " + err)
+                    })
+            }
+        })
     }
 })
