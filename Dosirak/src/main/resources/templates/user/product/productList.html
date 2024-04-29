@@ -65,7 +65,7 @@
                         <a class="bl_pdList__cont" th:href="@{'/user/product/productView?productCode=' + ${product.productCode}}">
                             <th:block th:each="image : ${product.imageList}">
                                 <!-- 만약 이미지가 존재하면 이미지를 표시합니다 -->
-                                <img th:if="${#lists.size(image) > 0}" th:src="@{|/file/${image.savedName}|}" th:alt="${image.savedName}"
+                                <img th:if="${#lists.size(image) > 0}" th:src="@{|/product/${image.savedName}|}" th:alt="${image.savedName}"
                                      style="max-width: 100px; max-height: 100px;">
                                 <!-- 이미지가 없으면 "No Image Available" 메시지를 표시합니다 -->
                                 <span th:unless="${#lists.size(image) > 0}">No Image Available</span>

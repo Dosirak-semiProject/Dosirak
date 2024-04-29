@@ -93,6 +93,16 @@
         FROM USER
         WHERE ID = #{userId}
     </select>
+    <select id="getCartItemByUserIdAndProductCode" resultType="com.ohgiraffers.dosirak.user.order.model.dto.CartDTO">
+        SELECT *
+        FROM CART
+        WHERE PRODUCT_CODE=#{productCode}
+    </select>
+    <update id="updateCartItem" >
+        SELECT CARTITEM_COUNT
+        FROM CART
+        WHERE CARTITEM_COUNT=#{cartitemCount}
+    </update>
 
 
 

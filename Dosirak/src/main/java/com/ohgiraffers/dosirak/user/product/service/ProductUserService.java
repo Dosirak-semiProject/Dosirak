@@ -3,6 +3,7 @@ package com.ohgiraffers.dosirak.user.product.service;
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dao.CartMapper;
+import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dao.ProductUserMapper;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
@@ -116,5 +117,13 @@ public class ProductUserService {
 
     public List<UserDTO> nowPay(String productInfo) {
         return productUserMapper.nowPay(productInfo);
+    }
+
+    public CartDTO getCartItemByUserIdAndProductCode(String userId, String productCode) {
+        return  productUserMapper.getCartItemByUserIdAndProductCode(userId,productCode);
+    }
+
+    public void updateCartItem(CartDTO existingCartItem) {
+        productUserMapper.updateCartItem(existingCartItem);
     }
 }

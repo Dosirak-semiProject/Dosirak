@@ -20,8 +20,6 @@ mybatis:
   mapper-locations: mappers/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
-<<<<<<< HEAD
-=======
 
 # image upload dir
 image:
@@ -33,4 +31,3 @@ server:
     include-message: always
     include-binding-errors: always
     include-stacktrace: always
->>>>>>> 6a1bdc3d9b9943dd2b970a89c9df25b220b145e2

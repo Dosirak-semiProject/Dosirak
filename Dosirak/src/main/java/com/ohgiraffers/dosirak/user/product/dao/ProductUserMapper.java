@@ -2,6 +2,7 @@ package com.ohgiraffers.dosirak.user.product.dao;
 
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
+import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
 import com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO;
@@ -41,4 +42,8 @@ public interface ProductUserMapper {
 
 
     List<UserDTO> nowPay(String productInfo);
+
+    CartDTO getCartItemByUserIdAndProductCode(String userId, String productCode);
+
+    void updateCartItem(CartDTO existingCartItem);
 }

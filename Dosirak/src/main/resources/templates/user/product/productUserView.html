@@ -28,7 +28,7 @@
         <div class="ly_flexC ly_fitemC">
             <th:block th:if="${productList != null && !productList.imageList.isEmpty()}">
                 <img class="bl_pdView__img hp_mr40"
-                     th:src="@{|/file/${productList.imageList[0].savedName}|}" th:alt="${productList.imageList[0].savedName}">
+                     th:src="@{|/product/${productList.imageList[0].savedName}|}" th:alt="${productList.imageList[0].savedName}">
             </th:block>
             <th:block th:unless="${productList != null && !productList.imageList.isEmpty()}">
                 <span>No Image Available</span>
@@ -182,10 +182,12 @@
             <li class="bl_tabWrap">
                 <button type="button" class="bl_tabBtn hp_br0 hp_active">상품상세내용</button>
                 <div class="bl_tabCont hp_padding70">
-                    <th:block th:each="remainingImages : ${productList.imageList}">
+                    <th:block th:each="image, iterStat : ${productList.imageList}">
+                        <th:block >
+                            <img  class="bl_pdView__img hp_mr40"  th:src="@{|/product/${image.savedName}|}" th:alt="${image.savedName}"
+                                  alt="Product Image">
+                        </th:block>
                         <!-- 만약 이미지가 존재하면 이미지를 표시합니다 -->
-                        <img  class="bl_pdView__img hp_mr40" th:if="${#lists.size(remainingImages) > 0}" th:src="@{|/file/${remainingImages}|}" th:alt="${remainingImages}"
-                             alt="Product Image">
                     </th:block>
 
                         <!--                    &lt;!&ndash; 이미지가 없으면 "No Image Available" 메시지를 표시합니다 &ndash;&gt;-->
