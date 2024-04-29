@@ -35,4 +35,10 @@ public interface MemberMapper {
     List<MemberDTO> searchMemberForm(String condition, String value);
 
     List<ManagerDTO> searchManagerForm(String condition, String value);
+
+    List<Map<String, String>> joinCount();
+
+    int joinNum();
+
+    int askNum();
 }

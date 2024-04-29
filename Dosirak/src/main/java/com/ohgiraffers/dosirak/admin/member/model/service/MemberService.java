@@ -80,4 +80,16 @@ public class MemberService {
     public List<ManagerDTO> searchManagerForm(String condition, String value) {
         return memberMapper.searchManagerForm(condition, value);
     }
+
+    public List<Map<String, String>> joinCount() {
+        return memberMapper.joinCount();
+    }
+
+    public int joinNum() {
+        return memberMapper.joinNum();
+    }
+
+    public int askNum() {
+        return memberMapper.askNum();
+    }
 }

@@ -128,4 +128,21 @@
         </choose>
     </select>
 
+
+    <select id="joinCount" resultType="java.util.Map">
+        SELECT COUNT(*) AS COUNT, JOINDATE FROM USER
+        WHERE JOINDATE BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE()
+        GROUP BY JOINDATE ORDER BY JOINDATE
+    </select>
+    <select id="joinNum" resultType="int">
+        SELECT COUNT(*) AS JOINNUM FROM USER
+        WHERE CURDATE() >= JOINDATE
+    </select>
+
+    <select id="askNum" resultType="int">
+        SELECT COUNT(*) AS ASKNUM FROM ASK
+        WHERE CURDATE() >= ASK_DATE
+    </select>
+
+
 </mapper>
