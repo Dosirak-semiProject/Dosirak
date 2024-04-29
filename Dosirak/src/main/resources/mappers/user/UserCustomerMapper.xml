@@ -95,19 +95,26 @@
     <!-- 질문 목록 조회 -->
     <select id="selectAskList" resultMap="generalUserAskResultMap">
         select
-            *
+        *
         from
-            ask a
+        ask a
         join
-            ask_category b on (b.ask_category_code = a.ask_category_code)
+        ask_category b on (b.ask_category_code = a.ask_category_code)
         left join
-            answer c on (c.ask_code = a.ask_code)
-        WHERE
-            ask_delete = 0
+        answer c on (c.ask_code = a.ask_code)
+        <where>
+            <if test="searchCondition > 0">
+                AND b.ask_category_code = #{ searchCondition }
+            </if>
+            <if test="searchValue != null and searchValue != ''">
+                AND a.ask_title LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            AND ask_delete = 0
+        </where>
         order by
-            a.ask_code desc
+        a.ask_code desc
         LIMIT
-            #{offset}, #{limit}
+        #{offset}, #{limit}
     </select>
 
     <!-- 질문 목록 조회 // view, detail update 등에서 사용 -->

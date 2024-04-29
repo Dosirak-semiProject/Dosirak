@@ -2,11 +2,12 @@ package com.ohgiraffers.dosirak.common.email.model.service;
 
 import com.ohgiraffers.dosirak.common.email.model.dao.EmailMapper;
 import com.ohgiraffers.dosirak.common.member.MemberRegistException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+@Slf4j
 @Service
 public class EmailService {
     private JavaMailSender emailSender;
@@ -33,5 +34,18 @@ public class EmailService {
     public boolean verifyVerificationCode(String inputCode, String hiddenCode) {
         int result = emailMapper.verificationService(inputCode, hiddenCode);
         return result > 0;
+    }
+
+    /* 답변 발송 */
+    public void sendInform(String to) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        log.info("to : {}", to);
+
+        message.setSubject("[도시락] 답변 완료");
+        message.setText("1대1 문의 답변이 등록되었습니다.");
+        emailSender.send(message);
+
+        log.info("emailSender : {}", emailSender);
     }
 }
