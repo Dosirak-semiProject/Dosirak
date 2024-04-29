@@ -209,11 +209,6 @@
 <!--    O.ORDER_ADDRESS2,-->
 <!--    O.ORDER_ADDRESS3,-->
 <!--    U.ID,-->
-<!--    U.NAME,-->
-<!--    U.PHONE,-->
-<!--    U.ADDRESS1,-->
-<!--    U.ADDRESS2,-->
-<!--    U.ADDRESS3,-->
 <!--    P.PAY_PRICE,-->
 <!--    P.PAY_DATE,-->
 <!--    P.PAY_METHOD,-->

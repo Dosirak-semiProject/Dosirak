@@ -77,8 +77,8 @@ public class CartController {
                 model.addAttribute("user", user);
             }
         }
-//        key 에 contain(suitbox) 되면 맞춤도시락 (product) 면 일반상품
-//        value = 일반 또는 맞춤도시락 코드
+        // key 에 contain(suitbox) 되면 맞춤도시락 (product) 면 일반상품
+        // value = 일반 또는 맞춤도시락 코드
         List<CartDTO> cartList = new ArrayList<>();
         cartList = cartService.setCartDTO(productAndQuantity, memberId);
         cartList = cartService.divisionProduct(cartList);
