@@ -64,17 +64,61 @@ $selectTags.forEach((select)=>{
         sortCategory(selectMenu)    //카테코리별로 저장
         updateNutrion(selectMenu)   //합계 최신화
         combineToAbsTable(combine)  //합계된 영양소, 총액 전달]
+        setMenuCodeAndQuantity()
     })
 })
 $plusButton.addEventListener('click', ()=>{
     $quantity.value++
     $totalPrice.textContent = ((7000 + (combine.menuExtracash || 0)) * $quantity.value).toLocaleString();
+    setMenuCodeAndQuantity()
 })
 $minusButton.addEventListener('click', ()=>{
     if($quantity.value>1){$quantity.value--}
     $totalPrice.textContent = ((7000 + (combine.menuExtracash || 0)) * $quantity.value).toLocaleString();
+    setMenuCodeAndQuantity()
 })
 $quantity.addEventListener('change',()=>{
     if($quantity.value<1){$quantity.value = 1}
     $totalPrice.textContent = ((7000 + (combine.menuExtracash || 0)) * $quantity.value).toLocaleString();
+    setMenuCodeAndQuantity()
 })
+
+// 메뉴 선택시 코드와 수령 저장
+const $cartButton = document.querySelector('#cart')
+const $butButton = document.querySelector('#buy')
+$cartButton.addEventListener('click', sendSuitBox)
+
+async function sendSuitBox(){
+    const $suitBoxForm = document.querySelector('#productForm')
+    const response = await fetch('suit-box/cart',{
+        method: 'POST',
+        body: new FormData($suitBoxForm)
+    })
+    const result = await response
+}
+
+
+
+
+
+function setMenuCodeAndQuantity() {
+    const $productForm = document.querySelector('#productForm')
+    const $selectMenuSpan = document.querySelector('#selectMenuSpan')
+    const selectedRice = $selectMenuSpan.querySelector('#rice')
+    const selectedMain = $selectMenuSpan.querySelector('#main')
+    const selectedSide = $selectMenuSpan.querySelector('#side')
+    const selectedKimchi = $selectMenuSpan.querySelector('#kimchi')
+    const selectedQuantity = $selectMenuSpan.querySelector('#quantity')
+    const rice = $productForm.querySelector('input[name="riceCode"]')
+    const main = $productForm.querySelector('input[name="mainCode"]')
+    const side = $productForm.querySelector('input[name="sideCode"]')
+    const kimchi = $productForm.querySelector('input[name="kimchiCode"]')
+    const quantity = $productForm.querySelector('input[name="quantity"]')
+    console.log(JSON.parse(selectedRice.value).menuCode)
+    rice.value = JSON.parse(selectedRice.value).menuCode
+    main.value = JSON.parse(selectedMain.value).menuCode
+    side.value = JSON.parse(selectedSide.value).menuCode
+    kimchi.value = JSON.parse(selectedKimchi.value).menuCode
+    quantity.value = selectedQuantity.value
+    console.log($productForm)
+}

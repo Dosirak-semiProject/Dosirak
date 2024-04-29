@@ -191,15 +191,30 @@ public class OrderService {
     }
 
     public DeliveryDTO allDeliveryView(String orderCode) {
-        return orderMapper.allDeliveryView(orderCode);
+
+        DeliveryDTO delivery = orderMapper.allDeliveryView(orderCode);
+            if (delivery.getDeliveryStatus() != null) {
+                switch (delivery.getDeliveryStatus()) {
+                    case "P":
+                        delivery.setDeliveryStatus("배송준비중");
+                        break;
+                    case "I":
+                        delivery.setDeliveryStatus("배송중");
+                        break;
+                    case "C":
+                        delivery.setDeliveryStatus("배송완료");
+                        break;
+                    case "D":
+                        delivery.setDeliveryStatus("배송지연");
+                        break;
+                    default:
+                        delivery.setDeliveryStatus("DeliveryStatus Error");
+                }
+            }
+        return delivery;
     }
 
     public void updateOrderStatus(List<String> detailCode) {
         orderMapper.updateOrderStatus(detailCode);
     }
-
-    public DetailDTO searchDetail(String orderCode) {
-        return orderMapper.searchDetail(orderCode);
-    }
-
 }

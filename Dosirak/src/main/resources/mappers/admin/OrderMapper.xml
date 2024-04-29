@@ -163,17 +163,71 @@
         dt.order_code = #{ orderCode }
     </select>
 
-    <!-- 에러 -->
-    <!--    <select id="searchDetail" resultMap="detailResultMap">-->
-    <!--        SELECT-->
-    <!--            d.detail_status,-->
-    <!--            d.detailitem_count,-->
-    <!--            p.product_price-->
-    <!--        FROM-->
-    <!--            detail d-->
-    <!--        JOIN `order` o ON d.order_code = o.order_code-->
-    <!--        JOIN product p ON d.detailitem_product_code = p.product_code-->
-    <!--    </select>-->
+<!--    SELECT // OrderView Query -->
+<!--    SELECT-->
+<!--    O.ORDER_CODE,-->
+<!--    O.ORDER_STATUS,-->
+<!--    &#45;&#45; R.REFUND_STATUS,-->
+<!--    O.ORDER_RECIPIENT,-->
+<!--    O.ORDER_CONTACT,-->
+<!--    O.ORDER_ADDRESS1,-->
+<!--    O.ORDER_ADDRESS2,-->
+<!--    O.ORDER_ADDRESS3,-->
+<!--    U.ID,-->
+<!--    U.NAME,-->
+<!--    U.PHONE,-->
+<!--    U.ADDRESS1,-->
+<!--    U.ADDRESS2,-->
+<!--    U.ADDRESS3,-->
+<!--    P.PAY_PRICE,-->
+<!--    P.PAY_DATE,-->
+<!--    P.PAY_METHOD,-->
+<!--    M1.MENU_NAME,-->
+<!--    M2.MENU_NAME,-->
+<!--    M3.MENU_NAME,-->
+<!--    M4.MENU_NAME-->
+<!--    FROM DETAIL D-->
+<!--    JOIN `ORDER` O ON D.ORDER_CODE = O.ORDER_CODE-->
+<!--    &#45;&#45; JOIN REFUND R ON O.ORDER_CODE = R.ORDER_CODE-->
+<!--    JOIN USER U ON O.ID = U.ID-->
+<!--    JOIN PAY P ON O.ORDER_CODE = P.ORDER_CODE-->
+<!--    &#45;&#45; JOIN TBL_PRODUCT PD ON D.PRODUCT_CODE = PD.PRODUCT_CODE-->
+<!--    JOIN SUIT_BOX S ON D.SUITBOX_CODE = S.SUITBOX_CODE-->
+<!--    JOIN MENU M1 ON S.RICE_CODE = M1.MENU_CODE-->
+<!--    JOIN MENU M2 ON S.MAIN_CODE = M2.MENU_CODE-->
+<!--    JOIN MENU M3 ON S.SIDE_CODE = M3.MENU_CODE-->
+<!--    JOIN MENU M4 ON S.KIMCHI_CODE = M4.MENU_CODE-->
+<!--    WHERE D.ORDER_CODE = 30003043;-->
+
+<!--    SELECT // OrderView Query -->
+<!--    O.ORDER_CODE,-->
+<!--    O.ORDER_STATUS,-->
+<!--    &#45;&#45; R.REFUND_STATUS,-->
+<!--    O.ORDER_RECIPIENT,-->
+<!--    O.ORDER_CONTACT,-->
+<!--    O.ORDER_ADDRESS1,-->
+<!--    O.ORDER_ADDRESS2,-->
+<!--    O.ORDER_ADDRESS3,-->
+<!--    U.ID,-->
+<!--    P.PAY_PRICE,-->
+<!--    P.PAY_DATE,-->
+<!--    P.PAY_METHOD,-->
+<!--    M1.MENU_NAME,-->
+<!--    M2.MENU_NAME,-->
+<!--    M3.MENU_NAME,-->
+<!--    M4.MENU_NAME-->
+<!--    FROM DETAIL D-->
+<!--    JOIN `ORDER` O ON D.ORDER_CODE = O.ORDER_CODE-->
+<!--    &#45;&#45; JOIN REFUND R ON O.ORDER_CODE = R.ORDER_CODE-->
+<!--    JOIN USER U ON O.ID = U.ID-->
+<!--    JOIN PAY P ON O.ORDER_CODE = P.ORDER_CODE-->
+<!--    &#45;&#45; JOIN TBL_PRODUCT PD ON D.PRODUCT_CODE = PD.PRODUCT_CODE-->
+<!--    JOIN SUIT_BOX S ON D.SUITBOX_CODE = S.SUITBOX_CODE-->
+<!--    JOIN MENU M1 ON S.RICE_CODE = M1.MENU_CODE-->
+<!--    JOIN MENU M2 ON S.MAIN_CODE = M2.MENU_CODE-->
+<!--    JOIN MENU M3 ON S.SIDE_CODE = M3.MENU_CODE-->
+<!--    JOIN MENU M4 ON S.KIMCHI_CODE = M4.MENU_CODE-->
+<!--    WHERE D.ORDER_CODE = 30003043;-->
 
     <!-- RefundView Query -->
     <select id="allRefundView" resultMap="refundResultMap">
@@ -235,4 +289,10 @@
             #{code}
         </foreach>
     </update>
+
+    <select id="changeOrderStatus" resultMap="orderResultMap">
+        SELECT ORDER_STATUS
+        FROM `ORDER`
+        WHERE ORDER_STATUS = #{status}
+    </select>
 </mapper>

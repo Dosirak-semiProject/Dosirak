@@ -29,9 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $('.js_productSum').each(function () {
             totalAmount += parseInt($(this).val());
         });
-
         let charge = totalAmount > 30000 ? 0 : 3000;
-
         $('.js_total').val(totalAmount + charge);
         $('.js_charge').val(charge);
     }
@@ -44,52 +42,63 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 선택 삭제
     $('.deleteBtn').click(function () {
+        const selectedCheckboxes = document.querySelectorAll('.bl_checkBx__input:checked')
+        if (selectedCheckboxes.length === 0) {
+            alert("선택된 상품이 없습니다. 다시 선택해 주세요.")
+            return;
+        }
+        if (confirm("해당 상품을 장바구니에서 삭제 하시겠습니까?")) {
+            setTimeout(() => {
+                $('.bl_checkBx__input:checked').each(function () {
+                    const button = $(this).closest('.js_productRow');
+                    const productCode = button.data('product-code');
+                    const suitboxCode = button.data('suitbox-code');
 
-        $('.bl_checkBx__input:checked').each(function () {
-            const button = $(this).closest('.js_productRow');
-            const productCode = button.data('product-code');
-            const suitboxCode = button.data('suitbox-code');
+                    // 행 삭제
+                    $(button).remove();
 
-            // 행 삭제
-            $(button).remove();
-
-            if (productCode != null) {
-                console.log('도시락 상품' + productCode)
-                axios.post('/user/cart/delete-product', {
-                    productCode: productCode
-                }, {
-                    headers: {
-                        'Content-Type': 'application/json'
+                    if (productCode != null) {
+                        console.log('도시락 상품' + productCode)
+                        axios.post('/user/cart/delete-product', {
+                            productCode: productCode
+                        }, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then(res => {
+                                console.log('성공:', res.status.message);
+                            })
+                            .catch(err => {
+                                console.log('오류:', err.response.message);
+                            });
+                    } else if (suitboxCode != null) {
+                        console.log('맞춤 도시락 상품' + suitboxCode)
+                        axios.post('/user/cart/delete-suitbox', {
+                            suitboxCode: suitboxCode
+                        }, {
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        })
+                            .then(res => {
+                                console.log('성공:', res.status.message);
+                            })
+                            .catch(err => {
+                                console.log('오류:', err.response.message);
+                            });
                     }
-                })
-                    .then(res => {
-                        console.log('성공:', res.status.message);
-                    })
-                    .catch(err => {
-                        console.log('오류:', err.response.message);
-                    });
-            } else if (suitboxCode != null) {
-                console.log('맞춤 도시락 상품' + suitboxCode)
-                axios.post('/user/cart/delete-suitbox', {
-                    suitboxCode: suitboxCode
-                }, {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                    .then(res => {
-                        console.log('성공:', res.status.message);
-                    })
-                    .catch(err => {
-                        console.log('오류:', err.response.message);
-                    });
-            }
-        });
-        updateProductSum();
-        updateTotalAmountAndCharge();
+                });
+                updateProductSum();
+                updateTotalAmountAndCharge();
 
-        // 전체선택 체크박스 선택해지
-        $(".checkAll").prop("checked", false);
+                // 전체선택 체크박스 선택해지
+                $(".checkAll").prop("checked", false);
+                setTimeout(() => {
+                    alert("장바구니에서 삭제되었습니다.")
+                }, 500)
+            }, 300)
+        }
     })
 
     // 페이지가 로드될 때 실행할 코드
@@ -199,3 +208,21 @@ document.addEventListener('DOMContentLoaded', () => {
         cartEmptyMessage.classList.add('show_empty_message');
     }
 });
+
+// 구매하기 버튼 이벤트
+function buyNow() {
+    const selectedCheckboxes = document.querySelectorAll('.bl_checkBx__input:checked')
+    if (selectedCheckboxes.length === 0) {
+        alert("선택한 상품이 없습니다. 상품을 선택해주세요.")
+        return false;
+    }
+    if((!confirm("선택한 상품을 구매하시겠습니까?"))) {
+        return false;
+    } else {
+        setTimeout(() => {
+            const form = document.querySelector('form');
+            form.submit();
+        }, 500)
+        return false;
+    }
+}
