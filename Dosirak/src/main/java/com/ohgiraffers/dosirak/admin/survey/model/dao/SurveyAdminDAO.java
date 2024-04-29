@@ -29,17 +29,17 @@ public interface SurveyAdminDAO {
 
     int updateVersionByVersionDTO(SurveyVersionDTO version);
 
-    int updateQuestionBySurveyQuestionDTO(SurveyQuestionDTO question);
-
-
     int insertNetVersion();
 
     int getVersionId();
 
-    int getQuestionIdByQuestionDTO(SurveyQuestionDTO question);
+    void deleteAllAnswerByVersionId(int versionId);
 
+    void insertQuestionByQuestionId(SurveyQuestionDTO question);
 
-    void deleteAllAnswerByAnswer(SurveyAnswerDTO answer);
+    void insertQuestionByQuestionByNonId(SurveyQuestionDTO question);
 
-    int insertAnswerBySurveyAnswerDTO(SurveyAnswerDTO answer);
+    int getQuestionId();
+
+    void insertAnswerByAnswer(SurveyAnswerDTO answer);
 }
