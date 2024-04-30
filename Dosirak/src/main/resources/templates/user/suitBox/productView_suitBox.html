@@ -28,27 +28,28 @@
                     <p class="hp_fs16">기본가격</p>
                     <p class="hp_fs18 hp_alignR"><b class="hp_fw700 hp_fs24">7,000</b> 원</p>
                 </div>
+                <span id="selectMenuSpan">
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">밥류</p>
-                    <select class="hp_w200px menu-select" id="rice">
+                    <select class="hp_w200px menu-select" id="rice" name="rice">
                         <option></option>
                     </select>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">메인반찬</p>
-                    <select class="hp_w200px menu-select" id="main">
+                    <select class="hp_w200px menu-select" id="main" name="main">
                         <option></option>
                     </select>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">서브반찬</p>
-                    <select class="hp_w200px menu-select" id="side">
+                    <select class="hp_w200px menu-select" id="side" name="side">
                         <option></option>
                     </select>
                 </div>
                 <div class="ly_spaceBetween ly_fitemC hp_mt10">
                     <p class="hp_fs16">김치류</p>
-                    <select class="hp_w200px menu-select" id="kimchi">
+                    <select class="hp_w200px menu-select" id="kimchi" name="kimchi">
                         <option></option>
                     </select>
                 </div>
@@ -56,17 +57,27 @@
                     <p class="hp_fs16">상품수량</p>
                     <div class="di_btn">
                         <div class="decrease" id="minusButton"><img src="/user/img/icon/minus.png" alt="minus-btn"></div>
-                        <input type="number" class="quantity" value="1" min="1" id="quantity"/>
+                        <input type="number" class="quantity" value="1" min="1" id="quantity" name="quantity"/>
                         <div class="increase" id="plusButton"><img src="/user/img/icon/plus.png" alt="plus-btn"></div>
                     </div>
                 </div>
+                </span>
+
+                <form id="productForm">
+                    <input name="riceCode" style="display: none">
+                    <input name="mainCode" style="display: none">
+                    <input name="sideCode" style="display: none">
+                    <input name="kimchiCode" style="display: none">
+                    <input name="quantity" style="display: none">
+                </form>
+
                 <div class="ly_spaceBetween ly_fitemC hp_fs20 hp_mt20 hp_pt10 hp_bordDashTDE2">
                     <span>총 상품금액</span>
                     <span><b class="hp_fs28 hp_fw700 hp_pointColor" id="totalPrice">7,000</b> 원</span>
                 </div>
                 <div class="ly_flexC hp_mt30">
-                    <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBord">장바구니</button>
-                    <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBack hp_ml10">바로결제</button>
+                    <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBord" id="cart">장바구니</button>
+                    <button type="button" class="el_btnM hp_br5 hp_w100 el_btnPointBack hp_ml10" id="buy">바로결제</button>
                 </div>
             </div>
             <div class="bl_suitBox__info ly_fgrow1 hp_ml50">
@@ -295,5 +306,6 @@
     </div>
     <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
+
 </body>
 </html>

@@ -32,7 +32,8 @@
         <result property="qnaTitle" column="qna_title"/>
         <result property="qnaAnswer" column="qna_answer"/>
         <result property="adminId" column="admin_id"/>
-        <association property="askCategoryCode" resultMap="askCategoryResultMap"/>
+        <association property="
+" resultMap="askCategoryResultMap"/>
     </resultMap>
 
 
@@ -91,6 +92,30 @@
         <result property="answerContent" column="answer_content"/>
     </resultMap>
 
+    <!-- 문의 총 게시글 조회 -->
+
+    <select id="selectTotalCountAsk" resultType="_int" parameterType="hashmap">
+        SELECT
+            COUNT(*)
+        from
+            ask a
+        join
+            ask_category b on (b.ask_category_code = a.ask_category_code)
+        left join
+            answer c on (c.ask_code = a.ask_code)
+        <where>
+            <if test="searchCondition > 0">
+                AND b.ask_category_code = #{ searchCondition }
+            </if>
+            <if test="searchValue != null and searchValue != ''">
+                AND a.ask_title LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            AND ask_delete = 0
+        </where>
+        order by
+            a.ask_code desc
+    </select>
+
     <!-- 질문 목록 조회 -->
     <select id="selectAskList" resultMap="generalUserAskResultMap">
         select
@@ -101,8 +126,15 @@
             ask_category b on (b.ask_category_code = a.ask_category_code)
         left join
             answer c on (c.ask_code = a.ask_code)
-        WHERE
-            ask_delete = 0
+        <where>
+            <if test="searchCondition > 0">
+                AND b.ask_category_code = #{ searchCondition }
+            </if>
+            <if test="searchValue != null and searchValue != ''">
+                AND a.ask_title LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+            AND ask_delete = 0
+        </where>
         order by
             a.ask_code desc
         LIMIT
@@ -128,7 +160,7 @@
         UPDATE
             ask
         SET
-            ask_category_code = #{ askCategoryCode },
+            askCategoryDTO.ask_category_code = #{ askCategoryCode },
             ask_title = #{ askTitle },
             ask_content = #{ askContent }
         WHERE
@@ -192,13 +224,13 @@
         LIMIT 1
     </select>
 
-    <!-- 페이징 추가 -->
+    <!-- 공지사항 페이징 -->
 
-    <select id="selectTotalCount" resultType="_int" parameterType="hashmap">
+    <select id="selectTotalCountNotice" resultType="_int" parameterType="hashmap">
         SELECT
             COUNT(*)
         FROM
-            ask
+            notice
     </select>
 
     <!-- 이미지 리스트 조회 -->

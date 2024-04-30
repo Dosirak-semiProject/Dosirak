@@ -37,10 +37,17 @@
         <result property="productCode" column="product_code"/>
         <result property="productName" column="product_name"/>
         <result property="productPrice" column="product_price"/>
-        <result property="savePath" column="save_path"/>
         <association property="suitbox" resultMap="SuitBoxResultMap"/>
+        <association property="productImageDTO" resultMap="productImageResultMap"/>
     </resultMap>
 
+    <!-- ProductImageDTO Mapping -->
+    <resultMap id="productImageResultMap" type="com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO">
+        <result property="savedName" column="saved_name"/>
+        <result property="savePath" column="save_path"/>
+    </resultMap>
+
+    <!-- SuitBoxDTO Mapping -->
     <resultMap id="SuitBoxResultMap" type="com.ohgiraffers.dosirak.user.suitBox.model.dto.SuitBoxDTO">
         <id column="suitbox_code" property="suitboxCode" />
         <result column="rice_code" property="riceCode" />
@@ -70,6 +77,7 @@
             p.product_price,
             s.suitbox_code,
             i.save_path,
+            i.saved_name,
             s.rice_code,
             s.main_code,
             s.side_code,
@@ -126,17 +134,6 @@
         WHERE c.id = #{userId} AND s.suitbox_code = #{suitboxCode}
     </select>
 
-    <!-- UserOrderDone Query -->
-<!--    <select id="userOrderDone" resultMap="orderResultMap">-->
-<!--        SELECT-->
-<!--            o.order_code,-->
-<!--            p.pay_date-->
-<!--        FROM-->
-<!--            `order` o-->
-<!--        JOIN pay p ON o.order_code = p.order_code-->
-<!--        WHERE c.id = #{id}-->
-<!--    </select>-->
-
     <insert id="userOrderDone">
         INSERT INTO `ORDER` (ID, ORDER_RECIPIENT, ORDER_CONTACT, ORDER_ADDRESS1, ORDER_ADDRESS2, ORDER_ADDRESS3)
         VALUES
@@ -175,20 +172,23 @@
     <!-- UserPayment Query-->
     <select id="userPayment" resultMap="CartResultMap">
         SELECT
-            c.product_code,
-            c.cartitem_count,
-            p.PRODUCT_NAME,
-            p.PRODUCT_price,
-            u.name,
-            u.phone,
-            u.address1,
-            u.address2,
-            u.address3
+            C.PRODUCT_CODE,
+            C.CARTITEM_COUNT,
+            P.PRODUCT_NAME,
+            P.PRODUCT_PRICE,
+            PI.SAVE_PATH,
+            PI.SAVED_NAME,
+            U.NAME,
+            U.PHONE,
+            U.ADDRESS1,
+            U.ADDRESS2,
+            U.ADDRESS3
         FROM
-            cart c
-        JOIN user u ON c.id = u.id
-        JOIN tbl_product p ON c.PRODUCT_CODE = p.PRODUCT_CODE
-        WHERE c.id = #{userId}
+            CART C
+        JOIN USER U ON C.ID = U.ID
+        JOIN TBL_PRODUCT P ON C.PRODUCT_CODE = P.PRODUCT_CODE
+        JOIN PRODUCT_IMG PI ON P.PRODUCT_CODE = PI.PRODUCT_CODE
+        WHERE C.ID = #{cartList}
     </select>
 
     <!-- CartUpdateQuantity Query -->
@@ -240,4 +240,13 @@
         DELETE FROM CART
         WHERE suitbox_code = #{suitboxCode}
     </delete>
+
+<!--    <select id="getProductFileImg">-->
+<!--        SELECT-->
+<!--            PI.SAVE_PATH-->
+<!--        FROM-->
+<!--            PRODUCT_IMG PI-->
+<!--        JOIN CART C ON PI.PRODUCT_CODE = C.PRODUCT_CODE-->
+<!--        WHERE C.ID = #{memberId}-->
+<!--    </select>-->
 </mapper>

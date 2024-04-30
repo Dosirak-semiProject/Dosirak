@@ -35,20 +35,10 @@
 
             // 관리자 권한등급
             const managerAuthor = '[[${managerAuthor}]]';
-            switch (managerAuthor){
-                case "1" :
-                    $(".grade2Input").removeClass("none");
-                    $(".grade2Input").attr("readonly", false);
-                    $(".grade2Btn").removeClass("hp_dpNone");
-                    break;
-                case "2" :
-                    $(".grade2Input").removeClass("none");
-                    $(".grade2Input").attr("readonly", false);
-                    $(".grade2Btn").removeClass("hp_dpNone");
-                    break;
-                case "3" :
-                    $(".agree").text(agree);
-                    break;
+            if(managerAuthor < 3){
+                $(".grade2Input").removeClass("none");
+                $(".grade2Input").attr("readonly", false);
+                $(".grade2Btn").removeClass("hp_dpNone");
             }
         })
     </script>

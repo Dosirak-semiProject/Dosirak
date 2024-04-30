@@ -49,10 +49,6 @@ public class SurveyAdminService {
         return surveyMapper.updateVersionByVersionDTO(version);
     }
 
-    public int updateQuestionBySurveyQuestionDTO(SurveyQuestionDTO question) {
-        return surveyMapper.updateQuestionBySurveyQuestionDTO(question);
-    }
-
 
 
     public int insertNetVersion() {
@@ -63,17 +59,28 @@ public class SurveyAdminService {
         return surveyMapper.getVersionId();
     }
 
-    public int getQuestionIdByQuestionDTO(SurveyQuestionDTO question) {
-        return surveyMapper.getQuestionIdByQuestionDTO(question);
+    public void deleteAllAnswerByVersionId(int versionId) {
+        surveyMapper.deleteAllAnswerByVersionId(versionId);
+    }
+
+    public void deleteQuestionByVersionId(int versionId) {
+        surveyMapper.deleteQuestionByVersionId(versionId);
+    }
+
+    public void insertQuestionByQuestionId(SurveyQuestionDTO question) {
+        surveyMapper.insertQuestionByQuestionId(question);
+    }
+
+    public void insertQuestionByQuestionByNonId(SurveyQuestionDTO question) {
+        surveyMapper.insertQuestionByQuestionByNonId(question);
     }
 
 
-
-    public void deleteAllAnswerByAnswer(SurveyAnswerDTO answer) {
-        surveyMapper.deleteAllAnswerByAnswer(answer);
+    public int getQuestionId() {
+        return surveyMapper.getQuestionId();
     }
 
-    public int insertAnswerBySurveyAnswerDTO(SurveyAnswerDTO answer) {
-        return surveyMapper.insertAnswerBySurveyAnswerDTO(answer);
+    public void insertAnswerByAnswer(SurveyAnswerDTO answer) {
+        surveyMapper.insertAnswerByAnswer(answer);
     }
 }

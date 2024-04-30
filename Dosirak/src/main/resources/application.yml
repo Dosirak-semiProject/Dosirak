@@ -32,7 +32,7 @@ mybatis:
 # image upload dir
 image:
   image-dir: C:/Dosirak/original/customer
-  review-image-dir: C:/Dosirak/original/review
+  reivew-image-dir: C:/Dosirak/original/review
   product-image-dir: C:/Dosirak/original/productUpload
 
 

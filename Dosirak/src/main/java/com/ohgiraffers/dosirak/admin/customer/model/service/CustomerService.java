@@ -1,7 +1,6 @@
 package com.ohgiraffers.dosirak.admin.customer.model.service;
 
-import com.ohgiraffers.dosirak.admin.customer.common.Pagenation;
-import com.ohgiraffers.dosirak.admin.customer.common.SelectCriteria;
+import com.ohgiraffers.dosirak.admin.customer.Search.SearchCriteria;
 import com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
@@ -24,9 +23,9 @@ public class CustomerService {
 
 
     /* ----- 공지사항 ----- */
-    public List<NoticeDTO> findNoticeList() {
+    public List<NoticeDTO> findNoticeList(String searchValue) {
 
-        return customerMapper.findNoticeList();
+        return customerMapper.findNoticeList(searchValue);
     }
 
     public NoticeDTO selectNoticeDetail(int noticeCode) {
@@ -73,6 +72,11 @@ public class CustomerService {
         customerMapper.deleteQna(qnaCode);
     }
 
+    /* 자주 묻는 질문 수정 시, 관리자 필요에 따라 카테고리 변경 */
+    public void updateQnaCategory(int qnaCode, int askCategoryCode) {
+
+        customerMapper.updateQnaCategory(qnaCode, askCategoryCode);
+    }
     public void updateQna(QnaDTO qnaTemp) {
 
         customerMapper.updateQna(qnaTemp);
@@ -86,10 +90,10 @@ public class CustomerService {
         return customerMapper.findAskList();
     }
 
-    public List<AskDTO> findAllAskList() {
+    public List<AskDTO> findAllAskList(SearchCriteria searchCriteria) {
 
         // 모든 1대1 문의내역 반환
-        return customerMapper.findAllAskList();
+        return customerMapper.findAllAskList(searchCriteria);
     }
 
 
@@ -117,7 +121,7 @@ public class CustomerService {
     }
 
     /* 답변 등록 시, 관리자 필요에 따라 카테고리 변경 */
-    public void updateCategory(int askCode, int askCategoryCode) {
+    public void updateAskCategory(int askCode, int askCategoryCode) {
 
         customerMapper.updateAskCategory(askCode, askCategoryCode);
     }
