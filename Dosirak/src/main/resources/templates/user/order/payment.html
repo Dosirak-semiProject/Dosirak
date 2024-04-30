@@ -54,7 +54,7 @@
                                      src="/suitboxUpload/original/suitbox.jpg" alt=""/>
                                 <dl class="bl_orderView__info">
                                     <dt class="pay_productName" th:if="${cart.productCode != 0}" th:text="${cart.productName}"></dt>
-                                    <dt class="pay_productName" th:if="${cart.suitbox != null}" th:text="|맞춤도시락 ${cart.detailSuitBox.rice.getMenuName()}/${cart.detailSuitBox.main.getMenuName()}/${cart.detailSuitBox.side.getMenuName()}/${cart.detailSuitBox.kimchi.getMenuName()}|">
+                                    <dt class="pay_productName" th:if="${cart.suitbox != null}" th:text="|[맞춤도시락] ${cart.detailSuitBox.rice.getMenuName()}/${cart.detailSuitBox.main.getMenuName()}/${cart.detailSuitBox.side.getMenuName()}/${cart.detailSuitBox.kimchi.getMenuName()}|">
                                     <dd class="hp_mt10" style="display: flex">
                                         <div class="hp_ml10 hp_mr10 js_productPrice pay_productPrice"
                                              th:text="${cart.productPrice} + '원'"></div>

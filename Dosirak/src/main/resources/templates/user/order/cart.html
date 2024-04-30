@@ -45,11 +45,12 @@
                         <tr>
                             <th scope="col">
                                 <label class="bl_checkBx hp_w100">
-                                    <input type="checkbox" class="bl_checkBx__input checkAll" checked>
+                                    <input type="checkbox" class="bl_checkBx__input checkAll">
                                     <span class="bl_checkBx__check"></span>
                                 </label>
                             </th>
                             <th scope="col" colspan="2" style="padding-right: 80px">상품명</th>
+                            <th scope="col"></th>
                             <th scope="col">상품가격</th>
                             <th scope="col">상품개수</th>
                         </tr>
@@ -74,11 +75,11 @@
                                                 <input th:if="${cart.productCode != 0}" type="checkbox"
                                                        class="bl_checkBx__input checkOne"
                                                        th:value="${cart.productCode}"
-                                                       th:name="|product${cart.productCode}|" checked>
+                                                       th:name="|product${cart.productCode}|">
                                                 <input th:if="${cart.suitbox != null}" type="checkbox"
                                                        class="bl_checkBx__input checkOne"
                                                        th:value="${cart.suitbox.suitboxCode}"
-                                                       th:name="|suitbox${cart.suitbox.suitboxCode}|" checked>
+                                                       th:name="|suitbox${cart.suitbox.suitboxCode}|">
                                                 <span class="bl_checkBx__check"></span>
                                             </label>
                                         </td>
@@ -89,6 +90,10 @@
                                                      alt="food"/>
                                                 <img th:if="${cart.suitbox != null}" class="bl_TBList__orderImg"
                                                      src="/suitboxUpload/original/suitbox.jpg" alt="food"/>
+                                            </a>
+                                        </td>
+                                        <td class="bl_TBList__ttl">
+                                            <a class="ly_flexC ly_fitemC" href="">
                                                 <p th:if="${cart.productCode != 0}" class="hp_ellipsis hp_ellipsis3"
                                                    th:text="${ cart.productName }"></p>
                                                 <p th:if="${cart.suitbox != null}" class="hp_ellipsis hp_ellipsis3">맞춤 도시락</p>
@@ -125,7 +130,7 @@
                                     </span>
                                 </span>
                         <tr>
-                            <td class="bl_TBList__empty" colspan="5" th:if="${cartDTO.size() == 0}">
+                            <td class="bl_TBList__empty" colspan="6" th:if="${cartDTO.size() == 0}">
                                 <span><img th:src="@{/user/img/icon/bento.png}" alt="bento"/></span>
                                 <p>주문내역이 없습니다.</p>
                             </td>

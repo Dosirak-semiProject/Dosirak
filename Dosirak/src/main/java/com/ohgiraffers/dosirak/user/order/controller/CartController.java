@@ -111,15 +111,18 @@ public class CartController {
             }
         }
 
+        /* 결제 후 요청 들어온 codeMap에서 get 사용하여 정보 꺼내오기 */
         String name = codeMap.get("name");
         String phone = codeMap.get("phone");
         String address1 = codeMap.get("address1");
         String address2 = codeMap.get("address2");
         String address3 = codeMap.get("address3");
 
+        /* 꺼내온 정보들을 ORDER 테이블에 INSERT */
         int createOrderTb = cartService.userOrderDone(memberId, name, phone, address1, address2, address3);
 
         if (createOrderTb > 0) {
+            /* 가장 최근 OrderCode 찾기 */
             String orderCode = cartService.findOrderCode();
             int payPrice = 0;
             List<CartDTO> cartList = new ArrayList<>();
@@ -146,8 +149,8 @@ public class CartController {
             pay.put("payPrice", String.valueOf(payPrice));
             pay.put("payStatus", "O");
             pay.put("payMethod", payMethod);
-            int payInputResult = cartService.insertPay(pay);
-            int deliveryResult = cartService.insertDelivery(orderCode);
+            cartService.insertPay(pay);
+            cartService.insertDelivery(orderCode);
             for (CartDTO cart : cartList) {
                 if (cart.getProductCode() == 0) {
                     String itemCode = String.valueOf(cart.getSuitboxCode());
@@ -158,13 +161,10 @@ public class CartController {
                 }
                 payPrice = payPrice + cart.getProductPrice() * cart.getCartitemCount();
             }
-
             PayDTO payDTO = cartService.findPayDate(orderCode);
             model.addAttribute("orderCode", orderCode);
             model.addAttribute("payDTO", payDTO);
-
         }
-
         return "/user/order/orderDone";
     }
 }

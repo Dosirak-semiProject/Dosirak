@@ -1,12 +1,8 @@
 package com.ohgiraffers.dosirak.admin.order.controller;
 
-import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
 import com.ohgiraffers.dosirak.admin.order.model.dto.*;
 import com.ohgiraffers.dosirak.admin.order.model.service.OrderService;
-import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -29,6 +24,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    /* 관리자 주문*/
     @GetMapping("orderList")
     public String orderList(Model model) {
         List<OrderDTO> orderLists = orderService.allOrderLists();

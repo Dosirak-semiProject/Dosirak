@@ -68,78 +68,86 @@
         <result property="orderCode" column="order_code"/>
     </resultMap>
 
-    <!-- UserCartList Query -->
+    <!-- 장바구니 조회 -->
     <select id="userCartList" resultMap="CartResultMap">
         SELECT
-            c.cartitem_count,
-            p.product_code,
-            p.product_name,
-            p.product_price,
-            s.suitbox_code,
-            i.save_path,
-            i.saved_name,
-            s.rice_code,
-            s.main_code,
-            s.side_code,
-            s.kimchi_code
+            C.CARTITEM_COUNT,
+            P.PRODUCT_CODE,
+            P.PRODUCT_NAME,
+            P.PRODUCT_PRICE,
+            S.SUITBOX_CODE,
+            I.SAVE_PATH,
+            I.SAVED_NAME,
+            S.RICE_CODE,
+            S.MAIN_CODE,
+            S.SIDE_CODE,
+            S.KIMCHI_CODE
         FROM
-            cart c
-        LEFT JOIN tbl_product p ON c.product_code = p.product_code
-        LEFT JOIN product_img i ON c.product_code = i.product_code
-        LEFT JOIN SUIT_BOX s ON c.suitbox_code = s.SUITBOX_CODE
-        WHERE c.id = #{userId}
+            CART C
+        LEFT JOIN TBL_PRODUCT P ON C.PRODUCT_CODE = P.PRODUCT_CODE
+        LEFT JOIN PRODUCT_IMG I ON C.PRODUCT_CODE = I.PRODUCT_CODE
+        LEFT JOIN SUIT_BOX S ON C.SUITBOX_CODE = S.SUITBOX_CODE
+        WHERE C.ID = #{userId}
     </select>
 
+    <!-- 맞춤상품 메뉴이름 장바구니 조회 -->
     <select id="getMenuByCode">
-        SELECT menu_code,
-        menu_name,
-        menu_category,
-        menu_extracash,
-        menu_status
-        FROM MENU
+        SELECT
+            MENU_CODE,
+            MENU_NAME,
+            MENU_CATEGORY,
+            MENU_EXTRACASH,
+            MENU_STATUS
+        FROM
+            MENU
         WHERE MENU_CODE = #{menuCode}
     </select>
 
+    <!-- 결제페이지 유저 정보 가져오기 -->
     <select id="getPaymentByUserId" parameterType="string">
-        SELECT id, name, PHONE, ADDRESS1, ADDRESS2, ADDRESS3
+        SELECT ID, NAME, PHONE, ADDRESS1, ADDRESS2, ADDRESS3
         FROM USER
         WHERE ID = #{userId}
     </select>
 
+    <!-- 일반상품 장바구니 조회 -->
     <select id="getProductByCart" resultMap="CartResultMap" parameterType="hashMap">
         SELECT
-            c.cartitem_count,
-            p.product_code,
-            p.product_name,
-            p.product_price,
-            pi.save_path
+            C.CARTITEM_COUNT,
+            P.PRODUCT_CODE,
+            P.PRODUCT_NAME,
+            P.PRODUCT_PRICE,
+            PI.SAVE_PATH
         FROM
-            cart c
-        JOIN tbl_product p ON c.product_code = p.product_code
-        JOIN product_img pi ON p.product_code = pi.product_code
-        WHERE c.id = #{userId} AND p.product_code = #{productCode}
+            CART C
+        JOIN TBL_PRODUCT P ON C.PRODUCT_CODE = P.PRODUCT_CODE
+        JOIN PRODUCT_IMG PI ON P.PRODUCT_CODE = PI.PRODUCT_CODE
+        WHERE C.ID = #{userId} AND P.PRODUCT_CODE = #{productCode}
     </select>
 
+    <!-- 맞춤상품 코드 가져오기 -->
     <select id="getSuitboxCodeByCart" resultMap="CartResultMap" parameterType="hashMap">
         SELECT
-            c.cartitem_count,
-            s.suitbox_code,
-            s.rice_code,
-            s.main_code,
-            s.side_code,
-            s.kimchi_code
+            C.CARTITEM_COUNT,
+            S.SUITBOX_CODE,
+            S.RICE_CODE,
+            S.MAIN_CODE,
+            S.SIDE_CODE,
+            S.KIMCHI_CODE
         FROM
-            cart c
-        JOIN suit_box s ON c.suitbox_code = s.suitbox_code
-        WHERE c.id = #{userId} AND s.suitbox_code = #{suitboxCode}
+            CART C
+        JOIN SUIT_BOX S ON C.SUITBOX_CODE = S.SUITBOX_CODE
+        WHERE C.ID = #{userId} AND S.SUITBOX_CODE = #{suitboxCode}
     </select>
 
+    <!-- 결제 후 ORDER 테이블에 INSERT -->
     <insert id="userOrderDone">
         INSERT INTO `ORDER` (ID, ORDER_RECIPIENT, ORDER_CONTACT, ORDER_ADDRESS1, ORDER_ADDRESS2, ORDER_ADDRESS3)
         VALUES
         (#{memberId}, #{name}, #{phone}, #{address1},#{address2},#{address3})
     </insert>
 
+    <!-- 최근 주문코드 가져오기 -->
     <select id="findOrderCode" resultType="string">
         SELECT
             ORDER_CODE
@@ -148,6 +156,7 @@
         ORDER BY ORDER_CODE DESC LIMIT 1
     </select>
 
+    <!-- 주문코드의 결제날짜 가져오기 -->
     <select id="findPayDate">
         SELECT
             P.PAY_DATE
@@ -157,12 +166,14 @@
         WHERE O.ORDER_CODE = #{orderCode}
     </select>
 
+    <!-- 주문완료 후 맞춤상품, 수량 주문상세 테이블 INSERT -->
     <insert id="insertDetailSuitbox">
         INSERT INTO DETAIL (DETAILITEM_COUNT, SUITBOX_CODE, ORDER_CODE)
         VALUES
             (#{cartitemCount}, #{suitboxCode}, #{orderCode})
     </insert>
 
+    <!-- 주문완료 후 일반상품, 수량 주문상세 테이블 INSERT -->
     <insert id="insertDetailProduct">
         INSERT INTO DETAIL (DETAILITEM_COUNT, PRODUCT_CODE, ORDER_CODE)
         VALUES
@@ -194,11 +205,11 @@
     <!-- CartUpdateQuantity Query -->
     <update id="cartUpdateQuantity" parameterType="com.ohgiraffers.dosirak.user.order.model.dto.CartDTO">
         UPDATE
-            cart
+            CART
         SET
-            cartitem_count = #{updatedQuantity}
+            CARTITEM_COUNT = #{updatedQuantity}
         WHERE
-            product_code = #{productCode}
+            PRODUCT_CODE = #{productCode}
     </update>
     <update id="cartUpdateQuantitySuitbox" parameterType="hashMap">
         UPDATE
@@ -221,11 +232,13 @@
         (#{orderCode})
     </insert>
 
+    <!-- 맞춤상품 장바구니 삭제 -->
     <delete id="deleteCartSuitbox">
         DELETE FROM CART
         WHERE id = #{memberId} AND suitbox_code = #{itemCode}
     </delete>
 
+    <!-- 일반상품 장바구니 삭제-->
     <delete id="deleteCartProduct">
         DELETE FROM CART
         WHERE id = #{memberId} AND product_code = #{itemCode}
@@ -240,13 +253,4 @@
         DELETE FROM CART
         WHERE suitbox_code = #{suitboxCode}
     </delete>
-
-<!--    <select id="getProductFileImg">-->
-<!--        SELECT-->
-<!--            PI.SAVE_PATH-->
-<!--        FROM-->
-<!--            PRODUCT_IMG PI-->
-<!--        JOIN CART C ON PI.PRODUCT_CODE = C.PRODUCT_CODE-->
-<!--        WHERE C.ID = #{memberId}-->
-<!--    </select>-->
 </mapper>
