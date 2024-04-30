@@ -40,5 +40,13 @@ public interface MemberMapper {
 
     int joinNum();
 
+    List<Map<String, String>> perProfit();
+
+    int profit();
+
+    int reviewNum();
+
     int askNum();
+
+    List<Map<String, String>> recentOrderList();
 }

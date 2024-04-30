@@ -89,7 +89,23 @@ public class MemberService {
         return memberMapper.joinNum();
     }
 
+    public List<Map<String, String>> perProfit() {
+        return memberMapper.perProfit();
+    }
+
+    public int profit() {
+        return memberMapper.profit();
+    }
+
+    public int reviewNum() {
+        return memberMapper.reviewNum();
+    }
+
     public int askNum() {
         return memberMapper.askNum();
+    }
+
+    public List<Map<String, String>> recentOrderList() {
+        return memberMapper.recentOrderList();
     }
 }
