@@ -128,4 +128,38 @@
         </choose>
     </select>
 
+
+    <select id="joinCount" resultType="java.util.Map">
+        SELECT COUNT(*) AS COUNT, JOINDATE FROM USER
+        WHERE JOINDATE BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE()
+        GROUP BY JOINDATE ORDER BY JOINDATE
+    </select>
+    <select id="joinNum" resultType="int">
+        SELECT COUNT(*) AS JOINNUM FROM USER
+        WHERE CURDATE() >= JOINDATE
+    </select>
+    <select id="perProfit" resultType="java.util.Map">
+        SELECT SUM(PAY_PRICE) AS PAY_PRICE, PAY_DATE FROM PAY
+        WHERE PAY_DATE BETWEEN DATE_SUB(CURDATE(), INTERVAL 6 DAY) AND CURDATE()
+        GROUP BY PAY_DATE ORDER BY PAY_DATE
+    </select>
+    <select id="profit" resultType="int">
+        SELECT SUM(PAY_PRICE) AS PROFIT FROM PAY
+        WHERE CURDATE() >= PAY_DATE
+    </select>
+    <select id="reviewNum" resultType="int">
+        SELECT COUNT(*) AS REVIEWNUM FROM REVIEW
+        WHERE CURDATE() >= REVIEW_DATE
+    </select>
+    <select id="askNum" resultType="int">
+        SELECT COUNT(*) AS ASKNUM FROM ASK
+        WHERE CURDATE() >= ASK_DATE
+    </select>
+    <select id="recentOrderList" resultType="java.util.Map">
+        SELECT ORDER_CODE, ORDER_STATUS, ID, PAY_PRICE, PAY_DATE
+        FROM `ORDER` O LEFT JOIN PAY P USING (ORDER_CODE)
+        WHERE CURDATE() >= PAY_DATE
+        ORDER BY PAY_DATE DESC
+    </select>
+
 </mapper>
