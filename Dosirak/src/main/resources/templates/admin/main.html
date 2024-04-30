@@ -179,7 +179,11 @@
                                 <tbody>
                                     <tr th:each = "pay : ${recentOrderList}">
                                         <td th:text="${pay.ORDER_CODE}"></td>
-                                        <td th:text="${pay.ORDER_STATUS}"></td>
+                                        <td>
+                                            <th:block th:if="${ pay.ORDER_STATUS == 'O'}">주문완료</th:block>
+                                            <th:block th:if="${ pay.ORDER_STATUS == 'C'}">구매확정</th:block>
+                                            <th:block th:if="${ pay.ORDER_STATUS == 'X'}">주문취소</th:block>
+                                        </td>
                                         <td th:text="${pay.ID}"></td>
                                         <td th:text="${pay.PAY_PRICE}"></td>
                                         <td th:text="${pay.PAY_DATE}"></td>
