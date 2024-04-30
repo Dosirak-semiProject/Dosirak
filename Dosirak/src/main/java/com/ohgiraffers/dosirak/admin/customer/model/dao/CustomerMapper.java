@@ -1,5 +1,6 @@
 package com.ohgiraffers.dosirak.admin.customer.model.dao;
 
+import com.ohgiraffers.dosirak.admin.customer.Search.SearchCriteria;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,7 +12,7 @@ public interface CustomerMapper {
 
 
     /* ----- 공지사항 ----- */
-    List<NoticeDTO> findNoticeList();
+    List<NoticeDTO> findNoticeList(String searchMap);
     NoticeDTO searchNoticeDetail(int noticeCode);
     void insertNotice(NoticeDTO notice);
     void deleteNotice(int noticeCode);
@@ -30,7 +31,7 @@ public interface CustomerMapper {
 
     /* ----- 1대1 문의 ----- */
     List<AskDTO> findAskList();     // 특정 문의
-    List<AskDTO> findAllAskList();  // 모든 문의
+    List<AskDTO> findAllAskList(SearchCriteria searchCriteria);  // 모든 문의
     AskDTO searchAskDetail(int askCode);
     AnswerDTO searchAnswerDetail(int askCode);
     List<AskCategoryDTO> findCategoryList();

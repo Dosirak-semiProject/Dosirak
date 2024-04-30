@@ -158,16 +158,31 @@ public class UserCustomerController {
     @GetMapping("/askEdit/{askCode}")
     public String getAskEdit(@PathVariable("askCode") int askCode, Model model) {
 
-        UserAskDTO askList = userCustomerService.findAskList(askCode);
-        model.addAttribute("askList", askList);
-        log.info("askList : {}", askList);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        List<UserAskCategoryDTO> categoryList = userCustomerService.findCategoryList();
-        model.addAttribute("categoryList", categoryList);
+        if (authentication != null && authentication.isAuthenticated()) {
+            Object principal = authentication.getPrincipal();
 
-        List<UserCustomerImgDTO> imageList = userCustomerService.searchImageList(askCode);
-        model.addAttribute("imageList", imageList);
+            if (principal instanceof AdminLoginDetails adminLoginDetails) {
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                String id = login.getId();
 
+                MemberDTO member = myinfoService.myinfoSelect(id);
+                String memberEmail = member.getEmail();
+                model.addAttribute("memberEmail", memberEmail);
+
+                /**/
+                UserAskDTO askList = userCustomerService.findAskList(askCode);
+                model.addAttribute("askList", askList);
+                log.info("askList : {}", askList);
+
+                List<UserAskCategoryDTO> categoryList = userCustomerService.findCategoryList();
+                model.addAttribute("categoryList", categoryList);
+
+                List<UserCustomerImgDTO> imageList = userCustomerService.searchImageList(askCode);
+                model.addAttribute("imageList", imageList);
+            }
+        }
         return "user/customer/askEdit";
     }
 
