@@ -1,5 +1,6 @@
 package com.ohgiraffers.dosirak.admin.customer.model.service;
 
+import com.ohgiraffers.dosirak.admin.customer.Search.SearchCriteria;
 import com.ohgiraffers.dosirak.admin.customer.model.dao.CustomerMapper;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import com.ohgiraffers.dosirak.user.customer.model.dto.UserCustomerImgDTO;
@@ -22,9 +23,9 @@ public class CustomerService {
 
 
     /* ----- 공지사항 ----- */
-    public List<NoticeDTO> findNoticeList() {
+    public List<NoticeDTO> findNoticeList(String searchValue) {
 
-        return customerMapper.findNoticeList();
+        return customerMapper.findNoticeList(searchValue);
     }
 
     public NoticeDTO selectNoticeDetail(int noticeCode) {
@@ -89,10 +90,10 @@ public class CustomerService {
         return customerMapper.findAskList();
     }
 
-    public List<AskDTO> findAllAskList() {
+    public List<AskDTO> findAllAskList(SearchCriteria searchCriteria) {
 
         // 모든 1대1 문의내역 반환
-        return customerMapper.findAllAskList();
+        return customerMapper.findAllAskList(searchCriteria);
     }
 
 
