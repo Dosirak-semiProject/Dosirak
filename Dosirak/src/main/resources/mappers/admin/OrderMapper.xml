@@ -86,26 +86,46 @@
         <result property="productPrice" column="product_price"/>
     </resultMap>
 
-    <!-- OrderList Query -->
-    <select id="allOrderLists" resultMap="orderResultMap">
+    <!-- 셀렉트 박스 및 검색 조회 -->
+    <select id="searchOrderLists" resultMap="orderResultMap">
         SELECT
-        o.order_code,
-        o.order_recipient,
-        o.order_status,
-        u.id,
-        u.name,
-        p.pay_price,
-        p.pay_date,
-        p.pay_status,
-        p.pay_method
+            o.order_code,
+            o.order_recipient,
+            o.order_status,
+            u.id,
+            u.name,
+            p.pay_price,
+            p.pay_date,
+            p.pay_status,
+            p.pay_method
         FROM
-        `order` o
+            `order` o
         JOIN user u ON u.id = o.id
         JOIN pay p ON p.order_code = o.order_code
+        <where>
+            <choose>
+                <!-- searchStatus가 ''이거나 null이면 모든 상태의 문의를 반환 -->
+                <when test="searchCondition == null or searchCondition == ''">
+                    <!-- 모든 상태의 문의를 반환하므로 아무런 조건 없음 -->
+                </when>
+                <when test="searchCondition == 1">
+                    o.order_status = 'O'
+                </when>
+                <when test="searchCondition == 2">
+                    o.order_status = 'X'
+                </when>
+                <when test="searchCondition == 3">
+                    o.order_status = 'C'
+                </when>
+            </choose>
+            <if test="searchValue != null and searchValue != ''">
+                AND o.order_code LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+        </where>
     </select>
 
     <!-- RefundList Query -->
-    <select id="allRefundList" resultMap="refundResultMap">
+    <select id="searchRefundLists" resultMap="refundResultMap">
         SELECT
         r.order_code,
         r.refund_price,
@@ -119,10 +139,33 @@
         JOIN `order` o ON r.order_code = o.order_code
         JOIN pay p ON r.order_code = p.order_code
         JOIN user u ON o.ID = u.ID
+        <where>
+            <choose>
+                <!-- searchStatus가 ''이거나 null이면 모든 상태의 문의를 반환 -->
+                <when test="searchCondition == null or searchCondition == ''">
+                    <!-- 모든 상태의 문의를 반환하므로 아무런 조건 없음 -->
+                </when>
+                <when test="searchCondition == 1">
+                    r.refund_status = 'R'
+                </when>
+                <when test="searchCondition == 2">
+                    r.refund_status = 'P'
+                </when>
+                <when test="searchCondition == 3">
+                    r.refund_status = 'A'
+                </when>
+                <when test="searchCondition == 4">
+                    r.refund_status = 'D'
+                </when>
+            </choose>
+            <if test="searchValue != null and searchValue != ''">
+                AND r.refund_code LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+        </where>
     </select>
 
     <!-- DeliveryList Query -->
-    <select id="allDeliveryList" resultMap="deliveryResultMap">
+    <select id="searchDeliveryLists" resultMap="deliveryResultMap">
         SELECT
         d.order_code,
         d.delivery_code,
@@ -133,6 +176,29 @@
         delivery d
         JOIN `order` o ON d.order_code = o.order_code
         JOIN user u ON o.id = u.id
+        <where>
+            <choose>
+                <!-- searchStatus가 ''이거나 null이면 모든 상태의 문의를 반환 -->
+                <when test="searchCondition == null or searchCondition == ''">
+                    <!-- 모든 상태의 문의를 반환하므로 아무런 조건 없음 -->
+                </when>
+                <when test="searchCondition == 1">
+                    d.delivery_status = 'P'
+                </when>
+                <when test="searchCondition == 2">
+                    d.delivery_status = 'I'
+                </when>
+                <when test="searchCondition == 3">
+                    d.delivery_status = 'C'
+                </when>
+                <when test="searchCondition == 4">
+                    d.delivery_status = 'D'
+                </when>
+            </choose>
+            <if test="searchValue != null and searchValue != ''">
+                AND d.delivery_code LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+        </where>
     </select>
 
     <!-- OrderView Query -->

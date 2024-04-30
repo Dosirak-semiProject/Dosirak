@@ -9,10 +9,6 @@ import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
-    List<OrderDTO> allOrderLists();
-
-    List<RefundDTO> allRefundList();
-
     List<DeliveryDTO> allDeliveryList();
 
     OrderDTO allOrderView(String orderCode);
@@ -23,5 +19,9 @@ public interface OrderMapper {
 
     void updateOrderStatus(List<String> detailCode);
 
-//    List<OrderDTO> searchOrderForm(String searchCondition, String searchValue);
+    List<OrderDTO> searchOrderLists(String searchCondition, String searchValue);
+
+    List<RefundDTO> searchRefundLists(String searchCondition, String searchValue);
+
+    List<DeliveryDTO> searchDeliveryLists(String searchCondition, String searchValue);
 }

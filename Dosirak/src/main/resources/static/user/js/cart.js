@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
         $('.js_charge').val(charge);
     }
 
-    // 체크박스 전체 선택/해제
+
+    /* 체크박스 전체 선택/해제 */
     const checkAll = document.querySelector('.checkAll');
     const checkboxes = document.querySelectorAll('.checkOne');
     checkAll.addEventListener('change', () => {
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    /* 단일 체크박스가 하나라도 선택이 되어있지 않으면, 전체 체크박스 해제*/
+    /* 단일 체크박스가 하나라도 선택이 되어있지 않거나 장바구니가 비어있으면 전체 체크박스 해제*/
     const cartListElement  = document.getElementById('cartList')
     checkboxes.forEach(checkboxe => {
         checkboxe.addEventListener('change', () => {
