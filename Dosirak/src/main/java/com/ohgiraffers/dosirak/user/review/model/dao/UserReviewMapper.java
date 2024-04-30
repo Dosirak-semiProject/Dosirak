@@ -1,7 +1,7 @@
 package com.ohgiraffers.dosirak.user.review.model.dao;
 
 import com.ohgiraffers.dosirak.admin.customer.model.dto.AnswerDTO;
-import com.ohgiraffers.dosirak.user.customer.common.SelectCriteria;
+import com.ohgiraffers.dosirak.user.review.common.SelectCriteria;
 import com.ohgiraffers.dosirak.user.review.model.dto.DeliveryDTO;
 import com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO;
 import com.ohgiraffers.dosirak.user.review.model.dto.ReviewImgDTO;
@@ -46,9 +46,13 @@ public interface UserReviewMapper {
     List<ReviewImgDTO> getImageList(int reviewCode);
 
     /* 페이징 추가 */
-    int selectTotalCount(Map<String, String> searchMap);
+    int selectTotalCount(Map<String, String> searchMap, String userId);
 
-    List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria, String userId);
+    /* 주문내역 불러오기 */
+    List<ReviewDTO> selectOrderList(SelectCriteria selectCriteria, String userId);
+
+    /* 리뷰리스트 불러오기 */
+    List<ReviewDTO> selectReviewList(SelectCriteria selectCriteria);
 
 //    List<OrderDTO> reviewResultMap();
 }

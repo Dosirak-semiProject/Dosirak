@@ -18,7 +18,7 @@ public class ReviewDTO {
     String productName;
 
     /* PAY 테이블에서 가져오는 PAY_DATE컬럼 */
-    Date orderDate;
+    Date payDate;
 
     String deliveryStatus;
 
@@ -34,6 +34,12 @@ public class ReviewDTO {
 
     int reviewCode;
 
+    private DeliveryDTO deliveryDTO;
+    private ProductDTO productDTO;
+    private DetailDTO detailDTO;
+    private OrderDTO orderDTO;
+
     public ReviewDTO () {}
+
 
 }
