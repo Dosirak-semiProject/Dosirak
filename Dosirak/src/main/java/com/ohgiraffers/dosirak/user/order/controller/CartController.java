@@ -54,7 +54,6 @@ public class CartController {
             log.info("Empty cart list");
         }
 
-        System.out.println("@@@@@@@@@@@" + cartDTO);
         return "/user/order/cart";
     }
 
@@ -85,6 +84,10 @@ public class CartController {
         cartList = cartService.divisionProduct(cartList);
 
         model.addAttribute("cartDTO", cartList);
+
+        for (CartDTO cartDTO : cartList) {
+            System.out.println("@@@@@@@@@@@@@@@@@@@" + cartDTO.getProductImageDTO().getSavedName());
+        }
 
         return "/user/order/payment";
     }

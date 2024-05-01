@@ -105,9 +105,13 @@
 
     <!-- 결제페이지 유저 정보 가져오기 -->
     <select id="getPaymentByUserId" parameterType="string">
-        SELECT ID, NAME, PHONE, ADDRESS1, ADDRESS2, ADDRESS3
-        FROM USER
-        WHERE ID = #{userId}
+        SELECT U.ID, U.NAME, U.PHONE, U.ADDRESS1, U.ADDRESS2, U.ADDRESS3, PI.SAVED_NAME
+        FROM USER U
+        JOIN `ORDER` O ON U.ID = O.ID
+        JOIN DETAIL D ON O.ORDER_CODE = D.ORDER_CODE
+        JOIN TBL_PRODUCT PD ON D.PRODUCT_CODE = PD.PRODUCT_CODE
+        JOIN PRODUCT_IMG PI ON PD.PRODUCT_CODE = PI.PRODUCT_CODE
+        WHERE U.ID = #{userId}
     </select>
 
     <!-- 일반상품 장바구니 조회 -->
@@ -181,26 +185,26 @@
     </insert>
 
     <!-- UserPayment Query-->
-    <select id="userPayment" resultMap="CartResultMap">
-        SELECT
-            C.PRODUCT_CODE,
-            C.CARTITEM_COUNT,
-            P.PRODUCT_NAME,
-            P.PRODUCT_PRICE,
-            PI.SAVE_PATH,
-            PI.SAVED_NAME,
-            U.NAME,
-            U.PHONE,
-            U.ADDRESS1,
-            U.ADDRESS2,
-            U.ADDRESS3
-        FROM
-            CART C
-        JOIN USER U ON C.ID = U.ID
-        JOIN TBL_PRODUCT P ON C.PRODUCT_CODE = P.PRODUCT_CODE
-        JOIN PRODUCT_IMG PI ON P.PRODUCT_CODE = PI.PRODUCT_CODE
-        WHERE C.ID = #{cartList}
-    </select>
+<!--    <select id="userPayment" resultMap="CartResultMap">-->
+<!--        SELECT-->
+<!--            C.PRODUCT_CODE,-->
+<!--            C.CARTITEM_COUNT,-->
+<!--            P.PRODUCT_NAME,-->
+<!--            P.PRODUCT_PRICE,-->
+<!--            PI.SAVE_PATH,-->
+<!--            PI.SAVED_NAME,-->
+<!--            U.NAME,-->
+<!--            U.PHONE,-->
+<!--            U.ADDRESS1,-->
+<!--            U.ADDRESS2,-->
+<!--            U.ADDRESS3-->
+<!--        FROM-->
+<!--            CART C-->
+<!--        JOIN USER U ON C.ID = U.ID-->
+<!--        JOIN TBL_PRODUCT P ON C.PRODUCT_CODE = P.PRODUCT_CODE-->
+<!--        JOIN PRODUCT_IMG PI ON P.PRODUCT_CODE = PI.PRODUCT_CODE-->
+<!--        WHERE C.ID = #{cartList}-->
+<!--    </select>-->
 
     <!-- CartUpdateQuantity Query -->
     <update id="cartUpdateQuantity" parameterType="com.ohgiraffers.dosirak.user.order.model.dto.CartDTO">
