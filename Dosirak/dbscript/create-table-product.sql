@@ -192,3 +192,55 @@ VALUES
     (30003038, 50005038, 'I'),
     (30003039, 50005039, 'C'),
     (30003040, 50005040, 'D');
+
+
+
+CREATE TABLE IF NOT EXISTS review (
+                                      review_code INT AUTO_INCREMENT COMMENT '리뷰코드',
+                                      review_title VARCHAR(255) NOT NULL COMMENT '리뷰제목',
+                                      review_content VARCHAR(255) NOT NULL COMMENT '리뷰내용',
+                                      user_id VARCHAR(20) COMMENT '회원아이디',
+                                      review_editdate DATE  COMMENT '수정일시',
+                                      review_delete VARCHAR(2) DEFAULT 'N' NOT NULL  COMMENT '삭제여부',
+                                      detail_code INT NOT NULL COMMENT '주문상세코드',
+                                      review_date DATE NOT NULL COMMENT '리뷰날짜',
+                                      PRIMARY KEY (review_code) ,
+                                      FOREIGN KEY (user_id) REFERENCES USER(ID),
+                                      FOREIGN KEY (detail_code) REFERENCES detail(detail_code)
+) ENGINE=INNODB;
+drop table detail;
+CREATE TABLE IF NOT EXISTS DETAIL (
+                                      DETAIL_CODE INT AUTO_INCREMENT PRIMARY KEY COMMENT '상세 주문 코드',
+                                      DETAIL_STATUS VARCHAR(1) DEFAULT 'O' CHECK( DETAIL_STATUS IN ('O', 'X')) COMMENT '주문 상세 상태',
+                                      DETAILITEM_COUNT INT NOT NULL COMMENT '상세 주문 수량',
+                                      PRODUCT_CODE INT COMMENT '상세 상품 코드',
+                                      SUITBOX_CODE INT COMMENT '상세 맞춤 상품 코드',
+                                      ORDER_CODE INT NOT NULL COMMENT '주문 코드',
+                                      FOREIGN KEY (PRODUCT_CODE) REFERENCES tbl_product(PRODUCT_CODE),
+                                      FOREIGN KEY (ORDER_CODE) REFERENCES `ORDER`(ORDER_CODE)
+)AUTO_INCREMENT = 60006001 COMMENT '주문상세';
+-- 완료 O: Complete
+-- 취소 X: Canceled
+
+
+
+
+INSERT INTO detail (DETAIL_CODE, DETAIL_STATUS, DETAILITEM_COUNT, PRODUCT_CODE, ORDER_CODE) VALUE ('600060011','O','5','3','30003011');
+INSERT INTO detail (DETAIL_CODE, DETAIL_STATUS, DETAILITEM_COUNT, PRODUCT_CODE, ORDER_CODE) VALUE ('600060012','O','5','3','30003012');
+INSERT INTO detail (DETAIL_CODE, DETAIL_STATUS, DETAILITEM_COUNT, PRODUCT_CODE, ORDER_CODE) VALUE ('600060013','O','5','3','30003013');
+INSERT INTO detail (DETAIL_CODE, DETAIL_STATUS, DETAILITEM_COUNT, PRODUCT_CODE, ORDER_CODE) VALUE ('600060014','O','5','3','30003014');
+INSERT INTO detail (DETAIL_CODE, DETAIL_STATUS, DETAILITEM_COUNT, PRODUCT_CODE, ORDER_CODE) VALUE ('600060015','O','5','3','30003015');
+
+
+INSERT INTO `ORDER` (ORDER_CODE, ORDER_STATUS, ID) VALUE ('30003011','O','junho25');
+INSERT INTO `ORDER` (ORDER_CODE, ORDER_STATUS, ID) VALUE ('30003012','O','junho25');
+INSERT INTO `ORDER` (ORDER_CODE, ORDER_STATUS, ID) VALUE ('30003013','O','junho25');
+INSERT INTO `ORDER` (ORDER_CODE, ORDER_STATUS, ID) VALUE ('30003014','O','junho25');
+INSERT INTO `ORDER` (ORDER_CODE, ORDER_STATUS, ID) VALUE ('30003015','O','junho25');
+
+
+INSERT INTO review (review_title, review_content, user_id, detail_code, review_date) VALUE ('이미지 등록 테스트','이미지 등록 테스트','junho25','600060011','2012-04-21');
+INSERT INTO review (review_title, review_content, user_id, detail_code, review_date) VALUE ('이미지 등록 테스트','이미지 등록 테스트','junho25','600060012','2012-04-21');
+INSERT INTO review (review_title, review_content, user_id, detail_code, review_date) VALUE ('이미지 등록 테스트','이미지 등록 테스트','junho25','600060013','2012-04-21');
+INSERT INTO review (review_title, review_content, user_id, detail_code, review_date) VALUE ('이미지 등록 테스트','이미지 등록 테스트','junho25','600060014','2012-04-21');
+INSERT INTO review (review_title, review_content, user_id, detail_code, review_date) VALUE ('이미지 등록 테스트','이미지 등록 테스트','junho25','600060015','2012-04-21');
