@@ -1,6 +1,6 @@
 package com.ohgiraffers.dosirak.admin.product.dao;
 
-import com.ohgiraffers.dosirak.admin.product.dto.NavDTO;
+
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
@@ -49,7 +49,4 @@ public interface ProductMapper {
 
     List<productDTO> findByCriteria(String productName, int productCategoryCode, String productStatus);
 
-    void navSave(NavDTO info);
-
-    List<NavDTO> getNav();
 }

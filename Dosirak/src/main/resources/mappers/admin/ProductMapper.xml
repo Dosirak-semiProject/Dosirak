@@ -11,10 +11,6 @@
         <result property="productCategoryCode" column="PRODUCT_CATEGORY_CODE"/>
         <result property="productSummary" column="product_summary"/>
     </resultMap>
-    <resultMap id="Nav" type="com.ohgiraffers.dosirak.admin.product.dto.NavDTO">
-        <id property="navName" column="NAV_NAME"/>
-        <result property="navInfo" column="NAV_INFO"/>
-    </resultMap>
     <select id="findAllProduct" resultMap="product">
         SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE
         FROM tbl_product;
@@ -95,14 +91,6 @@
         (#{productCategoryCode} IS NULL OR PRODUCT_CATEGORY_CODE = #{productCategoryCode})
         AND
         (#{productStatus} IS NULL OR PRODUCT_STATUS = #{productStatus})
-    </select>
-    <insert id="navSave">
-        INSERT INTO tbl_nav (NAV_NAME, NAV_INFO)
-        VALUES (#{navName},#{navInfo})
-    </insert>
-    <select id="getNav" resultMap="Nav">
-        SELECT *
-        FORM tbl_nav;
     </select>
 
 
