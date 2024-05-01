@@ -82,54 +82,54 @@ public class CartRestController {
         }
     }
 
-    /* 카카오페이 서버 통신 */
-    @PostMapping("payment/kakao-pay")
-    public String paymentKakaoPay() {
-        try {
-            URL kakaoPayUrl = new URL("https://open-api.kakaopay.com/online/v1/payment/ready");
-            HttpURLConnection kakaoConnection = (HttpURLConnection) kakaoPayUrl.openConnection();
-            kakaoConnection.setRequestMethod("POST");
-            kakaoConnection.setRequestProperty("Authorization", "KakaoAK {YOUR_SECRET_KEY}");
-            kakaoConnection.setRequestProperty("Content-Type", "application/json");
-            kakaoConnection.setDoOutput(true);
-
-            String kakaoParameter = "cid = TC0ONETIME" +
-                    "&partner_order_id=partner_order_id" +
-                    "&partner_user_id=partner_user_id" +
-                    "&item_name=초코파이" +
-                    "&total_amount=2200" +
-                    "&vat_amount=200" +
-                    "&tax_free_amount=0" +
-                    "&approval_url=https://developers.kakao.com/success" +
-                    "&fail_url=https://developers.kakao.com/fail" +
-                    "&cancel_url=https://developers.kakao.com/cancel";
-
-
-            OutputStream kakaoOutput = kakaoConnection.getOutputStream();
-            DataOutputStream kakaoData = new DataOutputStream(kakaoOutput);
-
-            kakaoData.writeBytes(kakaoParameter);
-            kakaoData.flush();
-            kakaoData.close();
-
-            int responseCode = kakaoConnection.getResponseCode();
-
-            InputStream inputStream;
-            if (responseCode == 200) {
-                inputStream = kakaoConnection.getInputStream();
-            } else {
-                inputStream = kakaoConnection.getErrorStream();
-            }
-
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-            return bufferedReader.readLine();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "redirect:/user/main";
-    }
+//    /* 카카오페이 서버 통신 */
+//    @PostMapping("payment/kakao-pay")
+//    public String paymentKakaoPay() {
+//        try {
+//            URL kakaoPayUrl = new URL("https://open-api.kakaopay.com/online/v1/payment/ready");
+//            HttpURLConnection kakaoConnection = (HttpURLConnection) kakaoPayUrl.openConnection();
+//            kakaoConnection.setRequestMethod("POST");
+//            kakaoConnection.setRequestProperty("Authorization", "KakaoAK {YOUR_SECRET_KEY}");
+//            kakaoConnection.setRequestProperty("Content-Type", "application/json");
+//            kakaoConnection.setDoOutput(true);
+//
+//            String kakaoParameter = "cid = TC0ONETIME" +
+//                    "&partner_order_id=partner_order_id" +
+//                    "&partner_user_id=partner_user_id" +
+//                    "&item_name=초코파이" +
+//                    "&total_amount=2200" +
+//                    "&vat_amount=200" +
+//                    "&tax_free_amount=0" +
+//                    "&approval_url=https://developers.kakao.com/success" +
+//                    "&fail_url=https://developers.kakao.com/fail" +
+//                    "&cancel_url=https://developers.kakao.com/cancel";
+//
+//
+//            OutputStream kakaoOutput = kakaoConnection.getOutputStream();
+//            DataOutputStream kakaoData = new DataOutputStream(kakaoOutput);
+//
+//            kakaoData.writeBytes(kakaoParameter);
+//            kakaoData.flush();
+//            kakaoData.close();
+//
+//            int responseCode = kakaoConnection.getResponseCode();
+//
+//            InputStream inputStream;
+//            if (responseCode == 200) {
+//                inputStream = kakaoConnection.getInputStream();
+//            } else {
+//                inputStream = kakaoConnection.getErrorStream();
+//            }
+//
+//            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+//            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+//
+//            return bufferedReader.readLine();
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        return "redirect:/user/main";
+//    }
 }

@@ -87,7 +87,7 @@
         LEFT JOIN TBL_PRODUCT P ON C.PRODUCT_CODE = P.PRODUCT_CODE
         LEFT JOIN PRODUCT_IMG I ON C.PRODUCT_CODE = I.PRODUCT_CODE
         LEFT JOIN SUIT_BOX S ON C.SUITBOX_CODE = S.SUITBOX_CODE
-        WHERE C.ID = #{userId}
+        WHERE C.ID = #{memberId}
     </select>
 
     <!-- 맞춤상품 메뉴이름 장바구니 조회 -->
@@ -246,11 +246,11 @@
 
     <delete id="cartDeleteProductList">
         DELETE FROM CART
-        WHERE product_code = #{productCode}
+        WHERE PRODUCT_CODE = #{productCode}
     </delete>
 
     <delete id="cartDeleteSuitboxList">
         DELETE FROM CART
-        WHERE suitbox_code = #{suitboxCode}
+        WHERE SUITBOX_CODE = #{suitboxCode}
     </delete>
 </mapper>

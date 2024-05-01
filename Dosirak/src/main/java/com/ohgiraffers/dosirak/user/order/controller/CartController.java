@@ -31,7 +31,7 @@ public class CartController {
     }
 
     @GetMapping("cart")
-    public String cart(Model model, HttpServletResponse response) throws IOException {
+    public String cart(Model model) {
         /* 사용자 인증 정보 가져오기 */
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String memberId = "";
@@ -44,9 +44,6 @@ public class CartController {
                 memberId = login.getId();
                 model.addAttribute("memberId", memberId);
             }
-        } else {
-            response.sendRedirect("/login");
-            return null;
         }
         /* ID를 매개변수로 넘겨 사용자의 장바구니 상품 출력 */
         List<CartDTO> cartDTO = cartService.userCartList(memberId);
@@ -56,6 +53,8 @@ public class CartController {
         } else {
             log.info("Empty cart list");
         }
+
+        System.out.println("@@@@@@@@@@@" + cartDTO);
         return "/user/order/cart";
     }
 
