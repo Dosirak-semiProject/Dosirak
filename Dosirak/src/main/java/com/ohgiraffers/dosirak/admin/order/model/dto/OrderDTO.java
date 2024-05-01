@@ -1,6 +1,7 @@
 package com.ohgiraffers.dosirak.admin.order.model.dto;
 
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
+import com.ohgiraffers.dosirak.user.suitBox.model.dto.SuitBoxDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -24,10 +25,11 @@ public class OrderDTO {
     private RefundDTO refund;
     private DeliveryDTO delivery;
     private List<DetailDTO> detail;
+    private SuitBoxDTO suitBox;
 
     public OrderDTO() {}
 
-    public OrderDTO(String orderCode, String orderStatus, String orderRecipient, String orderContact, String orderAddress1, String orderAddress2, String orderAddress3, PayDTO pay, MemberDTO member, RefundDTO refund, DeliveryDTO delivery, List<DetailDTO> detail) {
+    public OrderDTO(String orderCode, String orderStatus, String orderRecipient, String orderContact, String orderAddress1, String orderAddress2, String orderAddress3, PayDTO pay, MemberDTO member, RefundDTO refund, DeliveryDTO delivery, List<DetailDTO> detail, SuitBoxDTO suitBox) {
         this.orderCode = orderCode;
         this.orderStatus = orderStatus;
         this.orderRecipient = orderRecipient;
@@ -40,5 +42,6 @@ public class OrderDTO {
         this.refund = refund;
         this.delivery = delivery;
         this.detail = detail;
+        this.suitBox = suitBox;
     }
 }

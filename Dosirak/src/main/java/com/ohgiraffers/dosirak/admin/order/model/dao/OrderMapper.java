@@ -5,18 +5,13 @@ import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface OrderMapper {
-    List<OrderDTO> allOrderLists();
-
-    List<RefundDTO> allRefundList();
-
     List<DeliveryDTO> allDeliveryList();
 
     OrderDTO allOrderView(String orderCode);
-
-    DetailDTO searchDetail(String orderCode);
 
     RefundDTO allRefundView(String orderCode);
 
@@ -24,5 +19,9 @@ public interface OrderMapper {
 
     void updateOrderStatus(List<String> detailCode);
 
-    OrderDTO changeOrderStatus(String status);
+    List<OrderDTO> searchOrderLists(String searchCondition, String searchValue);
+
+    List<RefundDTO> searchRefundLists(String searchCondition, String searchValue);
+
+    List<DeliveryDTO> searchDeliveryLists(String searchCondition, String searchValue);
 }

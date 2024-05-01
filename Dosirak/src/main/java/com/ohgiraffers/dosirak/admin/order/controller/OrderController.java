@@ -1,12 +1,10 @@
 package com.ohgiraffers.dosirak.admin.order.controller;
 
-import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
 import com.ohgiraffers.dosirak.admin.order.model.dto.*;
 import com.ohgiraffers.dosirak.admin.order.model.service.OrderService;
-import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,25 +13,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/*")
 public class OrderController {
 
+    private static final Logger log = LoggerFactory.getLogger(OrderController.class);
     private final OrderService orderService;
-
-    /* 관리자 기능 일단 제외 */
 
     @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
+    /* 관리자 주문*/
     @GetMapping("orderList")
-    public String orderList(Model model) {
-        List<OrderDTO> orderLists = orderService.allOrderLists();
+    public String orderList(Model model,  @RequestParam(required = false) String searchCondition, @RequestParam(required = false) String searchValue) {
+
+        List<OrderDTO> orderLists = orderService.searchOrderLists(searchCondition, searchValue);
 
         model.addAttribute("orderLists", orderLists);
 
@@ -42,10 +42,11 @@ public class OrderController {
 
     @GetMapping("orderView")
     public String orderView(Model model, @RequestParam String orderCode) {
-
         OrderDTO orderView = orderService.allOrderView(orderCode);
 
         model.addAttribute("orderView", orderView);
+
+        log.info(orderCode);
 
         return "admin/order/orderView";
     }
@@ -61,9 +62,9 @@ public class OrderController {
     }
 
     @GetMapping("refundList")
-    public String refundList(Model model) {
+    public String refundList(Model model, @RequestParam(required = false) String searchCondition, @RequestParam(required = false) String searchValue) {
 
-        List<RefundDTO> refundLists = orderService.allRefundList();
+        List<RefundDTO> refundLists = orderService.searchRefundLists(searchCondition, searchValue);
 
         model.addAttribute("refundLists", refundLists);
 
@@ -81,9 +82,9 @@ public class OrderController {
     }
 
     @GetMapping("deliveryList")
-    public ModelAndView deliveryList(ModelAndView mv) {
+    public ModelAndView deliveryList(ModelAndView mv, @RequestParam(required = false) String searchCondition, @RequestParam(required = false) String searchValue) {
 
-        List<DeliveryDTO> deliveryList = orderService.allDeliveryList();
+        List<DeliveryDTO> deliveryList = orderService.searchDeliveryLists(searchCondition, searchValue);
 
         mv.addObject("deliveryList", deliveryList);
 
@@ -103,4 +104,23 @@ public class OrderController {
 
         return mv;
     }
+
+//    @GetMapping("/memberList")
+//    public String findMemberList(@RequestParam(required = false) String searchCondition,
+//                                 @RequestParam(required = false) String searchValue,
+//                                 Model model) {
+//        List<OrderDTO> orderList;
+//
+//        if (searchValue != null && !searchValue.isEmpty()) {
+//            orderList = orderService.searchOrderForm(searchCondition, searchValue);
+//        } else {
+//            orderList = orderService.findAllMember();
+//        }
+//
+//        model.addAttribute("orderList", orderList);
+//        model.addAttribute("searchCondition", searchCondition);
+//        model.addAttribute("searchValue", searchValue);
+//
+//        return "/admin/member/memberList";
+//    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @ToString
 public class PayDTO {
-    private int  payPrice;
+    private int payPrice;
     private LocalDate payDate;
     private String  payStatus;
     private String payMethod;

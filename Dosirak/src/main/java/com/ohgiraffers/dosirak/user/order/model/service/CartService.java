@@ -24,8 +24,8 @@ public class CartService {
         this.cartMapper = cartMapper;
     }
 
-    public List<CartDTO> userCartList(String userId) {
-        return cartMapper.userCartList(userId);
+    public List<CartDTO> userCartList(String memberId) {
+        return cartMapper.userCartList(memberId);
     }
 
     public void cartUpdateQuantity(CartDTO cartDTO) {
