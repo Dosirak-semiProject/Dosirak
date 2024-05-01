@@ -12,8 +12,9 @@
         <div class="ly_midWD ly_inner02">
             <div class="hp_bordDE hp_padding50">
                 <div class="outer">
-                    <div style="float: left ; width: 15px"><img src="/user/img/suitBox/back.png"></div>
+                    <div style="float: left ; width: 15px; visibility:hidden; opacity: 0.5" id="backButton"><img src="/user/img/suitBox/back.png"></div>
                     <form action="submit-survey" method="post">
+                        <input style="display: none" th:value="${infoResult.surveyAge}" th:name="surveyAge">
                         <input style="display: none" th:value="${infoResult.surveyHeight}" th:name="surveyHeight">
                         <input style="display: none" th:value="${infoResult.surveyWeight}" th:name="surveyWeight">
                         <input style="display: none" th:value="${infoResult.surveyBmi}" th:name="surveyBmi">

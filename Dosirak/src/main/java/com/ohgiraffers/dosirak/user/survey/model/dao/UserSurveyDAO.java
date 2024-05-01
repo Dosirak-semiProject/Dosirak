@@ -6,6 +6,7 @@ import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyScoreRangeDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface UserSurveyDAO {
@@ -15,4 +16,10 @@ public interface UserSurveyDAO {
     List<SurveyScoreRangeDTO> getCurrentRange();
 
     int setResult(SurveyResultDTO result);
+
+    int checkSurveyResultByUserId(String userId);
+
+    SurveyResultDTO getSurveyResultByUserId(String userId);
+
+    Map getUserInfoByUserId(String userId);
 }
