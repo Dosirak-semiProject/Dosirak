@@ -22,24 +22,6 @@
                         <col style="width:200px"/>
                         <col style="width:*"/>
                     </colgroup>
-                    <tbody>
-                    <tr>
-                        <th scope="row">조회기간 설정</th>
-                        <td class="hp_pt20">
-                            <div class="ly_spaceBetween ly_fitemC">
-                                <div class="ly_spaceBetween ly_fgrow1">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row"><label for="">카테고리 설정</label></th>
-                        <td class="hp_pb20">
-                            <div class="ly_flex">
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
                 </table>
                 <table class="bl_TBList bl_TBList__order">
                     <caption class="WA">검색</caption>
@@ -59,21 +41,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td th:each="order : ${orderHistory}" th:text="${order.payDate}"></td>
-                        <td class="bl_TBList__ttl"   th:each="order : ${orderHistory}">
-                            <a class="ly_flexC ly_fitemC" href="">
-                                <img class="bl_TBList__orderImg" th:each="order : ${orderHistory}" th:src="@{/productUpload/original/{fileName}(fileName=${order.firstImageName})}"
-                                     alt=""/>
-                                <p class="hp_ellipsis hp_ellipsis3" th:each="order : ${orderHistory}" th:text="${order.productName}"></p>
-                            </a>
-                        </td>
-                        <td th:each="order : ${orderHistory}" th:text="${order.deliveryStatus}"></td>
-                        <td>
-                            <button type="button" class="el_btnS hp_br5 el_btnPointBord" th:each="order : ${orderHistory}" th:if="${order != null and order.productName != null}">등록하기</button>
-                        </td>
-                    </tr>
-                    <tr>
+                    <th:block th:each="order : ${orderHistory}">
+                        <tr>
+                            <td th:text="${order.payDate}"></td>
+                            <td class="bl_TBList__ttl">
+                                <a class="ly_flexC ly_fitemC" href="">
+                                    <img class="bl_TBList__orderImg" th:src="@{|/product/${order.firstImageName}|}"
+                                         alt=""/>
+                                    <p class="hp_ellipsis hp_ellipsis3" th:text="${order.productName}"></p>
+                                </a>
+                            </td>
+                            <td th:text="${order.deliveryStatus}"></td>
+                            <td>
+                                <button type="button" class="el_btnS hp_br5 el_btnPointBord" th:if="${order != null and order.productName != null}">등록하기</button>
+                            </td>
+                        </tr>
+                    </th:block>
+                    <tr th:if="${orderHistory == null or orderHistory.isEmpty()}">
                         <td class="bl_TBList__empty" colspan="4">주문내역이 없습니다.</td>
                     </tr>
                     </tbody>

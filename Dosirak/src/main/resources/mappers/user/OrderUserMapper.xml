@@ -82,7 +82,7 @@
         JOIN DELIVERY d ON o.ORDER_CODE = d.ORDER_CODE
         JOIN DETAIL dt ON o.ORDER_CODE = dt.ORDER_CODE
         JOIN USER U ON u.ID = o.ID
-        LEFT JOIN tbl_product tp ON dt.DETAILITEM_PRODUCT_CODE = tp.PRODUCT_CODE
+        LEFT JOIN tbl_product tp ON dt.PRODUCT_CODE = tp.PRODUCT_CODE
         WHERE
         o.ID = #{userId}
         ORDER BY
