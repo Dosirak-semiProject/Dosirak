@@ -201,7 +201,7 @@ public class UserCustomerController {
         //업데이트
         userCustomerService.updateAsk(askTemp);
 
-        return "redirect:/user/customer/askList";
+        return "redirect:/user/customer/askDetail?askCode=" + askCode;
     }
 
     @RequestMapping("/askDelete")
@@ -209,7 +209,7 @@ public class UserCustomerController {
 
         userCustomerService.deleteQna(ask.getAskCode());
 
-        return "redirect:/user/customer/askList";
+        return "redirect:/user/customer/askList" ;
     }
 
     @GetMapping("/askRegist")

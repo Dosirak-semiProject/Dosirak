@@ -14,7 +14,7 @@ public class AnswerDTO {
     private int answerCode;
     private boolean answerStatus;
     private String answerContent;
-    private Date answerDate;
+    private String answerDate;
     private String adminId;
     private int askCategoryCode;
     private int askCode; //askCode

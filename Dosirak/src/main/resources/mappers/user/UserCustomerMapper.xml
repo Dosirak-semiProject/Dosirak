@@ -160,7 +160,7 @@
         UPDATE
             ask
         SET
-            askCategoryDTO.ask_category_code = #{ askCategoryCode },
+            ask_category_code = #{ askCategoryCode },
             ask_title = #{ askTitle },
             ask_content = #{ askContent }
         WHERE

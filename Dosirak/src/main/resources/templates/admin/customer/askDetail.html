@@ -104,15 +104,12 @@
                             </td>
                         </tr>
                     </div>
-                    <div th:if="${ ask.answerDTO.answerStatus != true }">
-                        <span></span>
-                    </div>
                     <tr>
                         <th scope="row">답변내용</th>
                         <td colspan="3">
                             <div th:if="${ ask.answerDTO.answerStatus == true }">
                                 <!-- 답변이 존재하는 경우 DB에 등록된 답변 내용을 표시 -->
-                                <pre th:text="${ ask.answerDTO.answerContent }"></pre>
+                                <p th:text="${ ask.answerDTO.answerContent }"></p>
                             </div>
                             <div th:if="${ ask.answerDTO.answerStatus != true }">
                                 <!-- 답변이 존재하지 않는 경우 텍스트 에어리어 표시 -->
