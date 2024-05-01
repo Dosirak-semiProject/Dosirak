@@ -257,20 +257,6 @@ public class ProductController {
 
         return "admin/product/productList";
     }
-    @GetMapping("/Nav")
-    public String Nav(Model model){
-        List<NavDTO> navDTOS=productService.getNav();
-        model.addAttribute("navDTOS",navDTOS);
-        return "/admin/product/Navi";
-    }
-    @PostMapping("/saveInfo")
-    public String saveInfo(@RequestParam String navName, @RequestParam String navInfo) {
-        NavDTO info=new NavDTO();
-        info.setNavName(navName);
-        info.setNavInfo(navInfo);
-        productService.navSave(info);
-        return "admin/product/Navi"; // 저장 후 메인 페이지로 리다이렉트
-    }
 
 
 
