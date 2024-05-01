@@ -33,4 +33,6 @@ public interface SuitBoxMapper {
     SurveyResultDTO getSurveyResultByUserId(String userId);
 
     String getUserGenderByUserId(String userId);
+
+    int getSuitBoxCodeBySuitBox(SuitBoxDTO suitbox);
 }

@@ -98,6 +98,7 @@ public class SuitBoxController {
                 MemberDTO user = suitBoxService.getPaymentByUserId(userId);
                 model.addAttribute("user", user);
             }
+            model.addAttribute("directPay", "true");
         }
 
         CartDTO item = new CartDTO();
@@ -120,11 +121,21 @@ public class SuitBoxController {
                 7000);
         item.setSuitbox(suitBox);
         item.setCartitemCount(suitBox.getQuantity());
-
+        Integer check = 0;
+        check = suitBoxService.checkSuitBoxBySuitBox(item.getSuitbox());
+        if(check == null){
+            suitBoxService.insertSuitBoxBySuitBox(item.getSuitbox());
+        }
+        int suitBoxCode = suitBoxService.getSuitBoxCodeBySuitBox(item.getSuitbox());
+        item.setSuitboxCode(suitBoxCode);
+        item.getSuitbox().setSuitboxCode(suitBoxCode);
+        item.getDetailSuitBox().setSuitboxCode(suitBoxCode);
         List<CartDTO> cartDTO = new ArrayList<>();
         cartDTO.add(item);
+        System.out.println(cartDTO);
 
         model.addAttribute("cartDTO",cartDTO);
+
         return "/user/order/payment";
     }
 }
