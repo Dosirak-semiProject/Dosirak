@@ -88,6 +88,52 @@
         ORDER BY
         o.ORDER_CODE DESC;
     </select>
+    <select id="findOrderHistoryByUserCode" resultMap="orderHistoryResultMap">
+        SELECT
+        u.NAME,
+        u.PHONE,
+        o.ORDER_CODE,
+        o.ORDER_STATUS,
+        o.ORDER_RECIPIENT,
+        o.ORDER_CONTACT,
+        o.ORDER_ADDRESS1,
+        o.ORDER_ADDRESS2,
+        o.ORDER_ADDRESS3,
+        p.PAY_PRICE,
+        p.PAY_DATE,
+        p.PAY_STATUS,
+        p.PAY_METHOD,
+        d.DELIVERY_CODE,
+        d.DELIVERY_STATUS,
+        dt.DETAIL_CODE,
+        dt.DETAIL_STATUS,
+        dt.DETAILITEM_COUNT,
+        tp.PRODUCT_NAME,
+        tp.product_price,
+        (
+        SELECT SAVED_NAME
+        FROM PRODUCT_IMG
+        WHERE PRODUCT_CODE = tp.PRODUCT_CODE
+        ORDER BY IMG_CODE
+        LIMIT 1
+        ) AS FIRST_IMAGE_NAME,
+        (
+        SELECT SAVE_PATH
+        FROM PRODUCT_IMG
+        WHERE PRODUCT_CODE = tp.PRODUCT_CODE
+        ORDER BY IMG_CODE
+        LIMIT 1
+        ) AS FIRST_IMAGE_PATH
+        FROM
+        `ORDER` o
+        JOIN PAY p ON o.ORDER_CODE = p.ORDER_CODE
+        JOIN DELIVERY d ON o.ORDER_CODE = d.ORDER_CODE
+        JOIN DETAIL dt ON o.ORDER_CODE = dt.ORDER_CODE
+        JOIN USER U ON u.ID = o.ID
+        LEFT JOIN tbl_product tp ON dt.PRODUCT_CODE = tp.PRODUCT_CODE
+        WHERE
+        o.ORDER_CODE = #{orderCode}
+    </select>
 
 
 </mapper>

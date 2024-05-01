@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/css/common/reset.css"/>
-    <link rel="stylesheet" href="/css/common/base.css"/>
-    <link rel="stylesheet" href="/css/common/common.css"/>
-    <link rel="stylesheet" href="/css/order.css"/>
+    <th:block th:replace="/user/common/head.html"></th:block>
 </head>
 <body>
 <div class="ly_all bl_all">
+    <th:block th:replace="/user/common/header.html"></th:block>
+
     <div class="bl_sideMenuBack">
         <div class="ly_maxWD ly_flex">
             <section class="bl_sideMenu">
@@ -28,26 +27,26 @@
                     <tbody>
                     <tr>
                         <th scope="row">주문코드</th>
-                        <td th:each="order : ${orderHistory}" th:text="${order.orderCode}"></td>
+                        <td th:each="order : ${order}" th:text="${order.orderCode}"></td>
                         <th scope="row">주문상태 / 배송상태</th>
-                        <td th:each="order : ${orderHistory}" th:text="${order.deliveryStatus}"></td>
+                        <td th:each="order : ${order}" th:text="${order.orderStatus+'/'+order.deliveryStatus}"></td>
                         <!-- 주문취소한 주문내역일때 -->
                         <!-- <th scope="row">환불상태</th>
                         <td>환불대기</td> -->
                     </tr>
                     <tr>
                         <th scope="row">결제금액</th>
-                        <td class="js_paymentAmount" th:each="order : ${orderHistory}"></td>
+                        <td class="js_paymentAmount" th:each="order : ${order}" th:text="${order.payPrice}"></td>
                         <th scope="row">결제날짜</th>
-                        <td th:each="order : ${orderHistory}" th:text="${order.payDate}"></td>
+                        <td th:each="order : ${order}" th:text="${order.payDate}"></td>
                     </tr>
                     <tr>
                         <th scope="row">결제방법</th>
                         <td colspan="3">카카오페이</td>
                     </tr>
                     <tr>
-                        <th scope="row">주문상세</th>
-                        <td colspan="3">
+                        <th scope="row" >주문상세</th>
+                        <td colspan="3" th:each="order : ${order}" th:text="${order.productName}">
                             <div class="bl_orderView ly_flex">
                                 <!-- 주문취소한 주문내역일때는 체크박스 비활성화 또는 표시X -->
                                 <ul class="bl_orderViewList ly_fgrow1">
@@ -63,22 +62,13 @@
                     </tr>
                     <tr>
                         <th scope="row">수령인</th>
-                        <td th:each="order : ${orderHistory}" th:text="${order.name}"></td>
+                        <td th:each="order : ${order}" th:text="${order.name}"></td>
                         <th scope="row">연락처</th>
-                        <td th:each="order : ${orderHistory}" th:text="${order.phone}">01012345678</td>
+                        <td th:each="order : ${order}" th:text="${order.phone}"></td>
                     </tr>
-                    <tr>
+                    <tr th:each="order : ${order}">
                         <th scope="row">주소</th>
-                        <td colspan="3" th:each="order : ${orderHistory}" th:text="${order.orderAddress1 },${order.orderAddress2},${order.orderAddress3}" ></td>
-                    </tr>
-                    <!-- 주문취소한 주문내역일때 -->
-                    <tr>
-                        <th scope="row">환불정보</th>
-                        <td colspan="3">
-                            <ul class="bl_orderCancel">
-                                <!-- 환불 정보 항목들 -->
-                            </ul>
-                        </td>
+                        <td colspan="3" th:text="${order.orderAddress1 + ', ' + order.orderAddress2 + ', ' + order.orderAddress3}"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -88,6 +78,7 @@
             </div>
         </div>
     </div>
+    <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>

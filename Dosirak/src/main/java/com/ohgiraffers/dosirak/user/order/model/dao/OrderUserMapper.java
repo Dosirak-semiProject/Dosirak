@@ -12,4 +12,5 @@ public interface OrderUserMapper {
 
     List<OrderHistoryDTO> findOrderHistoryByUserId(String userId);
 
+    List<OrderHistoryDTO> findOrderHistoryByUserCode(String orderCode);
 }
