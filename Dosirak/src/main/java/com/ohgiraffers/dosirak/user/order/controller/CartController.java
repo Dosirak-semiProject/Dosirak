@@ -75,6 +75,7 @@ public class CartController {
                 productAndQuantity.put("memberId", memberId);
 
                 MemberDTO user = cartService.getPaymentByUserId(memberId);
+
                 model.addAttribute("user", user);
             }
         }

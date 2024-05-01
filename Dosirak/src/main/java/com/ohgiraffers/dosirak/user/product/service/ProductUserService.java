@@ -3,9 +3,12 @@ package com.ohgiraffers.dosirak.user.product.service;
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dao.CartMapper;
+import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dao.ProductUserMapper;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
+import com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO;
+import com.ohgiraffers.dosirak.user.review.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -70,6 +73,8 @@ public class ProductUserService {
             List<ProductImageDTO> images = productUserMapper.findImagesByProductCode(product.getProductCode());
             // 이미지 리스트를 상품 DTO에 설정하기
             product.setImageList(images);
+            System.out.println("image:"+images);
+            System.out.println("product"+product);
         }
         return products;
     }
@@ -103,5 +108,22 @@ public class ProductUserService {
 
     }            return imageList;
 
+    }
+
+    public List<ReviewDTO> plzComeReview(int productCode) {
+        return productUserMapper.plzComeReview(productCode);
+    }
+
+
+    public List<UserDTO> nowPay(String productInfo) {
+        return productUserMapper.nowPay(productInfo);
+    }
+
+    public CartDTO getCartItemByUserIdAndProductCode(String userId, String productCode) {
+        return  productUserMapper.getCartItemByUserIdAndProductCode(userId,productCode);
+    }
+
+    public void updateCartItem(CartDTO existingCartItem) {
+        productUserMapper.updateCartItem(existingCartItem);
     }
 }
