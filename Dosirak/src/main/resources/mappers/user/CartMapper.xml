@@ -105,12 +105,8 @@
 
     <!-- 결제페이지 유저 정보 가져오기 -->
     <select id="getPaymentByUserId" parameterType="string">
-        SELECT U.ID, U.NAME, U.PHONE, U.ADDRESS1, U.ADDRESS2, U.ADDRESS3, PI.SAVED_NAME
+        SELECT U.ID, U.NAME, U.PHONE, U.ADDRESS1, U.ADDRESS2, U.ADDRESS3
         FROM USER U
-        JOIN `ORDER` O ON U.ID = O.ID
-        JOIN DETAIL D ON O.ORDER_CODE = D.ORDER_CODE
-        JOIN TBL_PRODUCT PD ON D.PRODUCT_CODE = PD.PRODUCT_CODE
-        JOIN PRODUCT_IMG PI ON PD.PRODUCT_CODE = PI.PRODUCT_CODE
         WHERE U.ID = #{userId}
     </select>
 
@@ -257,4 +253,11 @@
         DELETE FROM CART
         WHERE SUITBOX_CODE = #{suitboxCode}
     </delete>
+
+    <!-- 결제페이지 이미지 불러오기 수정중 -->
+<!--    <select id="findProductImgName" resultMap="CartResultMap">-->
+<!--        SELECT PI.SAVED_NAME-->
+<!--        FROM TBL_PRODUCT PD-->
+<!--        JOIN PRODUCT_IMG PI = PD.PRODUCT_CODE = PI.PRODUCT_CODE-->
+<!--    </select>-->
 </mapper>

@@ -6,7 +6,6 @@ import com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO;
 import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.order.model.service.CartService;
-import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -14,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -81,14 +79,12 @@ public class CartController {
         // key 에 contain(suitbox) 되면 맞춤도시락 (product) 면 일반상품
         // value = 일반 또는 맞춤도시락 코드
         List<CartDTO> cartList = new ArrayList<>();
+
         cartList = cartService.setCartDTO(productAndQuantity, memberId);
         cartList = cartService.divisionProduct(cartList);
+//        cartService.setProductName(cartList);
 
         model.addAttribute("cartDTO", cartList);
-
-        for (CartDTO cartDTO : cartList) {
-            System.out.println("@@@@@@@@@@@@@@@@@@@" + cartDTO.getProductImageDTO().getSavedName());
-        }
 
         return "/user/order/payment";
     }

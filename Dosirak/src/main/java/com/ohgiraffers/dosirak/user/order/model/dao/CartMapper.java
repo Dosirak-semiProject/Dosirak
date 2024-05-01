@@ -3,6 +3,7 @@ package com.ohgiraffers.dosirak.user.order.model.dao;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO;
+import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
@@ -52,7 +53,6 @@ public interface CartMapper {
 
     int userOrderDone(String memberId, String name, String phone, String address1, String address2, String address3);
 
-    List<CartDTO> getProductFileImg(List<CartDTO> cartList, String memberId);
-
-    List<CartDTO> userPayment(List<CartDTO> cartList);
+//    결제페이지 이미지 불러오기 수정중
+    void findProductImgName(CartDTO cart);
 }
