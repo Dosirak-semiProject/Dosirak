@@ -3,6 +3,7 @@ package com.ohgiraffers.dosirak.user.order.model.service;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO;
+import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dao.CartMapper;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
@@ -170,5 +171,14 @@ public class CartService {
 
     public void insertDetailSuitboxDirect(int itemCount, int suitboxCode, String orderCode) {
         cartMapper.insertDetailSuitboxDirect(itemCount, suitboxCode, orderCode);
+    }
+
+    public void setProductImgName(List<CartDTO> cartList) {
+        for(CartDTO cart : cartList) {
+            if(cart.getDetailSuitBox() == null) {
+                ProductImageDTO productImageDTO = cartMapper.getProductImageDTOByProductId(cart.getProductCode());
+                cart.setProductImageDTO(productImageDTO);
+            }
+        }
     }
 }
