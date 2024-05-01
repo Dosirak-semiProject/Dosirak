@@ -55,4 +55,6 @@ public interface CartMapper {
     List<CartDTO> getProductFileImg(List<CartDTO> cartList, String memberId);
 
     List<CartDTO> userPayment(List<CartDTO> cartList);
+
+    void insertDetailSuitboxDirect(int itemCount, int suitboxCode, String orderCode);
 }

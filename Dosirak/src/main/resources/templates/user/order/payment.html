@@ -30,8 +30,8 @@
     <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_maxWD ly_inner02">
         <h2 class="el_lv1Head">주문 결제</h2>
-        <form action="/user/orderDone" method="post" id="finish" onsubmit="return orderCancel()">
-            <table class="bl_TBView hp_mt50">
+        <form th:action="${directPay == null ? '/user/orderDone' : '/user/orderDone-direct'}" method="post" id="finish" onsubmit="return orderCancel()">
+        <table class="bl_TBView hp_mt50">
                 <caption class="WA">검색</caption>
                 <colgroup>
                     <col style="width:150px"/>
@@ -43,6 +43,9 @@
                     <td>
                         <ul class="js_productRow">
                             <li class="ly_flex ly_fitemC getProductCode hp_mb15" th:each="cart : ${ cartDTO }">
+                                <input th:if="${directPay != null}" style="display: none;" name="itemCount" th:value="${cart.cartitemCount}">
+                                <input th:if="${directPay != null}" style="display: none;" name="price" th:value="${cart.productPrice}">
+                                <input th:if="${directPay != null}" style="display: none;" name="suitboxCode" th:value="${cart.suitboxCode}">
                                 <input style="display: none" th:if="${cart.productCode != 0}"
                                        th:name="|product${cart.productCode}|" th:value="${cart.productCode}">
                                 <input style="display: none" th:if="${cart.suitbox != null}"

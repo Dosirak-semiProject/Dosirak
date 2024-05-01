@@ -62,4 +62,8 @@ public class SuitBoxService {
     public String getUserGenderByUserId(String userId) {
         return mapper.getUserGenderByUserId(userId);
     }
+
+    public int getSuitBoxCodeBySuitBox(SuitBoxDTO suitbox) {
+        return mapper.getSuitBoxCodeBySuitBox(suitbox);
+    }
 }

@@ -79,5 +79,12 @@
         FROM `USER`
         WHERE ID = #{userId}
     </select>
-
+    <select id="getSuitBoxCodeBySuitBox">
+        SELECT SUITBOX_CODE
+        FROM SUIT_BOX
+        WHERE RICE_CODE = #{riceCode}
+        AND MAIN_CODE = #{mainCode}
+        AND SIDE_CODE = #{sideCode}
+        AND KIMCHI_CODE = #{kimchiCode}
+    </select>
 </mapper>
