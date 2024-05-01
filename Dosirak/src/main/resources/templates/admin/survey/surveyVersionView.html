@@ -42,7 +42,7 @@
                         </thead>
                         <tbody>
                         <span th:each="question:${questionList}">
-                                    <tr class="view">
+                                    <tr class="question">
                                         <td th:text="${question.questionOrder}"></td>
                                         <th:block th:switch="${question.questionCategory}">
                                             <span th:case="C">
@@ -61,12 +61,12 @@
                                         <td th:text="${question.questionText}"></td>
                                     </tr>
                                     <span th:if="${question.answerList.get(0).answerId != 0}">
-                                        <tr class="set" style="display: none; " ;>
+                                        <tr class="answer" style="display: none; " ;>
                                             <th></th>
                                             <th style="background-color: #F2F2F2">점수</th>
                                             <th style="background-color: #F2F2F2">답변</th>
                                         </tr>
-                                        <tr class="set" ; th:each="answer:${question.answerList}"
+                                        <tr class="answer" ; th:each="answer:${question.answerList}"
                                             style="display: none;">
                                             <td></td>
                                             <td th:text="${answer.answerValue}" style=" background-color: #F2F2F2"></td>

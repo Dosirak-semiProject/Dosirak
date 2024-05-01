@@ -8,6 +8,12 @@
     <script defer src="/admin/js/suit-box/suitBox.mjs"></script>
     <script defer type="module" src="/admin/js/suit-box/filter.mjs"></script>
     <link href="/admin/css/datatable.css" rel="stylesheet">
+<script>
+    $("#datatablesSimple tbody tr").click(function(){
+        let txtId = $("td:nth-of-type(1)", this).text();
+        location.href = "/admin/member/managerView?id="+txtId;
+    })
+</script>
 </head>
 
 <body class="sb-nav-fixed">
@@ -22,22 +28,21 @@
                         <div class="card-header">
                             <div class="justify-content-between d-flex align-items-center">
                                 <a class="btn btn-primary" href="/admin/suit-box/menu/set">메뉴등록</a>
-                                <div class="text-end">
-                                    <label>
-                                        <select class="datatable-selector" id="criteria">
-                                            <option value="all">=== 전체 ===</option>
-                                            <option value="category">메뉴 분류</option>
-                                            <option value="status">판매 상태</option>
-                                        </select>
-                                        <select class="datatable-selector" id="value">
-                                            <option>=== 전체 ===</option>
-                                        </select>
-                                    </label>
+                                <div style="display: flex">
+                                    <select class="datatable-selector" id="criteria">
+                                        <option value="none">기준 선택</option>
+                                        <option value="category">메뉴 이름</option>
+                                        <option value="category">메뉴 분류</option>
+                                        <option value="status">판매 상태</option>
+                                    </select>
+                                    <input class="form-control" type="text" name="memberSearchValue" aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                                    <button type="button" class="btn btn-primary"><i class="fas fa-search"></i></button>
+
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <table class="datatable">
+                            <table id="datatablesSimple">
                                 <thead>
                                     <tr>
                                         <th>코드</th>
@@ -60,7 +65,10 @@
                                     <tr th:each="menu : ${menuList}">
                                         <td th:text="${menu.menuCode}"></td>
                                         <td th:text="${menu.menuName}"></td>
-                                        <td th:text="${menu.menuCategory}"></td>
+                                        <td th:if="${menu.menuCategory=='rice'}">밥</td>
+                                        <td th:if="${menu.menuCategory=='main'}">메인</td>
+                                        <td th:if="${menu.menuCategory=='side'}">서브</td>
+                                        <td th:if="${menu.menuCategory=='kimchi'}">김치</td>
                                         <td th:text="${menu.menuExtracash}"></td>
                                         <td th:text="${menu.menuStatus}"></td>
                                         <td th:text="${menu.menuCarbo}"></td>
@@ -81,9 +89,6 @@
             </main>
         </div>
     </div>
+<th:block th:replace="/admin/common/foot.html"></th:block>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="/admin/js/scripts.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-<script src="/admin/js/datatables-simple-demo.js"></script>
 </html>
