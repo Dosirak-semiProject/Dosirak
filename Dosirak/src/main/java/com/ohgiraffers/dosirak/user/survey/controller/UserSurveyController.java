@@ -4,6 +4,7 @@ import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
 import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyQuestionDTO;
 import com.ohgiraffers.dosirak.admin.survey.model.dto.SurveyResultDTO;
 import com.ohgiraffers.dosirak.user.login.model.dto.LoginDTO;
+import com.ohgiraffers.dosirak.user.review.model.dto.UserDTO;
 import com.ohgiraffers.dosirak.user.survey.model.survice.UserSurveyService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +24,26 @@ public class UserSurveyController {
 
     @GetMapping("agree")
     public String survey(Model model) {
+        String userId = "";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                userId = login.getId();
+            }
+        }
+        int searchResult = service.checkSurveyResultByUserId(userId);
+        if (searchResult != 0){
+            SurveyResultDTO surveyResult = service.getSurveyResultByUserId(userId);
+            System.out.println(surveyResult);
+            Map userInfo = service.getUserInfoByUserId(userId);
+            model.addAttribute("surveyResult",surveyResult);
+            model.addAttribute("userInfo",userInfo);
+            return "/user/survey/surveyResult";
+        }
         return "user/survey/surveyAgree";
     }
     @PostMapping("info")
@@ -38,9 +59,7 @@ public class UserSurveyController {
     }
     @PostMapping("submit-survey")
     public String test4(Model model, SurveyResultDTO result, @RequestParam Map<String , String > resultMap) {
-        System.out.println(resultMap);
         service.setScore(result, resultMap);
-        System.out.println(result);
         String userId = "";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null && authentication.isAuthenticated()){
@@ -50,12 +69,14 @@ public class UserSurveyController {
                 AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
                 LoginDTO login = adminLoginDetails.getLoginDTO();
                 userId = login.getId();
-
             }
         }
         result.setUserId(userId);
         int insertResult = service.setResult(result);
+        SurveyResultDTO surveyResult = service.getSurveyResultByUserId(userId);
+        Map userInfo = service.getUserInfoByUserId(userId);
+        model.addAttribute("surveyResult",surveyResult);
+        model.addAttribute("userInfo",userInfo);
         return "/user/survey/surveyResult";
     }
-
 }

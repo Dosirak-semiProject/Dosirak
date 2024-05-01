@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <th:block th:replace="/admin/common/head.html"></th:block>
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <script>
         const message = '[[${message}]]';
         message && alert(message);
@@ -14,6 +13,12 @@
             $(".position").val(position).prop("selected", true);
             let authority = $(".authority").data('authority');
             $(".authority").val(authority).prop("selected", true);
+
+            // 본인 정보 수정 시 select가 disabled 되어있으면 값이 못 넘어감
+            $(".editBtn").click(function(){
+                $("select").attr("disabled", false);
+            })
+
             // 퇴직여부
             let withdrawal = $(".withdrawal").data('withdrawal');
             if(withdrawal){
@@ -48,7 +53,7 @@
             if(managerId == urlId){
                 $(".emailInput, .contactInput").removeClass("none");
                 $(".emailInput, .contactInput").attr("readonly", false);
-                $(".editBtn").removeClass("hp_dpNone");
+                $(".editBtn, .el_resetPwdBtn").removeClass("hp_dpNone");
             }
         })
     </script>
@@ -109,7 +114,7 @@
                             <td><input class="none grade1Input contactInput" maxlength="5" type="number" name="contact" th:value="${manager.contact}" oninput="handleOnInput(this, 5)" readonly/></td>
                             <th scope="row">권한등급</th>
                             <td>
-                                <select class="authority datatable-selector" name="authority" th:data-authority="${manager.authority}" disabled>
+                                <select class="authority datatable-selector" th:data-authority="${manager.authority}" name="authority" disabled>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

@@ -42,4 +42,10 @@ public interface SurveyAdminDAO {
     int getQuestionId();
 
     void insertAnswerByAnswer(SurveyAnswerDTO answer);
+
+    void insertNewRangeByVersionId(int versionId, String category);
+
+    void setRangeByRange(SurveyScoreRangeDTO range);
+
+    int getMaxValueByQuestionId(int questionId);
 }

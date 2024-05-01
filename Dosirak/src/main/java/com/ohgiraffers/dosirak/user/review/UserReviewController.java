@@ -32,8 +32,8 @@ import java.util.*;
 @RequestMapping("/user/review")
 public class UserReviewController {
 
-    @Value("${image.reivew-image-dir}")
-    private String IMAGE_DIR;
+    @Value("C:/Dosirak/original/review")
+    private String REVIEW_IMAGE_DIR;
 
     private final UserReviewService userReviewService;
     private final MessageSourceAccessor messageSourceAccessor;
@@ -81,16 +81,65 @@ public class UserReviewController {
 
                 Map<String, Object> reviewListAndPaging = userReviewService.selectReviewList(searchMap, page, userId);
                 model.addAttribute("paging", reviewListAndPaging.get("paging"));
-                model.addAttribute("reviewList", reviewListAndPaging.get("askList"));
+                model.addAttribute("reviewList", reviewListAndPaging.get("reviewList"));
 
-                ReviewDTO reveiwDTO = new ReviewDTO();
-                model.addAttribute("reveiwDTO", reveiwDTO);
+                ReviewDTO reviewDTO = new ReviewDTO();
+                model.addAttribute("reviewDTO", reviewDTO);
 
                 System.out.println(myReviewList);
             }
         }
         return "user/review/list";
     }
+
+    @GetMapping("/reviewList")
+    public String userReviewList(@RequestParam(defaultValue = "1") int page,
+                                    @RequestParam(required = false) String searchCondition,
+                                    @RequestParam(required = false) String searchValue,
+                                    Model model) {
+        /* 리뷰 리스트 조회 */
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        String userId = "";
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                userId = login.getId();
+
+
+                List<ReviewDTO> reviewList = userReviewService.getReviewListById(userId);
+                model.addAttribute("orderList", reviewList);
+
+                List<ReviewDTO> myReviewList = userReviewService.getMyList(userId);
+                model.addAttribute("myReviewList", myReviewList);
+
+                // 페이징 시작
+
+                log.info("boardList page : {}", page);
+                log.info("boardList searchCondition : {}", searchCondition);
+                log.info("boardList searchValue : {}", searchValue);
+
+                Map<String, String> searchMap = new HashMap<>();
+                searchMap.put("searchCondition", searchCondition);
+                searchMap.put("searchValue", searchValue);
+
+                Map<String, Object> reviewListAndPaging = userReviewService.selectReviewList(searchMap, page, userId);
+                model.addAttribute("paging", reviewListAndPaging.get("paging"));
+                model.addAttribute("reviewList", reviewListAndPaging.get("reviewList"));
+
+                ReviewDTO reviewDTO = new ReviewDTO();
+                model.addAttribute("reviewDTO", reviewDTO);
+
+                System.out.println(myReviewList);
+            }
+        }
+        return "user/review/reviewList";
+    }
+
 
     @GetMapping("/userReview")
     public String getUserReviewDetail(ReviewDTO reviewDTO, Model model) {
@@ -156,7 +205,7 @@ public class UserReviewController {
                 int result = userReviewService.getReviewDTOInformation(reviewDTO,userId);
 
                 /* 경로 설정 */
-                String fileUploadDir = IMAGE_DIR + "original";
+                String fileUploadDir = REVIEW_IMAGE_DIR;
 
                 File dir1 = new File(fileUploadDir);
 
@@ -191,7 +240,7 @@ public class UserReviewController {
                             ReviewImgDTO fileInfo = new ReviewImgDTO();
                             fileInfo.setOriginalName(originalFileName);
                             fileInfo.setSavedName(saveFileName);
-                            fileInfo.setSavePath("/static/reviewUpload/original");
+                            fileInfo.setSavePath(fileUploadDir);
 
                             /* 이미지 DTO에 요청 코드 설정 */
                             fileInfo.setRefReviewCode(lastReview.getReviewCode());

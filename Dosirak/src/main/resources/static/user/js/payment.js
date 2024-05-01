@@ -5,7 +5,7 @@ function orderCancel() {
         }, 500)
         return false;
     } else {
-        return false;
+        // return false;
     }
 }
 

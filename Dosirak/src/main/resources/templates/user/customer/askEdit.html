@@ -72,18 +72,10 @@
                                 <div th:if="${ imageList != null }">
                                     <th scope="row">첨부파일</th>
                                     <td>
-                                        <label th:each="image : ${ imageList }" for="" style="display: flex;">
-                                            <div class="image-area_A">
-                                                <img th:src="@{|/file/${image.savedName}|}" th:alt="${image.savedName}" style="max-width:80px; max-height:80px; margin-top: 3px;">
+                                        <label th:if="${ imageList != null }">
+                                            <div th:each="image : ${ imageList }" for="" style="display: flex;" class="image-area">
+                                                <img th:src="@{|/customer/${image.savedName}|}" th:alt="${image.savedName}" style="max-width:80px; max-height:80px; margin-top: 3px;">
                                             </div>
-                                        </label>
-                                        <div style="display: none;">
-                                            <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                                            <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                                            <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                                            <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                                            <input type="file" name="attachImage" accept="image/gif,image/jpeg,image/png">
-                                        </div>
                                     </td>
                                 </div>
                             </tr>

@@ -35,12 +35,29 @@
     </select>
     <insert id="setResult">
         INSERT INTO SURVEY_RESULT
-        (user_id, survey_height, survey_weight, survey_bmi, survey_diet,
-        survey_exercise_score, survey_carbo_score, survey_protein_score, survey_fat_score,
+        (user_id, survey_age, survey_height, survey_weight, survey_bmi, survey_diet,
+        survey_workout_score, survey_carbo_score, survey_protein_score, survey_fat_score,
         survey_diabetes, survey_cancer, survey_kidney, survey_blood, survey_date)
         VALUES
-        (#{userId}, #{surveyHeight}, #{surveyWeight}, #{surveyBmi}, #{surveyDiet},
-        #{surveyExerciseScore}, #{surveyCarboScore}, #{surveyProteinScore}, #{surveyFatScore},
+        (#{userId}, #{surveyAge}, #{surveyHeight}, #{surveyWeight}, #{surveyBmi}, #{surveyDiet},
+        #{surveyWorkoutScore}, #{surveyCarboScore}, #{surveyProteinScore}, #{surveyFatScore},
         #{surveyDiabetes}, #{surveyCancer}, #{surveyKidney}, #{surveyBlood}, NOW())
     </insert>
+    <select id="checkSurveyResultByUserId">
+        SELECT COUNT(USER_ID) AS searchResult
+        FROM SURVEY_RESULT
+        WHERE USER_ID = #{userId}
+    </select>
+    <select id="getSurveyResultByUserId">
+        SELECT user_id, survey_age, survey_height, survey_weight, survey_bmi, survey_diet,
+        survey_workout_score, survey_carbo_score, survey_protein_score, survey_fat_score,
+        survey_diabetes, survey_cancer, survey_kidney, survey_blood, survey_date
+        FROM SURVEY_RESULT
+        WHERE USER_ID = #{userId}
+    </select>
+    <select id="getUserInfoByUserId">
+        SELECT name, gender
+        FROM USER
+        WHERE ID = #{userId}
+    </select>
 </mapper>
