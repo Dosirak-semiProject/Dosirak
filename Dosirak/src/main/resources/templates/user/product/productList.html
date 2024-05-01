@@ -63,11 +63,11 @@
                 <th:block th:each="product : ${productList}">
                     <li class="bl_pdList__wrap">
                         <a class="bl_pdList__cont" th:href="@{'/user/product/productView?productCode=' + ${product.productCode}}">
-                            <th:block th:each="image : ${product.imageList}">
+                            <th:block th:if="${not #lists.isEmpty(product.imageList)}">
                                 <!-- 만약 이미지가 존재하면 이미지를 표시합니다 -->
                                 <img th:if="${not #lists.isEmpty(product.imageList)}" th:src="@{|/product/${product.imageList[0].savedName}|}" th:alt="${product.imageList[0].savedName}" style="max-width: 100px; max-height: 100px;">
                                 <!-- 이미지가 없으면 "No Image Available" 메시지를 표시합니다 -->
-                                <span th:unless="${#lists.size(image) > 0}">No Image Available</span>
+                                <span th:unless="${not #lists.isEmpty(product.imageList)}">No Image Available</span>
                             </th:block>
                             <h3 class="bl_pdList__ttl hp_ellipsis" th:text="${product.productName}"></h3>
                             <h3 class="bl_pdList__txt hp_ellipsis hp_ellipsis2" th:text="${product.productSummary}"></h3>
