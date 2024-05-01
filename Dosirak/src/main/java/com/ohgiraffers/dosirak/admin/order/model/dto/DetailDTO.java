@@ -17,6 +17,7 @@ public class DetailDTO {
     private String ProductCode;
     private String SuitboxCode;
     private productDTO product;
+    private SuitBoxDTO suitBox;
 
     public DetailDTO() {}
 

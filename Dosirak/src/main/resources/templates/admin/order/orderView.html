@@ -66,7 +66,8 @@
                         <tr th:each="orderView : ${orderView.detail}" th:id="${orderView.detailCode}">
                             <td colspan="5">
                                 <label>
-                                    <span th:text="${orderView.detailCode} + '/' + ${orderView.product.productName} + '/' + ${orderView.detailItemCount} + '개/(' + (${orderView.detailItemCount} * ${orderView.product.productPrice}) + '원)'"></span>
+                                    <span th:if="${orderView.productCode != 0}" th:text="${orderView.detailCode} + '/' + ${orderView.product.productName} + '/' + ${orderView.detailItemCount} + '개/(' + (${orderView.detailItemCount} * ${orderView.product.productPrice}) + '원)'"></span>
+<!--                                    <span th:if="${orderView.suitboxCode != null}" th:text="${orderView.detailCode} + '/' + ${orderView.suitBox.mainCode} + '/' + ${orderView.detailItemCount} + '개/(' + (${orderView.detailItemCount} * ${orderView.product.productPrice}) + '원)'"></span>-->
                                 </label>
                             </td>
                         </tr>
