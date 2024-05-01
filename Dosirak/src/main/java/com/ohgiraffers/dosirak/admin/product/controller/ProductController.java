@@ -1,7 +1,6 @@
 package com.ohgiraffers.dosirak.admin.product.controller;
 
 import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
-import com.ohgiraffers.dosirak.admin.product.dto.NavDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productAddImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
