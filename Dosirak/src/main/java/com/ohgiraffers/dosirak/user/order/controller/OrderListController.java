@@ -8,39 +8,71 @@ import com.ohgiraffers.dosirak.user.order.model.dto.OrderHistoryDTO;
 import com.ohgiraffers.dosirak.user.order.model.service.OrderUserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
+@RequestMapping("/user/order/*")
 public class OrderListController {
     private final OrderUserService orderUserService;
     public  OrderListController(OrderUserService orderUserService){
         this.orderUserService = orderUserService;
     }
 
-        @GetMapping("/history/{userId}")
-        public ResponseEntity<List<OrderHistoryDTO>> getOrderHistory(@PathVariable String userId, Model model) {
-            List<OrderHistoryDTO> orderHistory =orderUserService.findOrderHistoryByUserId(userId);
-            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-            String managerAuthor="";
-            if(authentication != null && authentication.isAuthenticated()){
-                Object principal = authentication.getPrincipal();
-                if(principal instanceof AdminLoginDetails){
-                    AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
-                    LoginDTO login = adminLoginDetails.getLoginDTO();
-                    managerAuthor = login.getAuthority();
-                    userId = login.getId();
-                }
-                model.addAttribute("orderHistory", orderHistory);
+    @GetMapping("/OrderList")
+    public String getOrderList(@RequestParam Map<String, String> productInfo, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String managerAuthor="";
+        String userId="";
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
 
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                managerAuthor = login.getAuthority();
+                userId = login.getId();
+                System.out.println(userId);
             }
+        }
+        productInfo.put("userId", userId);
+        System.out.println(productInfo);
 
-            return ResponseEntity.ok(orderHistory);
+        List<OrderHistoryDTO> orderHistory = orderUserService.findOrderHistoryByUserId(userId);
+        model.addAttribute("orderHistory", orderHistory);
+        return "user/order/OrderList";
+
+        }
+    @GetMapping("/OrderView")
+    public String getOrderView(@RequestParam Map<String, String> productInfo, Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String managerAuthor="";
+        String userId="";
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                managerAuthor = login.getAuthority();
+                userId = login.getId();
+                System.out.println(userId);
+            }
+        }
+        productInfo.put("userId", userId);
+        System.out.println(productInfo);
+
+        List<OrderHistoryDTO> orderHistory = orderUserService.findOrderHistoryByUserId(userId);
+        model.addAttribute("orderHistory", orderHistory);
+        return "user/order/OrderView";
 
         }
 }
