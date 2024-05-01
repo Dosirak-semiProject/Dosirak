@@ -73,6 +73,5 @@ public class OrderListController {
         List<OrderHistoryDTO> orderHistory = orderUserService.findOrderHistoryByUserId(userId);
         model.addAttribute("orderHistory", orderHistory);
         return "user/order/OrderView";
-
         }
 }
