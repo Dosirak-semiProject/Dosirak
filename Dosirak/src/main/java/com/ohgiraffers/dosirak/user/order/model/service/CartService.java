@@ -3,7 +3,6 @@ package com.ohgiraffers.dosirak.user.order.model.service;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO;
-import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dao.CartMapper;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
@@ -161,13 +160,15 @@ public class CartService {
         return cartMapper.userOrderDone(memberId, name, phone, address1, address2, address3);
     }
 
-    /* 결제페이지 이미지 불러오기 수정중 */
-    public void setProductName(List<CartDTO> cartList) {
-        for(CartDTO cart : cartList) {
-            if(cart.getProductCode() != 0){
-                cartMapper.findProductImgName(cart);
-//                cart.setProductName();
-            }
-        }
+    public List<CartDTO> getProductFileImg(List<CartDTO> cartList, String memberId) {
+        return cartMapper.getProductFileImg(cartList, memberId);
+    }
+
+    public List<CartDTO> userPayment(List<CartDTO> cartList) {
+        return cartMapper.userPayment(cartList);
+    }
+
+    public void insertDetailSuitboxDirect(int itemCount, int suitboxCode, String orderCode) {
+        cartMapper.insertDetailSuitboxDirect(itemCount, suitboxCode, orderCode);
     }
 }

@@ -41,6 +41,13 @@
         ON P.product_category_code = c.product_main_category_code
         WHERE c.product_sub_category_code = #{subCategoryCode}
     </select>
+    <select id="getProductListBySubCategoryCodejungsung">
+        SELECT *
+        FROM TBL_PRODUCT P
+        LEFT JOIN TBL_PRODUCT_CATEGORY C
+        ON P.product_category_code = c.product_main_category_code
+        WHERE c.product_main_category_code = 2
+    </select>
     <insert id="addCart">
         INSERT INTO cart
         (CARTITEM_COUNT,ID,PRODUCT_CODE)
@@ -64,6 +71,12 @@
         SELECT *
         FROM product_img
         WHERE PRODUCT_CODE = #{productCode}
+    </select>
+    <select id="viewProductsub" resultType="com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO">
+        SELECT *
+        FROM product_img a JOIN tbl_product_category c on a.product_code = c.product_main_category_code
+
+        WHERE c.product_sub_category_code = #{subCategoryCode}
     </select>
 
     <select id="searchImageForProduct" resultType="com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO">

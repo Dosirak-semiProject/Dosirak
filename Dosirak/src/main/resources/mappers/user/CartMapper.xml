@@ -172,6 +172,11 @@
         VALUES
             (#{cartitemCount}, #{suitboxCode}, #{orderCode})
     </insert>
+    <insert id="insertDetailSuitboxDirect">
+        INSERT INTO DETAIL (DETAILITEM_COUNT, SUITBOX_CODE, ORDER_CODE)
+        VALUES
+        (#{itemCount}, #{suitboxCode}, #{orderCode})
+    </insert>
 
     <!-- 주문완료 후 일반상품, 수량 주문상세 테이블 INSERT -->
     <insert id="insertDetailProduct">

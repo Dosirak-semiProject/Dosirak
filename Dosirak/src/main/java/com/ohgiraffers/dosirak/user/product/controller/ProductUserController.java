@@ -98,8 +98,10 @@ public class ProductUserController {
     //
     @GetMapping("/productListJungsung")
     public String productListJungsung(Model model) {
-        List<ProductUserDTO> productList = productUserService.getProductListBySubCategoryCode(2);
+        List<ProductUserDTO> productList = productUserService.getProductListBySubCategoryCodejungsung();
+
         model.addAttribute("productList", productList);
+
         return "/user/product/productList";
     }
 
