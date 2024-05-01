@@ -21,10 +21,8 @@ spring:
   servlet:
     multipart:
       location: C:/Dosirak
-
       max-file-size: 10MB
       max-request-size: 10MB
-
 
 mybatis:
   mapper-locations: mappers/**/*.xml
@@ -34,7 +32,5 @@ mybatis:
 # image upload dir
 image:
   image-dir: C:/Dosirak/original/customer
-  reivew-image-dir: C:/Dosirak/original/review
+  review-image-dir: C:/Dosirak/original/review
   product-image-dir: C:/Dosirak/original/productUpload
-
-

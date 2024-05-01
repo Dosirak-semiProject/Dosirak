@@ -33,6 +33,11 @@
             admin_id
         FROM
             notice
+        <where>
+            <if test="searchValue != null and searchValue != ''">
+                notice_title LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+        </where>
         ORDER BY
             notice_code desc
     </select>
@@ -182,6 +187,28 @@
             ask_category b on (b.ask_category_code = a.ask_category_code)
         left join
             answer c on (c.ask_code = a.ask_code)
+        <where>
+            <choose>
+                <!-- searchStatus가 ''이거나 null이면 모든 상태의 문의를 반환 -->
+                <when test="searchStatus == null or searchStatus == ''">
+                    <!-- 모든 상태의 문의를 반환하므로 아무런 조건 없음 -->
+                </when>
+                <!-- searchStatus가 '1'이면 답변완료 상태의 문의만 반환 -->
+                <when test="searchStatus == 'true'">
+                    c.answer_status = 1
+                </when>
+                <!-- searchStatus가 '0'이면 미답변 상태의 문의만 반환 -->
+                <when test="searchStatus == 'false'">
+                    c.answer_status IS NULL
+                </when>
+            </choose>
+            <if test="searchCondition > 0">
+                AND b.ask_category_code = #{ searchCondition }
+            </if>
+            <if test="searchValue != null and searchValue != ''">
+                AND a.ask_title LIKE CONCAT('%', #{ searchValue }, '%')
+            </if>
+        </where>
         order by
             a.ask_code desc
     </select>

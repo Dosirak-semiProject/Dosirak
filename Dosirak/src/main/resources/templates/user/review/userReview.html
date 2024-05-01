@@ -73,9 +73,11 @@
                                     <th scope="row">첨부파일</th>
                                     <td>
                                         <div th:each="image : ${imageList}" style="margin-right: 20px;">
-                                            <img th:src="@{/reviewUpload/original/{fileName}(fileName=${image.savedName})}"
+                                            <img th:src="@{|/review/${image.savedName}|}" th:alt="${image.savedName}"
+
                                                  alt="이미지 파일 이름 : [[${image.savedName}]]"
                                                  style="max-width: 100px; max-height: 100px;">
+<!--                                            <img th:src="@{|/file/${image.savedName}|}" th:alt="${image.savedName}" style="max-width: 100px; max-height: 100px;">-->
                                         </div>
                                     </td>
                                 </tr>

@@ -1,6 +1,7 @@
 package com.ohgiraffers.dosirak.admin.order.model.dto;
 
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
+import com.ohgiraffers.dosirak.user.suitBox.model.dto.SuitBoxDTO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

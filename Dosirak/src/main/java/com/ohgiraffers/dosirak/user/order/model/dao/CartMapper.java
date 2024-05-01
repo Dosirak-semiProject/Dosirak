@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Mapper
 public interface CartMapper {
-    List<CartDTO> userCartList(String userId);
+    List<CartDTO> userCartList(String memberId);
 
     void cartUpdateQuantity(int productCode, int updatedQuantity);
 

@@ -31,7 +31,8 @@
                     </button>
                 </th:block>
             </li>
-            <li class=""><a class="bl_headIcon bl_headIcon__cart" href="/user/cart"><img src="/user/img/icon/header_cart.png" alt="장바구니"></a></li>
+            <th:block sec:authorize="isAnonymous()"><li class=""><a class="bl_headIcon bl_headIcon__cart" href="/login"><img src="/user/img/icon/header_cart.png" alt="장바구니"></a></li></th:block>
+            <th:block sec:authorize="isAuthenticated()"><li class=""><a class="bl_headIcon bl_headIcon__cart" href="/user/cart"><img src="/user/img/icon/header_cart.png" alt="장바구니"></a></li></th:block>
             <li class="hp_relative">
                 <button type="button" class="bl_headIcon bl_headIcon__customer">
                     <img src="/user/img/icon/header_customer.png" alt="고객센터" onclick="window.location.href='/user/customer/main'" style="cursor: pointer;">                    <ul class="bl_head__menuSub">

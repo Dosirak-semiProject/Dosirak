@@ -21,4 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/review/**")
                 .addResourceLocations("file:///C:/Dosirak/original/review/");
 
-    }    }
+    }
+
+
+}

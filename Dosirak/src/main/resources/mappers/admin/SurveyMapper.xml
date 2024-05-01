@@ -79,7 +79,7 @@
         R.range2, R.range3, R.range4
         FROM SURVEY_RANGE R
         JOIN SURVEY_VERSION V ON R.version_id = V.version_id
-        WHERE V.status = #{versionId}
+        WHERE V.version_id = #{versionId}
         ORDER BY CASE
         WHEN R.category = 'C' THEN 1
         WHEN R.category = 'P' THEN 2
@@ -153,4 +153,26 @@
             VALUES (#{questionId}, #{answerText}, #{answerValue})
         </if>
     </insert>
+    <insert id="insertNewRangeByVersionId">
+        INSERT INTO SURVEY_RANGE
+        (version_id, category, range1, range2, range3, range4)
+        VALUES
+        (#{versionId}, #{category}, 1, 2, 3, 4)
+    </insert>
+    <update id="setRangeByRange">
+        UPDATE SURVEY_RANGE
+        SET RANGE1 = #{range1},
+        RANGE2 = #{range2},
+        RANGE3 = #{range3},
+        RANGE4 = #{range4}
+        WHERE VERSION_ID = #{versionId}
+        AND category = #{category}
+    </update>
+    <select id="getMaxValueByQuestionId">
+        SELECT ANSWER_VALUE
+        FROM SURVEY_ANSWER
+        WHERE QUESTION_ID = #{questionId}
+        ORDER BY ANSWER_VALUE DESC
+        LIMIT 1
+    </select>
 </mapper>

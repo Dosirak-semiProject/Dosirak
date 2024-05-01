@@ -139,8 +139,6 @@ public class UserCustomerService {
         int buttonAmount = 5;   // 한 번에 보여질 페이징 버튼의 수
         SelectCriteria selectCriteria = Pagenation.getSelectCriteria(page, totalCount, limit, buttonAmount, searchMap);
         log.info("askList selectCriteria : {}", selectCriteria);
-
-        log.info("selectCriteria.getLimit : {}", selectCriteria.getLimit());
         log.info("selectCriteria.getOffset : {}", selectCriteria.getOffset());
 
         /* 3. 요청 페이지와 검색 기준에 맞는 게시글을 조회해온다. */
