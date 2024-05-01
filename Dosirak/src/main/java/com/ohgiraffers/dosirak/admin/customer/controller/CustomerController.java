@@ -1,5 +1,6 @@
 package com.ohgiraffers.dosirak.admin.customer.controller;
 
+import com.ohgiraffers.dosirak.admin.customer.Search.SearchCriteria;
 import com.ohgiraffers.dosirak.admin.customer.model.dto.*;
 import com.ohgiraffers.dosirak.admin.customer.model.service.CustomerService;
 import com.ohgiraffers.dosirak.admin.login.model.AdminLoginDetails;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -38,10 +40,12 @@ public class CustomerController {
     /* ----- 공지사항 관리페이지 ----- */
 
     @GetMapping("/noticeList")
-    @PreAuthorize("hasRole('ADMIN')") // ADMIN 역할만 접근 가능
-    public String noticeList(Model model) {
+    public String noticeList(@RequestParam(required = false) String searchValue,
+                             Model model) {
 
-        List<NoticeDTO> noticeList = customerService.findNoticeList();
+        log.info("searchValue : {}", searchValue);
+
+        List<NoticeDTO> noticeList = customerService.findNoticeList(searchValue);
 
         model.addAttribute("noticeList", noticeList);
 
@@ -219,9 +223,14 @@ public class CustomerController {
     /* ----- 1대1 관리페이지 ----- */
 
     @GetMapping("/askList")
-    public String askList(Model model) {
+    public String askList(@RequestParam(required = false) String searchStatus,
+                          @RequestParam(required = false) String searchCondition,
+                          @RequestParam(required = false) String searchValue,
+                          Model model) {
 
-        List<AskDTO> askList = customerService.findAllAskList();
+        SearchCriteria searchCriteria = new SearchCriteria(searchStatus, searchCondition, searchValue);
+        List<AskDTO> askList = customerService.findAllAskList(searchCriteria);
+        log.info("searchStatus : {}", searchStatus);
 
         model.addAttribute("askList", askList);
 

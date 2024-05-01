@@ -1,14 +1,16 @@
 package com.ohgiraffers.dosirak.user.review.common;
 
-import com.ohgiraffers.dosirak.user.customer.common.SelectCriteria;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 public class Pagenation {
 
-    public static com.ohgiraffers.dosirak.user.customer.common.SelectCriteria
-    getSelectCriteria(int page, int totalCount, int limit, int buttonAmount, Map<String, String> searchMap) {
+    public static com.ohgiraffers.dosirak.user.review.common.SelectCriteria
+    getSelectCriteria(int page, int limit, int buttonAmount, int totalCount, Map<String, String> searchMap, String userId) {
 
         /* 총 페이지 수 계산 */
         int maxPage = (int) Math.ceil((double) totalCount / limit);
@@ -31,11 +33,13 @@ public class Pagenation {
         /* offset 계산 */
         int offset = (page - 1) * limit;
 
-        return new com.ohgiraffers.dosirak.user.customer.common.SelectCriteria(page, totalCount, limit, buttonAmount, maxPage, startPage, endPage,
-                offset, searchMap.get("searchCondition"), searchMap.get("searchValue"));
+        return new SelectCriteria(page, limit, buttonAmount, totalCount, maxPage, startPage, endPage,
+                offset, searchMap.get("searchCondition"), searchMap.get("searchValue"),userId);
+
     }
 
-    public static SelectCriteria getSelectCriteria(int page, int totalCount, int limit, int buttonAmount) {
-        return getSelectCriteria(page, totalCount, limit, buttonAmount, new HashMap<>());
+    public static SelectCriteria getSelectCriteria(int page, int limit, int buttonAmount, int totalCount, String userId) {
+
+        return getSelectCriteria(page, limit, buttonAmount, totalCount, new HashMap<>(), userId);
     }
 }
