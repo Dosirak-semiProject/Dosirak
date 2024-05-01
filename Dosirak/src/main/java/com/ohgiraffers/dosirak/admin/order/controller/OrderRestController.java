@@ -21,12 +21,10 @@ public class OrderRestController {
         this.orderService = orderService;
     }
 
-    @PostMapping("orderList/update-Status")
-    public ResponseEntity<Map<String, Object>> updateOrderStatus(@RequestBody Map<String, String> orderStatus) {
-        String status = orderStatus.get("status");
-
-        List<OrderDTO> orderDTO;
-
-        return null;
-    }
+//    @PostMapping("orderList/update-Status")
+//    public ResponseEntity<List<OrderDTO>> updateOrderStatus(@RequestBody Map<String, String> requestBody) {
+//        String orderStatus = requestBody.get("orderStatus");
+//        List<OrderDTO> filteredOrders = orderService.getOrdersByStatus(orderStatus);
+//        return ResponseEntity.ok(filteredOrders);
+//    }
 }

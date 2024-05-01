@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
@@ -82,5 +81,25 @@ public class SurveyAdminService {
 
     public void insertAnswerByAnswer(SurveyAnswerDTO answer) {
         surveyMapper.insertAnswerByAnswer(answer);
+    }
+
+    public void insertNewRangeByVersionId(int versionId, String category) {
+        surveyMapper.insertNewRangeByVersionId(versionId, category);
+    }
+
+    public void setRangeByRange(SurveyScoreRangeDTO range) {
+        surveyMapper.setRangeByRange(range);
+    }
+
+
+    public int getMaxValueByQuestionAndCategory(List<SurveyQuestionDTO> questionList, String category) {
+        int result = 0;
+        for(SurveyQuestionDTO question : questionList){
+            if((question.getQuestionCategory()+"").equals(category)){
+                int highScore = surveyMapper.getMaxValueByQuestionId(question.getQuestionId());
+                result += highScore;
+            }
+        }
+        return result;
     }
 }

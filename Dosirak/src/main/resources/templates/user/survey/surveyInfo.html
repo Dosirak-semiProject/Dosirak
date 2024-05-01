@@ -21,6 +21,10 @@
                 </colgroup>
                 <tbody>
                 <tr>
+                    <th scope="row"><label for="userAge">나이</label><span class="hp_blueColor hp_fw700 hp_fs18">*</span></th>
+                    <td><input name="surveyAge" type="number" class="el_btnM hp_inputBack hp_w100" id="userAge" value="" placeholder="나이를 입력해주세요." title="키 입력"/></td>
+                </tr>
+                <tr>
                     <th scope="row"><label for="userHeight">키</label><span class="hp_blueColor hp_fw700 hp_fs18">*</span></th>
                     <td><input name="surveyHeight" type="text" class="el_btnM hp_inputBack hp_w100" id="userHeight" value="" placeholder="키를 입력해주세요." title="키 입력"/></td>
                 </tr>
@@ -79,7 +83,7 @@
                             <span class="bl_radioBxArea__txt hp_br0">고단백식</span>
                         </label>
                         <label class="bl_radioBxArea ly_fgrow1">
-                            <input class="bl_radioBxArea__input" type="radio" name="surveyDiet" value="normal">
+                            <input class="bl_radioBxArea__input" type="radio" name="surveyDiet" value="normal" checked>
                             <span class="bl_radioBxArea__txt hp_br0">일반식</span>
                         </label>
                     </div>
@@ -92,6 +96,22 @@
     </div>
     <th:block th:replace="/user/common/footer.html"></th:block>
 </div>
+<script>
+    const $userHeight = document.querySelector('#userHeight')
+    const $userWeight = document.querySelector('#userWeight')
+    const $userBmi = document.querySelector('#userBmi')
+
+    $userHeight.addEventListener('change', ()=>{
+        if($userHeight.value * $userWeight.value != 0){
+            $userBmi.value = Math.round($userWeight.value/ ($userHeight.value * $userHeight.value) * 1000000) / 100
+        }
+    })
+    $userWeight.addEventListener('change', ()=>{
+        if($userHeight.value * $userWeight.value != 0){
+            $userBmi.value = Math.round($userWeight.value/ ($userHeight.value * $userHeight.value) * 1000000) / 100
+        }
+    })
+</script>
 </body>
 
 </html>

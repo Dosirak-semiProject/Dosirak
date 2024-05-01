@@ -15,6 +15,7 @@
         SELECT PRODUCT_NAME,PRODUCT_CODE,PRODUCT_PRICE,PRODUCT_STATUS,PRODUCT_CATEGORY_CODE,product_summary
         FROM tbl_product;
     </select>
+
     <select id="viewProduct" resultMap="product">
         SELECT
         *
@@ -40,6 +41,13 @@
         ON P.product_category_code = c.product_main_category_code
         WHERE c.product_sub_category_code = #{subCategoryCode}
     </select>
+    <select id="getProductListBySubCategoryCodejungsung">
+        SELECT *
+        FROM TBL_PRODUCT P
+        LEFT JOIN TBL_PRODUCT_CATEGORY C
+        ON P.product_category_code = c.product_main_category_code
+        WHERE c.product_main_category_code = 2
+    </select>
     <insert id="addCart">
         INSERT INTO cart
         (CARTITEM_COUNT,ID,PRODUCT_CODE)
@@ -64,6 +72,12 @@
         FROM product_img
         WHERE PRODUCT_CODE = #{productCode}
     </select>
+    <select id="viewProductsub" resultType="com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO">
+        SELECT *
+        FROM product_img a JOIN tbl_product_category c on a.product_code = c.product_main_category_code
+
+        WHERE c.product_sub_category_code = #{subCategoryCode}
+    </select>
 
     <select id="searchImageForProduct" resultType="com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO">
         SELECT
@@ -73,6 +87,36 @@
         WHERE
         PRODUCT_CODE = #{productCode}
     </select>
+    <select id="plzComeReview" resultType="com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO">
+        SELECT
+        R.detail_code, D.PRODUCT_CODE, R.review_code, R.review_title, R.review_content, R.review_date
+        FROM
+        review R
+        LEFT JOIN
+        detail D ON (R.detail_code = D.DETAIL_CODE)
+        LEFT JOIN
+        tbl_product P ON (P.PRODUCT_CODE = D.PRODUCT_CODE)
+        WHERE
+        D.PRODUCT_CODE = #{productCode}
+        ORDER BY
+        review_code
+    </select>
+    <select id="nowPay" parameterType="string">
+        SELECT *
+        FROM USER
+        WHERE ID = #{userId}
+    </select>
+    <select id="getCartItemByUserIdAndProductCode" resultType="com.ohgiraffers.dosirak.user.order.model.dto.CartDTO">
+        SELECT *
+        FROM CART
+        WHERE PRODUCT_CODE=#{productCode}
+    </select>
+    <update id="updateCartItem" >
+        SELECT CARTITEM_COUNT
+        FROM CART
+        WHERE CARTITEM_COUNT=#{cartitemCount}
+    </update>
+
 
 
 

@@ -43,6 +43,8 @@
                 <div id="orderDiv">
                     <div class="questionDiv" th:each="question:${questionList}">
                         <form class="question">
+                            <input style="display: none" name="questionOrder" class="questionOrder"
+                                   th:value="${question.questionOrder}">
                             <input style="display: none" name="questionId" class="questionId"
                                    th:value="${question.questionId}">
                             <input style="display: none" name="versionId" value="${versionId}"
@@ -53,7 +55,7 @@
                                         style="width: 10%">1
                                     </td>
                                     <td style="width: 10%">
-                                        <select name="questionCategory">
+                                        <select name="questionCategory" onchange="setMaxScore()">
                                             <option th:selected="${question.questionCategory}=='C'" value="C">
                                                 탄수화물
                                             </option>
@@ -89,7 +91,7 @@
                                 <table class="datatable">
                                     <tr>
                                         <td style="width: 10%"></td>
-                                        <td style="width: 10%"><input name="answerValue" style="width: 50px;" th:value="${answer.answerValue}"></td>
+                                        <td style="width: 10%"><input name="answerValue" style="width: 50px;" th:value="${answer.answerValue}" onchange="setMaxScore()"></td>
                                         <td style="border-right: none"><input name="answerText" style="width: 500px;" th:value="${answer.answerText}">
                                         </td>
                                         <td style="border-left: none; width: 800px;">
@@ -103,7 +105,7 @@
                         </div>
                     </div>
                 </div>
-                <table class="datatable">
+                <table class="datatable" style="margin-top: 50px;">
                     <tr>
                         <th style="width: 10%;">점수 분류</th>
                         <th style="width: 18%;">매우 낮음</th>
@@ -113,6 +115,9 @@
                         <th style="width: 18%;">매우 높음</th>
                     </tr>
                     <tr th:each="range:${rangeList}">
+                        <form class="rangeForm">
+                            <input style="display: none" name="versionId" th:value="${version.versionId}">
+                            <input style="display: none" name="category" th:value="${range.category}">
                         <th:block th:switch="${range.category}">
                             <th:block th:case="C">
                                 <td>탄수화물</td>
@@ -127,16 +132,29 @@
                                 <td>운동</td>
                             </th:block>
                         </th:block>
-                        <td>1 ~ <a th:text="${range.range1 - 1}"></a></td>
-                        <td><a th:text="|${range.range1} ~ |"></a><a th:text="${range.range2 - 1}"></a></td>
-                        <td><a th:text="|${range.range2} ~ |"></a><a th:text="${range.range3 - 1}"></a></td>
-                        <td><a th:text="|${range.range3} ~ |"></a><a th:text="${range.range4 - 1}"></a></td>
-                        <td><a th:text="${range.range4}"></a> ~ 10</td>
+                        <td>1 ~
+                            <input name="range1" th:id="|${range.category}1|" th:value="${range.range1}" style="width: 30px; text-align: center" class="rangeInput">
+                        </td>
+                        <td>
+                            <span th:text="|${range.range1} ~ |" th:id="|${range.category}1t|"></span>
+
+                            <input name="range2" th:id="|${range.category}2|" th:value="${range.range2}" style="width: 30px; text-align: center" class="rangeInput">
+                        </td>
+                        <td>
+                            <span th:text="|${range.range2} ~ |" th:id="|${range.category}2t|"></span>
+                            <input name="range3" th:id="|${range.category}3|" th:value="${range.range3}" style="width: 30px; text-align: center" class="rangeInput">
+                        </td>
+                        <td>
+                            <span th:text="|${range.range3} ~ |" th:id="|${range.category}3t|"></span>
+                            <input name="range4" th:id="|${range.category}4|" th:value="${range.range4}" style="width: 30px; text-align: center" class="rangeInput">
+                        </td>
+                        <td>
+                            <span th:text="|${range.range4} ~ |" th:id="|${range.category}4t|"></span>
+                            <span th:id="|${range.category}5|">~ 10</span></td>
+                        </form>
                     </tr>
                 </table>
-            </div>
-
-            <div class="editBtn" style="text-align: right;">
+            <div class="editBtn" style="text-align: right; margin: 20px 0px 70px 0px;">
                 <span>
                     <button type="button" class="btn btn-primary" id="modify">설문 수정</button>
                     <button type="button" class="btn btn-primary" formaction="/admin/suit-box/menu/view"
@@ -145,6 +163,8 @@
                             onclick="window.location.href='/admin/survey/version-list'">목록</button>
                 </span>
             </div>
+            </div>
+
         </main>
     </div>
 </div>
@@ -152,13 +172,11 @@
 <script>
     const versionId = [[${version.versionId}]]
 
+    const $rangeFormList = document.querySelectorAll('.rangeForm')
+
     const $modifyButton = document.querySelector('#modify') // 수정 버튼
     $modifyButton.addEventListener('click', modify)
 
-
-    const $thQuestionList = document.querySelectorAll('.question')
-    $thQuestionList.forEach(() => {
-    })
     setQuestionOrderAndForm(); // text, orderInput value 할당
 
     const $insertQuestion = document.querySelector('#insertQuestion') // 질문 추가 버튼
@@ -178,7 +196,7 @@
                                         style="width: 10%">1
                                     </td>
                                     <td style="width: 10%">
-                                        <select name="questionCategory">
+                                        <select name="questionCategory" onchange="setMaxScore()">
                                             <option value="C">
                                                 탄수화물
                                             </option>
@@ -234,6 +252,7 @@
             text.textContent = order;
             order++
         })
+        setMaxScore()
     }
 
     function insertAnswer(event) {
@@ -247,7 +266,7 @@
             <table class="datatable">
                 <tr>
                     <td style="width: 10%"></td>
-                    <td style="width: 10%"><input name="answerValue" style="width: 50px;" value="1"></td>
+                    <td style="width: 10%"><input name="answerValue" style="width: 50px;" value="1" onchange="setMaxScore()"></td>
                     <td style="border-right: none"><input name="answerText" style="width: 500px;" value="답변을 입력해주세요."></td>
                     <td style="border-left: none; width: 800px;">
                         <button type="button" onclick="deleteAnswer(event)" style="margin-left: 20px" class="deleteAnswer">답변 삭제</button>
@@ -260,12 +279,14 @@
         for (let i = 0; i < $divInputList.length; i++) {
             $nowDivInputList[i].value = $divInputList[i].value;
         }
+        setMaxScore()
     }
 
 
     function deleteAnswer(event) {
         const $answerForm = event.target.parentElement.parentElement.parentElement.parentElement.parentElement
         $answerForm.remove();
+        setMaxScore()
     }
 
     function deleteQuestion(event) {
@@ -289,13 +310,10 @@
                 body: new FormData(question)
             })
             const questionId = await response.json()
-            console.log(questionId)
             for (const answer of answerLIst) {
                 const fd = new FormData(answer)
-                console.log(fd.get('questionId'))
                 if(fd.get('questionId') == 0){
                     fd.set('questionId', questionId)
-                    console.log(fd.get('questionId'))
                 }
                 response = await fetch('/admin/survey/fetch/answer', {
                     method: 'POST',
@@ -304,7 +322,49 @@
                 responseJson = await response.json()
             }
         }
+        for (const form of $rangeFormList) {
+            const rangeForm = new FormData(form)
+            response = await fetch('/admin/survey/fetch/range',{
+                method: 'POST',
+                body: rangeForm
+            })
+            response = await response
+        }
+        location.href=`/admin/survey/version-detail?versionId=${versionId}`
     }
+    function getMaxScore(category){
+        const $questionDivList = document.querySelectorAll('.questionDiv')
+        let maxScore = 0;
+        $questionDivList.forEach(div=>{
+            let nowMaxScore = 0
+            if(div.querySelector(`select[name="questionCategory"]`).value == category){
+                const valueList = div.querySelectorAll('input[name="answerValue"]')
+                valueList.forEach(input=>{
+                    if(nowMaxScore < input.value){
+                        nowMaxScore = input.value
+                    }
+                })
+            }
+            maxScore += parseInt(nowMaxScore)
+        })
+        return maxScore;
+    }
+
+    function setMaxScore(){
+        let category = ['C', 'P', 'F', 'W']
+        category.forEach(cat=>{
+            const categoryMax = document.querySelector(`#${cat}5`)
+            categoryMax.textContent = getMaxScore(cat)
+        })
+    }
+    const $rangeInputs = document.querySelectorAll('.rangeInput')
+    $rangeInputs.forEach(input=>{
+        input.addEventListener('change',(event)=>{
+            const searchId = event.target.id + 't'
+            const text = document.querySelector(`#${searchId}`)
+            text.textContent = event.target.value
+        })
+    })
 
 </script>
 </body>

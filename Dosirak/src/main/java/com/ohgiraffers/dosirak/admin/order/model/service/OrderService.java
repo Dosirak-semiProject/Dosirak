@@ -20,11 +20,11 @@ public class OrderService {
         this.orderMapper = orderMapper;
     }
 
-    public List<OrderDTO> allOrderLists() {
+    public List<OrderDTO> searchOrderLists(String searchCondition, String searchValue) {
 
-        List<OrderDTO> orderDTO = orderMapper.allOrderLists();
+        List<OrderDTO> orders = orderMapper.searchOrderLists(searchCondition, searchValue);
 
-        for (OrderDTO order : orderDTO) {
+        for (OrderDTO order : orders) {
 
             order.getPay().setPayStatus(order.getPay().getPayStatus());
             order.setOrderStatus(order.getOrderStatus());
@@ -60,11 +60,13 @@ public class OrderService {
                 }
             }
         }
-        return orderDTO;
+
+        return orders;
     }
 
-    public List<RefundDTO> allRefundList() {
-        List<RefundDTO> refundDTO = orderMapper.allRefundList();
+    public List<RefundDTO> searchRefundLists(String searchCondition, String searchValue) {
+
+        List<RefundDTO> refundDTO = orderMapper.searchRefundLists(searchCondition, searchValue);
 
         for (RefundDTO refund : refundDTO) {
             refund.setRefundStatus(refund.getRefundStatus());
@@ -86,14 +88,13 @@ public class OrderService {
                 }
             }
         }
-
         return refundDTO;
     }
 
-    public List<DeliveryDTO> allDeliveryList() {
+    public List<DeliveryDTO> searchDeliveryLists(String searchCondition, String searchValue) {
 
-        List<DeliveryDTO> deliveryDTOS = orderMapper.allDeliveryList();
-        for (DeliveryDTO delivery : deliveryDTOS) {
+        List<DeliveryDTO> deliveryDTO = orderMapper.searchDeliveryLists(searchCondition, searchValue);
+        for (DeliveryDTO delivery : deliveryDTO) {
             delivery.setDeliveryStatus(delivery.getDeliveryStatus());
             if (delivery.getDeliveryStatus() != null) {
                 switch (delivery.getDeliveryStatus()) {
@@ -114,8 +115,7 @@ public class OrderService {
                 }
             }
         }
-
-        return orderMapper.allDeliveryList();
+        return deliveryDTO;
     }
 
     public OrderDTO allOrderView(String orderCode) {

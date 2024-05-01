@@ -54,8 +54,9 @@ CREATE TABLE IF NOT EXISTS SURVEY_RESULT
     survey_height         DOUBLE      NOT NULL,
     survey_weight         DOUBLE      NOT NULL,
     survey_bmi            DOUBLE      NOT NULL,
+    survey_age            INT         NOT NULL,
     survey_diet           VARCHAR(10) NOT NULL,
-    survey_exercise_score INT         NOT NULL,
+    survey_workout_score INT         NOT NULL,
     survey_carbo_score    INT         NOT NULL,
     survey_protein_score  INT         NOT NULL,
     survey_fat_score      INT         NOT NULL,
@@ -182,3 +183,9 @@ VALUES (1, 'C', 3, 6, 9, 12),
        (1, 'P', 3, 7, 10, 12),
        (1, 'F', 2, 5, 8, 11),
        (1, 'W', 2, 6, 8, 10);
+INSERT INTO SURVEY_RESULT VALUES
+    ('cool12', 175, 68, 22.2, 26, 'normal', 4, 3, 3, 3, 1, 0, 0, 0, '2024-03-02'),
+    ('don789', 186, 86, 24.86, 22, 'normal', 5, 3, 2, 3, 1, 0, 0, 0, '2024-03-25'),
+    ('haunoh98', 152, 53, 22.94, 28, 'diet', 2, 1, 2, 1, 1, 0, 0, 0, '2024-04-15'),
+    ('jihlim77', 156, 57, 23.42, 23, 'normal', 4, 3, 3, 3, 1, 0, 0, 0, '2024-04-28'),
+    ('jmin56', 178, 96, 30.3, 21, 'diet', 4, 3, 3, 3, 1, 0, 0, 0, '2024-05-01')

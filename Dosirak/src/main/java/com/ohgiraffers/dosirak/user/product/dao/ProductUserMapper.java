@@ -5,6 +5,8 @@ import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
+import com.ohgiraffers.dosirak.user.review.model.dto.ReviewDTO;
+import com.ohgiraffers.dosirak.user.review.model.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,6 +17,7 @@ public interface ProductUserMapper {
     List<productDTO> findAllUserProduct();
 
     ProductUserDTO viewProduct(int productCode);
+
 
     ProductUserDTO productsListViewNomal(int categoryCode);
 
@@ -35,4 +38,17 @@ public interface ProductUserMapper {
     List<ProductUserDTO> viewProduct2(int productCode);
 
     List<ProductImageDTO> searchImageForProduct(int productCode);
+
+    List<ReviewDTO> plzComeReview(int productCode);
+
+
+    List<UserDTO> nowPay(String productInfo);
+
+    CartDTO getCartItemByUserIdAndProductCode(String userId, String productCode);
+
+    void updateCartItem(CartDTO existingCartItem);
+
+    List<ProductImageDTO> findImagesByProductCode2(int subCategoryCode);
+
+    List<ProductUserDTO> getProductListBySubCategoryCodejungsung();
 }

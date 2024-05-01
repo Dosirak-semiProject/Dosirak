@@ -30,8 +30,8 @@
     <th:block th:replace="/user/common/header.html"></th:block>
     <div class="ly_maxWD ly_inner02">
         <h2 class="el_lv1Head">주문 결제</h2>
-        <form action="/user/orderDone" method="post" id="finish" onsubmit="return orderCancel()">
-            <table class="bl_TBView hp_mt50">
+        <form th:action="${directPay == null ? '/user/orderDone' : '/user/orderDone-direct'}" method="post" id="finish" onsubmit="return orderCancel()">
+        <table class="bl_TBView hp_mt50">
                 <caption class="WA">검색</caption>
                 <colgroup>
                     <col style="width:150px"/>
@@ -43,23 +43,21 @@
                     <td>
                         <ul class="js_productRow">
                             <li class="ly_flex ly_fitemC getProductCode hp_mb15" th:each="cart : ${ cartDTO }">
+                                <input th:if="${directPay != null}" style="display: none;" name="itemCount" th:value="${cart.cartitemCount}">
+                                <input th:if="${directPay != null}" style="display: none;" name="price" th:value="${cart.productPrice}">
+                                <input th:if="${directPay != null}" style="display: none;" name="suitboxCode" th:value="${cart.suitboxCode}">
                                 <input style="display: none" th:if="${cart.productCode != 0}"
                                        th:name="|product${cart.productCode}|" th:value="${cart.productCode}">
                                 <input style="display: none" th:if="${cart.suitbox != null}"
                                        th:name="|suitbox${cart.suitbox.suitboxCode}|"
                                        th:value="${cart.suitbox.suitboxCode}">
                                 <img class="bl_orderView__img" th:if="${cart.productCode != 0}"
-                                     src="/productUpload/original/29955198-782f-490e-b3de-bdb67d2d7232.png" alt=""/>
+                                     th:src="@{|/product/${cart.productImageDTO.savedName}|}" th:alt="${cart.productImageDTO.savedName}"/>
                                 <img class="bl_orderView__img" th:if="${cart.suitbox != null}"
                                      src="/suitboxUpload/original/suitbox.jpg" alt=""/>
                                 <dl class="bl_orderView__info">
-                                    <dt class="pay_productName" th:if="${cart.productCode != 0}"
-                                        th:text="${cart.productName}"></dt>
-                                    <dt class="pay_productName" th:if="${cart.suitbox != null}">맞춤 도시락 <span
-                                            style="color: gray; margin-left: 20px"
-                                            th:text="|${cart.detailSuitBox.rice.getMenuName()}/${cart.detailSuitBox.main.getMenuName()}
-                                                                                                       /${cart.detailSuitBox.side.getMenuName()}/${cart.detailSuitBox.kimchi.getMenuName()}|">
-                                </span></dt>
+                                    <dt class="pay_productName" th:if="${cart.productCode != 0}" th:text="${cart.productName}"></dt>
+                                    <dt class="pay_productName" th:if="${cart.suitbox != null}" th:text="|[맞춤도시락] ${cart.detailSuitBox.rice.getMenuName()}/${cart.detailSuitBox.main.getMenuName()}/${cart.detailSuitBox.side.getMenuName()}/${cart.detailSuitBox.kimchi.getMenuName()}|">
                                     <dd class="hp_mt10" style="display: flex">
                                         <div class="hp_ml10 hp_mr10 js_productPrice pay_productPrice"
                                              th:text="${cart.productPrice} + '원'"></div>
@@ -91,7 +89,7 @@
                     <th scope="row"><label for="">배송지</label></th>
                     <td>
                         <div class="ly_flex">
-                            <input th:value="${user.address1}" type="text" id="address1"
+                            <input th:value="${user.address1}"  type="text" id="address1"
                                    class="el_btnM hp_inputBack hp_w100 buyerAddr1" name="address1" placeholder="우편 주소"
                                    title="우편 주소 입력"/>
                             <input type="button" id="postCode" class="el_btnM el_btnPointBack hp_ml10" name=""
