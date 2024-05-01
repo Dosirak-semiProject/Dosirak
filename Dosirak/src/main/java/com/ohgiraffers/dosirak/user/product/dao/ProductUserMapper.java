@@ -18,6 +18,7 @@ public interface ProductUserMapper {
 
     ProductUserDTO viewProduct(int productCode);
 
+
     ProductUserDTO productsListViewNomal(int categoryCode);
 
     ProductUserDTO productsListView();
@@ -46,4 +47,8 @@ public interface ProductUserMapper {
     CartDTO getCartItemByUserIdAndProductCode(String userId, String productCode);
 
     void updateCartItem(CartDTO existingCartItem);
+
+    List<ProductImageDTO> findImagesByProductCode2(int subCategoryCode);
+
+    List<ProductUserDTO> getProductListBySubCategoryCodejungsung();
 }

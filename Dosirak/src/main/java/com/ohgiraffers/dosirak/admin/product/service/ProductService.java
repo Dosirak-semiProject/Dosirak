@@ -80,5 +80,6 @@ public class ProductService {
     public List<productDTO> searchProducts(String productName, int productCategoryCode, String productStatus) {
         return productMapper.findByCriteria(productName, productCategoryCode, productStatus);
     }
+
 }
 

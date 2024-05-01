@@ -28,7 +28,7 @@ public class ProductUserService {
         return productUserMapper.findAllUserProduct();
     }
 
-    public ProductUserDTO viewProduct(int productCode) {
+    public ProductUserDTO viewProduct(int productCode) { //뷰용
         ProductUserDTO product= productUserMapper.viewProduct(productCode);
             // 상품 코드를 기반으로 이미지 리스트 가져오기
         if (product != null) {
@@ -54,7 +54,18 @@ public class ProductUserService {
 
     public List<ProductUserDTO> getProductListBySubCategoryCode(int subCategoryCode) {
         System.out.println(subCategoryCode);
-        return productUserMapper.getProductListBySubCategoryCode(subCategoryCode);
+        List<ProductUserDTO> products= productUserMapper.getProductListBySubCategoryCode(subCategoryCode);
+
+        for (ProductUserDTO product : products) {
+            // 상품 코드를 기반으로 이미지 리스트 가져오기
+            List<ProductImageDTO> images = productUserMapper.findImagesByProductCode(product.getProductCode());
+            // 이미지 리스트를 상품 DTO에 설정하기
+            product.setImageList(images);
+            System.out.println("image:"+images);
+            System.out.println("product"+product);
+        }
+
+        return products;
     }
 
 
@@ -125,5 +136,20 @@ public class ProductUserService {
 
     public void updateCartItem(CartDTO existingCartItem) {
         productUserMapper.updateCartItem(existingCartItem);
+    }
+
+    public List<ProductUserDTO> getProductListBySubCategoryCodejungsung() {
+        List<ProductUserDTO> products= productUserMapper.getProductListBySubCategoryCodejungsung();
+
+        for (ProductUserDTO product : products) {
+            // 상품 코드를 기반으로 이미지 리스트 가져오기
+            List<ProductImageDTO> images = productUserMapper.findImagesByProductCode(product.getProductCode());
+            // 이미지 리스트를 상품 DTO에 설정하기
+            product.setImageList(images);
+            System.out.println("image:"+images);
+            System.out.println("product"+product);
+        }
+
+        return products;
     }
 }
