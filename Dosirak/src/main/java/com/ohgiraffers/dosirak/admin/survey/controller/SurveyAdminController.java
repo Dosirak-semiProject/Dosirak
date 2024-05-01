@@ -35,6 +35,14 @@ public class SurveyAdminController {
         model.addAttribute("questionList", questionList);
         List<SurveyScoreRangeDTO> rangeLIst = surveyAdminService.getSurveyRangeByVersionId(versionId);
         model.addAttribute("rangeList", rangeLIst);
+        int carboMaxValue = surveyAdminService.getMaxValueByQuestionAndCategory(questionList, "C");
+        int proteinMaxValue = surveyAdminService.getMaxValueByQuestionAndCategory(questionList, "P");
+        int fatMaxValue = surveyAdminService.getMaxValueByQuestionAndCategory(questionList, "F");
+        int workoutMaxValue = surveyAdminService.getMaxValueByQuestionAndCategory(questionList, "W");
+        model.addAttribute("carboMaxValue", carboMaxValue);
+        model.addAttribute("proteinMaxValue", proteinMaxValue);
+        model.addAttribute("fatMaxValue", fatMaxValue);
+        model.addAttribute("workoutMaxValue", workoutMaxValue);
         return "admin/survey/surveyVersionView";
     }
     @GetMapping("version-insert")
@@ -42,9 +50,15 @@ public class SurveyAdminController {
         int versionId = 0;
         int result = surveyAdminService.insertNetVersion();
         versionId = surveyAdminService.getVersionId();
+        surveyAdminService.insertNewRangeByVersionId(versionId, "C");
+        surveyAdminService.insertNewRangeByVersionId(versionId, "P");
+        surveyAdminService.insertNewRangeByVersionId(versionId, "F");
+        surveyAdminService.insertNewRangeByVersionId(versionId, "W");
         SurveyVersionDTO version = surveyAdminService.getVersionByVersionId(versionId);
+        List<SurveyScoreRangeDTO> rangeLIst = surveyAdminService.getSurveyRangeByVersionId(versionId);
         model.addAttribute("version", version);
-        return "admin/survey/surveyVersionView";
+        model.addAttribute("rangeList", rangeLIst);
+        return "admin/survey/surveyVersionSet";
     }
     @GetMapping("version-delete")
     public String versionDelete(Model model, @RequestParam int versionId){
@@ -85,8 +99,12 @@ public class SurveyAdminController {
     }
     @PostMapping("fetch/answer")
     public @ResponseBody int answerSet(@ModelAttribute SurveyAnswerDTO answer){
-        System.out.println(answer);
         surveyAdminService.insertAnswerByAnswer(answer);
+        return 1;
+    }
+    @PostMapping("fetch/range")
+    public @ResponseBody int rangeSet(@ModelAttribute SurveyScoreRangeDTO range){
+        surveyAdminService.setRangeByRange(range);
         return 1;
     }
 }

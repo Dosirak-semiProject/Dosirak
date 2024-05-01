@@ -10,11 +10,12 @@ import java.sql.Date;
 @ToString
 public class SurveyResultDTO {
     private String userId;
+    private int surveyAge;
     private double surveyHeight;
     private double surveyWeight;
     private double surveyBmi;
     private String surveyDiet;
-    private int surveyExerciseScore;
+    private int surveyWorkoutScore;
     private int surveyCarboScore;
     private int surveyProteinScore;
     private int surveyFatScore;

@@ -5,6 +5,7 @@ const outer = document.querySelector('.outer');
 const innerList = document.querySelector('.inner-list');
 const inners = document.querySelectorAll('.inner');
 
+
 const maxIndex = inners.length;  // 최대 인덱스
 let pageIndex = 0; // 현재 슬라이드 화면 인덱스
 
@@ -24,10 +25,26 @@ innerList.style.width = `${outer.clientWidth * inners.length}px`; // innerList�
 /*
     버튼에 이벤트 등록하기
 */
-
-const buttonLeft = document.querySelector('.button-previous');
 const radioButtons = document.querySelectorAll('input')
 const startButton = document.querySelector('.button-start')
+const $backButton = document.querySelector('#backButton')
+
+$backButton.addEventListener('click', ()=>{
+    setTimeout(()=>{progressArea.style.opacity=1}, 200)
+    pageIndex--
+    pageIndex = pageIndex < 0 ? 0 : pageIndex;
+    progressBarIndex--;
+    progressBar.style.width = `${oneStepLength * progressBarIndex}px`
+    innerList.style.marginLeft = `-${outer.clientWidth * pageIndex}px`
+    if(progressBarIndex!=maxProgressIndex){
+        setTimeout(()=>{progressArea.style.opacity=1}, 200)
+    }
+    if(progressBarIndex == 0){
+        $backButton.style.visibility='hidden'
+        setTimeout(()=>{$backButton.style.opacity=0}, 100)
+    }
+
+})
 
 startButton.addEventListener('click', ()=>{
     setTimeout(()=>{progressArea.style.opacity=1}, 200)
@@ -43,8 +60,12 @@ for(const radioButton of radioButtons){
         progressBar.style.width = `${oneStepLength * progressBarIndex}px`
         console.log(`now ${pageIndex}`)
         console.log(`max ${maxIndex}`)
+        if(progressBarIndex >= 0){
+            $backButton.style.visibility=''
+            setTimeout(()=>{$backButton.style.opacity=1}, 100)
+        }
         if(progressBarIndex==maxProgressIndex){
-            setTimeout(()=>{progressArea.style.opacity=0}, 400)
+            setTimeout(()=>{progressArea.style.opacity=0}, 200)
         }
     })
 }
