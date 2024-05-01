@@ -49,7 +49,9 @@ public class ProductUserController {
     public String productList(Model model) {
         List<productDTO> productList1 = productUserService.findAllProduct();
         List<ProductUserDTO> productList = productUserService.getProductsWithImages();
+
         model.addAttribute("productList", productList);
+
 
 
 //        List<ProductandImageDTO> imageList=productUserService.comeImageList();
