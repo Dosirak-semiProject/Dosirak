@@ -19,8 +19,6 @@ public interface CartMapper {
 
     void cartUpdateQuantity(int productCode, int updatedQuantity);
 
-    List<MemberDTO> findSearchId();
-
     String findOrderCode();
 
     PayDTO findPayDate(String orderCode);
@@ -53,11 +51,9 @@ public interface CartMapper {
 
     int userOrderDone(String memberId, String name, String phone, String address1, String address2, String address3);
 
-    List<CartDTO> getProductFileImg(List<CartDTO> cartList, String memberId);
-
-    List<CartDTO> userPayment(List<CartDTO> cartList);
-
     void insertDetailSuitboxDirect(int itemCount, int suitboxCode, String orderCode);
 
     ProductImageDTO getProductImageDTOByProductId(int productCode);
+
+    ProductImageDTO setCartProductImgName(int productCode);
 }

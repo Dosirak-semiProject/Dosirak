@@ -46,8 +46,6 @@ public class OrderController {
 
         model.addAttribute("orderView", orderView);
 
-        log.info(orderCode);
-
         return "admin/order/orderView";
     }
 

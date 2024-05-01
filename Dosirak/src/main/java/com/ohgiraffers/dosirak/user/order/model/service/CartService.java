@@ -41,10 +41,6 @@ public class CartService {
         }
     }
 
-    public List<MemberDTO> findSearchId() {
-        return cartMapper.findSearchId();
-    }
-
     public String findOrderCode() {
         return cartMapper.findOrderCode();
     }
@@ -161,14 +157,6 @@ public class CartService {
         return cartMapper.userOrderDone(memberId, name, phone, address1, address2, address3);
     }
 
-    public List<CartDTO> getProductFileImg(List<CartDTO> cartList, String memberId) {
-        return cartMapper.getProductFileImg(cartList, memberId);
-    }
-
-    public List<CartDTO> userPayment(List<CartDTO> cartList) {
-        return cartMapper.userPayment(cartList);
-    }
-
     public void insertDetailSuitboxDirect(int itemCount, int suitboxCode, String orderCode) {
         cartMapper.insertDetailSuitboxDirect(itemCount, suitboxCode, orderCode);
     }
@@ -178,6 +166,15 @@ public class CartService {
             if(cart.getDetailSuitBox() == null) {
                 ProductImageDTO productImageDTO = cartMapper.getProductImageDTOByProductId(cart.getProductCode());
                 cart.setProductImageDTO(productImageDTO);
+            }
+        }
+    }
+
+    public void setCartProductImgName(List<CartDTO> cartDTO) {
+        for (CartDTO product : cartDTO) {
+            if(product.getDetailSuitBox() == null) {
+                ProductImageDTO productImageDTO = cartMapper.setCartProductImgName(product.getProductCode());
+                product.setProductImageDTO(productImageDTO);
             }
         }
     }
