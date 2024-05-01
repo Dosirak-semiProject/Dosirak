@@ -82,7 +82,7 @@ public class CartController {
 
         cartList = cartService.setCartDTO(productAndQuantity, memberId);
         cartList = cartService.divisionProduct(cartList);
-//        cartService.setProductName(cartList);
+        cartService.setProductImgName(cartList);
 
         model.addAttribute("cartDTO", cartList);
 

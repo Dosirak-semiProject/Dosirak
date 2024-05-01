@@ -258,6 +258,17 @@
         DELETE FROM CART
         WHERE SUITBOX_CODE = #{suitboxCode}
     </delete>
+    <select id="getProductImageDTOByProductId">
+        SELECT
+        img_code,
+        product_code,
+        saved_name,
+        save_path
+        FROM
+        PRODUCT_IMG
+        WHERE
+        product_code = #{productCode}
+    </select>
 
     <!-- 결제페이지 이미지 불러오기 수정중 -->
 <!--    <select id="findProductImgName" resultMap="CartResultMap">-->

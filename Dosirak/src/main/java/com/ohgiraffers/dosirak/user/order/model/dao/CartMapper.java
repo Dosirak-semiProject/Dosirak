@@ -3,6 +3,7 @@ package com.ohgiraffers.dosirak.user.order.model.dao;
 import com.ohgiraffers.dosirak.admin.member.model.dto.MemberDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.OrderDTO;
 import com.ohgiraffers.dosirak.admin.order.model.dto.PayDTO;
+import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductUserDTO;
@@ -57,4 +58,6 @@ public interface CartMapper {
     List<CartDTO> userPayment(List<CartDTO> cartList);
 
     void insertDetailSuitboxDirect(int itemCount, int suitboxCode, String orderCode);
+
+    ProductImageDTO getProductImageDTOByProductId(int productCode);
 }
