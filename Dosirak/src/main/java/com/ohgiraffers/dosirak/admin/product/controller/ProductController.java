@@ -39,8 +39,7 @@ public class ProductController {
     private final UserCustomerService userCustomerService;
 
     @Value("${image.product-image-dir}")
-    private String IMAGE_DIR;
-
+    private String PRODUCT_IMAGE_DIR;
 
     @Autowired
     public ProductController(ProductService productService, UserCustomerService userCustomerService) {
@@ -90,7 +89,7 @@ public class ProductController {
 
 
                 /* 경로 설정 */
-                String fileUploadDir = IMAGE_DIR + "original";
+                String fileUploadDir = PRODUCT_IMAGE_DIR;
 
                 File dir1 = new File(fileUploadDir);
 
@@ -178,7 +177,7 @@ public class ProductController {
         productService.productUpdate(product);
 
         /* 경로 설정 */
-        String fileUploadDir = IMAGE_DIR + "original";
+        String fileUploadDir = PRODUCT_IMAGE_DIR;
 
         File dir1 = new File(fileUploadDir);
 
