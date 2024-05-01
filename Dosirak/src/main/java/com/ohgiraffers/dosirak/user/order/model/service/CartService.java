@@ -167,4 +167,8 @@ public class CartService {
     public List<CartDTO> userPayment(List<CartDTO> cartList) {
         return cartMapper.userPayment(cartList);
     }
+
+    public void insertDetailSuitboxDirect(int itemCount, int suitboxCode, String orderCode) {
+        cartMapper.insertDetailSuitboxDirect(itemCount, suitboxCode, orderCode);
+    }
 }
