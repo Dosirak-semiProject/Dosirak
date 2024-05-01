@@ -110,8 +110,6 @@ public class MemberController {
         }
 
         model.addAttribute("managerList", managerList);
-        model.addAttribute("searchCondition", searchCondition);
-        model.addAttribute("searchValue", searchValue);
 
         return "/admin/member/managerList";
     }
