@@ -11,11 +11,40 @@ CREATE TABLE IF NOT EXISTS tbl_product(
     FOREIGN KEY (product_category_code) REFERENCES tbl_product_category(product_main_category_code)
 ) ENGINE = INNODB;
 
-INSERT INTO tbl_product VALUE ('1','헬시 도시락','12000','판매중','맛난거','1');
-INSERT INTO tbl_product VALUE ('2','샐러드','13000','판매중단','안맛난거','2');
-INSERT INTO tbl_product VALUE ('3','닭 가슴살 도시락','1000','판매중','맛난거','9');
-INSERT INTO tbl_product VALUE ('4','암 도시락','12000','판매중','맛난거','4');
-INSERT INTO tbl_product VALUE ('5','혈당 도시락','12000','판매중','맛난거','7');
+
+CREATE TABLE IF NOT EXISTS tbl_Nav(
+    NAV_NAME VARCHAR(255),
+    NAV_INFO VARCHAR(255)
+)ENGINE = INNODB;
+
+INSERT INTO tbl_product (PRODUCT_NAME, product_price, product_status, product_summary, product_category_code)
+VALUES
+    ('봄맛 도시락', 13000, '판매중', '맛난거', 2),
+    ('옛날 도시락', 12000, '판매중', '옛날맛 그대로~', 2),
+    ('수라상 도시락', 23000, '판매중', '한상 푸짐!', 2),
+    ('돼지감자소스 가자미구이', 12000, '판매중', '건강한 한상을!', 2),
+    ('전복내장솥밥&닭곰탕', 12000, '판매중', '솥밥의 감칠맛과 식감!', 2),
+    ('오야꼬동&소고기 렌틸콩 오크라볶음', 12000, '판매중', '건강한 감칠맛!', 2),
+    ('돌솥 매콤낙지 비빔밥', 12000, '판매중', '쫄깃한 낙지에 매콤함을!', 4),
+    ('진저포크구이&겨자부추무침', 9800, '판매중', '육즙 가득한 구이 요리', 4),
+    ('매운 돼지고기찜&느타리버섯 소불고기', 12000, '판매중', '입맛 돋우는 매콤함!', 4),
+    ('오징어 제육볶음&소고기 파래조림', 12000, '판매중', '건강한 포만감!', 4),
+    ('새나물 도시락', 12000, '판매중', '새싹과 같이 상쾌한 하루', 5),
+    ('약밥 도시락 1주 식단 5종, 10개', 36800, '판매중', '한주동안 건강하게!', 5),
+    ('소고기샤브전골&부추잡채', 13000, '판매중', '저민 소고기와 신선한 채소를 듬뿍!', 5),
+    ('한우우거지해장국&해물부추전 세트', 12000, '판매중', '개운하고 깔끔한 맛', 5),
+    ('순한 마파두부덮밥&돼지고기 짜장', 14000, '판매중', '색다른 중화풍 미식여행!', 6),
+    ('토마토포크스튜', 12000, '판매중', '마지막 한입까지 깔끔하게!', 6),
+    ('명란버터솥밥', 12000, '판매중', '김치 양념이 쏙 배어 깊고 진한 맛', 6),
+    ('녹차불고기 해초쌈&두부 고사리조림', 12000, '판매중', '바다의 맛과 향이 입안 가득!', 6),
+    ('우삼겹깍두기볶음밥', 12000, '판매중', '남녀노소 누구나 좋아할 볶음밥!', 6),
+    ('나물 도시락', 13000, '판매중', '나물의 향취가 배!', 7),
+    ('투움바쉬림프', 12000, '판매중', '근사한 식사!', 7),
+    ('중화풍 마늘종 치킨', 12000, '판매중', '근사한 중화풍 한 상!', 7),
+    ('경장육사&춘빙', 12000, '판매중', '담백하고 건강하게', 7),
+    ('흑후추 소불고기', 12000, '판매중', '듬뿍 뿌려 짜릿하게 퍼지는 진한 향!', 7),
+    ('크래미 샐러드', 6900, '판매중', '크레미에 레몬 드레싱!', 8),
+    ('훈제 닭가슴살', 4000, '판매중', '담백함 위로 짭조름한 향미!', 9);
 
 DROP TABLE IF EXISTS tbl_product_category CASCADE;
 CREATE TABLE IF NOT EXISTS tbl_product_category(
@@ -63,6 +92,55 @@ CREATE TABLE IF NOT EXISTS PRODUCT_IMG (
                                            SAVE_PATH VARCHAR(255) NOT NULL COMMENT '저장 경로',
                                            FOREIGN KEY (PRODUCT_CODE) REFERENCES tbl_product(PRODUCT_CODE)
 )AUTO_INCREMENT = 70007001 COMMENT '이미지 파일';
+INSERT INTO PRODUCT_IMG (IMG_CODE, PRODUCT_CODE, SAVED_NAME, SAVE_PATH)
+VALUES
+    (70007020, 80, 'befd7462-119e-44a8-bffe-4b86bc508f1d.png', 'C:/Dosirak/original/productUpload'),
+    (70007021, 82, 'f8a9597f-bb2e-455d-9f68-2a49d35fad8a.png', 'C:/Dosirak/original/productUpload'),
+    (70007022, 82, 'ffe713e5-0c20-4989-ab45-539c47450454.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007023, 83, 'df8a51fb-2701-4dd3-8294-c5a42ac060d9.png', 'C:/Dosirak/original/productUpload'),
+    (70007024, 84, 'ab246f39-752f-454b-9660-4ffcbede045c.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007025, 84, 'a354ab8e-2fcf-4038-a29a-ccd7abd97687.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007026, 85, '451beda3-b05b-4343-b066-6137af604659.png', 'C:/Dosirak/original/productUpload'),
+    (70007027, 86, '2aea79a6-b10c-455c-928f-1ebafd53c7c6.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007028, 86, '8a46ceb8-b472-4505-913d-32b1515a6095.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007029, 87, '787561cf-81fb-4e33-84f8-fdbeb9ddce95.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007030, 87, '7452ca40-7a37-455c-b569-b44d5ce99553.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007031, 89, '2bef7fb9-edf9-4f57-815e-41470acde3f6.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007032, 89, 'b08bf45d-1973-4d13-8e03-13a8993cd2c5.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007033, 90, '10e2cb78-229f-461e-8feb-7fc754244b62.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007034, 90, 'ba1ef5a3-5bc6-4612-b6c4-74a2b785c915.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007035, 91, '2da828f7-2b4c-44d2-9008-8f9df26b3228.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007036, 92, '0ea1e153-6714-4e8d-b492-8deea447d354.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007037, 92, 'c0529d1e-9709-4a36-9070-5b2ca195a542.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007038, 93, '37a28bf9-8711-4b12-b86c-d44873268911.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007039, 93, 'ae91883a-377f-48f0-84a3-bac20274a782.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007040, 94, '2da66355-fe8a-49b6-965a-16109e1fb2bd.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007041, 94, '84e90c95-180f-4f4f-bf67-66d19d58f1b6.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007042, 95, 'd968c7e8-cfb7-4592-b587-c8a11db8bd41.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007043, 95, 'ea3ae706-d8b5-43a2-ae3d-5133623f6f78.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007044, 96, '11589e77-3790-4ec2-8fca-9a94e44828c8.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007045, 96, 'efa45712-f79a-4dec-9dd9-c8cb485ae3c4.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007046, 97, 'ed4ff32d-9f79-43b3-84c7-73ec58e3a209.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007047, 97, 'c8b06081-d3e7-4ffb-8d48-07a9c29ea65b.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007048, 98, '0aaa1cef-74a7-4f41-8b39-ce0e7609e922.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007049, 98, 'cbc97279-132f-44c7-bdf1-48ea62d0de53.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007050, 99, '961d4956-ccf3-4294-8ab8-449306709720.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007051, 99, '6a8ee71c-44e6-40bf-ac97-1af85447a285.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007052, 100, '28467c5e-8673-4a04-a7bf-96710faf0755.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007053, 100, 'ecc3d0b1-04d8-4cb0-8825-26ef7d76806e.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007054, 101, '3f3330e1-6479-4556-a2f9-da1d590e9262.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007055, 101, '00f53e2f-207e-4a4e-b5f3-bb5849abd90b.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007056, 102, '81a797c2-76a1-4dfd-b6df-61f98d92297b.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007057, 102, '060bf7db-1024-4e58-a985-c923fdaac99a.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007058, 103, 'acbddc61-5804-4048-a8f5-0142d7a14abe.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007059, 103, '20872084-6a3b-4d7c-9bcd-94fb240858e7.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007060, 104, 'db7eb2e1-0810-40a0-9a58-abc8a6b543b3.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007061, 104, '17293e3d-c8af-46f3-aa8d-dabd4b5f8907.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007062, 105, '55509841-d678-4658-85f4-ee7e22bf8fdf.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007063, 105, 'c8f29aaf-62b2-4193-9456-cdfff6a6477f.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007064, 106, '121f1fe4-be40-431f-954b-1bb63368ff47.PNG', 'C:/Dosirak/original/productUpload'),
+    (70007065, 106, '51489e10-0f16-45e3-b5e3-61b99377931d.PNG', 'C:/Dosirak/original/productUpload');
+
 
 
 

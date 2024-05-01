@@ -1,6 +1,7 @@
 package com.ohgiraffers.dosirak.admin.product.service;
 
 import com.ohgiraffers.dosirak.admin.product.dao.ProductMapper;
+import com.ohgiraffers.dosirak.admin.product.dto.NavDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.ProductImageDTO;
 import com.ohgiraffers.dosirak.admin.product.dto.productDTO;
 import com.ohgiraffers.dosirak.user.product.dto.ProductandImageDTO;
@@ -79,6 +80,14 @@ public class ProductService {
 
     public List<productDTO> searchProducts(String productName, int productCategoryCode, String productStatus) {
         return productMapper.findByCriteria(productName, productCategoryCode, productStatus);
+    }
+
+    public void navSave(NavDTO info) {
+        productMapper.navSave(info);
+    }
+
+    public List<NavDTO> getNav() {
+      return   productMapper.getNav();
     }
 }
 
