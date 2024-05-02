@@ -122,5 +122,13 @@ public class UserSurveyService {
         }
         comment.put("nutritionComment", result);
     }
+
+    public void modifySurveyInfo(SurveyResultDTO surveyResult) {
+        mapper.modifySurveyInfo(surveyResult);
+    }
+
+    public void deleteSurvey(String userId) {
+        mapper.deleteSurvey(userId);
+    }
 }
 

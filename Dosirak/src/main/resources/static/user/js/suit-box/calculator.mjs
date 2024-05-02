@@ -156,6 +156,7 @@ async function sendSuitBox(){
         body: new FormData($suitBoxForm)
     })
     const result = await response
+    alert('상품을 장바구니에 담았습니다.')
 }
 
 function setMenuCodeAndQuantity() {

@@ -175,4 +175,14 @@
         ORDER BY ANSWER_VALUE DESC
         LIMIT 1
     </select>
+    <update id="removeStatus">
+        UPDATE SURVEY_VERSION
+        SET STATUS = 0
+        WHERE STATUS = 1
+    </update>
+    <update id="useVersion">
+        UPDATE SURVEY_VERSION
+        SET STATUS = 1
+        WHERE VERSION_ID = #{versionId}
+    </update>
 </mapper>

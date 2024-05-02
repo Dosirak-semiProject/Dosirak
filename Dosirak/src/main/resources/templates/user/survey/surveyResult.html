@@ -26,7 +26,7 @@
             <div class="result-info-box" th:if="${surveyResult.surveyDiet == 'normal'}">희망 식단: 일반식</div>
             <div class="result-info-box" th:if="${surveyResult.surveyDiet == 'diet'}">희망 식단: 체중 감량</div>
             <div class="result-info-box" th:if="${surveyResult.surveyDiet == 'protein'}">희망 식단: 고단백식</div>
-            <button class="el_btnPointBack fix-info-button">기본 정보 수정</button>
+            <button class="el_btnPointBack fix-info-button" th:onclick="|location.href='/survey/info-modify'|">기본 정보 수정</button>
         </div>
         <div class="result-block">
             <dl class="" style="position:relative;">
@@ -79,6 +79,7 @@
                         font-size: 20px"></dd>
             </dl>
         </div>
+        <button class="el_btnPointBack fix-info-button" th:onclick="|location.href='/survey/delete'|">설문 삭제</button>
     </div>
 </div>
     <th:block th:replace="/user/common/footer.html"></th:block>

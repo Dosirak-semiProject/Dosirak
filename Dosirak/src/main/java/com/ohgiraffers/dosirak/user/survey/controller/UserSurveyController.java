@@ -42,7 +42,7 @@ public class UserSurveyController {
             Map userInfo = service.getUserInfoByUserId(userId);
             model.addAttribute("surveyResult",surveyResult);
             model.addAttribute("userInfo",userInfo);
-            return "/user/survey/surveyResult";
+            return "redirect:/survey/result";
         }
         return "user/survey/surveyAgree";
     }
@@ -73,10 +73,74 @@ public class UserSurveyController {
         }
         result.setUserId(userId);
         int insertResult = service.setResult(result);
+        return "redirect:/survey/result";
+    }
+    @GetMapping("result")
+    public String result(Model model) {
+        String userId = "";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                userId = login.getId();
+            }
+        }
         SurveyResultDTO surveyResult = service.getSurveyResultByUserId(userId);
         Map userInfo = service.getUserInfoByUserId(userId);
         model.addAttribute("surveyResult",surveyResult);
         model.addAttribute("userInfo",userInfo);
         return "/user/survey/surveyResult";
+    }
+    @GetMapping("info-modify")
+    public String infoModify(Model model) {
+        String userId = "";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                userId = login.getId();
+            }
+        }
+        SurveyResultDTO surveyResult = service.getSurveyResultByUserId(userId);
+        Map userInfo = service.getUserInfoByUserId(userId);
+        model.addAttribute("surveyResult",surveyResult);
+        model.addAttribute("userInfo",userInfo);
+        model.addAttribute("condition", "modify");
+        return "/user/survey/surveyInfo";
+    }
+    @PostMapping("modify")
+    public String modify(Model model, SurveyResultDTO surveyResult) {
+        String userId = "";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                userId = login.getId();
+            }
+        }
+        surveyResult.setUserId(userId);
+        service.modifySurveyInfo(surveyResult);
+        return "redirect:/survey/result";
+    }
+    @GetMapping("delete")
+    public String delete(Model model) {
+        String userId = "";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null && authentication.isAuthenticated()){
+            Object principal = authentication.getPrincipal();
+            if(principal instanceof AdminLoginDetails){
+                AdminLoginDetails adminLoginDetails = (AdminLoginDetails) principal;
+                LoginDTO login = adminLoginDetails.getLoginDTO();
+                userId = login.getId();
+            }
+        }
+        service.deleteSurvey(userId);
+        return "redirect:/survey/agree";
     }
 }

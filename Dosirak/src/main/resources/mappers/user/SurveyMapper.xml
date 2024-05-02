@@ -60,4 +60,23 @@
         FROM USER
         WHERE ID = #{userId}
     </select>
+    <update id="modifySurveyInfo">
+        UPDATE SURVEY_RESULT
+        SET
+        SURVEY_AGE = #{surveyAge},
+        SURVEY_HEIGHT = #{surveyHeight},
+        SURVEY_WEIGHT = #{surveyWeight},
+        SURVEY_BMI = #{surveyBmi},
+        SURVEY_DIABETES = #{surveyDiabetes},
+        SURVEY_CANCER = #{surveyCancer},
+        SURVEY_KIDNEY = #{surveyKidney},
+        SURVEY_BLOOD = #{surveyBlood},
+        SURVEY_DIET = #{surveyDiet}
+        WHERE
+        USER_ID = #{userId}
+    </update>
+    <delete id="deleteSurvey">
+        DELETE FROM SURVEY_RESULT
+        WHERE USER_ID = #{userId}
+    </delete>
 </mapper>
