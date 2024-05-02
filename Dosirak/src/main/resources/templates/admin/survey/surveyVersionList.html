@@ -52,7 +52,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="version : ${versionList}" th:onclick="|location.href='/admin/survey/version-detail?versionId=${version.versionId}'|">
-                                <td th:text="${version.versionId}"></td>
+                                <td><span th:text="${version.versionId}"></span><span th:if="${version.status==true}">  (현재 사용)</span></td>
                                 <td th:text="${version.versionName}"></td>
                                 <td th:text="${version.versionExplain}"></td>
                                 <td th:text="${version.updateDate}"></td>

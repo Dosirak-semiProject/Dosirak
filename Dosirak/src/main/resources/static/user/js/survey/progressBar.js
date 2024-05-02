@@ -58,8 +58,6 @@ for(const radioButton of radioButtons){
         pageIndex = pageIndex >= maxIndex ? maxIndex : pageIndex; // index값이 inner의 총 개수보다 많아질 경우 마지막 인덱스값으로 변경
         innerList.style.marginLeft = `-${outer.clientWidth * pageIndex}px`; // index만큼 margin을 주어 옆으로 밀기
         progressBar.style.width = `${oneStepLength * progressBarIndex}px`
-        console.log(`now ${pageIndex}`)
-        console.log(`max ${maxIndex}`)
         if(progressBarIndex >= 0){
             $backButton.style.visibility=''
             setTimeout(()=>{$backButton.style.opacity=1}, 100)

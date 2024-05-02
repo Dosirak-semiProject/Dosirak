@@ -107,4 +107,10 @@ public class SurveyAdminController {
         surveyAdminService.setRangeByRange(range);
         return 1;
     }
+    @GetMapping("use-version")
+    public String userVersion(Model model, @RequestParam int versionId){
+        surveyAdminService.removeStatus();
+        surveyAdminService.useVersion(versionId);
+        return "redirect:/admin/survey/version-list";
+    }
 }

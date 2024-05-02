@@ -22,4 +22,8 @@ public interface UserSurveyDAO {
     SurveyResultDTO getSurveyResultByUserId(String userId);
 
     Map getUserInfoByUserId(String userId);
+
+    void modifySurveyInfo(SurveyResultDTO surveyResult);
+
+    void deleteSurvey(String userId);
 }

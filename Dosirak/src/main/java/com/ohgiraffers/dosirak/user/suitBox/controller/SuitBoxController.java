@@ -80,7 +80,7 @@ public class SuitBoxController {
             suitBox.setQuantity(suitBox.getQuantity() + checkCartQuantity);
             suitBoxService.updateCartBySuitBox(suitBox);
         }
-        return "test";
+        return "success";
     }
     @PostMapping("/buy")
     public String buy(Model model, @ModelAttribute SuitBoxDTO suitBox) {

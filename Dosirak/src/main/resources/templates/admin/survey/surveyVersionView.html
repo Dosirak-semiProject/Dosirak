@@ -14,7 +14,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4" th:text="|version.${version.versionId}|"></h1>
+                <h1 class="mt-4"><span th:text="|version.${version.versionId}|"></span><span th:if="${version.status==true}"> (now)</span></h1>
                 <table class="datatable-table mt-4">
                     <colgroup>
                         <col style="width:200px" />
@@ -116,6 +116,7 @@
                 </table>
                 <div class="editBtn" style="text-align: right; margin-top: 30px;margin-bottom: 100px;">
                             <span>
+                                <button th:if="${version.status!=true}" type="button" class="btn btn-primary" th:onclick="@{|location.href='/admin/survey/use-version?versionId=${version.versionId}'|}">설문 사용</button>
                                 <button type="button" class="btn btn-primary" th:onclick="@{|location.href='/admin/survey/version-set?versionId=${version.versionId}'|}">설문 수정</button>
                                 <button type="button" class="btn btn-primary" th:onclick="@{|location.href='/admin/survey/version-delete?versionId=${version.versionId}'|}">설문 삭제</button>
                                 <button type="button" class="btn btn-secondary" th:onclick="@{|location.href='/admin/survey/version-list'|}">목록</button>

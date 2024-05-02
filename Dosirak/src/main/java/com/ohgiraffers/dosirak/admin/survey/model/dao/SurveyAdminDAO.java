@@ -48,4 +48,8 @@ public interface SurveyAdminDAO {
     void setRangeByRange(SurveyScoreRangeDTO range);
 
     int getMaxValueByQuestionId(int questionId);
+
+    void removeStatus();
+
+    void useVersion(int versionId);
 }

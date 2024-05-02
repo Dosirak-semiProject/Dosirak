@@ -102,4 +102,12 @@ public class SurveyAdminService {
         }
         return result;
     }
+
+    public void removeStatus() {
+        surveyMapper.removeStatus();
+    }
+
+    public void useVersion(int versionId) {
+        surveyMapper.useVersion(versionId);
+    }
 }
