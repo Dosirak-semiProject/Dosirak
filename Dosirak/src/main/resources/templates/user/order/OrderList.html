@@ -48,7 +48,9 @@
                                 <a class="ly_flexC ly_fitemC" href="">
                                     <img class="bl_TBList__orderImg" th:src="@{|/product/${order.firstImageName}|}"
                                          alt=""/>
-                                    <p class="hp_ellipsis hp_ellipsis3" th:text="${order.productName}"></p>
+                                    <p class="hp_ellipsis hp_ellipsis3" th:text="${order.productName}"  th:href="@{'/user/orderq/OrderView?orderCode=' + ${ order.orderCode }}"
+                                    ></p>
+
                                 </a>
                             </td>
                             <td th:text="${order.deliveryStatus}"></td>

@@ -1,8 +1,6 @@
 package com.ohgiraffers.dosirak.user.order.model.service;
 
 import com.ohgiraffers.dosirak.user.order.model.dao.OrderUserMapper;
-import com.ohgiraffers.dosirak.user.order.model.dto.CartDTO;
-import com.ohgiraffers.dosirak.user.order.model.dto.OrderDTO;
 import com.ohgiraffers.dosirak.user.order.model.dto.OrderHistoryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,5 +15,9 @@ public class OrderUserService {
 
     public List<OrderHistoryDTO> findOrderHistoryByUserId(String userId) {
         return orderUserMapper.findOrderHistoryByUserId(userId);
+    }
+
+    public List<OrderHistoryDTO> findOrderHistoryByUserCode(String orderCode) {
+        return orderUserMapper.findOrderHistoryByUserCode(orderCode);
     }
 }
