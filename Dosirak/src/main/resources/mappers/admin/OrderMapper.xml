@@ -119,7 +119,15 @@
                 </when>
             </choose>
             <if test="searchValue != null and searchValue != ''">
-                AND o.order_code LIKE CONCAT('%', #{ searchValue }, '%')
+                AND (
+                o.order_code LIKE CONCAT('%', #{searchValue}, '%') OR
+                o.order_status LIKE CONCAT('%', #{searchValue}, '%') OR
+                o.order_recipient LIKE CONCAT('%', #{searchValue}, '%') OR
+                u.id LIKE CONCAT('%', #{searchValue}, '%') OR
+                u.name LIKE CONCAT('%', #{searchValue}, '%') OR
+                p.pay_status LIKE CONCAT('%', #{searchValue}, '%') OR
+                p.pay_method LIKE CONCAT('%', #{searchValue}, '%')
+                )
             </if>
         </where>
     </select>
@@ -159,7 +167,13 @@
                 </when>
             </choose>
             <if test="searchValue != null and searchValue != ''">
-                AND r.refund_code LIKE CONCAT('%', #{ searchValue }, '%')
+                AND (
+                o.order_code LIKE CONCAT('%', #{searchValue}, '%') OR
+                r.refund_status LIKE CONCAT('%', #{searchValue}, '%') OR
+                u.ID LIKE CONCAT('%', #{searchValue}, '%') OR
+                u.name LIKE CONCAT('%', #{searchValue}, '%') OR
+                p.pay_method LIKE CONCAT('%', #{searchValue}, '%')
+                )
             </if>
         </where>
     </select>
@@ -196,7 +210,13 @@
                 </when>
             </choose>
             <if test="searchValue != null and searchValue != ''">
-                AND d.delivery_code LIKE CONCAT('%', #{ searchValue }, '%')
+                AND (
+                d.order_code LIKE CONCAT('%', #{searchValue}, '%') OR
+                d.delivery_code LIKE CONCAT('%', #{searchValue}, '%') OR
+                d.delivery_status LIKE CONCAT('%', #{searchValue}, '%') OR
+                o.order_recipient LIKE CONCAT('%', #{searchValue}, '%') OR
+                u.name LIKE CONCAT('%', #{searchValue}, '%')
+                )
             </if>
         </where>
     </select>

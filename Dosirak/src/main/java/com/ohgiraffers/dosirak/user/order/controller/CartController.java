@@ -46,10 +46,9 @@ public class CartController {
         /* ID를 매개변수로 넘겨 사용자의 장바구니 상품 출력 */
         List<CartDTO> cartDTO = cartService.userCartList(memberId);
         cartDTO = cartService.divisionProduct(cartDTO);
+        cartService.setCartProductImgName(cartDTO);
         if (cartDTO != null) {
             model.addAttribute("cartDTO", cartDTO);
-        } else {
-            log.info("Empty cart list");
         }
 
         return "/user/order/cart";
@@ -82,6 +81,7 @@ public class CartController {
 
         cartList = cartService.setCartDTO(productAndQuantity, memberId);
         cartList = cartService.divisionProduct(cartList);
+
         cartService.setProductImgName(cartList);
 
         model.addAttribute("cartDTO", cartList);
@@ -224,5 +224,4 @@ public class CartController {
         }
         return "/user/order/orderDone";
     }
-
 }

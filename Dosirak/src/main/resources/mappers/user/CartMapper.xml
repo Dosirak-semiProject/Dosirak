@@ -260,20 +260,26 @@
     </delete>
     <select id="getProductImageDTOByProductId">
         SELECT
-        img_code,
-        product_code,
-        saved_name,
-        save_path
+            img_code,
+            product_code,
+            saved_name,
+            save_path
         FROM
-        PRODUCT_IMG
+            PRODUCT_IMG
         WHERE
         product_code = #{productCode}
+        LIMIT 1;
     </select>
-
-    <!-- 결제페이지 이미지 불러오기 수정중 -->
-<!--    <select id="findProductImgName" resultMap="CartResultMap">-->
-<!--        SELECT PI.SAVED_NAME-->
-<!--        FROM TBL_PRODUCT PD-->
-<!--        JOIN PRODUCT_IMG PI = PD.PRODUCT_CODE = PI.PRODUCT_CODE-->
-<!--    </select>-->
+    <select id="setCartProductImgName">
+        SELECT
+            img_code,
+            product_code,
+            saved_name,
+            save_path
+        FROM
+            PRODUCT_IMG
+        WHERE
+        product_code = #{productCode}
+        LIMIT 1;
+    </select>
 </mapper>
