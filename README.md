@@ -34,6 +34,12 @@
 ## 📋플로우차트 URL
 [플로우차트 디자인 링크](https://miro.com/app/board/uXjVKefKYfQ=/)
 
+## 🖼️물리 데이터베이스 모델
+<img src="https://github.com/user-attachments/assets/44b3f353-48ee-4600-9fea-7836bdf152e2" alt="image" width="800" height="600"/>
+
+## 🖼논리 데이터베이스 모델
+<img src="https://github.com/user-attachments/assets/1a6deb36-35ae-4269-8adc-d88484178bbb" alt="image" width="800" height="600"/>
+
 ## ⚙️개발 환경
 - 운영체제: Windows 10 64bit
 - 개발도구: IntelliJ IDEA
