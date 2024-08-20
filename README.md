@@ -42,6 +42,12 @@
 
 <div align="center">
   
+  ### Library
+  <span><img src="https://img.shields.io/badge/jquery-0769AD?style=flat&logo=jquery&logoColor=white"/></span>
+</div>
+
+<div align="center">
+  
   ### BackEnd
   <span><img src="https://img.shields.io/badge/Java-007396?style=flat&logo=OpenJDK&logoColor=white"/></span>
 </div>
