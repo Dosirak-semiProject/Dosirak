@@ -28,6 +28,39 @@
 |          | [박은비](https://github.com/SILVER-BE)      | 문의              |
 |          | [박진영](https://github.com/jinyoung23456)  | 리뷰              |
 
+<div align="center">
+  
+   ## 📚Stacks
+</div>
+<div align="center">
+  
+  ### FrontEnd
+  <span><img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/></span>
+  <span><img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white"/></span>
+  <span><img src="https://img.shields.io/badge/react-61DAFB?style=flat&logo=react&logoColor=white"/></span>
+  <span><img src="https://img.shields.io/badge/javaScript-F7DF1E?style=flat&logo=javaScript&logoColor=black"/></span>
+</div>
+
+<div align="center">
+  
+  ### BackEnd
+  <span><img src="https://img.shields.io/badge/Java-007396?style=flat&logo=OpenJDK&logoColor=white"/></span>
+</div>
+
+<!--
+<div align="center">
+  
+  ### FrameWork
+  <span><img src="https://img.shields.io/badge/springBoot-6DB33F?style=flat&logo=springBoot&logoColor=white"/></span>
+</div>
+-->
+
+<div align="center">
+  
+  ### Database
+  <span><img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white"/></span>
+</div>
+
 ## 🎨 피그마 URL
 [피그마 디자인 링크](https://www.figma.com/design/MITgGneOQUCs7o2Yapqgxw/%EB%8F%84%EC%8B%9C%EF%A5%9C?node-id=0-1&t=4zeFhgxaTk03gYFw-0)
 
