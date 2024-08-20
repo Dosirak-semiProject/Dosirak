@@ -30,6 +30,9 @@
 ## 🎨 피그마 URL
 [피그마 디자인 링크](https://www.figma.com/design/MITgGneOQUCs7o2Yapqgxw/%EB%8F%84%EC%8B%9C%EF%A5%9C?node-id=0-1&t=4zeFhgxaTk03gYFw-0)
 
+## 📋플로우차트 URL
+[플로우차트 디자인 링크](https://miro.com/app/board/uXjVKefKYfQ=/)
+
 ## ⚙️개발 환경
 - 운영체제: Windows 10 64bit
 - 개발도구: IntelliJ IDEA
