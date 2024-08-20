@@ -27,3 +27,14 @@
 - 성우현(장바구니, 결제)</br>
 - 박은비(문의)</br>
 - 박진영(리뷰)</br>
+
+## ⚙️개발 환경
+- 운영체제: Windows 10 64bit
+- 개발도구: IntelliJ IDEA
+- 빌드툴: Gradle
+- 프로그래밍 언어: Java, JavaScript, HTML, CSS
+- 라이브러리: JQuery
+- 프레임워크: SpringBoot, MyBatis, BootStrap
+- 데이터베이스: MySQL
+- 모델링툴: DA#Modeler5
+- 협업툴: GitHub, Notion, Discord
