@@ -79,15 +79,18 @@
 <img src="https://github.com/user-attachments/assets/1a6deb36-35ae-4269-8adc-d88484178bbb" alt="image" width="800" height="600"/>
 
 ## ⚙️개발 환경
-- 운영체제: Windows 10 64bit
-- 개발도구: IntelliJ IDEA
-- 빌드툴: Gradle
-- 프로그래밍 언어: Java, JavaScript, HTML, CSS
-- 라이브러리: JQuery
-- 프레임워크: SpringBoot, MyBatis, BootStrap
-- 데이터베이스: MySQL
-- 모델링툴: DA#Modeler5
-- 협업툴: GitHub, Notion, Discord
+| **항목**          | **내용**                   |
+|:-----------------:|:---------------------------:|
+| 운영체제          | Windows 10 64bit            |
+| 개발도구          | IntelliJ IDEA                |
+| 빌드툴            | Gradle                       |
+| 프로그래밍 언어    | Java, JavaScript, HTML, CSS |
+| 라이브러리        | JQuery                       |
+| 프레임워크        | SpringBoot, MyBatis, BootStrap |
+| 데이터베이스      | MySQL                        |
+| 모델링툴          | DA#Modeler5                  |
+| 협업툴            | GitHub, Notion, Discord      |
+
 
 ## 🔥API
 - PortOne
