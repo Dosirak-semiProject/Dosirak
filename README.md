@@ -28,43 +28,58 @@
 |          | [박은비](https://github.com/SILVER-BE)      | 문의              |
 |          | [박진영](https://github.com/jinyoung23456)  | 리뷰              |
 
-<div align="center">
+<div>
   
    ## 📚Stacks
 </div>
-<div align="center">
-  
-  ### FrontEnd
-  <span><img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/></span>
-  <span><img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white"/></span>
-  <span><img src="https://img.shields.io/badge/javaScript-F7DF1E?style=flat&logo=javaScript&logoColor=black"/></span>
-</div>
 
-<div align="center">
-  
-  ### Library
-  <span><img src="https://img.shields.io/badge/jquery-0769AD?style=flat&logo=jquery&logoColor=white"/></span>
-</div>
-
-<div align="center">
-  
-  ### BackEnd
-  <span><img src="https://img.shields.io/badge/Java-007396?style=flat&logo=OpenJDK&logoColor=white"/></span>
-</div>
-
-<!--
-<div align="center">
-  
-  ### FrameWork
-  <span><img src="https://img.shields.io/badge/springBoot-6DB33F?style=flat&logo=springBoot&logoColor=white"/></span>
-</div>
--->
-
-<div align="center">
-  
-  ### Database
-  <span><img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white"/></span>
-</div>
+<table>
+  <tr>
+    <th style="text-align:center;">Category</th>
+    <th style="text-align:center;">Skills</th>
+  </tr>
+  <tr>
+    <td style="text-align:center;"><strong >FrontEnd</strong></td>
+    <td style="text-align:center;">
+      <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white"/>
+      <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white"/>
+      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javaScript&logoColor=black"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;"><strong>BackEnd</strong></td>
+    <td style="text-align:center;">
+      <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=OpenJDK&logoColor=white"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;"><strong>Libraries</strong></td>
+    <td style="text-align:center;">
+      <img src="https://img.shields.io/badge/jquery-0769AD?style=flat&logo=jquery&logoColor=white"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;"><strong>Server</strong></td>
+    <td style="text-align:center;">
+      <img src="https://img.shields.io/badge/Apachetomcat-F8DC75?style=flat&logo=apachetomcat&logoColor=black"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;"><strong>Database</strong></td>
+    <td style="text-align:center;">
+      <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white"/>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;"><strong>Development Environment</strong></td>
+    <td style="text-align:center;">
+      <img src="https://img.shields.io/badge/IntelliJ-fff?style=flat&logo=IntelliJ IDEA&logoColor=black"/>
+      <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=Figma&logoColor=white"/>
+      <img src="https://img.shields.io/badge/Git-05032?style=flat&logo=git&logoColor=white"/>
+      <img src="https://img.shields.io/badge/Gradle-02303A?style=flat&logo=gradle&logoColor=white"/>
+    </td>
+  </tr>
+</table>
 
 ## 🎨 피그마 URL
 [피그마 디자인 링크](https://www.figma.com/design/MITgGneOQUCs7o2Yapqgxw/%EB%8F%84%EC%8B%9C%EF%A5%9C?node-id=0-1&t=4zeFhgxaTk03gYFw-0)
